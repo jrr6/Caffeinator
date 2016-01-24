@@ -44,6 +44,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = mainMenu
     }
     
+    func applicationWillTerminate(notification: NSNotification) {
+        if let activeTask = task {
+            activeTask.terminate()
+        }
+    }
+    
     var active = false {
         didSet {
             startMenu.title = active ? "Stop Caffeinator" : "Start Caffeinator"
