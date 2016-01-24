@@ -417,7 +417,7 @@ Gw
                                     <size key="maxSize" width="463" height="10000000"/>
                                     <attributedString key="textStorage">
                                         <fragment>
-                                            <mutableString key="content">Caffeinator is the easiest way to prevent your Mac from falling asleep! This is a simple and easy-to-use frontend for the caffeinate command. Here is a breakdown of this application's features:
+                                            <mutableString key="content">Caffeinator is the easiest way to prevent your Mac from falling asleep! This is a simple and easy-to-use front-end for the caffeinate command. Here is a breakdown of this application's features:
 
 Start Caffeinator: Prevents sleep until Stop Caffeinator is clicked.
 

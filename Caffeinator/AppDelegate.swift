@@ -132,7 +132,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let t = time {
             generateCaffeine(["-t", String(t)], dev: false)
         } else {
-            errorMessage("No Time Assigned", text: "No time value was passed to caffeimate.")
+            errorMessage("No Time Assigned", text: "No time value was passed to caffeinate.")
         }
     }
     
