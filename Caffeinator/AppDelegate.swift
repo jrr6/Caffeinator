@@ -113,7 +113,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Responds to the "Timed Caffeination" item by prompting time entry, then confirming valid input (generating errors as necessary) and passing the time (in seconds) to generateCaffeine() along with the corresponding "-t" argument
+    // Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is seleted, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is passed to generateCaffeine() along with the corresponding "-t" argument
     @IBAction func timedClicked(sender: NSMenuItem) {
         let title = sender.title
         var time: Double? = nil
