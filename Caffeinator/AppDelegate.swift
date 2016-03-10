@@ -108,7 +108,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let text = Int(res) {
                 generateCaffeine(["-w", String(text)], dev: false)
             } else {
-                errorMessage("Illegal Input", text: "You must enter the PID number of the process you wish to Caffeinate.")
+                errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
             }
         }
     }
