@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), and set up the menu item
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        nc.addObserver(self, selector: "defaultsChanged", name: NSUserDefaultsDidChangeNotification, object: nil)
+        nc.addObserver(self, selector: #selector(AppDelegate.defaultsChanged), name: NSUserDefaultsDidChangeNotification, object: nil)
         if df.objectForKey("CaffeinateDisplay") != nil {
             sleepDisplay = df.boolForKey("CaffeinateDisplay")
         } else {
@@ -104,7 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
     @IBAction func processClicked(sender: NSMenuItem) {
-        if let res = inputDialog("Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in the Activity Monitor application:") {
+        if let res = inputDialog("Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
             if let text = Int(res) {
                 generateCaffeine(["-w", String(text)], dev: false)
             } else {
@@ -151,7 +151,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
-    func generateCaffeine(var arguments: [String], dev: Bool) {
+    func generateCaffeine(arguments: [String], dev: Bool) {
+        var arguments = arguments
         if !dev {
             arguments.append("-i")
             if sleepDisplay {
@@ -236,6 +237,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Close the argument panel
     @IBAction func cancelArguments(sender: NSButton) {
         argumentPanel.close()
+    }
+    
+    // Responds to the "info" button on the argument input window by opening Apple's caffeinate manpage on their online developer library. In future releases, this may be replaced with a native solution.
+    @IBAction func viewManpage(sender: NSButton) {
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
     }
     
     // MARK: - Utility Alert Functions
