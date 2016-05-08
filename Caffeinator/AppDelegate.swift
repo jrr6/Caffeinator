@@ -11,6 +11,8 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    let VERSION_NUMBER = 103
+    
     // MARK: - Outlets
     
     @IBOutlet weak var mainMenu: NSMenu!
@@ -32,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var sleepDisplay = true
     
-    // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), and set up the menu item
+    // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item, and check for updates
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         nc.addObserver(self, selector: #selector(AppDelegate.defaultsChanged), name: NSUserDefaultsDidChangeNotification, object: nil)
         if df.objectForKey("CaffeinateDisplay") != nil {
@@ -43,13 +45,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.menu = mainMenu
+        checkForUpdate()
     }
     
-    // Terminate caffeinate upon application termination to prevent "zombie" processes
+    // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety)
     func applicationWillTerminate(notification: NSNotification) {
         if let activeTask = task {
             activeTask.terminate()
         }
+    }
+    
+    // Query the server to see if a new version is available
+    func checkForUpdate() {
+        let url = NSURL(string: "https://aaplmath.github.io/Caffeinator/latestversion")!
+        let session = NSURLSession.sharedSession()
+        let query = session.dataTaskWithURL(url) { data, response, error in
+            let str = String(data: data!, encoding: NSUTF8StringEncoding)
+            print("string: \(str!)")
+            print(Int(str!))
+        }
+        query.resume()
     }
     
     // Responsible for managing the inactive/active state of the app. If there is an active "Caffeination," disable the appropriate menu items and set the icon green. Otherwise, enable all menu items and set the icon to the template
