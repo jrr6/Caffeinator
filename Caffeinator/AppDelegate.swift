@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.menu = mainMenu
-        checkForUpdate()
+        checkForUpdate(userInitiated: false)
     }
     
     // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety)
@@ -111,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let text = Int(res) {
                 generateCaffeine(["-w", String(text)], dev: false)
             } else {
-                errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.", threadSafe: false)
+                errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
             }
         }
     }
@@ -134,7 +134,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if let text = Double(res) {
                     time = text * 60
                 } else {
-                    errorMessage("Illegal Input", text: "You must enter an integer or decimal number.", threadSafe: false)
+                    errorMessage("Illegal Input", text: "You must enter an integer or decimal number.")
                 }
             }
         }
@@ -144,7 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let t = time {
             generateCaffeine(["-t", String(t)], dev: false)
         } else {
-            errorMessage("No Time Assigned", text: "No time value was passed to caffeinate.", threadSafe: false)
+            errorMessage("No Time Assigned", text: "No time value was passed to caffeinate.")
         }
     }
     
@@ -250,15 +250,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Update Functions
     
     // Queries the server to see if a new version is available. If it is, alerts the user and opens the file in their browser.
-    func checkForUpdate() {
+    func checkForUpdate(userInitiated userInitiated: Bool) {
         let url = NSURL(string: "https://aaplmath.github.io/Caffeinator/latestversion")!
         let session = NSURLSession.sharedSession()
         let query = session.dataTaskWithURL(url) { data, response, error in
             let str = String(data: data!, encoding: NSUTF8StringEncoding)
             if var versionString = str, let serverVersion = Int(versionString) {
-                if (serverVersion >= self.VERSION_NUMBER) {
-                    
-                    // FIXME: This is a deprecated method of handling NSAlerts. Unfortunately, beginSheetModalForWindow will not work in this instance because the application has no window that is guaranteed to be open. This will be addressed in future releases.
+                if (serverVersion > self.VERSION_NUMBER) {
                     dispatch_async(dispatch_get_main_queue()) {
                         let alert = NSAlert()
                         alert.window.title = "Caffeinator Update"
@@ -267,6 +265,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         alert.addButtonWithTitle("Update")
                         alert.addButtonWithTitle("Not Now")
                         alert.alertStyle = .InformationalAlertStyle
+                        // FIXME: runModal() is a deprecated method of handling NSAlerts. Unfortunately, beginSheetModalForWindow will not work in this instance because the application has no window that is guaranteed to be open. This will be addressed in future releases.
                         if alert.runModal() == NSAlertFirstButtonReturn {
                             var versionChars = versionString.characters
                             // FIXME: This could not be a more hideous solution. Will be addressed in future releases.
@@ -278,6 +277,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             NSWorkspace.sharedWorkspace().openURL(downloadURL)
                         }
                     }
+                } else if (userInitiated) {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let alert = NSAlert()
+                        alert.window.title = "Caffeinator Update"
+                        alert.messageText = "No Updates Available"
+                        alert.informativeText = "You're running the latest version of Caffeinator."
+                        alert.addButtonWithTitle("OK")
+                        // FIXME: Again, runModal() shouldn't be used
+                        alert.runModal()
+                    }
                 }
             }
         }
@@ -286,7 +295,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Responds to user request to check for updates by calling checkForUpdate()
     @IBAction func checkForUpdatesClicked(sender: NSMenuItem) {
-        checkForUpdate()
+        checkForUpdate(userInitiated: true)
     }
     
     // MARK: - Utility Alert Functions
@@ -310,16 +319,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Shows an error message with the specified text
-    func errorMessage(title: String, text: String, threadSafe: Bool) {
-        let alert = NSAlert()
-        alert.window.title = "Error"
-        alert.messageText = title
-        alert.informativeText = text
-        if (threadSafe) {
-            dispatch_async(dispatch_get_main_queue()) {
-                alert.runModal()
-            }
-        } else {
+    func errorMessage(title: String, text: String) {
+        dispatch_async(dispatch_get_main_queue()) {
+            let alert = NSAlert()
+            alert.window.title = "Error"
+            alert.messageText = title
+            alert.informativeText = text
+            alert.alertStyle = .WarningAlertStyle
             alert.runModal()
         }
     }
