@@ -156,7 +156,7 @@
                         </constraints>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="justified" id="BiB-6m-BkE">
                             <font key="font" metaFont="smallSystem"/>
-                            <string key="title">Use the check boxes to select the arguments with which you wish to call caffeinate. If you select the "-t" or "-w" arguments, use the corresponding value entries to specify values for those arguments. For more information, view caffeinate's man page in Terminal.</string>
+                            <string key="title">Use the check boxes to select the arguments with which you wish to call caffeinate. If you select the "-t" or "-w" arguments, use the corresponding value entries to specify values for those arguments. View caffeinate's man page for more information.</string>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
