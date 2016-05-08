@@ -11,7 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let VERSION_NUMBER = 110
+    let VERSION_NUMBER = 103
     
     // MARK: - Outlets
     
