@@ -257,16 +257,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let str = String(data: data!, encoding: NSUTF8StringEncoding)
             if var versionString = str, let serverVersion = Int(versionString) {
                 if (serverVersion >= self.VERSION_NUMBER) {
-                    let alert = NSAlert()
-                    alert.window.title = "Caffeinator Update"
-                    alert.messageText = "Update Available"
-                    alert.informativeText = "A new version of Caffeinator is available. Would you like to download it now?"
-                    alert.addButtonWithTitle("Update")
-                    alert.addButtonWithTitle("Not Now")
-                    alert.alertStyle = .InformationalAlertStyle
                     
                     // FIXME: This is a deprecated method of handling NSAlerts. Unfortunately, beginSheetModalForWindow will not work in this instance because the application has no window that is guaranteed to be open. This will be addressed in future releases.
                     dispatch_async(dispatch_get_main_queue()) {
+                        let alert = NSAlert()
+                        alert.window.title = "Caffeinator Update"
+                        alert.messageText = "Update Available"
+                        alert.informativeText = "A new version of Caffeinator is available. Would you like to download it now?"
+                        alert.addButtonWithTitle("Update")
+                        alert.addButtonWithTitle("Not Now")
+                        alert.alertStyle = .InformationalAlertStyle
                         if alert.runModal() == NSAlertFirstButtonReturn {
                             var versionChars = versionString.characters
                             // FIXME: This could not be a more hideous solution. Will be addressed in future releases.
