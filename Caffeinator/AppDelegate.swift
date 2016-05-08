@@ -55,18 +55,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Query the server to see if a new version is available
-    func checkForUpdate() {
-        let url = NSURL(string: "https://aaplmath.github.io/Caffeinator/latestversion")!
-        let session = NSURLSession.sharedSession()
-        let query = session.dataTaskWithURL(url) { data, response, error in
-            let str = String(data: data!, encoding: NSUTF8StringEncoding)
-            print("string: \(str!)")
-            print(Int(str!))
-        }
-        query.resume()
-    }
-    
     // Responsible for managing the inactive/active state of the app. If there is an active "Caffeination," disable the appropriate menu items and set the icon green. Otherwise, enable all menu items and set the icon to the template
     var active = false {
         didSet {
@@ -123,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let text = Int(res) {
                 generateCaffeine(["-w", String(text)], dev: false)
             } else {
-                errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
+                errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.", threadSafe: false)
             }
         }
     }
@@ -146,7 +134,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if let text = Double(res) {
                     time = text * 60
                 } else {
-                    errorMessage("Illegal Input", text: "You must enter an integer or decimal number.")
+                    errorMessage("Illegal Input", text: "You must enter an integer or decimal number.", threadSafe: false)
                 }
             }
         }
@@ -156,7 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let t = time {
             generateCaffeine(["-t", String(t)], dev: false)
         } else {
-            errorMessage("No Time Assigned", text: "No time value was passed to caffeinate.")
+            errorMessage("No Time Assigned", text: "No time value was passed to caffeinate.", threadSafe: false)
         }
     }
     
@@ -259,6 +247,48 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
     }
     
+    // MARK: - Update Functions
+    
+    // Queries the server to see if a new version is available. If it is, alerts the user and opens the file in their browser.
+    func checkForUpdate() {
+        let url = NSURL(string: "https://aaplmath.github.io/Caffeinator/latestversion")!
+        let session = NSURLSession.sharedSession()
+        let query = session.dataTaskWithURL(url) { data, response, error in
+            let str = String(data: data!, encoding: NSUTF8StringEncoding)
+            if var versionString = str, let serverVersion = Int(versionString) {
+                if (serverVersion >= self.VERSION_NUMBER) {
+                    let alert = NSAlert()
+                    alert.window.title = "Caffeinator Update"
+                    alert.messageText = "Update Available"
+                    alert.informativeText = "A new version of Caffeinator is available. Would you like to download it now?"
+                    alert.addButtonWithTitle("Update")
+                    alert.addButtonWithTitle("Not Now")
+                    alert.alertStyle = .InformationalAlertStyle
+                    
+                    // FIXME: This is a deprecated method of handling NSAlerts. Unfortunately, beginSheetModalForWindow will not work in this instance because the application has no window that is guaranteed to be open. This will be addressed in future releases.
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if alert.runModal() == NSAlertFirstButtonReturn {
+                            var versionChars = versionString.characters
+                            // FIXME: This could not be a more hideous solution. Will be addressed in future releases.
+                            versionChars.insert(".", atIndex: versionChars.startIndex.successor())
+                            versionChars.insert(".", atIndex: versionChars.startIndex.successor().successor().successor())
+                            versionString = String(versionChars)
+                            
+                            let downloadURL = NSURL(string: "https://www.github.com/aaplmath/Caffeinator/releases/v\(versionString)/Caffeinator.dmg")!
+                            NSWorkspace.sharedWorkspace().openURL(downloadURL)
+                        }
+                    }
+                }
+            }
+        }
+        query.resume()
+    }
+    
+    // Responds to user request to check for updates by calling checkForUpdate()
+    @IBAction func checkForUpdatesClicked(sender: NSMenuItem) {
+        checkForUpdate()
+    }
+    
     // MARK: - Utility Alert Functions
     
     // Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with showValueDialog()
@@ -280,12 +310,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Shows an error message with the specified text
-    func errorMessage(title: String, text: String) {
+    func errorMessage(title: String, text: String, threadSafe: Bool) {
         let alert = NSAlert()
         alert.window.title = "Error"
         alert.messageText = title
         alert.informativeText = text
-        alert.runModal()
+        if (threadSafe) {
+            dispatch_async(dispatch_get_main_queue()) {
+                alert.runModal()
+            }
+        } else {
+            alert.runModal()
+        }
     }
 
 }

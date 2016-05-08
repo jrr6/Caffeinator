@@ -38,7 +38,7 @@
                         <action selector="startClicked:" target="Voe-Tx-rLC" id="Pmq-2Y-Wxp"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Caffeinate a Process" id="TTf-vh-Tj1">
+                <menuItem title="Caffeinate a Process…" id="TTf-vh-Tj1">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="processClicked:" target="Voe-Tx-rLC" id="qhc-h6-EsZ"/>
@@ -110,7 +110,7 @@
                                     <action selector="caffeinateDisplay:" target="Voe-Tx-rLC" id="gTX-iu-vWD"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Run Caffeinate with Args" id="gAU-e9-9H3">
+                            <menuItem title="Run Caffeinate with Args…" id="gAU-e9-9H3">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="argumentClicked:" target="Voe-Tx-rLC" id="rVc-uV-D69"/>
@@ -123,6 +123,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="helpPressed:" target="Voe-Tx-rLC" id="N08-O1-iQd"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Check for Updates…" id="Ftj-QO-rC5">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkForUpdatesClicked:" target="Voe-Tx-rLC" id="LFO-Px-v51"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Quit" id="ZfX-Yx-P9o">
