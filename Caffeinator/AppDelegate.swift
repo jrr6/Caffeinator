@@ -274,7 +274,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             versionChars.insert(".", atIndex: versionChars.startIndex.successor().successor().successor())
                             versionString = String(versionChars)
                             
-                            let downloadURL = NSURL(string: "https://www.github.com/aaplmath/Caffeinator/releases/v\(versionString)/Caffeinator.dmg")!
+                            let downloadURL = NSURL(string: "https://www.github.com/aaplmath/Caffeinator/releases/download/v\(versionString)/Caffeinator.dmg")!
                             NSWorkspace.sharedWorkspace().openURL(downloadURL)
                         }
                     }
