@@ -93,7 +93,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Start Caffeinate with no args, or stop it if it is active
     @IBAction func startClicked(_ sender: NSMenuItem) {
         if sender.title == "Start Caffeinator" {
-            generateCaffeine([], dev: false)
+            generateCaffeine([], isDev
+                : false)
         } else {
             task?.terminate()
             active = false
@@ -109,7 +110,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func processClicked(_ sender: NSMenuItem) {
         if let res = inputDialog("Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
             if let text = Int(res) {
-                generateCaffeine(["-w", String(text)], dev: false)
+                generateCaffeine(["-w", String(text)], isDev: false)
             } else {
                 errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
             }
@@ -139,12 +140,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         if let multi = multiplier, let range = loc {
-            // TODO: Check that the new implementation works
             time = Double(title.substring(to: title.index(before: range.lowerBound)))! * multi
-//            time = Double(title.substring(to: title.index(before: range.first!)))! * multi
         }
         if let t = time {
-            generateCaffeine(["-t", String(t)], dev: false)
+            generateCaffeine(["-t", String(t)], isDev: false)
         } else {
             errorMessage("No Time Assigned", text: "No time value was passed to caffeinate.")
         }
@@ -156,14 +155,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
-    func generateCaffeine(_ arguments: [String], dev: Bool) {
+    func generateCaffeine(_ arguments: [String], isDev: Bool) {
         var arguments = arguments
-        if !dev {
+        if !isDev {
             arguments.append("-i")
             if sleepDisplay {
                 arguments.append("-d")
             }
         }
+        print("Executing: " + String(describing: arguments))
         DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
             () -> Void in
             self.task = Process()
@@ -235,7 +235,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 args.insert(arg, at: index + 1)
             }
         }
-        generateCaffeine(args, dev: true)
+        generateCaffeine(args, isDev: true)
         argumentPanel.close()
     }
     
@@ -260,20 +260,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if var versionString = str, let serverVersion = Int(versionString) {
                 if (serverVersion > self.VERSION_NUMBER) {
                     DispatchQueue.main.async {
+                        var versionChars = versionString.characters
+                        // FIXME: This could not be a more hideous solution. Will be addressed in future releases.
+                        versionChars.insert(".", at: versionChars.index(after: versionChars.startIndex))
+                        versionChars.insert(".", at: versionChars.index(after: versionChars.index(after: versionChars.index(after: versionChars.startIndex))))
+                        versionString = String(versionChars)
+                        
                         let alert = NSAlert()
                         alert.window.title = "Caffeinator Update"
                         alert.messageText = "Update Available"
-                        alert.informativeText = "A new version of Caffeinator is available. Would you like to download it now?"
+                        alert.informativeText = "A new version of Caffeinator (\(versionString)) is available. Would you like to download it now?"
                         alert.addButton(withTitle: "Update")
                         alert.addButton(withTitle: "Not Now")
                         alert.alertStyle = .informational
                         if alert.runModal() == NSAlertFirstButtonReturn {
-                            var versionChars = versionString.characters
-                            // FIXME: This could not be a more hideous solution. Will be addressed in future releases.
-                            versionChars.insert(".", at: versionChars.index(after: versionChars.startIndex))
-                            versionChars.insert(".", at: versionChars.index(after: versionChars.index(after: versionChars.index(after: versionChars.startIndex))))
-                            versionString = String(versionChars)
-                            
                             let downloadURL = URL(string: "https://www.github.com/aaplmath/Caffeinator/releases/download/v\(versionString)/Caffeinator.dmg")!
                             NSWorkspace.shared().open(downloadURL)
                         }
