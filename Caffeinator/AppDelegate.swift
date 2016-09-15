@@ -23,25 +23,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var processMenu: NSMenuItem!
     @IBOutlet weak var timedMenu: NSMenuItem!
     
-    var task: NSTask?
+    var task: Process?
     
     // MARK: - Main Menu
     
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
    
-    let df = NSUserDefaults.standardUserDefaults()
-    let nc = NSNotificationCenter.defaultCenter()
+    let df = UserDefaults.standard
+    let nc = NotificationCenter.default
     
     var sleepDisplay = true
     
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item, and check for updates
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
-        nc.addObserver(self, selector: #selector(AppDelegate.defaultsChanged), name: NSUserDefaultsDidChangeNotification, object: nil)
-        if df.objectForKey("CaffeinateDisplay") != nil {
-            sleepDisplay = df.boolForKey("CaffeinateDisplay")
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        nc.addObserver(self, selector: #selector(AppDelegate.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+        if df.object(forKey: "CaffeinateDisplay") != nil {
+            sleepDisplay = df.bool(forKey: "CaffeinateDisplay")
         } else {
             sleepDisplay = true
-            df.setBool(true, forKey: "CaffeinateDisplay")
+            df.set(true, forKey: "CaffeinateDisplay")
         }
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.menu = mainMenu
@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety)
-    func applicationWillTerminate(notification: NSNotification) {
+    func applicationWillTerminate(_ notification: Notification) {
         if let activeTask = task {
             activeTask.terminate()
         }
@@ -59,25 +59,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var active = false {
         didSet {
             startMenu.title = active ? "Stop Caffeinator" : "Start Caffeinator"
-            processMenu.enabled = !active
-            timedMenu.enabled = !active
-            argumentMenu.enabled = !active
+            processMenu.isEnabled = !active
+            timedMenu.isEnabled = !active
+            argumentMenu.isEnabled = !active
             statusItem.image = active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
         }
     }
 
     // Respond to a change to the CaffeinateDisplay default — this is used for both external updates (e.g., from Terminal using defaults write) and internal ones (see caffeinateDisplay())
     func defaultsChanged() {
-        sleepDisplay = df.boolForKey("CaffeinateDisplay")
+        sleepDisplay = df.bool(forKey: "CaffeinateDisplay")
     }
     
     // Respons to the Quit menu item
-    @IBAction func quitClicked(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(self)
+    @IBAction func quitClicked(_ sender: NSMenuItem) {
+        NSApplication.shared().terminate(self)
     }
     
     // Toggle the "display" option and update NSUserDefaults
-    @IBAction func caffeinateDisplay(sender: NSMenuItem) {
+    @IBAction func caffeinateDisplay(_ sender: NSMenuItem) {
         let val: Bool
         if sender.state == NSOnState {
             sender.state = NSOffState
@@ -87,11 +87,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             val = true
         }
 
-        df.setBool(val, forKey: "CaffeinateDisplay")
+        df.set(val, forKey: "CaffeinateDisplay")
     }
     
     // Start Caffeinate with no args, or stop it if it is active
-    @IBAction func startClicked(sender: NSMenuItem) {
+    @IBAction func startClicked(_ sender: NSMenuItem) {
         if sender.title == "Start Caffeinator" {
             generateCaffeine([], dev: false)
         } else {
@@ -101,12 +101,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Responds to the "Run with args" item by opening the argument panel
-    @IBAction func argumentClicked(sender: NSMenuItem) {
+    @IBAction func argumentClicked(_ sender: NSMenuItem) {
         argumentPanel.makeKeyAndOrderFront(nil)
     }
     
     // Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
-    @IBAction func processClicked(sender: NSMenuItem) {
+    @IBAction func processClicked(_ sender: NSMenuItem) {
         if let res = inputDialog("Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
             if let text = Int(res) {
                 generateCaffeine(["-w", String(text)], dev: false)
@@ -117,16 +117,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is seleted, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is passed to generateCaffeine() along with the corresponding "-t" argument
-    @IBAction func timedClicked(sender: NSMenuItem) {
+    @IBAction func timedClicked(_ sender: NSMenuItem) {
         let title = sender.title
         var time: Double? = nil
         var multiplier: Double? = nil
         var loc: Range<String.CharacterView.Index>? = nil
         
-        if let range = title.rangeOfString("minutes") {
+        if let range = title.range(of: "minutes") {
             multiplier = 60
             loc = range
-        } else if let range = title.rangeOfString("hours") {
+        } else if let range = title.range(of: "hours") {
             multiplier = 3600
             loc = range
         } else {
@@ -138,8 +138,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
-        if let multi = multiplier, range = loc {
-            time = Double(title.substringToIndex(range.first!.predecessor()))! * multi
+        if let multi = multiplier, let range = loc {
+            // TODO: Check that the new implementation works
+            time = Double(title.substring(to: title.index(before: range.lowerBound)))! * multi
+//            time = Double(title.substring(to: title.index(before: range.first!)))! * multi
         }
         if let t = time {
             generateCaffeine(["-t", String(t)], dev: false)
@@ -149,12 +151,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Responds to the "Help" item by opening the Help window
-    @IBAction func helpPressed(sender: NSMenuItem) {
+    @IBAction func helpPressed(_ sender: NSMenuItem) {
         helpHUD.makeKeyAndOrderFront(nil)
     }
     
     // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
-    func generateCaffeine(arguments: [String], dev: Bool) {
+    func generateCaffeine(_ arguments: [String], dev: Bool) {
         var arguments = arguments
         if !dev {
             arguments.append("-i")
@@ -162,9 +164,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 arguments.append("-d")
             }
         }
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        dispatch_async(queue) {
-            self.task = NSTask()
+        DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
+            () -> Void in
+            self.task = Process()
             self.task!.launchPath = "/usr/bin/caffeinate"
             self.task!.arguments = arguments
             self.task!.terminationHandler = self.taskDidTerminate
@@ -174,7 +176,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Clean-up method that makes sure that the inactive state of the app is restored once caffeinate finishes running
-    func taskDidTerminate(task: NSTask) {
+    func taskDidTerminate(_ task: Process) {
         active = false
     }
     
@@ -195,25 +197,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var twArgs: [String: String] = [:]
     
     // Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enable/disable the corresponding input button
-    @IBAction func argumentChecked(sender: NSButton) {
+    @IBAction func argumentChecked(_ sender: NSButton) {
         let title = sender.title
         let state = sender.state == NSOnState
         if state {
             args.append(title)
         } else {
-            if let loc = args.indexOf(title) {
-                args.removeAtIndex(loc)
+            if let loc = args.index(of: title) {
+                args.remove(at: loc)
             }
         }
         if title == "-t" {
-            tButton.enabled = state
+            tButton.isEnabled = state
         } else if title == "-w" {
-            wButton.enabled = state
+            wButton.isEnabled = state
         }
     }
     
     // Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are stored in "twArgs" so they can easily be added/removed until confirmArguments() is called
-    @IBAction func addValue(sender: NSButton) {
+    @IBAction func addValue(_ sender: NSButton) {
         let params = sender.tag == 0 ? ("-t", tLabel) : ("-w", wLabel)
         if let value = showValueDialog(params.0) {
             params.1.stringValue = value
@@ -222,15 +224,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Displays a value input dialog for use in addValue(). Not to be confused with inputDialog()
-    func showValueDialog(paramName: String) -> String? {
+    func showValueDialog(_ paramName: String) -> String? {
         return inputDialog("Value Input", title: "Please Enter a Value", text: "Please enter the value for the \(paramName) parameter below:")
     }
     
     // Merge twArgs into the appropriate locations (directly after the corresponding argument) in args, then call generateCaffeine() in dev mode with args
-    @IBAction func confirmArguments(sender: NSButton) {
+    @IBAction func confirmArguments(_ sender: NSButton) {
         for (name, arg) in twArgs {
-            if let index = args.indexOf(name) {
-                args.insert(arg, atIndex: index + 1)
+            if let index = args.index(of: name) {
+                args.insert(arg, at: index + 1)
             }
         }
         generateCaffeine(args, dev: true)
@@ -238,77 +240,75 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Close the argument panel
-    @IBAction func cancelArguments(sender: NSButton) {
+    @IBAction func cancelArguments(_ sender: NSButton) {
         argumentPanel.close()
     }
     
     // Responds to the "info" button on the argument input window by opening Apple's caffeinate manpage on their online developer library. In future releases, this may be replaced with a native solution.
-    @IBAction func viewManpage(sender: NSButton) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
+    @IBAction func viewManpage(_ sender: NSButton) {
+        NSWorkspace.shared().open(URL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
     }
     
     // MARK: - Update Functions
     
     // Queries the server to see if a new version is available. If it is, alerts the user and opens the file in their browser.
-    func checkForUpdate(userInitiated userInitiated: Bool) {
-        let url = NSURL(string: "https://aaplmath.github.io/Caffeinator/latestversion")!
-        let session = NSURLSession.sharedSession()
-        let query = session.dataTaskWithURL(url) { data, response, error in
-            let str = String(data: data!, encoding: NSUTF8StringEncoding)
+    func checkForUpdate(userInitiated: Bool) {
+        let url = URL(string: "https://aaplmath.github.io/Caffeinator/latestversion")!
+        let session = URLSession.shared
+        let query = session.dataTask(with: url, completionHandler: { data, response, error in
+            let str = String(data: data!, encoding: String.Encoding.utf8)
             if var versionString = str, let serverVersion = Int(versionString) {
                 if (serverVersion > self.VERSION_NUMBER) {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         let alert = NSAlert()
                         alert.window.title = "Caffeinator Update"
                         alert.messageText = "Update Available"
                         alert.informativeText = "A new version of Caffeinator is available. Would you like to download it now?"
-                        alert.addButtonWithTitle("Update")
-                        alert.addButtonWithTitle("Not Now")
-                        alert.alertStyle = .InformationalAlertStyle
-                        // FIXME: runModal() is a deprecated method of handling NSAlerts. Unfortunately, beginSheetModalForWindow will not work in this instance because the application has no window that is guaranteed to be open. This will be addressed in future releases.
+                        alert.addButton(withTitle: "Update")
+                        alert.addButton(withTitle: "Not Now")
+                        alert.alertStyle = .informational
                         if alert.runModal() == NSAlertFirstButtonReturn {
                             var versionChars = versionString.characters
                             // FIXME: This could not be a more hideous solution. Will be addressed in future releases.
-                            versionChars.insert(".", atIndex: versionChars.startIndex.successor())
-                            versionChars.insert(".", atIndex: versionChars.startIndex.successor().successor().successor())
+                            versionChars.insert(".", at: versionChars.index(after: versionChars.startIndex))
+                            versionChars.insert(".", at: versionChars.index(after: versionChars.index(after: versionChars.index(after: versionChars.startIndex))))
                             versionString = String(versionChars)
                             
-                            let downloadURL = NSURL(string: "https://www.github.com/aaplmath/Caffeinator/releases/download/v\(versionString)/Caffeinator.dmg")!
-                            NSWorkspace.sharedWorkspace().openURL(downloadURL)
+                            let downloadURL = URL(string: "https://www.github.com/aaplmath/Caffeinator/releases/download/v\(versionString)/Caffeinator.dmg")!
+                            NSWorkspace.shared().open(downloadURL)
                         }
                     }
                 } else if (userInitiated) {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         let alert = NSAlert()
                         alert.window.title = "Caffeinator Update"
                         alert.messageText = "No Updates Available"
                         alert.informativeText = "You're running the latest version of Caffeinator."
-                        alert.addButtonWithTitle("OK")
-                        // FIXME: Again, runModal() shouldn't be used
+                        alert.addButton(withTitle: "OK")
                         alert.runModal()
                     }
                 }
             }
-        }
+        }) 
         query.resume()
     }
     
     // Responds to user request to check for updates by calling checkForUpdate()
-    @IBAction func checkForUpdatesClicked(sender: NSMenuItem) {
+    @IBAction func checkForUpdatesClicked(_ sender: NSMenuItem) {
         checkForUpdate(userInitiated: true)
     }
     
     // MARK: - Utility Alert Functions
     
     // Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with showValueDialog()
-    func inputDialog(windowTitle: String, title: String, text: String) -> String? {
+    func inputDialog(_ windowTitle: String, title: String, text: String) -> String? {
         let alert = NSAlert()
         alert.window.title = windowTitle
         alert.messageText = title
         alert.informativeText = text
-        alert.addButtonWithTitle("OK")
-        alert.addButtonWithTitle("Cancel")
-        alert.alertStyle = .InformationalAlertStyle
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        alert.alertStyle = .informational
         let input = NSTextField(frame: NSMakeRect(0, 0, 200, 24))
         alert.accessoryView = input
         let button = alert.runModal()
@@ -319,13 +319,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Shows an error message with the specified text
-    func errorMessage(title: String, text: String) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func errorMessage(_ title: String, text: String) {
+        DispatchQueue.main.async {
             let alert = NSAlert()
             alert.window.title = "Error"
             alert.messageText = title
             alert.informativeText = text
-            alert.alertStyle = .WarningAlertStyle
+            alert.alertStyle = .warning
             alert.runModal()
         }
     }
