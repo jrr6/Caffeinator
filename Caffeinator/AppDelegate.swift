@@ -253,7 +253,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Queries the server to see if a new version is available. If it is, alerts the user and opens the file in their browser.
     func checkForUpdate(userInitiated: Bool) {
-        let url = URL(string: "https://aaplmath.github.io/Caffeinator/latestversion")!
+        let url = URL(string: "https://aaplmath.github.io/caffeinator/latestversion")!
         let session = URLSession.shared
         let query = session.dataTask(with: url, completionHandler: { data, response, error in
             let str = String(data: data!, encoding: String.Encoding.utf8)
@@ -274,7 +274,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         alert.addButton(withTitle: "Not Now")
                         alert.alertStyle = .informational
                         if alert.runModal() == NSAlertFirstButtonReturn {
-                            let downloadURL = URL(string: "https://www.github.com/aaplmath/Caffeinator/releases/download/v\(versionString)/Caffeinator.dmg")!
+                            let downloadURL = URL(string: "https://www.github.com/aaplmath/caffeinator/releases/download/v\(versionString)/Caffeinator.dmg")!
                             NSWorkspace.shared().open(downloadURL)
                         }
                     }
