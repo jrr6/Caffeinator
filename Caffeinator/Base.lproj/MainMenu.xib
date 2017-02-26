@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -146,7 +146,7 @@
             <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="749" y="464" width="531" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="MxH-H1-ASx">
                 <rect key="frame" x="0.0" y="0.0" width="531" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -407,7 +407,7 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="136" y="185" width="480" height="464"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="C9O-B5-CGj">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="464"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -479,7 +479,7 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                     <constraint firstItem="6il-qB-5z3" firstAttribute="top" secondItem="9yt-qM-OU9" secondAttribute="bottom" constant="8" symbolic="YES" id="vDP-nL-B2D"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="296" y="1154"/>
+            <point key="canvasLocation" x="315" y="1368"/>
         </window>
     </objects>
     <resources>

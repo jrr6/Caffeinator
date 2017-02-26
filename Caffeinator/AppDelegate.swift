@@ -3,7 +3,7 @@
 //  Caffeinator
 //
 //  Created by aaplmath on 11/8/15.
-//  Copyright © 2016 aaplmath. All rights reserved.
+//  Copyright © 2017 aaplmath. All rights reserved.
 //
 
 import Cocoa
@@ -11,7 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let VERSION_NUMBER = 111
+    let VERSION_NUMBER = 112
     
     // MARK: - Outlets
     
@@ -253,7 +253,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Queries the server to see if a new version is available. If it is, alerts the user and opens the file in their browser.
     func checkForUpdate(userInitiated: Bool) {
-        let url = URL(string: "https://aaplmath.github.io/caffeinator/latestversion")!
+        let url = URL(string: "https://aaplmath.github.io/Caffeinator/latestversion")!
         let session = URLSession.shared
         let query = session.dataTask(with: url, completionHandler: { data, response, error in
             let str = String(data: data!, encoding: String.Encoding.utf8)
