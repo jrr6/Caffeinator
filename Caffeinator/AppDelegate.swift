@@ -54,14 +54,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Responsible for managing the inactive/active state of the app. If there is an active "Caffeination," disable the appropriate menu items and set the icon green. Otherwise, enable all menu items and set the icon to the template
     var active = false {
         didSet {
-            startMenu.title = active ? "Stop Caffeinator" : "Start Caffeinator"
-            processMenu.isEnabled = !active
-            if (!active) {
-                processMenu.title = "Caffeinate a Process…"
+            RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+                self.startMenu.title = self.active ? "Stop Caffeinator" : "Start Caffeinator"
+                self.processMenu.isEnabled = !self.active
+                if (!self.active) {
+                    self.processMenu.title = "Caffeinate a Process…"
+                }
+                self.timedMenu.isEnabled = !self.active
+                self.argumentMenu.isEnabled = !self.active
+                self.statusItem.image = self.active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
             }
-            timedMenu.isEnabled = !active
-            argumentMenu.isEnabled = !active
-            statusItem.image = active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
         }
     }
 
@@ -79,19 +81,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Respond to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
     func defaultsChanged() {
-        displayToggle.state = df.bool(forKey: "CaffeinateDisplay") ? NSOnState : NSOffState
-        promptToggle.state = df.bool(forKey: "PromptBeforeExecuting") ? NSOnState : NSOffState
+        RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+            self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? NSOnState : NSOffState
+            self.promptToggle.state = self.df.bool(forKey: "PromptBeforeExecuting") ? NSOnState : NSOffState
+        }
     }
     
-    // Toggle a given preference and update NSUserDefaults accordingly
+    // Toggle a given preference and update NSUserDefaults accordingly (note that the sender's state reflects its state prior to the change to the menu item—if the state is On, the menu item is now really Off)
     @IBAction func changeDefault(_ sender: NSMenuItem) {
         let val: Bool
         if sender.state == NSOnState {
-            sender.state = NSOffState
             val = false
         } else {
-            sender.state = NSOnState
             val = true
+        }
+        RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+            sender.state = val ? NSOnState : NSOffState
         }
         let key: String?
         switch sender.tag {
@@ -117,8 +122,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Start Caffeinate with no args, or stop it if it is active
     @IBAction func startClicked(_ sender: NSMenuItem) {
         if sender.title == "Start Caffeinator" {
-            generateCaffeine([], isDev
-                : false)
+            generateCaffeine([], isDev: false)
         } else {
             task?.terminate()
             active = false
@@ -135,7 +139,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let res = inputDialog("Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
             if let text = Int(res) {
                 if let app = NSRunningApplication(processIdentifier: pid_t(text)) {
-                    processMenu.title = "Caffeinating \(app.localizedName ?? "PID \(text)")"
+                    RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+                        self.processMenu.title = "Caffeinating \(app.localizedName ?? "PID \(text)")"
+                    }
                     generateCaffeine(["-w", String(text)], isDev: false)
                 } else {
                     errorMessage("Illegal PID", text: "There is no process with the PID \(text).")
