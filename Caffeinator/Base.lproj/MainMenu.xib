@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,9 +20,11 @@
             <connections>
                 <outlet property="argumentMenu" destination="gAU-e9-9H3" id="Sfb-BN-OUL"/>
                 <outlet property="argumentPanel" destination="ono-Z6-1NH" id="YPr-e1-UJr"/>
+                <outlet property="displayToggle" destination="0JP-F2-OlS" id="Ait-cf-VcZ"/>
                 <outlet property="helpHUD" destination="3mi-VR-hEx" id="W0G-vl-YHJ"/>
                 <outlet property="mainMenu" destination="gDT-Ta-xNk" id="vMp-dF-ibO"/>
                 <outlet property="processMenu" destination="TTf-vh-Tj1" id="FbM-Vl-aJT"/>
+                <outlet property="promptToggle" destination="a1s-3p-rOx" id="HBP-wG-ehj"/>
                 <outlet property="startMenu" destination="3Ku-zq-Wra" id="gWd-Of-9gq"/>
                 <outlet property="tButton" destination="Un4-B1-Pf2" id="Zv5-Ou-3aM"/>
                 <outlet property="tLabel" destination="Dg6-Qb-Qcj" id="0Gm-P9-5vY"/>
@@ -106,10 +108,16 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Advanced" autoenablesItems="NO" id="Iq1-oY-3Z8">
                         <items>
-                            <menuItem title="Caffeinate Display" state="on" id="0JP-F2-OlS">
+                            <menuItem title="Caffeinate Display" state="on" tag="1" id="0JP-F2-OlS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="caffeinateDisplay:" target="Voe-Tx-rLC" id="gTX-iu-vWD"/>
+                                    <action selector="changeDefault:" target="Voe-Tx-rLC" id="cKe-Mj-Io4"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Prompt Before Executing" tag="2" id="a1s-3p-rOx">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="changeDefault:" target="Voe-Tx-rLC" id="vBx-gY-gAQ"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Run Caffeinate with Args…" id="gAU-e9-9H3">
@@ -151,7 +159,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="531" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nOy-h4-b6f">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOy-h4-b6f">
                         <rect key="frame" x="18" y="6" width="242" height="84"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="238" id="3z9-Hn-1bJ"/>
@@ -163,7 +171,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d3y-b6-WC4">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3y-b6-WC4">
                         <rect key="frame" x="275" y="34" width="238" height="56"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Warning: Ensure that all arguments and values are correct before continuing." id="3Ty-b6-qp5">
                             <font key="font" metaFont="systemMedium" size="12"/>
@@ -264,7 +272,7 @@
                             <action selector="addValue:" target="Voe-Tx-rLC" id="Jwu-rS-vFP"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dg6-Qb-Qcj">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dg6-Qb-Qcj">
                         <rect key="frame" x="254" y="204" width="263" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="None" id="Lx2-SB-8Jy">
                             <font key="font" metaFont="system"/>
@@ -272,7 +280,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Cj-48-qJx">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Cj-48-qJx">
                         <rect key="frame" x="254" y="171" width="263" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="None" id="eTB-Po-ug9">
                             <font key="font" metaFont="system"/>
@@ -280,7 +288,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LJH-QZ-7V9">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJH-QZ-7V9">
                         <rect key="frame" x="18" y="240" width="102" height="24"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Arguments" id="18t-0g-Tmd">
                             <font key="font" metaFont="system" size="20"/>
@@ -331,7 +339,7 @@ Gw
                             <action selector="viewManpage:" target="Voe-Tx-rLC" id="VXN-U4-0A7"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JTq-pD-3Mq">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JTq-pD-3Mq">
                         <rect key="frame" x="165" y="240" width="64" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="gG6-eB-aHn"/>
@@ -416,7 +424,7 @@ Gw
                         <rect key="frame" x="35" y="20" width="411" height="401"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ddL-MM-2j5">
                             <rect key="frame" x="0.0" y="0.0" width="411" height="401"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textView editable="NO" drawsBackground="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Ztw-xg-W1H">
                                     <rect key="frame" x="0.0" y="0.0" width="411" height="401"/>
@@ -461,7 +469,7 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9yt-qM-OU9">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9yt-qM-OU9">
                         <rect key="frame" x="153" y="429" width="175" height="29"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Caffeinator 1.1.2" id="QC6-ok-DAU">
                             <font key="font" metaFont="system" size="24"/>

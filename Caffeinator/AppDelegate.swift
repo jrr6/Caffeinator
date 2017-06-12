@@ -23,6 +23,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var processMenu: NSMenuItem!
     @IBOutlet weak var timedMenu: NSMenuItem!
     
+    @IBOutlet weak var displayToggle: NSMenuItem!
+    @IBOutlet weak var promptToggle: NSMenuItem!
+    
     var task: Process?
     
     // MARK: - Main Menu
@@ -32,17 +35,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let df = UserDefaults.standard
     let nc = NotificationCenter.default
     
-    var sleepDisplay = true
-    
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item, and check for updates
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         nc.addObserver(self, selector: #selector(AppDelegate.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
-        if df.object(forKey: "CaffeinateDisplay") != nil {
-            sleepDisplay = df.bool(forKey: "CaffeinateDisplay")
-        } else {
-            sleepDisplay = true
-            df.set(true, forKey: "CaffeinateDisplay")
-        }
+        initDefaults()
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.menu = mainMenu
         checkForUpdate(userInitiated: false)
@@ -69,18 +65,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    // Respond to a change to the CaffeinateDisplay default — this is used for both external updates (e.g., from Terminal using defaults write) and internal ones (see caffeinateDisplay())
+    // Ensures that all NSUserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
+    func initDefaults() {
+        // TODO: If the number of preferences in Caffeinator gets too big, this needs to be turned into a more organized system (think: loops, etc.)
+        if df.object(forKey: "CaffeinateDisplay") == nil {
+            df.set(true, forKey: "CaffeinateDisplay")
+        }
+        if df.object(forKey: "PromptBeforeExecuting") == nil {
+            df.set(false, forKey: "PromptBeforeExecuting")
+        }
+        defaultsChanged()
+    }
+    
+    // Respond to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
     func defaultsChanged() {
-        sleepDisplay = df.bool(forKey: "CaffeinateDisplay")
+        displayToggle.state = df.bool(forKey: "CaffeinateDisplay") ? NSOnState : NSOffState
+        promptToggle.state = df.bool(forKey: "PromptBeforeExecuting") ? NSOnState : NSOffState
     }
     
-    // Respons to the Quit menu item
-    @IBAction func quitClicked(_ sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
-    }
-    
-    // Toggle the "display" option and update NSUserDefaults
-    @IBAction func caffeinateDisplay(_ sender: NSMenuItem) {
+    // Toggle a given preference and update NSUserDefaults accordingly
+    @IBAction func changeDefault(_ sender: NSMenuItem) {
         let val: Bool
         if sender.state == NSOnState {
             sender.state = NSOffState
@@ -89,8 +93,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             sender.state = NSOnState
             val = true
         }
-
-        df.set(val, forKey: "CaffeinateDisplay")
+        let key: String?
+        switch sender.tag {
+        case 1:
+            key = "CaffeinateDisplay"
+        case 2:
+            key = "PromptBeforeExecuting"
+        default:
+            key = nil
+        }
+        if let key = key {
+            df.set(val, forKey: key)
+        } else {
+            errorMessage("Unknown Preference Tag", text: "An attempt was made to set a preference by an unrecognized sender. This error should be reported.")
+        }
+    }
+    
+    // Responds to the Quit menu item
+    @IBAction func quitClicked(_ sender: NSMenuItem) {
+        NSApplication.shared().terminate(self)
     }
     
     // Start Caffeinate with no args, or stop it if it is active
@@ -167,11 +188,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var arguments = arguments
         if !isDev {
             arguments.append("-i")
-            if sleepDisplay {
+            if df.bool(forKey: "CaffeinateDisplay") {
                 arguments.append("-d")
             }
         }
         print("Executing: " + String(describing: arguments))
+        if (df.bool(forKey: "PromptBeforeExecuting")) {
+            let alert = NSAlert()
+            alert.messageText = "Confirm Caffeination"
+            alert.informativeText = "The following command will be run:\ncaffeinate \(arguments.joined(separator: " "))"
+            alert.alertStyle = .informational
+            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: "Cancel")
+            let res = alert.runModal()
+            if res != NSAlertFirstButtonReturn {
+                return
+            }
+        }
         DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
             () -> Void in
             self.task = Process()
