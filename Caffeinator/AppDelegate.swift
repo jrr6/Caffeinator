@@ -172,7 +172,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             time = Double(title.substring(to: title.index(before: range.lowerBound)))! * multi
         }
         if let t = time {
-            generateCaffeine(["-t", String(t)], isDev: false)
+            if t < 1 {
+                errorMessage("Illegal Time Value", text: "The time value must be greater than or equal to 1 second.")
+            } else {
+                generateCaffeine(["-t", String(t)], isDev: false)
+            }
         } else {
             errorMessage("No Time Assigned", text: "No time value was passed to caffeinate.")
         }
