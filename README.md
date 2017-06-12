@@ -15,6 +15,7 @@ Caffeinator does not use CocoaPods, Carthage, or any other dependency manager, a
   Probably because Caffeinator is not signed with a Developer Certificate. To open Caffeinator the first time after installing it, right-click on the app icon and click "Open," then confirm that you trust the app.
 
 * **Why can't I start a timed Caffeination for a period of time shorter than one second?**
+
   Firstly, there isn't really any practical use for doing this. Secondly, the `caffeinate` utility will not accept time values shorter than one second. (If you specify a time shorter than one second using the argument editor, you'll see that it runs indefinitely.)
 
 * **Why are the pbxproj file and unit/UI tests missing from the source code for the release I downloaded?** 
