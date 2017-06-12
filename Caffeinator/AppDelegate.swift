@@ -60,6 +60,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         didSet {
             startMenu.title = active ? "Stop Caffeinator" : "Start Caffeinator"
             processMenu.isEnabled = !active
+            if (!active) {
+                processMenu.title = "Caffeinate a Process…"
+            }
             timedMenu.isEnabled = !active
             argumentMenu.isEnabled = !active
             statusItem.image = active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
@@ -110,7 +113,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func processClicked(_ sender: NSMenuItem) {
         if let res = inputDialog("Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
             if let text = Int(res) {
-                generateCaffeine(["-w", String(text)], isDev: false)
+                if let app = NSRunningApplication(processIdentifier: pid_t(text)) {
+                    processMenu.title = "Caffeinating \(app.localizedName ?? "PID \(text)")"
+                    generateCaffeine(["-w", String(text)], isDev: false)
+                } else {
+                    errorMessage("Illegal PID", text: "There is no process with the PID \(text).")
+                }
             } else {
                 errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
             }
