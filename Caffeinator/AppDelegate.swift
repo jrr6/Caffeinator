@@ -172,7 +172,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     time = text * 60
                 } else {
                     errorMessage("Illegal Input", text: "You must enter an integer or decimal number.")
+                    return
                 }
+            } else {
+                return
             }
         }
         if let multi = multiplier, let range = loc {
