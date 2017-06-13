@@ -289,7 +289,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return inputDialog("Value Input", title: "Please Enter a Value", text: "Please enter the value for the \(paramName) parameter below:")
     }
     
-    // Merge twArgs into the appropriate locations (directly after the corresponding argument) in args, then call generateCaffeine() in dev mode with args
+    // Convert the dictionary of arguments into an array of parameters, then pass that array to generateCaffeine() in dev mode.
     @IBAction func confirmArguments(_ sender: NSButton) {
         var params: [String] = []
         for (name, arg) in args {
@@ -385,6 +385,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with showValueDialog()
     func inputDialog(_ windowTitle: String, title: String, text: String) -> String? {
+        // FIXME: Instruments claims this causes a 32-byte (really?) memory leak. I'm not sure I believe it.
         let alert = NSAlert()
         alert.window.title = windowTitle
         alert.messageText = title
@@ -392,11 +393,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         alert.addButton(withTitle: "OK")
         alert.addButton(withTitle: "Cancel")
         alert.alertStyle = .informational
-        let input = NSTextField(frame: NSMakeRect(0, 0, 200, 24))
-        alert.accessoryView = input
+        alert.accessoryView = NSTextField(frame: NSMakeRect(0, 0, 200, 24))
         let button = alert.runModal()
         if button == NSAlertFirstButtonReturn {
-            return input.stringValue
+            return (alert.accessoryView as! NSTextField).stringValue
         }
         return nil
     }
@@ -408,6 +408,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.window.title = "Error"
             alert.messageText = title
             alert.informativeText = text
+            let img = NSApp.applicationIconImage.copy() as! NSImage
+            img.lockFocus()
+            let color = NSColor.red
+            color.set()
+            NSRectFillUsingOperation(NSMakeRect(0, 0, img.size.width, img.size.height), .sourceAtop)
+            img.unlockFocus()
+            alert.icon = img
             alert.alertStyle = .warning
             alert.runModal()
         }
