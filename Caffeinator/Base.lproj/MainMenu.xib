@@ -22,6 +22,7 @@
                 <outlet property="argumentPanel" destination="ono-Z6-1NH" id="YPr-e1-UJr"/>
                 <outlet property="displayToggle" destination="0JP-F2-OlS" id="Ait-cf-VcZ"/>
                 <outlet property="helpHUD" destination="3mi-VR-hEx" id="W0G-vl-YHJ"/>
+                <outlet property="helpTitle" destination="9yt-qM-OU9" id="a32-nV-6Ka"/>
                 <outlet property="mainMenu" destination="gDT-Ta-xNk" id="vMp-dF-ibO"/>
                 <outlet property="processMenu" destination="TTf-vh-Tj1" id="FbM-Vl-aJT"/>
                 <outlet property="promptToggle" destination="a1s-3p-rOx" id="HBP-wG-ehj"/>
@@ -154,7 +155,7 @@
             <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="749" y="464" width="531" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" id="MxH-H1-ASx">
                 <rect key="frame" x="0.0" y="0.0" width="531" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -414,24 +415,24 @@ Gw
         <window title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="3mi-VR-hEx" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="136" y="185" width="480" height="464"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="contentRect" x="136" y="185" width="480" height="473"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" id="C9O-B5-CGj">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="464"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="473"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6il-qB-5z3">
-                        <rect key="frame" x="35" y="20" width="411" height="401"/>
+                        <rect key="frame" x="35" y="20" width="411" height="410"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ddL-MM-2j5">
-                            <rect key="frame" x="0.0" y="0.0" width="411" height="401"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <rect key="frame" x="0.0" y="0.0" width="411" height="410"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" drawsBackground="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Ztw-xg-W1H">
-                                    <rect key="frame" x="0.0" y="0.0" width="411" height="401"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="411" height="441"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="411" height="401"/>
+                                    <size key="minSize" width="411" height="410"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                     <attributedString key="textStorage">
                                         <fragment>
@@ -441,9 +442,76 @@ Start Caffeinator: Prevents sleep until Stop Caffeinator is clicked.
 
 Caffeinate a Process: This will prevent your computer from going to sleep until a process has completed. For example, if you're waiting for a Unity build to finish, attach to the associated process and your computer will wait for the build to finish before sleeping.
 
-Timed Caffeination: Keeps your computer from sleeping for a defined amount of time.
+Timed Caffeination: Keeps your computer from sleeping for a defined amount of time greater than one second.
 
-Caffeinate Display: Enable if you want Caffeinator to prevent display sleep as well as computer sleep. If you do not enable this feature, your computer's screen will go to sleep after the interval specified in the System Preferences Energy Saver settings, but background processes will still continue to run. Note that if this preference is modified during an active Caffeination, you will need to start a new Caffeination for changes to take effect.
+Caffeinate Display: Enable if you want Caffeinator to prevent display sleep as well as computer sleep. If you do not enable this feature, your computer's screen will go to sleep after the interval specified in the System Preferences Energy Saver settings, but background processes will still continue to run. Note that if this preference is modified during an active Caffeination, you will need to start a new Caffeination for changes to take effect.</mutableString>
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="deviceWhite"/>
+                                                <font key="NSFont" metaFont="smallSystem"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="84">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="112">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="140">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="168">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="196">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="224">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="252">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="280">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="308">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="336">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <mutableString key="content">Prompt Before Executing: When this option is enabled, Caffeinator will display a confirmation prompt with the command that will be executed before running caffeinate. 
 
 Run Caffeinate with Arguments: Execute the caffeinate command with the specified arguments. This option allows for the input of arguments not available elsewhere in the Caffeinator app. Make sure you are familiar with the caffeinate command and what each of the arguments does to avoid unintended behavior. If you need help, use the "Info" button to view the caffeinate manpage.
 
@@ -464,14 +532,14 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="hJJ-Md-HzL">
-                            <rect key="frame" x="395" y="0.0" width="16" height="457"/>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="hJJ-Md-HzL">
+                            <rect key="frame" x="395" y="0.0" width="16" height="410"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9yt-qM-OU9">
-                        <rect key="frame" x="153" y="429" width="175" height="29"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Caffeinator 1.1.2" id="QC6-ok-DAU">
+                        <rect key="frame" x="179" y="438" width="123" height="29"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Caffeinator" id="QC6-ok-DAU">
                             <font key="font" metaFont="system" size="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
                             <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
@@ -487,7 +555,7 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                     <constraint firstItem="6il-qB-5z3" firstAttribute="top" secondItem="9yt-qM-OU9" secondAttribute="bottom" constant="8" symbolic="YES" id="vDP-nL-B2D"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="315" y="1368"/>
+            <point key="canvasLocation" x="315" y="1372.5"/>
         </window>
     </objects>
     <resources>

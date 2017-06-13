@@ -12,7 +12,7 @@ Caffeinator does not use CocoaPods, Carthage, or any other dependency manager, a
 
 * **Why can't I open Caffeinator?**
 
-  Probably because Caffeinator is not signed with a Developer Certificate. To open Caffeinator the first time after installing it, right-click on the app icon and click "Open," then confirm that you trust the app.
+  Probably because Caffeinator is not signed with a Developer Certificate. To open Caffeinator the first time after installing or updating it, right-click on the app icon and click "Open," then confirm that you trust the app.
 
 * **Why can't I start a timed Caffeination for a period of time shorter than one second?**
 

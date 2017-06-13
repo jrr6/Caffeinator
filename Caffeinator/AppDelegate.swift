@@ -15,7 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var argumentPanel: NSPanel!
+    
     @IBOutlet weak var helpHUD: NSPanel!
+    @IBOutlet weak var helpTitle: NSTextField!
     
     @IBOutlet weak var startMenu: NSMenuItem!
     @IBOutlet weak var processMenu: NSMenuItem!
@@ -39,6 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         initDefaults()
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.menu = mainMenu
+        helpTitle.stringValue = "Caffeinator \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
         checkForUpdate(userInitiated: false)
     }
     
@@ -136,14 +139,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func processClicked(_ sender: NSMenuItem) {
         if let res = inputDialog("Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
             if let text = Int(res) {
-                if let app = NSRunningApplication(processIdentifier: pid_t(text)) {
-                    RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
-                        self.processMenu.title = "Caffeinating \(app.localizedName ?? "PID \(text)")"
-                    }
-                    generateCaffeine(["-w", String(text)], isDev: false)
-                } else {
-                    errorMessage("Illegal PID", text: "There is no process with the PID \(text).")
+                var labelName = "PID \(res)"
+                if let appName = NSRunningApplication(processIdentifier: pid_t(text))?.localizedName {
+                    labelName = appName
                 }
+                RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+                    self.processMenu.title = "Caffeinating \(labelName)"
+                }
+                generateCaffeine(["-w", String(text)], isDev: false)
             } else {
                 errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
             }
@@ -201,7 +204,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         print("Executing: " + String(describing: arguments))
-        if (df.bool(forKey: "PromptBeforeExecuting")) {
+        if df.bool(forKey: "PromptBeforeExecuting") {
             let alert = NSAlert()
             alert.messageText = "Confirm Caffeination"
             alert.informativeText = "The following command will be run:\ncaffeinate \(arguments.joined(separator: " "))"
@@ -213,10 +216,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 return
             }
         }
+        let caffeinatePath = "/usr/bin/caffeinate"
+        if !FileManager.default.fileExists(atPath: caffeinatePath) {
+            errorMessage("Could Not Find Caffeinate", text: "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.")
+            return
+        }
         DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
             () -> Void in
             self.task = Process()
-            self.task!.launchPath = "/usr/bin/caffeinate"
+            self.task!.launchPath = caffeinatePath
             self.task!.arguments = arguments
             self.task!.terminationHandler = self.taskDidTerminate
             self.task!.launch()
@@ -242,18 +250,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var wButton: NSButton!
     @IBOutlet weak var wLabel: NSTextField!
     
-    var args: [String] = []
-    var twArgs: [String: String] = [:]
+    var args: [String: String] = [:]
     
     // Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enable/disable the corresponding input button
     @IBAction func argumentChecked(_ sender: NSButton) {
         let title = sender.title
         let state = sender.state == NSOnState
         if state {
-            args.append(title)
+            args[title] = ""
         } else {
-            if let loc = args.index(of: title) {
+            if let loc = args.index(forKey: title) {
                 args.remove(at: loc)
+            }
+            if title == "-t" {
+                tLabel.stringValue = "None"
+            } else if title == "-w" {
+                wLabel.stringValue = "None"
             }
         }
         if title == "-t" {
@@ -263,12 +275,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are stored in "twArgs" so they can easily be added/removed until confirmArguments() is called
+    // Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are then assigned to the corresponding dictionary item
     @IBAction func addValue(_ sender: NSButton) {
         let params = sender.tag == 0 ? ("-t", tLabel) : ("-w", wLabel)
         if let value = showValueDialog(params.0) {
             params.1.stringValue = value
-            twArgs[params.0] = value
+            args[params.0] = value
         }
     }
     
@@ -279,12 +291,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Merge twArgs into the appropriate locations (directly after the corresponding argument) in args, then call generateCaffeine() in dev mode with args
     @IBAction func confirmArguments(_ sender: NSButton) {
-        for (name, arg) in twArgs {
-            if let index = args.index(of: name) {
-                args.insert(arg, at: index + 1)
+        var params: [String] = []
+        for (name, arg) in args {
+            params.append(name)
+            // This check is not strictly necessary, but makes things cleaner
+            if arg != "" {
+                params.append(arg)
             }
         }
-        generateCaffeine(args, isDev: true)
+        generateCaffeine(params, isDev: true)
         argumentPanel.close()
     }
     
