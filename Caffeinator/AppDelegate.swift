@@ -203,7 +203,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 arguments.append("-d")
             }
         }
-        print("Executing: " + String(describing: arguments))
         if df.bool(forKey: "PromptBeforeExecuting") {
             let alert = NSAlert()
             alert.messageText = "Confirm Caffeination"
