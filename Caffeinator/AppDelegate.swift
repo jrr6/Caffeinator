@@ -8,6 +8,13 @@
 
 import Cocoa
 
+extension NSAlert {
+    open func runModalInFront() -> NSModalResponse {
+        NSApplication.shared().activate(ignoringOtherApps: true)
+        return self.runModal()
+    }
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -180,7 +187,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let multi = multiplier, let range = loc {
             time = Double(title.substring(to: title.index(before: range.lowerBound)))! * multi
         }
-        guard let t = time, t < 1 else {
+        guard let t = time, t > 1 else {
             showErrorMessage(withTitle: "Illegal Time Value", text: "The time value must be a valid number greater than or equal to 1 second.")
             return
         }
@@ -208,7 +215,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.alertStyle = .informational
             alert.addButton(withTitle: "OK")
             alert.addButton(withTitle: "Cancel")
-            let res = alert.runModal()
+            let res = alert.runModalInFront()
             if res != NSAlertFirstButtonReturn {
                 // User cancelled
                 return
@@ -317,60 +324,66 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func checkForUpdate(isUserInitiated: Bool) {
         let url = URL(string: "https://api.github.com/repos/aaplmath/Caffeinator/releases/latest")!
         let query = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
-            if let data = data {
-                do {
-                    if let jsonData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject], var serverVersion = jsonData["tag_name"] as? String, let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-                        serverVersion.remove(at: serverVersion.characters.startIndex) // Remove the "v" from the tag name
-                        if bundleVersion.compare(serverVersion, options: .numeric) == .orderedAscending {
-                            if let assets = jsonData["assets"] as? [AnyObject], let downloadURL = assets[0]["browser_download_url"] as? String {
-                                DispatchQueue.main.async {
-                                    let alert = NSAlert()
-                                    alert.window.title = "Caffeinator Update"
-                                    alert.messageText = "Update Available"
-                                    alert.informativeText = "A new version of Caffeinator (\(serverVersion)) is available. Would you like to download it now?"
-                                    alert.addButton(withTitle: "Update")
-                                    alert.addButton(withTitle: "Not Now")
-                                    if alert.runModal() == NSAlertFirstButtonReturn {
-                                        if let url = URL(string: downloadURL) {
-                                            NSWorkspace.shared().open(url)
-                                        } else {
-                                            self.showErrorMessage(withTitle: "Error Opening URL", text: "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.")
-                                        }
-                                    }
-                                }
-                            } else {
-                                DispatchQueue.main.async {
-                                    self.showErrorMessage(withTitle: "Failed to Parse Download Information", text: "While update version data was able to be parsed, download asset data could not. This error should be reported.")
-                                }
-                            }
-
-                        } else if isUserInitiated {
-                            DispatchQueue.main.async {
-                                let alert = NSAlert()
-                                alert.window.title = "Caffeinator Update"
-                                alert.messageText = "No Updates Available"
-                                alert.informativeText = "You're running the latest version of Caffeinator."
-                                alert.alertStyle = .informational
-                                alert.addButton(withTitle: "OK")
-                                alert.runModal()
-                            }
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.showErrorMessage(withTitle: "Failed to Parse Update Information", text: "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.")
-                        }
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        self.showErrorMessage(withTitle: "Could Not Serialize Update Data", text: "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.")
-                    }
-                }
-            } else {
+            guard let data = data else {
                 DispatchQueue.main.async {
                     self.showErrorMessage(withTitle: "No Update Data Received", text: "The GitHub API returned no data. This error should be reported.")
                 }
+                return
             }
-        }) 
+            let jsonData: [String: AnyObject]
+            do {
+                guard let rawData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
+                    self.showErrorMessage(withTitle: "Improperly Formatted JSON", text: "The JSON data returned by the update server was not in the correct format. This error should be reported.")
+                    return
+                }
+                jsonData = rawData
+            } catch {
+                DispatchQueue.main.async {
+                    self.showErrorMessage(withTitle: "Could Not Serialize Update Data", text: "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.")
+                }
+                return
+            }
+            guard var serverVersion = jsonData["tag_name"] as? String, let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+                DispatchQueue.main.async {
+                    self.showErrorMessage(withTitle: "Failed to Parse Update Information", text: "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.")
+                }
+                return
+            }
+            serverVersion.remove(at: serverVersion.characters.startIndex) // Remove the "v" from the tag name
+            if bundleVersion.compare(serverVersion, options: .numeric) == .orderedAscending {
+                guard let assets = jsonData["assets"] as? [AnyObject], let downloadURL = assets[0]["browser_download_url"] as? String else {
+                    DispatchQueue.main.async {
+                        self.showErrorMessage(withTitle: "Failed to Parse Download Information", text: "While update version data was able to be parsed, download asset data could not. This error should be reported.")
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.window.title = "Caffeinator Update"
+                    alert.messageText = "Update Available"
+                    alert.informativeText = "A new version of Caffeinator (\(serverVersion)) is available. Would you like to download it now?"
+                    alert.addButton(withTitle: "Update")
+                    alert.addButton(withTitle: "Not Now")
+                    if alert.runModalInFront() == NSAlertFirstButtonReturn {
+                        if let url = URL(string: downloadURL) {
+                            NSWorkspace.shared().open(url)
+                        } else {
+                            self.showErrorMessage(withTitle: "Error Opening URL", text: "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.")
+                        }
+                    }
+                }
+            } else if isUserInitiated {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.window.title = "Caffeinator Update"
+                    alert.messageText = "No Updates Available"
+                    alert.informativeText = "You're running the latest version of Caffeinator."
+                    alert.alertStyle = .informational
+                    alert.addButton(withTitle: "OK")
+                    _ = alert.runModalInFront()
+                }
+            }
+        })
         query.resume()
     }
     
@@ -392,7 +405,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         alert.addButton(withTitle: "Cancel")
         alert.alertStyle = .informational
         alert.accessoryView = NSTextField(frame: NSMakeRect(0, 0, 200, 24))
-        let button = alert.runModal()
+        let button = alert.runModalInFront()
         if button == NSAlertFirstButtonReturn {
             return (alert.accessoryView as! NSTextField).stringValue
         }
@@ -414,7 +427,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             img.unlockFocus()
             alert.icon = img
             alert.alertStyle = .warning
-            alert.runModal()
+            _ = alert.runModalInFront()
         }
     }
 
