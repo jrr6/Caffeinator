@@ -37,12 +37,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item, and check for updates
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        nc.addObserver(self, selector: #selector(AppDelegate.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+        nc.addObserver(self, selector: #selector(AppDelegate.defaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         initDefaults()
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.menu = mainMenu
         helpTitle.stringValue = "Caffeinator \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
-        checkForUpdate(userInitiated: false)
+        checkForUpdate(isUserInitiated: false)
     }
     
     // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety)
@@ -77,11 +77,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if df.object(forKey: "PromptBeforeExecuting") == nil {
             df.set(false, forKey: "PromptBeforeExecuting")
         }
-        defaultsChanged()
+        defaultsDidChange()
     }
     
     // Respond to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
-    func defaultsChanged() {
+    func defaultsDidChange() {
         RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
             self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? NSOnState : NSOffState
             self.promptToggle.state = self.df.bool(forKey: "PromptBeforeExecuting") ? NSOnState : NSOffState
@@ -111,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let key = key {
             df.set(val, forKey: key)
         } else {
-            errorMessage("Unknown Preference Tag", text: "An attempt was made to set a preference by an unrecognized sender. This error should be reported.")
+            showErrorMessage(withTitle: "Unknown Preference Tag", text: "An attempt was made to set a preference by an unrecognized sender. This error should be reported.")
         }
     }
     
@@ -123,7 +123,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Start Caffeinate with no args, or stop it if it is active
     @IBAction func startClicked(_ sender: NSMenuItem) {
         if sender.title == "Start Caffeinator" {
-            generateCaffeine([], isDev: false)
+            generateCaffeine(withArgs: [], isDev: false)
         } else {
             task?.terminate()
             active = false
@@ -137,7 +137,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
     @IBAction func processClicked(_ sender: NSMenuItem) {
-        if let res = inputDialog("Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
+        if let res = showInputDialog(withWindowTitle: "Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
             if let text = Int(res) {
                 var labelName = "PID \(res)"
                 if let appName = NSRunningApplication(processIdentifier: pid_t(text))?.localizedName {
@@ -146,9 +146,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
                     self.processMenu.title = "Caffeinating \(labelName)"
                 }
-                generateCaffeine(["-w", String(text)], isDev: false)
+                generateCaffeine(withArgs: ["-w", String(text)], isDev: false)
             } else {
-                errorMessage("Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
+                showErrorMessage(withTitle: "Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
             }
         }
     }
@@ -167,29 +167,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             multiplier = 3600
             loc = range
         } else {
-            if let res = inputDialog("Timed Caffeination", title: "Custom Time Entry", text: "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:") {
-                if let text = Double(res) {
-                    time = text * 60
-                } else {
-                    errorMessage("Illegal Input", text: "You must enter an integer or decimal number.")
-                    return
-                }
-            } else {
+            guard let res = showInputDialog(withWindowTitle: "Timed Caffeination", title: "Custom Time Entry", text: "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:") else {
+                // User canceled
                 return
             }
+            guard let text = Double(res) else {
+                showErrorMessage(withTitle: "Illegal Input", text: "You must enter an integer or decimal number.")
+                return
+            }
+            time = text * 60
         }
         if let multi = multiplier, let range = loc {
             time = Double(title.substring(to: title.index(before: range.lowerBound)))! * multi
         }
-        if let t = time {
-            if t < 1 {
-                errorMessage("Illegal Time Value", text: "The time value must be greater than or equal to 1 second.")
-            } else {
-                generateCaffeine(["-t", String(t)], isDev: false)
-            }
-        } else {
-            errorMessage("No Time Assigned", text: "No time value was passed to caffeinate.")
+        guard let t = time, t < 1 else {
+            showErrorMessage(withTitle: "Illegal Time Value", text: "The time value must be a valid number greater than or equal to 1 second.")
+            return
         }
+        generateCaffeine(withArgs: ["-t", String(t)], isDev: false)
     }
     
     // Responds to the "Help" item by opening the Help window
@@ -198,8 +193,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
-    func generateCaffeine(_ arguments: [String], isDev: Bool) {
-        var arguments = arguments
+    func generateCaffeine(withArgs args: [String], isDev: Bool) {
+        var arguments = args
         if !isDev {
             arguments.append("-i")
             if df.bool(forKey: "CaffeinateDisplay") {
@@ -215,12 +210,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.addButton(withTitle: "Cancel")
             let res = alert.runModal()
             if res != NSAlertFirstButtonReturn {
+                // User cancelled
                 return
             }
         }
         let caffeinatePath = "/usr/bin/caffeinate"
-        if !FileManager.default.fileExists(atPath: caffeinatePath) {
-            errorMessage("Could Not Find Caffeinate", text: "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.")
+        guard FileManager.default.fileExists(atPath: caffeinatePath) else {
+            showErrorMessage(withTitle: "Could Not Find Caffeinate", text: "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.")
             return
         }
         DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
@@ -279,16 +275,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are then assigned to the corresponding dictionary item
     @IBAction func addValue(_ sender: NSButton) {
-        let params = sender.tag == 0 ? ("-t", tLabel) : ("-w", wLabel)
-        if let value = showValueDialog(params.0) {
-            params.1.stringValue = value
-            args[params.0] = value
+        let params = sender.tag == 0 ? (flag: "-t", label: tLabel) : (flag: "-w", label: wLabel)
+        if let value = showValueDialog(forParam: params.flag) {
+            params.label.stringValue = value
+            args[params.flag] = value
         }
     }
     
-    // Displays a value input dialog for use in addValue(). Not to be confused with inputDialog()
-    func showValueDialog(_ paramName: String) -> String? {
-        return inputDialog("Value Input", title: "Please Enter a Value", text: "Please enter the value for the \(paramName) parameter below:")
+    // Displays a value input dialog for use in addValue(). Not to be confused with showInputDialog()
+    func showValueDialog(forParam param: String) -> String? {
+        return showInputDialog(withWindowTitle: "Value Input", title: "Please Enter a Value", text: "Please enter the value for the \(param) parameter below:")
     }
     
     // Convert the dictionary of arguments into an array of parameters, then pass that array to generateCaffeine() in dev mode.
@@ -301,7 +297,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 params.append(arg)
             }
         }
-        generateCaffeine(params, isDev: true)
+        generateCaffeine(withArgs: params, isDev: true)
         argumentPanel.close()
     }
     
@@ -318,7 +314,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Update Functions
     
     // Queries the GitHub API to see if a new version is available. If there is a more recent version, it alerts the user and opens the file in their browser.
-    func checkForUpdate(userInitiated: Bool) {
+    func checkForUpdate(isUserInitiated: Bool) {
         let url = URL(string: "https://api.github.com/repos/aaplmath/Caffeinator/releases/latest")!
         let query = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             if let data = data {
@@ -338,17 +334,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                         if let url = URL(string: downloadURL) {
                                             NSWorkspace.shared().open(url)
                                         } else {
-                                            self.errorMessage("Error Opening URL", text: "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.")
+                                            self.showErrorMessage(withTitle: "Error Opening URL", text: "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.")
                                         }
                                     }
                                 }
                             } else {
                                 DispatchQueue.main.async {
-                                    self.errorMessage("Failed to Parse Download Information", text: "While update version data was able to be parsed, download asset data could not. This error should be reported.")
+                                    self.showErrorMessage(withTitle: "Failed to Parse Download Information", text: "While update version data was able to be parsed, download asset data could not. This error should be reported.")
                                 }
                             }
 
-                        } else if userInitiated {
+                        } else if isUserInitiated {
                             DispatchQueue.main.async {
                                 let alert = NSAlert()
                                 alert.window.title = "Caffeinator Update"
@@ -361,17 +357,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            self.errorMessage("Failed to Parse Update Information", text: "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.")
+                            self.showErrorMessage(withTitle: "Failed to Parse Update Information", text: "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.")
                         }
                     }
                 } catch {
                     DispatchQueue.main.async {
-                        self.errorMessage("Could Not Serialize Update Data", text: "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.")
+                        self.showErrorMessage(withTitle: "Could Not Serialize Update Data", text: "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.")
                     }
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.errorMessage("No Update Data Received", text: "The GitHub API returned no data. This error should be reported.")
+                    self.showErrorMessage(withTitle: "No Update Data Received", text: "The GitHub API returned no data. This error should be reported.")
                 }
             }
         }) 
@@ -380,13 +376,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Responds to user request to check for updates by calling checkForUpdate()
     @IBAction func checkForUpdatesClicked(_ sender: NSMenuItem) {
-        checkForUpdate(userInitiated: true)
+        checkForUpdate(isUserInitiated: true)
     }
     
     // MARK: - Utility Alert Functions
     
     // Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with showValueDialog()
-    func inputDialog(_ windowTitle: String, title: String, text: String) -> String? {
+    func showInputDialog(withWindowTitle windowTitle: String, title: String, text: String) -> String? {
         // FIXME: Instruments claims this causes a 32-byte (really?) memory leak. I'm not sure I believe it.
         let alert = NSAlert()
         alert.window.title = windowTitle
@@ -404,7 +400,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Shows an error message with the specified text
-    func errorMessage(_ title: String, text: String) {
+    func showErrorMessage(withTitle title: String, text: String) {
         DispatchQueue.main.async {
             let alert = NSAlert()
             alert.window.title = "Error"
