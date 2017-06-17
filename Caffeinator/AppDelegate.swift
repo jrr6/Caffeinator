@@ -325,9 +325,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let url = URL(string: "https://api.github.com/repos/aaplmath/Caffeinator/releases/latest")!
         let query = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             guard let data = data else {
-                DispatchQueue.main.async {
-                    self.showErrorMessage(withTitle: "No Update Data Received", text: "The GitHub API returned no data. This error should be reported.")
-                }
+                self.showErrorMessage(withTitle: "No Update Data Received", text: "The GitHub API returned no data. This error should be reported.")
                 return
             }
             let jsonData: [String: AnyObject]
@@ -338,23 +336,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 jsonData = rawData
             } catch {
-                DispatchQueue.main.async {
-                    self.showErrorMessage(withTitle: "Could Not Serialize Update Data", text: "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.")
-                }
+                self.showErrorMessage(withTitle: "Could Not Serialize Update Data", text: "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.")
                 return
             }
             guard var serverVersion = jsonData["tag_name"] as? String, let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
-                DispatchQueue.main.async {
-                    self.showErrorMessage(withTitle: "Failed to Parse Update Information", text: "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.")
-                }
+                self.showErrorMessage(withTitle: "Failed to Parse Update Information", text: "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.")
                 return
             }
             serverVersion.remove(at: serverVersion.characters.startIndex) // Remove the "v" from the tag name
             if bundleVersion.compare(serverVersion, options: .numeric) == .orderedAscending {
                 guard let assets = jsonData["assets"] as? [AnyObject], let downloadURL = assets[0]["browser_download_url"] as? String else {
-                    DispatchQueue.main.async {
-                        self.showErrorMessage(withTitle: "Failed to Parse Download Information", text: "While update version data was able to be parsed, download asset data could not. This error should be reported.")
-                    }
+                    self.showErrorMessage(withTitle: "Failed to Parse Download Information", text: "While update version data was able to be parsed, download asset data could not. This error should be reported.")
                     return
                 }
                 DispatchQueue.main.async {
