@@ -144,54 +144,58 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
     @IBAction func processClicked(_ sender: NSMenuItem) {
-        if let res = showInputDialog(withWindowTitle: "Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
-            if let text = Int(res) {
-                var labelName = "PID \(res)"
-                if let appName = NSRunningApplication(processIdentifier: pid_t(text))?.localizedName {
-                    labelName = appName
+        DispatchQueue.main.async {
+            if let res = self.showInputDialog(withWindowTitle: "Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
+                if let text = Int(res) {
+                    var labelName = "PID \(res)"
+                    if let appName = NSRunningApplication(processIdentifier: pid_t(text))?.localizedName {
+                        labelName = appName
+                    }
+                    RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+                        self.processMenu.title = "Caffeinating \(labelName)"
+                    }
+                    self.generateCaffeine(withArgs: ["-w", String(text)], isDev: false)
+                } else {
+                    self.showErrorMessage(withTitle: "Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
                 }
-                RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
-                    self.processMenu.title = "Caffeinating \(labelName)"
-                }
-                generateCaffeine(withArgs: ["-w", String(text)], isDev: false)
-            } else {
-                showErrorMessage(withTitle: "Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
             }
         }
     }
     
     // Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is selected, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is passed to generateCaffeine() along with the corresponding "-t" argument
     @IBAction func timedClicked(_ sender: NSMenuItem) {
-        let title = sender.title
-        var time: Double? = nil
-        var multiplier: Double? = nil
-        var loc: Range<String.CharacterView.Index>? = nil
-        
-        if let range = title.range(of: "minutes") {
-            multiplier = 60
-            loc = range
-        } else if let range = title.range(of: "hours") {
-            multiplier = 3600
-            loc = range
-        } else {
-            guard let res = showInputDialog(withWindowTitle: "Timed Caffeination", title: "Custom Time Entry", text: "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:") else {
-                // User canceled
+        DispatchQueue.main.async {
+            let title = sender.title
+            var time: Double? = nil
+            var multiplier: Double? = nil
+            var loc: Range<String.CharacterView.Index>? = nil
+            
+            if let range = title.range(of: "minutes") {
+                multiplier = 60
+                loc = range
+            } else if let range = title.range(of: "hours") {
+                multiplier = 3600
+                loc = range
+            } else {
+                guard let res = self.showInputDialog(withWindowTitle: "Timed Caffeination", title: "Custom Time Entry", text: "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:") else {
+                    // User canceled
+                    return
+                }
+                guard let text = Double(res) else {
+                    self.showErrorMessage(withTitle: "Illegal Input", text: "You must enter an integer or decimal number.")
+                    return
+                }
+                time = text * 60
+            }
+            if let multi = multiplier, let range = loc {
+                time = Double(title.substring(to: title.index(before: range.lowerBound)))! * multi
+            }
+            guard let t = time, t > 1 else {
+                self.showErrorMessage(withTitle: "Illegal Time Value", text: "The time value must be a valid number greater than or equal to 1 second.")
                 return
             }
-            guard let text = Double(res) else {
-                showErrorMessage(withTitle: "Illegal Input", text: "You must enter an integer or decimal number.")
-                return
-            }
-            time = text * 60
+            self.generateCaffeine(withArgs: ["-t", String(t)], isDev: false)
         }
-        if let multi = multiplier, let range = loc {
-            time = Double(title.substring(to: title.index(before: range.lowerBound)))! * multi
-        }
-        guard let t = time, t > 1 else {
-            showErrorMessage(withTitle: "Illegal Time Value", text: "The time value must be a valid number greater than or equal to 1 second.")
-            return
-        }
-        generateCaffeine(withArgs: ["-t", String(t)], isDev: false)
     }
     
     // Responds to the "Help" item by opening the Help window
