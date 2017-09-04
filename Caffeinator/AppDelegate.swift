@@ -26,6 +26,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var helpHUD: NSPanel!
     @IBOutlet weak var helpTitle: NSTextField!
     
+    @IBOutlet weak var licenseHUD: NSPanel!
+    @IBOutlet weak var licenseField: NSTextView!
+    
     @IBOutlet weak var startMenu: NSMenuItem!
     @IBOutlet weak var processMenu: NSMenuItem!
     @IBOutlet weak var timedMenu: NSMenuItem!
@@ -42,13 +45,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let df = UserDefaults.standard
     let nc = NotificationCenter.default
     
-    // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item, and check for updates
+    // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item and windows, and check for updates
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         nc.addObserver(self, selector: #selector(AppDelegate.defaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         initDefaults()
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.menu = mainMenu
         helpTitle.stringValue = "Caffeinator \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
+        if let rtfPath = Bundle.main.url(forResource: "Licenses", withExtension: "rtf") {
+            do {
+                let licenseString = try NSAttributedString(url: rtfPath, options: [NSDocumentTypeDocumentAttribute: NSRTFTextDocumentType], documentAttributes: nil)
+                licenseField.textStorage?.setAttributedString(licenseString)
+            } catch {
+                licenseField.string = "There was an error parsing the License text. Please report this so it can be fixed."
+            }
+        }
         checkForUpdate(isUserInitiated: false)
     }
     
@@ -203,6 +214,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         helpHUD.makeKeyAndOrderFront(nil)
     }
     
+    // Responds to the "View License Information" menu item by opening the License HUD
+    @IBAction func licensePressed(_ sender: NSMenuItem) {
+        licenseHUD.makeKeyAndOrderFront(nil)
+    }
+    
     // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
     func generateCaffeine(withArgs args: [String], isDev: Bool) {
         var arguments = args
@@ -317,8 +333,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         argumentPanel.close()
     }
     
-    // Responds to the "info" button on the argument input window by opening Apple's caffeinate manpage on their online developer library. In future releases, this may be replaced with a native solution.
-    @IBAction func viewManpage(_ sender: NSButton) {
+    // Responds to the "info" button on the argument input window by opening Apple's caffeinate man page on their online developer library. In future releases, this may be replaced with a native solution.
+    @IBAction func viewManPage(_ sender: NSButton) {
         NSWorkspace.shared().open(URL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
     }
     

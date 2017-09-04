@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
@@ -23,6 +23,8 @@
                 <outlet property="displayToggle" destination="0JP-F2-OlS" id="Ait-cf-VcZ"/>
                 <outlet property="helpHUD" destination="3mi-VR-hEx" id="W0G-vl-YHJ"/>
                 <outlet property="helpTitle" destination="9yt-qM-OU9" id="a32-nV-6Ka"/>
+                <outlet property="licenseField" destination="foS-Su-pvr" id="uCn-mL-Pkh"/>
+                <outlet property="licenseHUD" destination="EQq-l6-Fx2" id="ihU-aO-Gek"/>
                 <outlet property="mainMenu" destination="gDT-Ta-xNk" id="vMp-dF-ibO"/>
                 <outlet property="processMenu" destination="TTf-vh-Tj1" id="FbM-Vl-aJT"/>
                 <outlet property="promptToggle" destination="a1s-3p-rOx" id="HBP-wG-ehj"/>
@@ -127,6 +129,12 @@
                                     <action selector="argumentClicked:" target="Voe-Tx-rLC" id="rVc-uV-D69"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="View License Information…" id="qsx-2W-lhK">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="licensePressed:" target="Voe-Tx-rLC" id="cMf-ky-lQp"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -155,7 +163,7 @@
             <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="749" y="464" width="531" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="MxH-H1-ASx">
                 <rect key="frame" x="0.0" y="0.0" width="531" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -337,7 +345,7 @@ Gw
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="viewManpage:" target="Voe-Tx-rLC" id="VXN-U4-0A7"/>
+                            <action selector="viewManPage:" target="Voe-Tx-rLC" id="BwQ-vr-1UV"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JTq-pD-3Mq">
@@ -416,7 +424,7 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="136" y="185" width="480" height="473"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="C9O-B5-CGj">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="473"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -517,6 +525,56 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                 </constraints>
             </view>
             <point key="canvasLocation" x="315" y="1372.5"/>
+        </window>
+        <window title="Licenses" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="EQq-l6-Fx2" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" HUD="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="75" y="104" width="415" height="547"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <view key="contentView" id="aXD-aU-6e0">
+                <rect key="frame" x="0.0" y="0.0" width="415" height="547"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADO-p1-vSN">
+                        <rect key="frame" x="108" y="509" width="199" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="License Information" id="Kqt-MY-Omk">
+                            <font key="font" metaFont="systemBold" size="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYL-2y-m8d">
+                        <rect key="frame" x="20" y="20" width="375" height="481"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="bPj-wa-PlK">
+                            <rect key="frame" x="1" y="1" width="373" height="479"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView ambiguous="YES" editable="NO" drawsBackground="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="foS-Su-pvr">
+                                    <rect key="frame" x="0.0" y="0.0" width="373" height="479"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="373" height="479"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="8vE-W4-7zr">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="kmE-gC-0LZ">
+                            <rect key="frame" x="358" y="1" width="16" height="479"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="222.5" y="-210.5"/>
         </window>
     </objects>
     <resources>

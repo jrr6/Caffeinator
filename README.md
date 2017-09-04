@@ -6,7 +6,7 @@ Caffeinator does not use CocoaPods, Carthage, or any other dependency manager, a
 
 ## FAQ
 
-* **Why isn't there an option to specify a utility as an argument to `caffeinate` (as is shown in the manpage)?**
+* **Why isn't there an option to specify a utility as an argument to `caffeinate` (as is shown in the man page)?**
 
   Because there's really no practical benefit to it, and it would create needless hassle. If you want equivalent functionality, start the process manually, then find its PID and use process-based Caffeination.
 
