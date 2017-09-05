@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Caffeinator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Caffeinator</h1>
+      <h2 class="project-tagline">The most powerful way to keep your Mac awake.</h2>
+      <a href="#" id="download-button" class="btn">Download Caffeinator</a>
+    </section>
+
+    <section class="main-content">
+      <h3>
+<a id="welcome-to-caffeinator" class="anchor" href="#welcome-to-caffeinator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to Caffeinator</h3>
+
+<p>Caffeinator is a tiny, simple, yet powerful menu-bar app that provides a versatile toolset for preventing your Mac from sleeping. It's approachable and designed with simplicity in mind, but also provides power to those who want it. All the code is open-source on the <a href="https://github.com/aaplmath/Caffeinator">Caffeinator GitHub repository</a>, so feel free to look around.</p>
+
+<h3>Features</h3>
+<ul>
+  <li>Manual sleep prevention ("Caffeination")</li>
+  <li>Timed Caffeination</li>
+  <li>Process-based Caffeination (prevents sleep until a process exits)</li>
+  <li>Fully-featured GUI argument editor for the <code>caffeinate</code> command-line tool</li>
+</ul>
+
+<h3>Installation</h3>
+<p>Interested in getting Caffeinator? Click the Download button at the top of the page, then drag Caffeinator to your Applications folder using the provided Disk Image installer.</p>
+<p><strong>Please note:</strong> Caffeinator is not signed with a developer certificate. Therefore, the first time you open Caffeinator, you must <strong>right-click on the app, click Open, then click Open on the following dialog box</strong>.</p>
+
+<h3>Help</h3>
+<p>If you're having problems with Caffeinator, go to <a href="https://github.com/aaplmath/Caffeinator/issues">Caffeinator's Issues page</a> and see if an Issue addressing your problem has already been opened. If it hasn't, open a new one&mdash;be sure to describe your problem, steps to replicate it, and any other pertinent information.</p>
+
+<h3>Screenshots</h3>
+<img src="img/menu-light.png">
+<img src="img/menu-dark.png">
+<img src="img/args-editor.png">
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/aaplmath/Caffeinator">Caffeinator</a> is an open-source project maintained by <a href="https://github.com/aaplmath">aaplmath</a>.</span>
+        <!-- <a href="#" id="switch-language"><p>Este sitio web también es disponible en español aquí</p></a> -->
+        <a href="https://aaplmath.github.io/Caffeinator/spanish.html" id="switch-language"><p>Este sitio web también es disponible en español aquí</p></a>
+      </footer>
+
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $.getJSON("https://api.github.com/repos/aaplmath/Caffeinator/releases/latest").done(function(release) {
+          $('#download-button').attr('href', release.assets[0].browser_download_url);
+        });
+        // checkSpanish();
+      });
+      function checkSpanish() {
+          if (localStorage.spanish !== undefined) {
+              translate();
+          }
+      }
+      function translate() {
+          // window.location = "https://aaplmath.github.io/caffeinator/spanish.html";
+      }
+      function toggleSpanish() {
+          localStorage.spanish = true;
+          translate();
+      }
+      // $('#switch-language').click(toggleSpanish);
+    </script>
+
+  </body>
+</html>
