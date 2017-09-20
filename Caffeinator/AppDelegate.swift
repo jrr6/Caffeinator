@@ -9,8 +9,8 @@
 import Cocoa
 
 extension NSAlert {
-    open func runModalInFront() -> NSModalResponse {
-        NSApplication.shared().activate(ignoringOtherApps: true)
+    open func runModalInFront() -> NSApplication.ModalResponse {
+        NSApplication.shared.activate(ignoringOtherApps: true)
         return self.runModal()
     }
 }
@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Main Menu
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
    
     let df = UserDefaults.standard
     let nc = NotificationCenter.default
@@ -49,12 +49,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         nc.addObserver(self, selector: #selector(AppDelegate.defaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         initDefaults()
-        statusItem.image = NSImage(named: "CoffeeCup")
+        statusItem.image = NSImage(named: NSImage.Name(rawValue: "CoffeeCup"))
         statusItem.menu = mainMenu
         helpTitle.stringValue = "Caffeinator \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
         if let rtfPath = Bundle.main.url(forResource: "Licenses", withExtension: "rtf") {
             do {
-                let licenseString = try NSAttributedString(url: rtfPath, options: [NSDocumentTypeDocumentAttribute: NSRTFTextDocumentType], documentAttributes: nil)
+                let licenseString = try NSAttributedString(url: rtfPath, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil)
                 licenseField.textStorage?.setAttributedString(licenseString)
             } catch {
                 licenseField.string = "There was an error parsing the License text. Please report this so it can be fixed."
@@ -81,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 self.timedMenu.isEnabled = !self.active
                 self.argumentMenu.isEnabled = !self.active
-                self.statusItem.image = self.active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
+                self.statusItem.image = self.active ? NSImage(named: NSImage.Name(rawValue: "CoffeeCupGreen")) : NSImage(named: NSImage.Name(rawValue: "CoffeeCup"))
             }
         }
     }
@@ -99,23 +99,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Respond to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
-    func defaultsDidChange() {
+    @objc func defaultsDidChange() {
         RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
-            self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? NSOnState : NSOffState
-            self.promptToggle.state = self.df.bool(forKey: "PromptBeforeExecuting") ? NSOnState : NSOffState
+            self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? .on : .off
+            self.promptToggle.state = self.df.bool(forKey: "PromptBeforeExecuting") ? .on : .off
         }
     }
     
     // Toggle a given preference and update NSUserDefaults accordingly (note that the sender's state reflects its state prior to the change to the menu item—if the state is On, the menu item is now really Off)
     @IBAction func changeDefault(_ sender: NSMenuItem) {
         let val: Bool
-        if sender.state == NSOnState {
+        if sender.state == .on {
             val = false
         } else {
             val = true
         }
         RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
-            sender.state = val ? NSOnState : NSOffState
+            sender.state = val ? .on : .off
         }
         let key: String?
         switch sender.tag {
@@ -135,7 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Responds to the Quit menu item
     @IBAction func quitClicked(_ sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
     // Start Caffeinate with no args, or stop it if it is active
@@ -181,10 +181,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             var multiplier: Double? = nil
             var loc: Range<String.CharacterView.Index>? = nil
             
-            if let range = title.range(of: "minutes") {
+            if let range = title.range(of: " minutes") {
                 multiplier = 60
                 loc = range
-            } else if let range = title.range(of: "hours") {
+            } else if let range = title.range(of: " hours") {
                 multiplier = 3600
                 loc = range
             } else {
@@ -199,7 +199,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 time = text * 60
             }
             if let multi = multiplier, let range = loc {
-                time = Double(title.substring(to: title.index(before: range.lowerBound)))! * multi
+                guard let preset = Double(title[..<range.lowerBound]) else {
+                    self.showErrorMessage(withTitle: "Unknown Preset Value", text: "An error occurred when attempting to parse the selected preset. This is unexpected behavior and should be reported.")
+                    return
+                }
+                time = preset * multi
             }
             guard let t = time, t > 1 else {
                 self.showErrorMessage(withTitle: "Illegal Time Value", text: "The time value must be a valid number greater than or equal to 1 second.")
@@ -236,7 +240,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.addButton(withTitle: "OK")
             alert.addButton(withTitle: "Cancel")
             let res = alert.runModalInFront()
-            if res != NSAlertFirstButtonReturn {
+            if res != .alertFirstButtonReturn {
                 // User cancelled
                 return
             }
@@ -280,7 +284,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enable/disable the corresponding input button
     @IBAction func argumentChecked(_ sender: NSButton) {
         let title = sender.title
-        let state = sender.state == NSOnState
+        let state = sender.state == .on
         if state {
             args[title] = ""
         } else {
@@ -335,7 +339,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Responds to the "info" button on the argument input window by opening Apple's caffeinate man page on their online developer library. In future releases, this may be replaced with a native solution.
     @IBAction func viewManPage(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
+        NSWorkspace.shared.open(URL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
     }
     
     // MARK: - Update Functions
@@ -376,9 +380,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     alert.informativeText = "A new version of Caffeinator (\(serverVersion)) is available. Would you like to download it now?"
                     alert.addButton(withTitle: "Update")
                     alert.addButton(withTitle: "Not Now")
-                    if alert.runModalInFront() == NSAlertFirstButtonReturn {
+                    if alert.runModalInFront() == .alertFirstButtonReturn {
                         if let url = URL(string: downloadURL) {
-                            NSWorkspace.shared().open(url)
+                            NSWorkspace.shared.open(url)
                         } else {
                             self.showErrorMessage(withTitle: "Error Opening URL", text: "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.")
                         }
@@ -418,7 +422,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         alert.alertStyle = .informational
         alert.accessoryView = NSTextField(frame: NSMakeRect(0, 0, 200, 24))
         let button = alert.runModalInFront()
-        if button == NSAlertFirstButtonReturn {
+        if button == .alertFirstButtonReturn {
             return (alert.accessoryView as! NSTextField).stringValue
         }
         return nil
@@ -431,13 +435,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.window.title = "Error"
             alert.messageText = title
             alert.informativeText = text
-            let img = NSApp.applicationIconImage.copy() as! NSImage
-            img.lockFocus()
-            let color = NSColor.red
-            color.set()
-            NSRectFillUsingOperation(NSMakeRect(0, 0, img.size.width, img.size.height), .sourceAtop)
-            img.unlockFocus()
-            alert.icon = img
+            if let img = NSApp.applicationIconImage.copy() as? NSImage {
+                img.lockFocus()
+                let color = NSColor.red
+                color.set()
+                NSMakeRect(0, 0, img.size.width, img.size.height).fill(using: .sourceAtop)
+                img.unlockFocus()
+                alert.icon = img
+            }
             alert.alertStyle = .warning
             _ = alert.runModalInFront()
         }
