@@ -8,6 +8,7 @@
 
 import Cocoa
 
+/// Convenience class for grouping together various functions that trigger `NSAlert`s
 class Notifier {
     
     // Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with showValueDialog()

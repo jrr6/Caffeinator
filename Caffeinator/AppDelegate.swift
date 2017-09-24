@@ -67,7 +67,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Set up updating
         updater = Updater()
-        updater.checkForUpdate(isUserInitiated: false)
     }
     
     // Ensures that all UserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
