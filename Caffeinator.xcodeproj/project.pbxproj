@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E20139BE1F77FE2C008B12E1 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20139BD1F77FE2C008B12E1 /* Updater.swift */; };
+		E20139C21F78024B008B12E1 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20139C11F78024B008B12E1 /* Notifier.swift */; };
 		E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF171BEFA5A8007708FB /* AppDelegate.swift */; };
 		E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E209DF191BEFA5A8007708FB /* Assets.xcassets */; };
 		E209DF1D1BEFA5A8007708FB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E209DF1B1BEFA5A8007708FB /* MainMenu.xib */; };
@@ -33,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E20139BB1F77FDB1008B12E1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E20139BC1F77FDB2008B12E1 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		E20139BD1F77FE2C008B12E1 /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+		E20139C11F78024B008B12E1 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		E209DF141BEFA5A8007708FB /* Caffeinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caffeinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E209DF171BEFA5A8007708FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E209DF191BEFA5A8007708FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 				E209DF261BEFA5A8007708FB /* CaffeinatorTests */,
 				E209DF311BEFA5A8007708FB /* CaffeinatorUITests */,
 				E209DF151BEFA5A8007708FB /* Products */,
+				E20139BC1F77FDB2008B12E1 /* LICENSE.txt */,
+				E20139BB1F77FDB1008B12E1 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +106,8 @@
 			children = (
 				E2E1DD061D0B68E9006CCD2B /* Caffeinator.entitlements */,
 				E209DF171BEFA5A8007708FB /* AppDelegate.swift */,
+				E20139C11F78024B008B12E1 /* Notifier.swift */,
+				E20139BD1F77FE2C008B12E1 /* Updater.swift */,
 				E209DF191BEFA5A8007708FB /* Assets.xcassets */,
 				E209DF1B1BEFA5A8007708FB /* MainMenu.xib */,
 				E209DF1E1BEFA5A8007708FB /* Info.plist */,
@@ -264,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */,
+				E20139C21F78024B008B12E1 /* Notifier.swift in Sources */,
+				E20139BE1F77FE2C008B12E1 /* Updater.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

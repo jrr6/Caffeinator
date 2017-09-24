@@ -1,4 +1,4 @@
-//
+
 //  AppDelegate.swift
 //  Caffeinator
 //
@@ -36,19 +36,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var displayToggle: NSMenuItem!
     @IBOutlet weak var promptToggle: NSMenuItem!
     
+    var df: UserDefaults!
+    var nc: NotificationCenter!
+    var updater: Updater!
     var task: Process?
     
     // MARK: - Main Menu
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-   
-    let df = UserDefaults.standard
-    let nc = NotificationCenter.default
     
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item and windows, and check for updates
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        nc.addObserver(self, selector: #selector(AppDelegate.defaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
-        initDefaults()
         statusItem.image = NSImage(named: NSImage.Name(rawValue: "CoffeeCup"))
         statusItem.menu = mainMenu
         helpTitle.stringValue = "Caffeinator \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
@@ -60,7 +58,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 licenseField.string = "There was an error parsing the License text. Please report this so it can be fixed."
             }
         }
-        checkForUpdate(isUserInitiated: false)
+        
+        // Configure UserDefaults
+        df = UserDefaults.standard
+        nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(AppDelegate.defaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+        initDefaults()
+        
+        // Set up updating
+        updater = Updater()
+        updater.checkForUpdate(isUserInitiated: false)
+    }
+    
+    // Ensures that all UserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
+    func initDefaults() {
+        // TODO: If the number of preferences in Caffeinator gets too big, this needs to be turned into a more organized system (think: loops, etc.)
+        if df.object(forKey: "CaffeinateDisplay") == nil {
+            df.set(true, forKey: "CaffeinateDisplay")
+        }
+        if df.object(forKey: "PromptBeforeExecuting") == nil {
+            df.set(false, forKey: "PromptBeforeExecuting")
+        }
+        defaultsDidChange()
+    }
+    
+    // Respond to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
+    @objc func defaultsDidChange() {
+        RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+            self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? .on : .off
+            self.promptToggle.state = self.df.bool(forKey: "PromptBeforeExecuting") ? .on : .off
+        }
     }
     
     // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety)
@@ -86,27 +113,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    // Ensures that all NSUserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
-    func initDefaults() {
-        // TODO: If the number of preferences in Caffeinator gets too big, this needs to be turned into a more organized system (think: loops, etc.)
-        if df.object(forKey: "CaffeinateDisplay") == nil {
-            df.set(true, forKey: "CaffeinateDisplay")
-        }
-        if df.object(forKey: "PromptBeforeExecuting") == nil {
-            df.set(false, forKey: "PromptBeforeExecuting")
-        }
-        defaultsDidChange()
-    }
-    
-    // Respond to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
-    @objc func defaultsDidChange() {
-        RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
-            self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? .on : .off
-            self.promptToggle.state = self.df.bool(forKey: "PromptBeforeExecuting") ? .on : .off
-        }
-    }
-    
-    // Toggle a given preference and update NSUserDefaults accordingly (note that the sender's state reflects its state prior to the change to the menu item—if the state is On, the menu item is now really Off)
     @IBAction func changeDefault(_ sender: NSMenuItem) {
         let val: Bool
         if sender.state == .on {
@@ -129,7 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let key = key {
             df.set(val, forKey: key)
         } else {
-            showErrorMessage(withTitle: "Unknown Preference Tag", text: "An attempt was made to set a preference by an unrecognized sender. This error should be reported.")
+            Notifier.showErrorMessage(withTitle: "Unknown Preference Tag", text: "An attempt was made to set a preference by an unrecognized sender. This error should be reported.")
         }
     }
     
@@ -156,7 +162,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
     @IBAction func processClicked(_ sender: NSMenuItem) {
         DispatchQueue.main.async {
-            if let res = self.showInputDialog(withWindowTitle: "Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
+            if let res = Notifier.showInputDialog(withWindowTitle: "Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
                 if let text = Int(res) {
                     var labelName = "PID \(res)"
                     if let appName = NSRunningApplication(processIdentifier: pid_t(text))?.localizedName {
@@ -167,7 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                     self.generateCaffeine(withArgs: ["-w", String(text)], isDev: false)
                 } else {
-                    self.showErrorMessage(withTitle: "Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
+                    Notifier.showErrorMessage(withTitle: "Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
                 }
             }
         }
@@ -188,25 +194,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 multiplier = 3600
                 loc = range
             } else {
-                guard let res = self.showInputDialog(withWindowTitle: "Timed Caffeination", title: "Custom Time Entry", text: "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:") else {
+                guard let res = Notifier.showInputDialog(withWindowTitle: "Timed Caffeination", title: "Custom Time Entry", text: "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:") else {
                     // User canceled
                     return
                 }
                 guard let text = Double(res) else {
-                    self.showErrorMessage(withTitle: "Illegal Input", text: "You must enter an integer or decimal number.")
+                    Notifier.showErrorMessage(withTitle: "Illegal Input", text: "You must enter an integer or decimal number.")
                     return
                 }
                 time = text * 60
             }
             if let multi = multiplier, let range = loc {
                 guard let preset = Double(title[..<range.lowerBound]) else {
-                    self.showErrorMessage(withTitle: "Unknown Preset Value", text: "An error occurred when attempting to parse the selected preset. This is unexpected behavior and should be reported.")
+                    Notifier.showErrorMessage(withTitle: "Unknown Preset Value", text: "An error occurred when attempting to parse the selected preset. This is unexpected behavior and should be reported.")
                     return
                 }
                 time = preset * multi
             }
             guard let t = time, t > 1 else {
-                self.showErrorMessage(withTitle: "Illegal Time Value", text: "The time value must be a valid number greater than or equal to 1 second.")
+                Notifier.showErrorMessage(withTitle: "Illegal Time Value", text: "The time value must be a valid number greater than or equal to 1 second.")
                 return
             }
             self.generateCaffeine(withArgs: ["-t", String(t)], isDev: false)
@@ -247,7 +253,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         let caffeinatePath = "/usr/bin/caffeinate"
         guard FileManager.default.fileExists(atPath: caffeinatePath) else {
-            showErrorMessage(withTitle: "Could Not Find Caffeinate", text: "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.")
+            Notifier.showErrorMessage(withTitle: "Could Not Find Caffeinate", text: "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.")
             return
         }
         DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
@@ -264,11 +270,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Clean-up method that makes sure that the inactive state of the app is restored once caffeinate finishes running
     func taskDidTerminate(_ task: Process) {
         active = false
-    }
-    
-    // Remove Notification Center observer on deinit
-    deinit {
-        nc.removeObserver(self)
     }
     
     // MARK: - Argument Panel
@@ -307,15 +308,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are then assigned to the corresponding dictionary item
     @IBAction func addValue(_ sender: NSButton) {
         let params = sender.tag == 0 ? (flag: "-t", label: tLabel) : (flag: "-w", label: wLabel)
-        if let value = showValueDialog(forParam: params.flag) {
+        if let value = Notifier.showValueDialog(forParam: params.flag) {
             params.label.stringValue = value
             args[params.flag] = value
         }
-    }
-    
-    // Displays a value input dialog for use in addValue(). Not to be confused with showInputDialog()
-    func showValueDialog(forParam param: String) -> String? {
-        return showInputDialog(withWindowTitle: "Value Input", title: "Please Enter a Value", text: "Please enter the value for the \(param) parameter below:")
     }
     
     // Convert the dictionary of arguments into an array of parameters, then pass that array to generateCaffeine() in dev mode.
@@ -342,111 +338,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared.open(URL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
     }
     
-    // MARK: - Update Functions
-    
-    // Queries the GitHub API to see if a new version is available. If there is a more recent version, it alerts the user and opens the file in their browser.
-    func checkForUpdate(isUserInitiated: Bool) {
-        let url = URL(string: "https://api.github.com/repos/aaplmath/Caffeinator/releases/latest")!
-        let query = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
-            guard let data = data else {
-                self.showErrorMessage(withTitle: "No Update Data Received", text: "The GitHub API returned no data. This error should be reported.")
-                return
-            }
-            let jsonData: [String: AnyObject]
-            do {
-                guard let rawData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
-                    self.showErrorMessage(withTitle: "Improperly Formatted JSON", text: "The JSON data returned by the update server was not in the correct format. This error should be reported.")
-                    return
-                }
-                jsonData = rawData
-            } catch {
-                self.showErrorMessage(withTitle: "Could Not Serialize Update Data", text: "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.")
-                return
-            }
-            guard var serverVersion = jsonData["tag_name"] as? String, let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
-                self.showErrorMessage(withTitle: "Failed to Parse Update Information", text: "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.")
-                return
-            }
-            serverVersion.remove(at: serverVersion.characters.startIndex) // Remove the "v" from the tag name
-            if bundleVersion.compare(serverVersion, options: .numeric) == .orderedAscending {
-                guard let assets = jsonData["assets"] as? [AnyObject], let downloadURL = assets[0]["browser_download_url"] as? String else {
-                    self.showErrorMessage(withTitle: "Failed to Parse Download Information", text: "While update version data was able to be parsed, download asset data could not. This error should be reported.")
-                    return
-                }
-                DispatchQueue.main.async {
-                    let alert = NSAlert()
-                    alert.window.title = "Caffeinator Update"
-                    alert.messageText = "Update Available"
-                    alert.informativeText = "A new version of Caffeinator (\(serverVersion)) is available. Would you like to download it now?"
-                    alert.addButton(withTitle: "Update")
-                    alert.addButton(withTitle: "Not Now")
-                    if alert.runModalInFront() == .alertFirstButtonReturn {
-                        if let url = URL(string: downloadURL) {
-                            NSWorkspace.shared.open(url)
-                        } else {
-                            self.showErrorMessage(withTitle: "Error Opening URL", text: "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.")
-                        }
-                    }
-                }
-            } else if isUserInitiated {
-                DispatchQueue.main.async {
-                    let alert = NSAlert()
-                    alert.window.title = "Caffeinator Update"
-                    alert.messageText = "No Updates Available"
-                    alert.informativeText = "You're running the latest version of Caffeinator."
-                    alert.alertStyle = .informational
-                    alert.addButton(withTitle: "OK")
-                    _ = alert.runModalInFront()
-                }
-            }
-        })
-        query.resume()
-    }
-    
     // Responds to user request to check for updates by calling checkForUpdate()
     @IBAction func checkForUpdatesClicked(_ sender: NSMenuItem) {
-        checkForUpdate(isUserInitiated: true)
+        updater.checkForUpdate(isUserInitiated: true)
     }
     
-    // MARK: - Utility Alert Functions
-    
-    // Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with showValueDialog()
-    func showInputDialog(withWindowTitle windowTitle: String, title: String, text: String) -> String? {
-        // FIXME: Instruments claims this causes a 32-byte (really?) memory leak. I'm not sure I believe it.
-        let alert = NSAlert()
-        alert.window.title = windowTitle
-        alert.messageText = title
-        alert.informativeText = text
-        alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: "Cancel")
-        alert.alertStyle = .informational
-        alert.accessoryView = NSTextField(frame: NSMakeRect(0, 0, 200, 24))
-        let button = alert.runModalInFront()
-        if button == .alertFirstButtonReturn {
-            return (alert.accessoryView as! NSTextField).stringValue
-        }
-        return nil
+    // Remove Notification Center observer on deinit
+    deinit {
+        nc.removeObserver(self)
     }
-    
-    // Shows an error message with the specified text
-    func showErrorMessage(withTitle title: String, text: String) {
-        DispatchQueue.main.async {
-            let alert = NSAlert()
-            alert.window.title = "Error"
-            alert.messageText = title
-            alert.informativeText = text
-            if let img = NSApp.applicationIconImage.copy() as? NSImage {
-                img.lockFocus()
-                let color = NSColor.red
-                color.set()
-                NSMakeRect(0, 0, img.size.width, img.size.height).fill(using: .sourceAtop)
-                img.unlockFocus()
-                alert.icon = img
-            }
-            alert.alertStyle = .warning
-            _ = alert.runModalInFront()
-        }
-    }
-
 }
 
