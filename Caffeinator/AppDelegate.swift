@@ -246,7 +246,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.addButton(withTitle: "Cancel")
             let res = alert.runModalInFront()
             if res != .alertFirstButtonReturn {
-                // User cancelled
+                // User canceled
                 return
             }
         }
