@@ -53,7 +53,7 @@ class Updater {
                 }
                 return
             }
-            serverVersion.remove(at: serverVersion.characters.startIndex) // Remove the "v" from the tag name
+            serverVersion.remove(at: serverVersion.startIndex) // Remove the "v" from the tag name
             if bundleVersion.compare(serverVersion, options: .numeric) == .orderedAscending {
                 guard let assets = jsonData["assets"] as? [AnyObject], let downloadURL = assets[0]["browser_download_url"] as? String else {
                     if isUserInitiated {
@@ -83,7 +83,7 @@ class Updater {
             let alert = NSAlert()
             alert.window.title = "Caffeinator Update"
             alert.messageText = "Update Available"
-            alert.informativeText = "A new version of Caffeinator (\(version)) is available. Would you like to download it now?\n\nIf you choose to update, the Caffeinator installer will be downloaded to your Downloads folder. Simply open the installer and drag Caffeinator to your Applications folder, then right-click on the installed app and click \"Open.\""
+            alert.informativeText = "A new version of Caffeinator (\(version)) is available. Would you like to download it now?\n\nIf you choose to update, the Caffeinator installer will be downloaded to your Downloads folder. Simply open the installer and drag Caffeinator to your Applications folder, then open your Applications folder, right-click on Caffeinator, and click \"Open.\""
             alert.addButton(withTitle: "Update")
             alert.addButton(withTitle: "Not Now")
             if alert.runModalInFront() == .alertFirstButtonReturn {

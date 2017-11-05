@@ -184,7 +184,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let title = sender.title
             var time: Double? = nil
             var multiplier: Double? = nil
-            var loc: Range<String.CharacterView.Index>? = nil
+            var loc: Range<Substring.Index>? = nil
             
             if let range = title.range(of: " minutes") {
                 multiplier = 60
