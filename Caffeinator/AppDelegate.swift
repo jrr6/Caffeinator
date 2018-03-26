@@ -205,7 +205,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             if let multi = multiplier, let range = loc {
                 guard let preset = Double(title[..<range.lowerBound]) else {
-                    Notifier.showErrorMessage(withTitle: txt("AD.-unknown-preset-title"), text: txt("AD.unknown-preset-msg"))
+                    Notifier.showErrorMessage(withTitle: txt("AD.unknown-preset-title"), text: txt("AD.unknown-preset-msg"))
                     return
                 }
                 time = preset * multi
