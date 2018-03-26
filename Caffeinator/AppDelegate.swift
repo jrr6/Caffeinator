@@ -8,11 +8,9 @@
 
 import Cocoa
 
-extension NSAlert {
-    open func runModalInFront() -> NSApplication.ModalResponse {
-        NSApplication.shared.activate(ignoringOtherApps: true)
-        return self.runModal()
-    }
+/// Convenience method for getting NSLocalizedString values
+func txt(_ text: String) -> String {
+    return NSLocalizedString(text, comment: "")
 }
 
 @NSApplicationMain
@@ -55,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let licenseString = try NSAttributedString(url: rtfPath, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil)
                 licenseField.textStorage?.setAttributedString(licenseString)
             } catch {
-                licenseField.string = "There was an error parsing the License text. Please report this so it can be fixed."
+                licenseField.string = txt("AD.license-error")
             }
         }
         
@@ -100,10 +98,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var active = false {
         didSet {
             RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
-                self.startMenu.title = self.active ? "Stop Caffeinator" : "Start Caffeinator"
+                self.startMenu.title = self.active ? txt("AD.stop-caffeinator") : txt("AD.start-caffeinator")
                 self.processMenu.isEnabled = !self.active
                 if (!self.active) {
-                    self.processMenu.title = "Caffeinate a Process…"
+                    self.processMenu.title = txt("AD.process-menu-item")
                 }
                 self.timedMenu.isEnabled = !self.active
                 self.argumentMenu.isEnabled = !self.active
@@ -134,7 +132,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let key = key {
             df.set(val, forKey: key)
         } else {
-            Notifier.showErrorMessage(withTitle: "Unknown Preference Tag", text: "An attempt was made to set a preference by an unrecognized sender. This error should be reported.")
+            Notifier.showErrorMessage(withTitle: txt("AD.pref-tag-err-title"), text: txt("AD.pref-tag-err-msg"))
         }
     }
     
@@ -145,7 +143,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Start Caffeinate with no args, or stop it if it is active
     @IBAction func startClicked(_ sender: NSMenuItem) {
-        if sender.title == "Start Caffeinator" {
+        // FIXME: Title-based comparisons—especially in a localized app—are inadvisable
+        if sender.title == txt("AD.start-caffeinator") {
             generateCaffeine(withArgs: [], isDev: false)
         } else {
             task?.terminate()
@@ -161,18 +160,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
     @IBAction func processClicked(_ sender: NSMenuItem) {
         DispatchQueue.main.async {
-            if let res = Notifier.showInputDialog(withWindowTitle: "Caffeinate a Process", title: "Select a Process", text: "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:") {
+            if let res = Notifier.showInputDialog(withWindowTitle: txt("AD.process-dialog-window-title"), title: txt("AD.process-dialog-title"), text: txt("AD.process-dialog-msg")) {
                 if let text = Int(res) {
                     var labelName = "PID \(res)"
                     if let appName = NSRunningApplication(processIdentifier: pid_t(text))?.localizedName {
                         labelName = appName
                     }
                     RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
-                        self.processMenu.title = "Caffeinating \(labelName)"
+                        self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)
                     }
                     self.generateCaffeine(withArgs: ["-w", String(text)], isDev: false)
                 } else {
-                    Notifier.showErrorMessage(withTitle: "Illegal Input", text: "You must enter the PID of the process you wish to Caffeinate.")
+                    Notifier.showErrorMessage(withTitle: txt("AD.illegal-process-title"), text: txt("AD.illegal-process-msg"))
                 }
             }
         }
@@ -186,32 +185,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             var multiplier: Double? = nil
             var loc: Range<Substring.Index>? = nil
             
-            if let range = title.range(of: " minutes") {
+            // FIXME: This already-invadvisable method of checking times becomes even more dangerous with localizations
+            if let range = title.range(of: txt("AD.minutes-with-space")) {
                 multiplier = 60
                 loc = range
-            } else if let range = title.range(of: " hours") {
+            } else if let range = title.range(of: txt("AD.hours-with-space")) {
                 multiplier = 3600
                 loc = range
             } else {
-                guard let res = Notifier.showInputDialog(withWindowTitle: "Timed Caffeination", title: "Custom Time Entry", text: "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:") else {
+                guard let res = Notifier.showInputDialog(withWindowTitle: txt("AD.timed-dialog-window-title"), title: txt("AD.timed-dialog-title"), text: txt("AD.timed-dialog-msg")) else {
                     // User canceled
                     return
                 }
                 guard let text = Double(res) else {
-                    Notifier.showErrorMessage(withTitle: "Illegal Input", text: "You must enter an integer or decimal number.")
+                    Notifier.showErrorMessage(withTitle: txt("AD.non-number-time-title"), text: txt("AD.non-number-time-msg"))
                     return
                 }
                 time = text * 60
             }
             if let multi = multiplier, let range = loc {
                 guard let preset = Double(title[..<range.lowerBound]) else {
-                    Notifier.showErrorMessage(withTitle: "Unknown Preset Value", text: "An error occurred when attempting to parse the selected preset. This is unexpected behavior and should be reported.")
+                    Notifier.showErrorMessage(withTitle: txt("AD.-unknown-preset-title"), text: txt("AD.unknown-preset-msg"))
                     return
                 }
                 time = preset * multi
             }
             guard let t = time, t > 1 else {
-                Notifier.showErrorMessage(withTitle: "Illegal Time Value", text: "The time value must be a valid number greater than or equal to 1 second.")
+                Notifier.showErrorMessage(withTitle: txt("AD.illegal-time-title"), text: txt("AD.illegal-time-msg"))
                 return
             }
             self.generateCaffeine(withArgs: ["-t", String(t)], isDev: false)
@@ -239,11 +239,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         if df.bool(forKey: "PromptBeforeExecuting") {
             let alert = NSAlert()
-            alert.messageText = "Confirm Caffeination"
-            alert.informativeText = "The following command will be run:\ncaffeinate \(arguments.joined(separator: " "))"
+            alert.messageText = txt("AD.execution-prompt-title")
+            alert.informativeText = String(format: txt("AD.execution-prompt-msg"), arguments.joined(separator: " "))
             alert.alertStyle = .informational
-            alert.addButton(withTitle: "OK")
-            alert.addButton(withTitle: "Cancel")
+            alert.addButton(withTitle: txt("AD.execution-prompt-ok-text"))
+            alert.addButton(withTitle: txt("AD.execution-prompt-cancel-text"))
             let res = alert.runModalInFront()
             if res != .alertFirstButtonReturn {
                 // User canceled
@@ -252,7 +252,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         let caffeinatePath = "/usr/bin/caffeinate"
         guard FileManager.default.fileExists(atPath: caffeinatePath) else {
-            Notifier.showErrorMessage(withTitle: "Could Not Find Caffeinate", text: "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.")
+            Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-missing-dialog-title"), text: txt("AD.caffeinate-missing-dialog-msg"))
             return
         }
         DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
@@ -292,9 +292,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 args.remove(at: loc)
             }
             if title == "-t" {
-                tLabel.stringValue = "None"
+                tLabel.stringValue = txt("AD.no-argument-label")
             } else if title == "-w" {
-                wLabel.stringValue = "None"
+                wLabel.stringValue = txt("AD.no-argument-label")
             }
         }
         if title == "-t" {

@@ -14,6 +14,7 @@
 		E209DF1D1BEFA5A8007708FB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E209DF1B1BEFA5A8007708FB /* MainMenu.xib */; };
 		E209DF281BEFA5A8007708FB /* CaffeinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF271BEFA5A8007708FB /* CaffeinatorTests.swift */; };
 		E209DF331BEFA5A8007708FB /* CaffeinatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */; };
+		E217D8922069447C005FFCF3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E217D8942069447C005FFCF3 /* Localizable.strings */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,9 @@
 		E209DF2E1BEFA5A8007708FB /* CaffeinatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaffeinatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinatorUITests.swift; sourceTree = "<group>"; };
 		E209DF341BEFA5A8007708FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E217D8932069447C005FFCF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E2D4D6BF1FC65A11006703DC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		E2E1DD061D0B68E9006CCD2B /* Caffeinator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Caffeinator.entitlements; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +116,7 @@
 				E209DF1B1BEFA5A8007708FB /* MainMenu.xib */,
 				E209DF1E1BEFA5A8007708FB /* Info.plist */,
 				E2EAD9F71F5E117A00E60133 /* Licenses.rtf */,
+				E217D8942069447C005FFCF3 /* Localizable.strings */,
 			);
 			path = Caffeinator;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = E209DF0B1BEFA5A8007708FB;
 			productRefGroup = E209DF151BEFA5A8007708FB /* Products */;
@@ -247,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */,
+				E217D8922069447C005FFCF3 /* Localizable.strings in Resources */,
 				E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */,
 				E209DF1D1BEFA5A8007708FB /* MainMenu.xib in Resources */,
 			);
@@ -315,8 +322,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				E209DF1C1BEFA5A8007708FB /* Base */,
+				E2D4D6BF1FC65A11006703DC /* es */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		E217D8942069447C005FFCF3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E217D8932069447C005FFCF3 /* en */,
+				E217D8952069447E005FFCF3 /* es */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -326,6 +343,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -378,6 +396,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

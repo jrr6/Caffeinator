@@ -8,6 +8,13 @@
 
 import Cocoa
 
+extension NSAlert {
+    open func runModalInFront() -> NSApplication.ModalResponse {
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        return self.runModal()
+    }
+}
+
 /// Convenience class for grouping together various functions that trigger `NSAlert`s
 class Notifier {
     
@@ -18,8 +25,8 @@ class Notifier {
         alert.window.title = windowTitle
         alert.messageText = title
         alert.informativeText = text
-        alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: txt("N.input-dialog-ok-text"))
+        alert.addButton(withTitle: txt("N.input-dialog-cancel-text"))
         alert.alertStyle = .informational
         alert.accessoryView = NSTextField(frame: NSMakeRect(0, 0, 200, 24))
         let button = alert.runModalInFront()
@@ -31,14 +38,14 @@ class Notifier {
     
     // Displays a value input dialog for use in addValue(). Not to be confused with showInputDialog()
     class func showValueDialog(forParam param: String) -> String? {
-        return Notifier.showInputDialog(withWindowTitle: "Value Input", title: "Please Enter a Value", text: "Please enter the value for the \(param) parameter below:")
+        return Notifier.showInputDialog(withWindowTitle: txt("N.value-dialog-window-title"), title: txt("N.value-dialog-title"), text: String(format: txt("N.value-dialog-msg"), param))
     }
     
     // Shows an error message with the specified text
     class func showErrorMessage(withTitle title: String, text: String) {
         DispatchQueue.main.async {
             let alert = NSAlert()
-            alert.window.title = "Error"
+            alert.window.title = txt("N.error-message-title")
             alert.messageText = title
             alert.informativeText = text
             if let img = NSApp.applicationIconImage.copy() as? NSImage {

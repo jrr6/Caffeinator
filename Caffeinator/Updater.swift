@@ -28,7 +28,7 @@ class Updater {
         let query = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             guard let data = data else {
                 if isUserInitiated {
-                    Notifier.showErrorMessage(withTitle: "No Update Data Received", text: "The GitHub API returned no data. This error should be reported.")
+                    Notifier.showErrorMessage(withTitle: txt("U.no-update-data-title"), text: txt("U.no-update-data-msg"))
                 }
                 return
             }
@@ -36,20 +36,20 @@ class Updater {
             do {
                 guard let rawData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
                     if isUserInitiated {
-                        Notifier.showErrorMessage(withTitle: "Improperly Formatted JSON", text: "The JSON data returned by the update server was not in the correct format. This error should be reported.")
+                        Notifier.showErrorMessage(withTitle: txt("U.improper-json-title"), text: txt("U.improper-json-msg"))
                     }
                     return
                 }
                 jsonData = rawData
             } catch {
                 if isUserInitiated {
-                    Notifier.showErrorMessage(withTitle: "Could Not Serialize Update Data", text: "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.")
+                    Notifier.showErrorMessage(withTitle: txt("U.serializaiton-failure-title"), text: txt("U.serialization-failure-msg"))
                 }
                 return
             }
             guard var serverVersion = jsonData["tag_name"] as? String, let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
                 if isUserInitiated {
-                    Notifier.showErrorMessage(withTitle: "Failed to Parse Update Information", text: "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.")
+                    Notifier.showErrorMessage(withTitle: txt("U.version-parse-failure-title"), text: txt("U.version-parse-failure-msg"))
                 }
                 return
             }
@@ -57,7 +57,7 @@ class Updater {
             if bundleVersion.compare(serverVersion, options: .numeric) == .orderedAscending {
                 guard let assets = jsonData["assets"] as? [AnyObject], let downloadURL = assets[0]["browser_download_url"] as? String else {
                     if isUserInitiated {
-                        Notifier.showErrorMessage(withTitle: "Failed to Parse Download Information", text: "While update version data was able to be parsed, download asset data could not. This error should be reported.")
+                        Notifier.showErrorMessage(withTitle: txt("U.download-parse-failure-title"), text: txt("U.download-parse-failure-msg"))
                     }
                     return
                 }
@@ -65,11 +65,11 @@ class Updater {
             } else if isUserInitiated {
                 DispatchQueue.main.async {
                     let alert = NSAlert()
-                    alert.window.title = "Caffeinator Update"
-                    alert.messageText = "No Updates Available"
-                    alert.informativeText = "You're running the latest version of Caffeinator."
+                    alert.window.title = txt("U.caffeinator-update-title")
+                    alert.messageText = txt("U.no-update-title")
+                    alert.informativeText = txt("U.no-update-msg")
                     alert.alertStyle = .informational
-                    alert.addButton(withTitle: "OK")
+                    alert.addButton(withTitle: txt("U.no-update-ok-text"))
                     _ = alert.runModalInFront()
                 }
             }
@@ -81,17 +81,17 @@ class Updater {
     func showUpdatePrompt(forVersion version: String, withURLString urlString: String) {
         DispatchQueue.main.async {
             let alert = NSAlert()
-            alert.window.title = "Caffeinator Update"
-            alert.messageText = "Update Available"
-            alert.informativeText = "A new version of Caffeinator (\(version)) is available. Would you like to download it now?\n\nIf you choose to update, the Caffeinator installer will be downloaded to your Downloads folder. Simply open the installer and drag Caffeinator to your Applications folder, then open your Applications folder, right-click on Caffeinator, and click \"Open.\""
-            alert.addButton(withTitle: "Update")
-            alert.addButton(withTitle: "Not Now")
+            alert.window.title = txt("U.caffeinator-update-title")
+            alert.messageText = txt("U.update-available-title")
+            alert.informativeText = String(format: txt("U.update-available-msg"), version)
+            alert.addButton(withTitle: txt("U.update-available-update-button"))
+            alert.addButton(withTitle: txt("U.update-available-not-now-button"))
             if alert.runModalInFront() == .alertFirstButtonReturn {
                 if let url = URL(string: urlString) {
                     NSWorkspace.shared.open(url)
                     NSApplication.shared.terminate(self)
                 } else {
-                    Notifier.showErrorMessage(withTitle: "Error Opening URL", text: "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.")
+                    Notifier.showErrorMessage(withTitle: txt("U.url-open-failure-title"), text: txt("U.url-open-failure-msg"))
                 }
             } else {
                 self.updateTimer.invalidate()

@@ -1,0 +1,65 @@
+/* 
+  Localizable.strings
+  Caffeinator
+
+  Created by aaplmath on 3/26/18.
+  Copyright © 2018 aaplmath. All rights reserved.
+*/
+"AD.license-error" = "There was an error parsing the License text. Please report this so it can be fixed.";
+"AD.start-caffeinator" = "Start Caffeinator";
+"AD.stop-caffeinator" = "Stop Caffeinator";
+"AD.process-menu-item" = "Caffeinate a Process…";
+"AD.pref-tag-err-title" = "Unknown Preference Tag";
+"AD.pref-tag-err-msg" = "An attempt was made to set a preference by an unrecognized sender. This error should be reported.";
+"AD.process-dialog-window-title" = "Caffeinate a Process";
+"AD.process-dialog-title" = "Select a Process";
+"AD.process-dialog-msg" = "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:";
+"AD.caffeinating-app-label" = "Caffeinating %@";
+"AD.illegal-process-title" = "Illegal Input";
+"AD.illegal-process-msg" = "You must enter the PID of the process you wish to Caffeinate.";
+"AD.minutes-with-space" = " minutes";
+"AD.hours-with-space" = " hours";
+"AD.timed-dialog-window-title" = "Timed Caffeination";
+"AD.timed-dialog-title" = "Custom Time Entry";
+"AD.timed-dialog-msg" = "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:";
+"AD.non-number-time-title" = "Illegal Input";
+"AD.non-number-time-msg" = "You must enter an integer or decimal number.";
+"AD.unknown-preset-title" = "Unknown Preset Value";
+"AD.unknown-preset-msg" = "An error occurred when attempting to parse the selected preset. This is unexpected behavior and should be reported.";
+"AD.illegal-time-title" = "Illegal Time Value";
+"AD.illegal-time-msg" = "The time value must be a valid number greater than or equal to 1 second.";
+"AD.execution-prompt-title" = "Confirm Caffeination";
+"AD.execution-prompt-msg" = "The following command will be run:\n%@";
+"AD.execution-prompt-ok-text" = "OK";
+"AD.execution-prompt-cancel-text" = "Cancel";
+"AD.caffeinate-missing-dialog-title" = "Could Not Find Caffeinate";
+"AD.caffeinate-missing-dialog-msg" = "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.";
+"AD.no-argument-label" = "None";
+
+"N.input-dialog-ok-text" = "OK";
+"N.input-dialog-cancel-text" = "Cancel";
+"N.value-dialog-window-title" = "Value Input";
+"N.value-dialog-title" = "Please Enter a Value";
+"N.value-dialog-msg" = "Please enter the value for the %@ parameter below:";
+"N.error-message-title" = "Error";
+
+"U.no-update-data-title" = "No Update Data Received";
+"U.no-update-data-msg" = "The GitHub API returned no data. This error should be reported.";
+"U.improper-json-title" = "Improperly Formatted JSON";
+"U.improper-json-msg" = "The JSON data returned by the update server was not in the correct format. This error should be reported.";
+"U.serialization-failure-title" = "Could Not Serialize Update Data";
+"U.serialization-failure-msg" = "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.";
+"U.version-parse-failure-title" = "Failed to Parse Update Information";
+"U.version-parse-failure-msg" = "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.";
+"U.download-parse-failure-title" = "Failed to Parse Download Information";
+"U.download-parse-failure-msg" = "While update version data was able to be parsed, download asset data could not. This error should be reported.";
+"U.caffeinator-update-title" = "Caffeinator Update";
+"U.no-update-title" = "No Updates Available";
+"U.no-update-msg" = "You're running the latest version of Caffeinator.";
+"U.no-update-ok-text" = "OK";
+"U.update-available-title" = "Update Available";
+"U.update-available-msg" = "A new version of Caffeinator (%@) is available. Would you like to download it now?\n\nIf you choose to update, the Caffeinator installer will be downloaded to your Downloads folder. Simply open the installer and drag Caffeinator to your Applications folder, then open your Applications folder, right-click on Caffeinator, and click \"Open.\"";
+"U.update-available-update-button" = "Update";
+"U.update-available-not-now-button" = "Not Now";
+"U.url-open-failure-title" = "Error Opening URL";
+"U.url-open-failure-msg" = "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.";
