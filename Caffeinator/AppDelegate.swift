@@ -230,40 +230,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
     func generateCaffeine(withArgs args: [String], isDev: Bool) {
-        var arguments = args
-        if !isDev {
-            arguments.append("-i")
-            if df.bool(forKey: "CaffeinateDisplay") {
-                arguments.append("-d")
+        DispatchQueue.main.async {
+            var arguments = args
+            if !isDev {
+                arguments.append("-i")
+                if self.df.bool(forKey: "CaffeinateDisplay") {
+                    arguments.append("-d")
+                }
             }
-        }
-        if df.bool(forKey: "PromptBeforeExecuting") {
-            let alert = NSAlert()
-            alert.messageText = txt("AD.execution-prompt-title")
-            alert.informativeText = String(format: txt("AD.execution-prompt-msg"), arguments.joined(separator: " "))
-            alert.alertStyle = .informational
-            alert.addButton(withTitle: txt("AD.execution-prompt-ok-text"))
-            alert.addButton(withTitle: txt("AD.execution-prompt-cancel-text"))
-            let res = alert.runModalInFront()
-            if res != .alertFirstButtonReturn {
-                // User canceled
+            if self.df.bool(forKey: "PromptBeforeExecuting") {
+                    let alert = NSAlert()
+                    alert.messageText = txt("AD.execution-prompt-title")
+                    alert.informativeText = String(format: txt("AD.execution-prompt-msg"), "caffeinate \(arguments.joined(separator: " "))")
+                    alert.alertStyle = .informational
+                    alert.addButton(withTitle: txt("AD.execution-prompt-ok-text"))
+                    alert.addButton(withTitle: txt("AD.execution-prompt-cancel-text"))
+                    let res = alert.runModalInFront()
+                    if res != .alertFirstButtonReturn {
+                        // User canceled
+                        return
+                    }
+            }
+            let caffeinatePath = "/usr/bin/caffeinate"
+            guard FileManager.default.fileExists(atPath: caffeinatePath) else {
+                Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-missing-dialog-title"), text: txt("AD.caffeinate-missing-dialog-msg"))
                 return
             }
+            DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
+                () -> Void in
+                self.task = Process()
+                self.task!.launchPath = caffeinatePath
+                self.task!.arguments = arguments
+                self.task!.terminationHandler = self.taskDidTerminate
+                self.task!.launch()
+            }
+            self.active = true
         }
-        let caffeinatePath = "/usr/bin/caffeinate"
-        guard FileManager.default.fileExists(atPath: caffeinatePath) else {
-            Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-missing-dialog-title"), text: txt("AD.caffeinate-missing-dialog-msg"))
-            return
-        }
-        DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
-            () -> Void in
-            self.task = Process()
-            self.task!.launchPath = caffeinatePath
-            self.task!.arguments = arguments
-            self.task!.terminationHandler = self.taskDidTerminate
-            self.task!.launch()
-        }
-        active = true
     }
     
     // Clean-up method that makes sure that the inactive state of the app is restored once caffeinate finishes running
