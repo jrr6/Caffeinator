@@ -6,21 +6,21 @@ Caffeinator does not use CocoaPods, Carthage, or any other dependency manager, a
 
 ## FAQ
 
-* **Why isn't there an option to specify a utility as an argument to `caffeinate` (as is shown in the man page)?**
-
-  Because there's really no practical benefit to it, and it would create needless hassle. If you want equivalent functionality, start the process manually, then find its PID and use process-based Caffeination.
-
 * **Why can't I open Caffeinator?**
 
-  Probably because Caffeinator is not signed with a Developer Certificate. To open Caffeinator the first time after installing or updating it, right-click on the app icon and click "Open," then confirm that you trust the app.
+Probably because Caffeinator is not signed with a Developer Certificate. To open Caffeinator the first time after installing or updating it, right-click on the app icon and click "Open," then confirm that you trust the app.
+
+* **Why isn't there an option to specify a utility as an argument to `caffeinate` (as is shown in the man page)?**
+
+Because there's really no practical benefit to it, and it would create needless hassle. If you want equivalent functionality, start the process manually, then find its PID and use process-based Caffeination.
 
 * **Why can't I start a timed Caffeination for a period of time shorter than one second?**
 
-  Firstly, there isn't really any practical use for doing this. Secondly, the `caffeinate` utility will not accept time values shorter than one second. (If you specify a time shorter than one second using the argument editor, you'll see that it runs indefinitely.)
+Firstly, there isn't really any practical use for doing this. Secondly, the `caffeinate` utility will not accept time values shorter than one second. (If you specify a time shorter than one second using the argument editor, you'll see that it runs indefinitely.)
 
-* **Why are the pbxproj file and unit/UI tests missing from the source code for the release I downloaded?** 
+* **How do I disable auto-updates?**
 
-  Several files that were previously uploaded (including the test files and .pbxproj file) contained mildly sensitive data. Therefore, several modifications had to be made to the repository, and because I'm rather inadequately versed in Git, I was forced to delete them from the releases from 1.1.0 and before (though you can create your own .xcodeproj file, and the tests and UI tests were empty anyway).
+Caffeinator is actively developed and new updates that add new features, increase stability, and patch bugs are frequently released. It is therefore *not* recommended to disable the auto-update feature. Auto-update checks run silently in the background, and by default, selecting "Not Now" when presented with an update will suspend update prompts for three days. However, if it is absolutely necessary to disable auto-update functionality, this can be achieved by setting the `DisableAutoUpdate` user defaults key to `true`. In Terminal, execute `defaults write com.aaplmath.Caffeinator DisableAutoUpdate -bool YES`, then restart Caffeinator.
 
 * **Why is this README so short?**
 

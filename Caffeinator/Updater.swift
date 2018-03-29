@@ -11,14 +11,18 @@ import Cocoa
 /// Responsible for update operations
 class Updater {
     var updateFrequency: Double = 60 * 60 * 24
-    var resumptionDelay: Double = 60 * 60 * 24 * 7
+    var resumptionDelay: Double = 60 * 60 * 24 * 3
     var updateTimer: Timer!
     
     // Runs a preliminary update check on launch, then schedules automatic background checks
     init() {
         checkForUpdate(isUserInitiated: false)
-        updateTimer = Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
-            self.checkForUpdate(isUserInitiated: false)
+        if (!UserDefaults.standard.bool(forKey: "DisableAutoUpdate")) {
+            updateTimer = Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
+                self.checkForUpdate(isUserInitiated: false)
+            }
+        } else {
+            Notifier.showErrorMessage(withTitle: txt("U.auto-update-disabled-title"), text: String(format: txt("U.auto-update-disabled-msg"), "defaults write com.aaplmath.Caffeinator DisableAutoUpdate -bool NO"))
         }
     }
     

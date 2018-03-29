@@ -145,7 +145,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func startClicked(_ sender: NSMenuItem) {
         // FIXME: Title-based comparisons—especially in a localized app—are inadvisable
         if sender.title == txt("AD.start-caffeinator") {
-            generateCaffeine(withArgs: [], isDev: false)
+            generateCaffeinate(withArgs: [], isDev: false)
         } else {
             task?.terminate()
             active = false
@@ -169,7 +169,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
                         self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)
                     }
-                    self.generateCaffeine(withArgs: ["-w", String(text)], isDev: false)
+                    self.generateCaffeinate(withArgs: ["-w", String(text)], isDev: false)
                 } else {
                     Notifier.showErrorMessage(withTitle: txt("AD.illegal-process-title"), text: txt("AD.illegal-process-msg"))
                 }
@@ -214,7 +214,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 Notifier.showErrorMessage(withTitle: txt("AD.illegal-time-title"), text: txt("AD.illegal-time-msg"))
                 return
             }
-            self.generateCaffeine(withArgs: ["-t", String(t)], isDev: false)
+            self.generateCaffeinate(withArgs: ["-t", String(t)], isDev: false)
         }
     }
     
@@ -229,7 +229,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
-    func generateCaffeine(withArgs args: [String], isDev: Bool) {
+    func generateCaffeinate(withArgs args: [String], isDev: Bool) {
         DispatchQueue.main.async {
             var arguments = args
             if !isDev {
@@ -325,7 +325,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 params.append(arg)
             }
         }
-        generateCaffeine(withArgs: params, isDev: true)
+        generateCaffeinate(withArgs: params, isDev: true)
         argumentPanel.close()
     }
     

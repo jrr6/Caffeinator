@@ -43,6 +43,8 @@
 "N.value-dialog-msg" = "Please enter the value for the %@ parameter below:";
 "N.error-message-title" = "Error";
 
+"U.auto-update-disabled-title" = "Auto-Update Disabled";
+"U.auto-update-disabled-msg" = "The Caffeinator auto-updater has been disabled. Any updates to the application must be applied manually. To re-enable automatic updates, please copy and paste the following command into Terminal, press Enter, and restart Caffeinator:\n%@";
 "U.no-update-data-title" = "No Update Data Received";
 "U.no-update-data-msg" = "The GitHub API returned no data. This error should be reported.";
 "U.improper-json-title" = "Improperly Formatted JSON";
