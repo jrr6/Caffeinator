@@ -66,7 +66,7 @@
 "T6h-0x-3rF.title" = "Opciones avanzadas";
 
 /* Class = "NSMenuItem"; title = "Caffeinate a Process…"; ObjectID = "TTf-vh-Tj1"; */
-"TTf-vh-Tj1.title" = "Caffeinate un proceso…";
+"TTf-vh-Tj1.title" = "Usar Caffeinate en un proceso…";
 
 /* Class = "NSButtonCell"; title = "-d"; ObjectID = "Z1q-ZC-doQ"; */
 "Z1q-ZC-doQ.title" = "-d";
