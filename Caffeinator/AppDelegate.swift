@@ -100,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
                 self.startMenu.title = self.active ? txt("AD.stop-caffeinator") : txt("AD.start-caffeinator")
                 self.processMenu.isEnabled = !self.active
-                if (!self.active) {
+                if !self.active {
                     self.processMenu.title = txt("AD.process-menu-item")
                 }
                 self.timedMenu.isEnabled = !self.active

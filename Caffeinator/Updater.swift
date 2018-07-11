@@ -14,10 +14,15 @@ class Updater {
     var resumptionDelay: Double = 60 * 60 * 24 * 3
     var updateTimer: Timer!
     
-    // Runs a preliminary update check on launch, then schedules automatic background checks
+    // Runs a preliminary update check on launch, checks for a custom update interval (in days), then schedules automatic background checks
     init() {
         checkForUpdate(isUserInitiated: false)
-        if (!UserDefaults.standard.bool(forKey: "DisableAutoUpdate")) {
+        if !UserDefaults.standard.bool(forKey: "DisableAutoUpdate") {
+            let customUpdateInterval = UserDefaults.standard.double(forKey: "AutoUpdateInterval")
+            if customUpdateInterval > 0.1 { // Confirm that a custom interval is set and do a basic sanity check on it
+                updateFrequency *= customUpdateInterval
+            }
+            
             updateTimer = Timer.scheduledTimer(withTimeInterval: updateFrequency, repeats: true) { _ in
                 self.checkForUpdate(isUserInitiated: false)
             }
