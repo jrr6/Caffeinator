@@ -248,6 +248,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     let res = alert.runModalInFront()
                     if res != .alertFirstButtonReturn {
                         // User canceled
+                        self.processMenu.title = txt("AD.process-menu-item") // resets the process menu title, which will have been naïvely changed by processClicked
                         return
                     }
             }
