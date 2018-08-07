@@ -54,7 +54,6 @@
 		E217D8932069447C005FFCF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E2D4D6BF1FC65A11006703DC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		E2E1DD061D0B68E9006CCD2B /* Caffeinator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Caffeinator.entitlements; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +107,6 @@
 		E209DF161BEFA5A8007708FB /* Caffeinator */ = {
 			isa = PBXGroup;
 			children = (
-				E2E1DD061D0B68E9006CCD2B /* Caffeinator.entitlements */,
 				E209DF171BEFA5A8007708FB /* AppDelegate.swift */,
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
 				E20139BD1F77FE2C008B12E1 /* Updater.swift */,
@@ -210,7 +208,7 @@
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -446,7 +444,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Caffeinator/Caffeinator.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Caffeinator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -462,7 +459,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Caffeinator/Caffeinator.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Caffeinator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
