@@ -263,6 +263,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.task!.launchPath = caffeinatePath
                 self.task!.arguments = arguments
                 self.task!.terminationHandler = self.taskDidTerminate
+                // TODO: Switch to run() (will need fallback, or drop Sierra support)
                 self.task!.launch()
             }
             self.active = true

@@ -60,4 +60,7 @@ class Notifier {
             _ = alert.runModalInFront()
         }
     }
+    
+    // Don't allow Notifier to be initialized
+    private init() {}
 }
