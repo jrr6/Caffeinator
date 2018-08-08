@@ -51,7 +51,7 @@
 "N.error-message-title" = "Error";
 
 "PA.execution-error-title" = "Error durante ejecución de proceso";
-"PA.execution-error-msg" = "Un error ocurrió cuandó ejecutó %@:\n%@";
+"PA.execution-error-msg" = "Un error ocurrió cuando ejecutó %@:\n%@";
 "PA.unknown-process-path" = "desconocido";
 
 "U.auto-update-disabled-title" = "La actualización automática está apagada";
@@ -71,7 +71,7 @@
 "U.no-update-msg" = "Ya tienes la última versión de Caffeinator.";
 "U.no-update-ok-text" = "OK";
 "U.update-available-title" = "Actualización disponible";
-"U.update-available-msg" = "Una nueva versión (%@) de Caffeinator está disponible. Deseas descargarlo ahora?\n\nSi lo descargas, el instalador de Caffeinator se descargará a tu carpeta de descargas. Haz clic en el instalador y arrastra el icono de Caffeinator a la carpeta de aplicaciones, abre la carpeta de aplicaciones, haz clic derecho en Caffeinator y haz clic en \"Abrir\".";
+"U.update-available-msg" = "Una nueva versión (%@) de Caffeinator está disponible. ¿Deseas descargarlo ahora?\n\nSi lo descargas, el instalador de Caffeinator se descargará a tu carpeta de descargas. Haz clic en el instalador y arrastra el icono de Caffeinator a la carpeta de aplicaciones, abre la carpeta de aplicaciones, haz clic derecho en Caffeinator y haz clic en \"Abrir\".";
 "U.update-available-update-button" = "Actualizar";
 "U.update-available-not-now-button" = "Posponer actualización";
 "U.url-open-failure-title" = "El URL no abrió";
