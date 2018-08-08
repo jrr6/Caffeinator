@@ -13,12 +13,16 @@ extension Process {
         self.init()
         self.launchPath = executablePath
         self.arguments = arguments
+        self.standardOutput = FileHandle.nullDevice
+        self.standardError = FileHandle.nullDevice
     }
     
     convenience init(_ executablePath: String, withArguments arguments: [String]) {
         self.init()
         self.launchPath = executablePath
         self.arguments = arguments
+        self.standardOutput = FileHandle.nullDevice
+        self.standardError = FileHandle.nullDevice
     }
     
     func run(synchronously: Bool, terminationHandler: ((Process) -> Void)?) {
