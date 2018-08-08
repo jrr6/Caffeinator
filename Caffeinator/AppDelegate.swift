@@ -37,6 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var df: UserDefaults!
     var nc: NotificationCenter!
     var updater: Updater!
+    var killMan: KillallManager!
     var task: Process?
     
     // MARK: - Main Menu
@@ -65,6 +66,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Set up updating
         updater = Updater()
+        
+        // Ensure no background caffeinate processes are running
+        killMan = KillallManager()
+        killMan.runCaffeinateCheck()
     }
     
     // Ensures that all UserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
@@ -231,6 +236,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
     func generateCaffeinate(withArgs args: [String], isDev: Bool) {
         DispatchQueue.main.async {
+            self.killMan.runCaffeinateCheck() // Make sure no other caffeinate processes are active
             var arguments = args
             if !isDev {
                 arguments.append("-i")
@@ -239,18 +245,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
             if self.df.bool(forKey: "PromptBeforeExecuting") {
-                    let alert = NSAlert()
-                    alert.messageText = txt("AD.execution-prompt-title")
-                    alert.informativeText = String(format: txt("AD.execution-prompt-msg"), "caffeinate \(arguments.joined(separator: " "))")
-                    alert.alertStyle = .informational
-                    alert.addButton(withTitle: txt("AD.execution-prompt-ok-text"))
-                    alert.addButton(withTitle: txt("AD.execution-prompt-cancel-text"))
-                    let res = alert.runModalInFront()
-                    if res != .alertFirstButtonReturn {
-                        // User canceled
-                        self.processMenu.title = txt("AD.process-menu-item") // resets the process menu title, which will have been naïvely changed by processClicked
-                        return
-                    }
+                let confirmed = Notifier.showConfirmationDialog(withTitle: txt("AD.execution-prompt-title"), text: String(format: txt("AD.execution-prompt-msg"), "caffeinate \(arguments.joined(separator: " "))"))
+                if !confirmed {
+                    // User canceled
+                    self.processMenu.title = txt("AD.process-menu-item") // resets the process menu title, which will have been naïvely changed by processClicked
+                    return
+                }
             }
             let caffeinatePath = "/usr/bin/caffeinate"
             guard FileManager.default.fileExists(atPath: caffeinatePath) else {

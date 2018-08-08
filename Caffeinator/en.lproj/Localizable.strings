@@ -36,8 +36,15 @@
 "AD.caffeinate-missing-dialog-msg" = "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.";
 "AD.no-argument-label" = "None";
 
-"N.input-dialog-ok-text" = "OK";
-"N.input-dialog-cancel-text" = "Cancel";
+"KM.kill-caffeinate-prompt-title" = "Existing caffeinate Process Found";
+"KM.kill-caffeinate-prompt-msg" = "One or more caffeinate processes are already running on your computer. These processes may override Caffeinator and disrupt its functionality. Caffeinator only works when no other caffeinate processes are active. Would you like Caffeinator to end these caffeinate processes for you?";
+"KM.no-caffeinate-process-title" = "No caffeinate Process Found";
+"KM.no-caffeinate-process-msg" = "An attempt was made to kill a background caffeinate process, but no such process exists. This error should be reported unless you manually killed the caffeinate process.";
+"KM.unknown-killall-error-title" = "Unknown killall Error";
+"KM.unknown-killall-error-msg" = "An unknown error occurred when calling the killall command. This error should be reported.";
+
+"N.ok-text" = "OK";
+"N.cancel-text" = "Cancel";
 "N.value-dialog-window-title" = "Value Input";
 "N.value-dialog-title" = "Please Enter a Value";
 "N.value-dialog-msg" = "Please enter the value for the %@ parameter below:";

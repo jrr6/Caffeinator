@@ -15,6 +15,7 @@
 		E209DF281BEFA5A8007708FB /* CaffeinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF271BEFA5A8007708FB /* CaffeinatorTests.swift */; };
 		E209DF331BEFA5A8007708FB /* CaffeinatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */; };
 		E217D8922069447C005FFCF3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E217D8942069447C005FFCF3 /* Localizable.strings */; };
+		E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26E133F211A4D9100DA4F90 /* KillallManager.swift */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		E209DF341BEFA5A8007708FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E217D8932069447C005FFCF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E26E133F211A4D9100DA4F90 /* KillallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillallManager.swift; sourceTree = "<group>"; };
 		E2D4D6BF1FC65A11006703DC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 			children = (
 				E209DF171BEFA5A8007708FB /* AppDelegate.swift */,
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
+				E26E133F211A4D9100DA4F90 /* KillallManager.swift */,
 				E20139BD1F77FE2C008B12E1 /* Updater.swift */,
 				E209DF191BEFA5A8007708FB /* Assets.xcassets */,
 				E209DF1B1BEFA5A8007708FB /* MainMenu.xib */,
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */,
+				E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */,
 				E20139C21F78024B008B12E1 /* Notifier.swift in Sources */,
 				E20139BE1F77FE2C008B12E1 /* Updater.swift in Sources */,
 			);
