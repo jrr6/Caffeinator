@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var nc: NotificationCenter!
     var updater: Updater!
     var killMan: KillallManager!
-    var task: Process?
+    var proc: Process?
     
     // MARK: - Main Menu
     
@@ -94,8 +94,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety)
     func applicationWillTerminate(_ notification: Notification) {
-        if let activeTask = task {
-            activeTask.terminate()
+        if let activeProc = proc {
+            activeProc.terminate()
         }
     }
     
@@ -153,7 +153,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if sender.title == txt("AD.start-caffeinator") {
             generateCaffeinate(withArgs: [], isDev: false)
         } else {
-            task?.terminate()
+            proc?.terminate()
             active = false
         }
     }
@@ -260,19 +260,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
                 () -> Void in
-                self.task = Process()
-                self.task!.launchPath = caffeinatePath
-                self.task!.arguments = arguments
-                self.task!.terminationHandler = self.taskDidTerminate
+                self.proc = Process()
+                self.proc!.launchPath = caffeinatePath
+                self.proc!.arguments = arguments
+                self.proc!.terminationHandler = self.processDidTerminate
                 // TODO: Switch to run() (will need fallback, or drop Sierra support)
-                self.task!.launch()
+                self.proc!.launch()
             }
             self.active = true
         }
     }
     
     /// Clean-up method that makes sure that the inactive state of the app is restored once caffeinate finishes running
-    func taskDidTerminate(_ task: Process) {
+    func processDidTerminate(_ terminatedProc: Process) {
         active = false
     }
     
