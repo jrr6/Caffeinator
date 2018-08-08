@@ -19,6 +19,7 @@ class KillallManager {
         case UnknownExecutionError, NoProcessFoundError
     }
     
+    /// Runs a check on background caffeinate processes and deals with user interaction
     func runCaffeinateCheck() {
         do {
             if try caffeinateProcessFound() {
@@ -60,15 +61,11 @@ class KillallManager {
      - Returns: The termination state of the `killall` process in the form of an enum value.
     */
     private func killallCaffeinate(asDryRun: Bool) -> KillallTerminationState {
-        let proc = Process()
-        proc.launchPath = "/usr/bin/killall"
+        let proc = Process("/usr/bin/killall", "caffeinate")
         if asDryRun {
-            proc.arguments = ["-0", "caffeinate"]
-        } else {
-            proc.arguments = ["caffeinate"]
+            proc.arguments!.append("-0") // there's already an argument, so force unwrap is okay
         }
-        proc.launch()
-        proc.waitUntilExit()
+        proc.run(synchronously: true, terminationHandler: nil)
         let status = proc.terminationStatus
         if status == 0 {
             return .Success

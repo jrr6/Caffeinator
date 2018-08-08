@@ -260,12 +260,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
                 () -> Void in
-                self.proc = Process()
-                self.proc!.launchPath = caffeinatePath
-                self.proc!.arguments = arguments
-                self.proc!.terminationHandler = self.processDidTerminate
-                // TODO: Switch to run() (will need fallback, or drop Sierra support)
-                self.proc!.launch()
+                self.proc = Process(caffeinatePath, withArguments: arguments)
+                self.proc!.run(synchronously: false, terminationHandler: self.processDidTerminate)
             }
             self.active = true
         }

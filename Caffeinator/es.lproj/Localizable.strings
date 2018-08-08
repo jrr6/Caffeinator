@@ -50,6 +50,10 @@
 "N.value-dialog-msg" = "Introduce un valor para la opción %@ abajo:";
 "N.error-message-title" = "Error";
 
+"PA.execution-error-title" = "Error durante ejecución de proceso";
+"PA.execution-error-msg" = "Un error ocurrió cuandó ejecutó %@:\n%@";
+"PA.unknown-process-path" = "desconocido";
+
 "U.auto-update-disabled-title" = "La actualización automática está apagada";
 "U.auto-update-disabled-msg" = "La actualización automática de Caffeinator se ha apagado. Hay que instalar actualizaciones manualmente. Para volver a habilitar las actualizaciones automáticas, copia y pega el siguiente comando en Terminal, pulse Enter y reinicie Caffeinator:\n%@";
 "U.no-update-data-title" = "Datos de actualización no fueron recibidos";
