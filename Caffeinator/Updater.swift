@@ -14,7 +14,7 @@ class Updater {
     var resumptionDelay: Double = 60 * 60 * 24 * 3
     var updateTimer: Timer!
     
-    // Runs a preliminary update check on launch, checks for a custom update interval (in days), then schedules automatic background checks
+    /// Runs a preliminary update check on launch, checks for a custom update interval (in days), then schedules automatic background checks
     init() {
         checkForUpdate(isUserInitiated: false)
         if !UserDefaults.standard.bool(forKey: "DisableAutoUpdate") {
@@ -31,7 +31,7 @@ class Updater {
         }
     }
     
-    // Queries the GitHub API to see if a new version is available. If there is a more recent version, it alerts the user and opens the file in their browser. User-initiated checks will show a "No Updates Available" alert if the latest version is installed and verbose error dialogs; automated background checks fail silently (while suboptimal, this is necessary, as we may be running the check while the computer is offline, etc.)
+    /// Queries the GitHub API to see if a new version is available. If there is a more recent version, it alerts the user and opens the file in their browser. User-initiated checks will show a "No Updates Available" alert if the latest version is installed and verbose error dialogs; automated background checks fail silently (while suboptimal, this is necessary, as we may be running the check while the computer is offline, etc.)
     func checkForUpdate(isUserInitiated: Bool) {
         let url = URL(string: "https://api.github.com/repos/aaplmath/Caffeinator/releases/latest")!
         let query = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
@@ -86,7 +86,7 @@ class Updater {
         query.resume()
     }
     
-    // Displays a dialog prompting the user to update. If the user decides to update, the default browser is launched to download the DMG and the app is terminated to avoid issues when the user attempts to overwrite it; if the update is declined, swap out the update timer for one with a longer time interval (we don't want to be hounding the user to update if they don't want to right now)
+    /// Displays a dialog prompting the user to update. If the user decides to update, the default browser is launched to download the DMG and the app is terminated to avoid issues when the user attempts to overwrite it; if the update is declined, swap out the update timer for one with a longer time interval (we don't want to be hounding the user to update if they don't want to right now)
     func showUpdatePrompt(forVersion version: String, withURLString urlString: String) {
         DispatchQueue.main.async {
             let alert = NSAlert()

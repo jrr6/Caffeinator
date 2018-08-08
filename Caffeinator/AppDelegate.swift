@@ -72,7 +72,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         killMan.runCaffeinateCheck()
     }
     
-    // Ensures that all UserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
+    /// Ensures that all UserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
     func initDefaults() {
         // TODO: If the number of preferences in Caffeinator gets too big, this needs to be turned into a more organized system (think: loops, etc.)
         if df.object(forKey: "CaffeinateDisplay") == nil {
@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         defaultsDidChange()
     }
     
-    // Respond to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
+    /// Responds to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
     @objc func defaultsDidChange() {
         RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
             self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? .on : .off
@@ -99,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Responsible for managing the inactive/active state of the app. If there is an active "Caffeination," disable the appropriate menu items and set the icon green. Otherwise, enable all menu items and set the icon to the template
+    /// Responsible for managing the inactive/active state of the app. If there is an active "Caffeination," disable the appropriate menu items and set the icon green. Otherwise, enable all menu items and set the icon to the template
     var active = false {
         didSet {
             RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
@@ -115,6 +115,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    /// Responds to clicks from toggles for UserDefaults
     @IBAction func changeDefault(_ sender: NSMenuItem) {
         let val: Bool
         if sender.state == .on {
@@ -141,12 +142,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Responds to the Quit menu item
+    /// Responds to the Quit menu item
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared.terminate(self)
     }
     
-    // Start Caffeinate with no args, or stop it if it is active
+    /// Start Caffeinate with no args, or stop it if it is active
     @IBAction func startClicked(_ sender: NSMenuItem) {
         // FIXME: Title-based comparisons—especially in a localized app—are inadvisable
         if sender.title == txt("AD.start-caffeinator") {
@@ -157,12 +158,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Responds to the "Run with args" item by opening the argument panel
+    /// Responds to the "Run with args" item by opening the argument panel
     @IBAction func argumentClicked(_ sender: NSMenuItem) {
         argumentPanel.makeKeyAndOrderFront(nil)
     }
     
-    // Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
+    /// Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
     @IBAction func processClicked(_ sender: NSMenuItem) {
         DispatchQueue.main.async {
             if let res = Notifier.showInputDialog(withWindowTitle: txt("AD.process-dialog-window-title"), title: txt("AD.process-dialog-title"), text: txt("AD.process-dialog-msg")) {
@@ -182,7 +183,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is selected, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is passed to generateCaffeine() along with the corresponding "-t" argument
+    /// Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is selected, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is passed to generateCaffeine() along with the corresponding "-t" argument
     @IBAction func timedClicked(_ sender: NSMenuItem) {
         DispatchQueue.main.async {
             let title = sender.title
@@ -223,17 +224,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Responds to the "Help" item by opening the Help window
+    /// Responds to the "Help" item by opening the Help window
     @IBAction func helpPressed(_ sender: NSMenuItem) {
         helpHUD.makeKeyAndOrderFront(nil)
     }
     
-    // Responds to the "View License Information" menu item by opening the License HUD
+    /// Responds to the "View License Information" menu item by opening the License HUD
     @IBAction func licensePressed(_ sender: NSMenuItem) {
         licenseHUD.makeKeyAndOrderFront(nil)
     }
     
-    // Generates an NSTask based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
+    /// Generates a Process based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
     func generateCaffeinate(withArgs args: [String], isDev: Bool) {
         DispatchQueue.main.async {
             self.killMan.runCaffeinateCheck() // Make sure no other caffeinate processes are active
@@ -270,7 +271,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Clean-up method that makes sure that the inactive state of the app is restored once caffeinate finishes running
+    /// Clean-up method that makes sure that the inactive state of the app is restored once caffeinate finishes running
     func taskDidTerminate(_ task: Process) {
         active = false
     }
@@ -285,7 +286,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var args: [String: String] = [:]
     
-    // Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enable/disable the corresponding input button
+    /// Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enable/disable the corresponding input button
     @IBAction func argumentChecked(_ sender: NSButton) {
         let title = sender.title
         let state = sender.state == .on
@@ -308,7 +309,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are then assigned to the corresponding dictionary item
+    /// Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are then assigned to the corresponding dictionary item
     @IBAction func addValue(_ sender: NSButton) {
         let params = sender.tag == 0 ? (flag: "-t", label: tLabel) : (flag: "-w", label: wLabel)
         if let value = Notifier.showValueDialog(forParam: params.flag) {
@@ -317,7 +318,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Convert the dictionary of arguments into an array of parameters, then pass that array to generateCaffeine() in dev mode.
+    /// Converts the dictionary of arguments into an array of parameters, then passes that array to generateCaffeine() in dev mode.
     @IBAction func confirmArguments(_ sender: NSButton) {
         var params: [String] = []
         for (name, arg) in args {
@@ -331,22 +332,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         argumentPanel.close()
     }
     
-    // Close the argument panel
+    /// Closes the argument panel
     @IBAction func cancelArguments(_ sender: NSButton) {
         argumentPanel.close()
     }
     
-    // Responds to the "info" button on the argument input window by opening Apple's caffeinate man page on their online developer library. In future releases, this may be replaced with a native solution.
+    /// Responds to the "info" button on the argument input window by opening Apple's caffeinate man page on their online developer library. In future releases, this may be replaced with a native solution.
     @IBAction func viewManPage(_ sender: NSButton) {
         NSWorkspace.shared.open(URL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
     }
     
-    // Responds to user request to check for updates by calling checkForUpdate()
+    /// Responds to user request to check for updates by calling checkForUpdate()
     @IBAction func checkForUpdatesClicked(_ sender: NSMenuItem) {
         updater.checkForUpdate(isUserInitiated: true)
     }
     
-    // Remove Notification Center observer on deinit
+    /// Remove Notification Center observer on deinit
     deinit {
         nc.removeObserver(self)
     }
