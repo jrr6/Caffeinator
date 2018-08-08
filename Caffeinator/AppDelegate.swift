@@ -279,6 +279,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Clean-up method that makes sure that the inactive state of the app is restored once caffeinate finishes running
     func processDidTerminate(_ terminatedProc: Process) {
         active = false
+        DispatchQueue.main.async {
+            self.killMan.runCaffeinateCheck()
+        }
     }
     
     // MARK: - Argument Panel
