@@ -37,7 +37,7 @@
 "AD.no-argument-label" = "Ningún valor";
 
 "KM.kill-caffeinate-prompt-title" = "Procesos de caffeinate existentes se encontraron";
-"KM.kill-caffeinate-prompt-msg" = "Uno o más procesos de caffeinate ya están ejecutando en tu ordenador. Estos procesos pueden anular Caffeinator y su funcionalidad. Caffeinator sólo funciona cuando no hay otros procesos de caffeinate activos. ¿Deseas que Caffeinator termine estos otros procesos de caffeinate?";
+"KM.kill-caffeinate-prompt-msg" = "Uno o más procesos de caffeinate ya están ejecutando en tu ordenador. Esto haya ocurrido porque Caffeinator no fue cerrado correctamente. Caffeinator sólo funciona cuando no hay otros procesos de caffeinate activos. ¿Deseas que Caffeinator termine estos otros procesos de caffeinate?";
 "KM.no-caffeinate-process-title" = "El proceso caffeinate no se encontró";
 "KM.no-caffeinate-process-msg" = "Se intentó terminar un proceso caffeinate del fondo, pero el proceso no existe. Por favor presenta un informe sobre este error a menos que manualmente terminaste el proceso.";
 "KM.unknown-killall-error-title" = "Error desconocido de killall";

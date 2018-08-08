@@ -37,7 +37,7 @@
 "AD.no-argument-label" = "None";
 
 "KM.kill-caffeinate-prompt-title" = "Existing caffeinate Process Found";
-"KM.kill-caffeinate-prompt-msg" = "One or more caffeinate processes are already running on your computer. These processes may override Caffeinator and disrupt its functionality. Caffeinator only works when no other caffeinate processes are active. Would you like Caffeinator to end these caffeinate processes for you?";
+"KM.kill-caffeinate-prompt-msg" = "One or more caffeinate processes are already running on your computer. This may be because Caffeinator did not quit correctly the last time it was opened. Caffeinator only works when no other caffeinate processes are active. Would you like Caffeinator to end these caffeinate processes for you?";
 "KM.no-caffeinate-process-title" = "No caffeinate Process Found";
 "KM.no-caffeinate-process-msg" = "An attempt was made to kill a background caffeinate process, but no such process exists. This error should be reported unless you manually killed the caffeinate process.";
 "KM.unknown-killall-error-title" = "Unknown killall Error";

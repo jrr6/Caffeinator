@@ -38,6 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var nc: NotificationCenter!
     var updater: Updater!
     var killMan: KillallManager!
+    var trapper: SignalTrapper!
     var proc: Process?
     
     // MARK: - Main Menu
@@ -70,6 +71,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Ensure no background caffeinate processes are running
         killMan = KillallManager()
         killMan.runCaffeinateCheck()
+        
+        // Set up signal trapping
+        trapper = SignalTrapper(withHandler: preQuitSafetyCheck)
     }
     
     /// Ensures that all UserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
@@ -92,11 +96,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety)
-    func applicationWillTerminate(_ notification: Notification) {
+    /// Ensures that the caffeinate process is quit prior to the application exiting
+    func preQuitSafetyCheck() {
         if let activeProc = proc {
             activeProc.terminate()
         }
+    }
+    
+    // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety) (note that this is necessary on top of the signal trapping because "Quit" messages are sent as Apple Events, not OS signals)
+    func applicationWillTerminate(_ notification: Notification) {
+        preQuitSafetyCheck()
     }
     
     /// Responsible for managing the inactive/active state of the app. If there is an active "Caffeination," disable the appropriate menu items and set the icon green. Otherwise, enable all menu items and set the icon to the template
