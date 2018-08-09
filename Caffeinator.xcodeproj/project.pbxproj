@@ -11,11 +11,14 @@
 		E20139C21F78024B008B12E1 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20139C11F78024B008B12E1 /* Notifier.swift */; };
 		E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF171BEFA5A8007708FB /* AppDelegate.swift */; };
 		E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E209DF191BEFA5A8007708FB /* Assets.xcassets */; };
-		E209DF1D1BEFA5A8007708FB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E209DF1B1BEFA5A8007708FB /* MainMenu.xib */; };
 		E209DF281BEFA5A8007708FB /* CaffeinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF271BEFA5A8007708FB /* CaffeinatorTests.swift */; };
 		E209DF331BEFA5A8007708FB /* CaffeinatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */; };
 		E217D8922069447C005FFCF3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E217D8942069447C005FFCF3 /* Localizable.strings */; };
 		E26273E1211B3DCE005F9121 /* SignalTrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E0211B3DCE005F9121 /* SignalTrapper.swift */; };
+		E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */; };
+		E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */; };
+		E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273EA211C8D7B005F9121 /* LicensesViewController.swift */; };
+		E26273EC211C8DFD005F9121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26273EE211C8DFD005F9121 /* Main.storyboard */; };
 		E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26E133F211A4D9100DA4F90 /* KillallManager.swift */; };
 		E2883DB3211B27FE003B969B /* ProcessAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2883DB2211B27FE003B969B /* ProcessAdditions.swift */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
@@ -46,7 +49,6 @@
 		E209DF141BEFA5A8007708FB /* Caffeinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caffeinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E209DF171BEFA5A8007708FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E209DF191BEFA5A8007708FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E209DF1C1BEFA5A8007708FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E209DF1E1BEFA5A8007708FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E209DF231BEFA5A8007708FB /* CaffeinatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaffeinatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E209DF271BEFA5A8007708FB /* CaffeinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinatorTests.swift; sourceTree = "<group>"; };
@@ -57,9 +59,13 @@
 		E217D8932069447C005FFCF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E26273E0211B3DCE005F9121 /* SignalTrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalTrapper.swift; sourceTree = "<group>"; };
+		E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentPanelViewController.swift; sourceTree = "<group>"; };
+		E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPanelViewController.swift; sourceTree = "<group>"; };
+		E26273EA211C8D7B005F9121 /* LicensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
+		E26273ED211C8DFD005F9121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E26273F0211C8E02005F9121 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		E26E133F211A4D9100DA4F90 /* KillallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillallManager.swift; sourceTree = "<group>"; };
 		E2883DB2211B27FE003B969B /* ProcessAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessAdditions.swift; sourceTree = "<group>"; };
-		E2D4D6BF1FC65A11006703DC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,13 +120,16 @@
 			isa = PBXGroup;
 			children = (
 				E209DF171BEFA5A8007708FB /* AppDelegate.swift */,
+				E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */,
+				E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */,
+				E26273EA211C8D7B005F9121 /* LicensesViewController.swift */,
 				E26E133F211A4D9100DA4F90 /* KillallManager.swift */,
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
 				E2883DB2211B27FE003B969B /* ProcessAdditions.swift */,
 				E26273E0211B3DCE005F9121 /* SignalTrapper.swift */,
 				E20139BD1F77FE2C008B12E1 /* Updater.swift */,
 				E209DF191BEFA5A8007708FB /* Assets.xcassets */,
-				E209DF1B1BEFA5A8007708FB /* MainMenu.xib */,
+				E26273EE211C8DFD005F9121 /* Main.storyboard */,
 				E209DF1E1BEFA5A8007708FB /* Info.plist */,
 				E2EAD9F71F5E117A00E60133 /* Licenses.rtf */,
 				E217D8942069447C005FFCF3 /* Localizable.strings */,
@@ -260,9 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */,
+				E26273EC211C8DFD005F9121 /* Main.storyboard in Resources */,
 				E217D8922069447C005FFCF3 /* Localizable.strings in Resources */,
 				E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */,
-				E209DF1D1BEFA5A8007708FB /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +296,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */,
+				E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */,
 				E26273E1211B3DCE005F9121 /* SignalTrapper.swift in Sources */,
+				E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */,
 				E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */,
 				E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */,
 				E20139C21F78024B008B12E1 /* Notifier.swift in Sources */,
@@ -328,15 +340,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E209DF1B1BEFA5A8007708FB /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E209DF1C1BEFA5A8007708FB /* Base */,
-				E2D4D6BF1FC65A11006703DC /* es */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 		E217D8942069447C005FFCF3 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -344,6 +347,15 @@
 				E217D8952069447E005FFCF3 /* es */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E26273EE211C8DFD005F9121 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E26273ED211C8DFD005F9121 /* Base */,
+				E26273F0211C8E02005F9121 /* es */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

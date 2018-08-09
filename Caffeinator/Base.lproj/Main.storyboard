@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
+    </dependencies>
+    <scenes>
+        <!--Application-->
+        <scene sceneID="4OI-5e-HoJ">
+            <objects>
+                <customObject id="eY5-sp-s5t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Y0S-22-67Z" customClass="AppDelegate" customModule="Caffeinator" customModuleProvider="target">
+                    <connections>
+                        <outlet property="argumentMenu" destination="LIm-6Y-l4b" id="yZO-7z-V7u"/>
+                        <outlet property="displayToggle" destination="U5R-xl-uIM" id="dJk-Oc-Yib"/>
+                        <outlet property="mainMenu" destination="EuG-Hh-coT" id="5k8-B7-mDR"/>
+                        <outlet property="processMenu" destination="CRN-Xb-B2F" id="9qn-GA-0qT"/>
+                        <outlet property="promptToggle" destination="B6W-Lh-DkX" id="tk9-HN-oMJ"/>
+                        <outlet property="startMenu" destination="0l4-DP-stI" id="if0-tg-7q8"/>
+                        <outlet property="timedMenu" destination="i8n-eh-9CY" id="EIK-AA-ilc"/>
+                    </connections>
+                </customObject>
+                <application id="dDJ-Ji-aDI" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="kPa-Jj-YP7"/>
+                </application>
+                <menu autoenablesItems="NO" id="EuG-Hh-coT">
+                    <items>
+                        <menuItem title="Start Caffeinator" id="0l4-DP-stI">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="startClicked:" target="Y0S-22-67Z" id="TPY-SW-5Ww"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Caffeinate a Process…" id="CRN-Xb-B2F">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="processClicked:" target="Y0S-22-67Z" id="Baq-Ng-Rsr"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Timed Caffeination" id="i8n-eh-9CY">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" title="Timed Caffeination" id="RHH-ti-6ad">
+                                <items>
+                                    <menuItem title="5 minutes" id="Yzt-ov-AMt">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="timedClicked:" target="Y0S-22-67Z" id="Zxg-uM-TA3"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="10 minutes" id="QWz-Tw-OQr">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="timedClicked:" target="Y0S-22-67Z" id="lEA-Rv-jjg"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="15 minutes" id="VM1-p0-DQg">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="timedClicked:" target="Y0S-22-67Z" id="R0X-j8-3Sf"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="30 minutes" id="RYP-jo-65d">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="timedClicked:" target="Y0S-22-67Z" id="Hgo-bf-ZsM"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="1 hour" id="9H0-gy-gXX">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="timedClicked:" target="Y0S-22-67Z" id="W7V-Uy-0Cg"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="1.5 hours" id="NPm-hT-CSl">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="timedClicked:" target="Y0S-22-67Z" id="rxf-HE-Vdj"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="2 hours" id="wEa-BX-Avq">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="timedClicked:" target="Y0S-22-67Z" id="6Ov-20-nRh"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Custom…" id="tdu-sG-GfI">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="timedClicked:" target="Y0S-22-67Z" id="pcc-zu-m8s"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="r5Q-5F-WG7"/>
+                        <menuItem title="Advanced" id="LD6-wX-30k">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" title="Advanced" autoenablesItems="NO" id="fDx-Jk-qLE">
+                                <items>
+                                    <menuItem title="Caffeinate Display" state="on" tag="1" id="U5R-xl-uIM">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Prompt Before Executing" tag="2" id="B6W-Lh-DkX">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Run Caffeinate with Args…" id="LIm-6Y-l4b">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="argumentClicked:" target="Y0S-22-67Z" id="EXu-q3-jfL"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="View License Information…" id="YoE-Yi-PBR">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="licensePressed:" target="Y0S-22-67Z" id="iNM-eS-Xtb"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </menuItem>
+                        <menuItem title="Help" id="zKw-ep-8T4">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="helpPressed:" target="Y0S-22-67Z" id="Ypy-tq-Xgy"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Check for Updates…" id="jMA-uw-03P">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="checkForUpdatesClicked:" target="Y0S-22-67Z" id="8VU-Aj-7F0"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Quit" id="fCD-Oo-nl6">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="quitClicked:" target="Y0S-22-67Z" id="tkH-MQ-CMh"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
+            </objects>
+            <point key="canvasLocation" x="-190" y="-29"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="Tns-eW-ccD">
+            <objects>
+                <windowController storyboardIdentifier="argumentPanelController" id="1GM-eh-zfw" sceneMemberID="viewController">
+                    <window key="window" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="530" height="285"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="1GM-eh-zfw" id="itQ-IF-ypK"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="KL5-Sq-fc6" kind="relationship" relationship="window.shadowedContentViewController" id="SWf-Km-MMu"/>
+                    </connections>
+                </windowController>
+                <customObject id="34v-mW-5Mu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-161" y="214"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="YQM-gA-q6G">
+            <objects>
+                <windowController storyboardIdentifier="helpPanelController" id="S5z-uI-gF1" sceneMemberID="viewController">
+                    <window key="window" title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="JUK-Ll-5I5" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="475"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="S5z-uI-gF1" id="wWz-6I-TUR"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="lvb-bE-OuV" kind="relationship" relationship="window.shadowedContentViewController" id="SJ9-oy-2nB"/>
+                    </connections>
+                </windowController>
+                <customObject id="1ag-rZ-N9n" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-161" y="694"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="m15-hW-p2n">
+            <objects>
+                <windowController storyboardIdentifier="licensePanelController" id="Zvy-Xp-7jm" sceneMemberID="viewController">
+                    <window key="window" title="Licenses" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="LlA-Oi-fVZ" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="415" height="547"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="Zvy-Xp-7jm" id="sfR-G2-3BU"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Qdc-hX-hoF" kind="relationship" relationship="window.shadowedContentViewController" id="bdS-Ob-A85"/>
+                    </connections>
+                </windowController>
+                <customObject id="d5E-Na-Iyr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-161" y="1321"/>
+        </scene>
+        <!--Licenses View Controller-->
+        <scene sceneID="VzK-0G-Tqu">
+            <objects>
+                <viewController id="Qdc-hX-hoF" customClass="LicensesViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="gd8-2M-yWU">
+                        <rect key="frame" x="0.0" y="0.0" width="415" height="547"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-Eo-3xj">
+                                <rect key="frame" x="20" y="14" width="375" height="481"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="AeQ-Ne-cTX">
+                                    <rect key="frame" x="1" y="1" width="373" height="479"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Go9-ag-UBi">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="479"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="373" height="479"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="KU0-hu-WMB">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LTq-Gb-ipg">
+                                    <rect key="frame" x="358" y="1" width="16" height="479"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfD-ja-xgP">
+                                <rect key="frame" x="18" y="503" width="379" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="License Information" id="YT5-mV-KAB">
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="licenseField" destination="Go9-ag-UBi" id="l6R-Rq-JaL"/>
+                    </connections>
+                </viewController>
+                <customObject id="JoT-PX-k7x" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="529" y="1267"/>
+        </scene>
+        <!--Help Panel View Controller-->
+        <scene sceneID="DFX-fW-qhf">
+            <objects>
+                <viewController id="lvb-bE-OuV" customClass="HelpPanelViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="aBa-59-KVd">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="475"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuY-s2-21e">
+                                <rect key="frame" x="35" y="8" width="411" height="410"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="EsK-l9-o6g">
+                                    <rect key="frame" x="0.0" y="0.0" width="411" height="410"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0HN-rP-C1d">
+                                            <rect key="frame" x="0.0" y="31" width="411" height="410"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="411" height="410"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment>
+                                                    <mutableString key="content">Caffeinator is the easiest way to prevent your Mac from falling asleep! This is a simple and easy-to-use front-end for the caffeinate command. Here is a breakdown of this application's features:
+
+Start Caffeinator: Prevents sleep until Stop Caffeinator is clicked.
+
+Caffeinate a Process: This will prevent your computer from going to sleep until a process has completed. For example, if you're waiting for a Unity build to finish, attach to the associated process and your computer will wait for the build to finish before sleeping.
+
+Timed Caffeination: Keeps your computer from sleeping for a defined amount of time greater than one second.
+
+Caffeinate Display: Enable if you want Caffeinator to prevent display sleep as well as computer sleep. If you do not enable this feature, your computer's screen will go to sleep after the interval specified in the System Preferences Energy Saver settings, but background processes will still continue to run. Note that if this preference is modified during an active Caffeination, you will need to start a new Caffeination for changes to take effect.</mutableString>
+                                                    <attributes>
+                                                        <color key="NSColor" white="1" alpha="1" colorSpace="deviceWhite"/>
+                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                    <attributes>
+                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                    <attributes>
+                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <mutableString key="content">Prompt Before Executing: When this option is enabled, Caffeinator will display a confirmation prompt with the command that will be executed before running caffeinate. 
+
+Run Caffeinate with Arguments: Execute the caffeinate command with the specified arguments. This option allows for the input of arguments not available elsewhere in the Caffeinator app. Make sure you are familiar with the caffeinate command and what each of the arguments does to avoid unintended behavior. If you need help, use the "Info" button to view the caffeinate manpage.
+
+At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinator button.</mutableString>
+                                                    <attributes>
+                                                        <color key="NSColor" white="1" alpha="1" colorSpace="deviceWhite"/>
+                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="tLu-4d-tIC">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="yAV-kk-mqX">
+                                    <rect key="frame" x="395" y="0.0" width="16" height="410"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6s-FB-n7t">
+                                <rect key="frame" x="180" y="426" width="120" height="29"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Caffeinator" id="2dt-Jw-yWH">
+                                    <font key="font" metaFont="system" size="24"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
+                                    <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="UuY-s2-21e" secondAttribute="bottom" constant="8" id="9ec-c6-shR"/>
+                            <constraint firstItem="UuY-s2-21e" firstAttribute="leading" secondItem="aBa-59-KVd" secondAttribute="leading" constant="35" id="DgB-m1-R55"/>
+                            <constraint firstItem="UuY-s2-21e" firstAttribute="top" secondItem="u6s-FB-n7t" secondAttribute="bottom" constant="8" symbolic="YES" id="qhn-eQ-Dzl"/>
+                            <constraint firstItem="u6s-FB-n7t" firstAttribute="top" secondItem="aBa-59-KVd" secondAttribute="top" constant="20" symbolic="YES" id="wGN-5m-rjF"/>
+                            <constraint firstItem="u6s-FB-n7t" firstAttribute="centerX" secondItem="aBa-59-KVd" secondAttribute="centerX" id="wd9-Xp-68L"/>
+                            <constraint firstItem="u6s-FB-n7t" firstAttribute="centerX" secondItem="UuY-s2-21e" secondAttribute="centerX" id="xbV-Nd-eWg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="helpTitle" destination="u6s-FB-n7t" id="lZJ-9C-TsF"/>
+                    </connections>
+                </viewController>
+                <customObject id="Hfl-SO-9VL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="506" y="686.5"/>
+        </scene>
+        <!--Argument Panel View Controller-->
+        <scene sceneID="UEd-1O-Dg1">
+            <objects>
+                <viewController id="KL5-Sq-fc6" customClass="ArgumentPanelViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="z6e-fM-fTb">
+                        <rect key="frame" x="0.0" y="0.0" width="530" height="285"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="X6S-DK-sgR">
+                                <rect key="frame" x="34" y="204" width="32" height="18"/>
+                                <buttonCell key="cell" type="check" title="-i" bezelStyle="regularSquare" imagePosition="left" inset="2" id="NX3-bo-GeD">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="66F-mI-Q2J"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OHU-2Q-c82">
+                                <rect key="frame" x="476" y="242" width="34" height="36"/>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSInfo" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="4BW-de-EkM">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="viewManPage:" target="KL5-Sq-fc6" id="gbs-Cc-KEa"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="nVB-HK-SFf">
+                                <rect key="frame" x="34" y="144" width="54" height="18"/>
+                                <buttonCell key="cell" type="check" title="-u" bezelStyle="regularSquare" imagePosition="left" inset="2" id="fCT-5T-sJu">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="963-Fg-BFb"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="jA5-CO-e2q">
+                                <rect key="frame" x="34" y="184" width="40" height="18"/>
+                                <buttonCell key="cell" type="check" title="-m" bezelStyle="regularSquare" imagePosition="left" inset="2" id="O5y-km-Pue">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="Xem-oQ-Iad"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSj-YY-ZjB">
+                                <rect key="frame" x="17" y="8" width="290" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="5IH-Wm-uLJ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="bmp-Ot-fD6"/>
+                                    <constraint firstAttribute="width" constant="286" id="xr1-c9-6qa"/>
+                                </constraints>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="justified" id="jy3-k4-TC3">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <string key="title">Use the check boxes to select the arguments with which you wish to call caffeinate. If you select the "-t" or "-w" arguments, use the corresponding value entries to specify values for those arguments. View caffeinate's man page for more information.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="J0n-ru-VqN">
+                                <rect key="frame" x="34" y="105" width="38" height="18"/>
+                                <buttonCell key="cell" type="check" title="-w" bezelStyle="regularSquare" imagePosition="left" inset="2" id="JLR-Vk-Ic0">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="KJx-u5-RjP"/>
+                                </connections>
+                            </button>
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="hV4-Tz-eDM">
+                                <rect key="frame" x="123" y="106" width="5" height="166"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E13-Do-EUo">
+                                <rect key="frame" x="164" y="248" width="64" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="27f-uW-8s4"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Values" id="roh-hs-mWV">
+                                    <font key="font" metaFont="system" size="20"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGa-ex-Xyw">
+                                <rect key="frame" x="311" y="42" width="201" height="56"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Warning: Ensure that all arguments and values are correct before continuing." id="KOd-zc-upP">
+                                    <font key="font" metaFont="systemMedium" size="12"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="LWN-CP-ggw">
+                                <rect key="frame" x="34" y="124" width="33" height="18"/>
+                                <buttonCell key="cell" type="check" title="-t" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nTh-D9-FeX">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="zIV-6V-POv"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FAU-6a-AvT">
+                                <rect key="frame" x="253" y="212" width="37" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="None" id="TAx-l6-z7V">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="o1g-af-Oxe">
+                                <rect key="frame" x="34" y="164" width="54" height="18"/>
+                                <buttonCell key="cell" type="check" title="-s" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6zP-sb-I1s">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="wgD-zA-CRc"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d0T-XS-FAu">
+                                <rect key="frame" x="413" y="7" width="103" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="2vg-mZ-uUy"/>
+                                    <constraint firstAttribute="width" constant="91" id="EoB-ij-cRM"/>
+                                    <constraint firstAttribute="height" constant="21" id="bjg-KI-COu"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Caffeinate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IlU-wl-P0s">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-Ll-1t8">
+                                <rect key="frame" x="133" y="203" width="120" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add -t value" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5IJ-dy-M8j">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addValue:" target="KL5-Sq-fc6" id="gLx-EG-WDb"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="HzQ-is-KFA">
+                                <rect key="frame" x="133" y="172" width="120" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add -w value" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iX9-Dk-j4h">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addValue:" target="KL5-Sq-fc6" id="5fV-I8-X5j"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="93R-F1-VJc">
+                                <rect key="frame" x="34" y="224" width="36" height="18"/>
+                                <buttonCell key="cell" type="check" title="-d" bezelStyle="regularSquare" imagePosition="left" inset="2" id="RGq-2a-gwO">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="3NE-GK-HVJ"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LPa-JS-BZ7">
+                                <rect key="frame" x="307" y="7" width="106" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="KFA-9f-mTk"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bS7-yO-RTw">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelArguments:" target="KL5-Sq-fc6" id="Aw4-Vz-oXb"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TYn-ZE-akD">
+                                <rect key="frame" x="253" y="181" width="37" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="None" id="0pf-NH-GBO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UyT-gq-5Wd">
+                                <rect key="frame" x="17" y="248" width="102" height="24"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Arguments" id="Nr6-ww-YTG">
+                                    <font key="font" metaFont="system" size="20"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="93R-F1-VJc" firstAttribute="top" secondItem="UyT-gq-5Wd" secondAttribute="bottom" constant="8" symbolic="YES" id="1lN-eV-TbT"/>
+                            <constraint firstItem="nVB-HK-SFf" firstAttribute="leading" secondItem="LWN-CP-ggw" secondAttribute="leading" id="1r4-Qs-RCB"/>
+                            <constraint firstItem="hV4-Tz-eDM" firstAttribute="top" secondItem="E13-Do-EUo" secondAttribute="top" id="2By-AI-Ihf"/>
+                            <constraint firstItem="fSj-YY-ZjB" firstAttribute="top" secondItem="hV4-Tz-eDM" secondAttribute="bottom" constant="8" symbolic="YES" id="2Cb-bp-RyJ"/>
+                            <constraint firstItem="93R-F1-VJc" firstAttribute="leading" secondItem="X6S-DK-sgR" secondAttribute="leading" id="3yP-iI-TZV"/>
+                            <constraint firstItem="TYn-ZE-akD" firstAttribute="top" secondItem="FAU-6a-AvT" secondAttribute="bottom" constant="14" id="4x0-aH-tJ2"/>
+                            <constraint firstItem="nVB-HK-SFf" firstAttribute="top" secondItem="o1g-af-Oxe" secondAttribute="bottom" constant="6" symbolic="YES" id="5Zi-0D-s0w"/>
+                            <constraint firstItem="LPa-JS-BZ7" firstAttribute="baseline" secondItem="d0T-XS-FAu" secondAttribute="baseline" id="6UI-do-O0M"/>
+                            <constraint firstItem="zGa-ex-Xyw" firstAttribute="leading" secondItem="LPa-JS-BZ7" secondAttribute="leading" id="7lH-uv-SIk"/>
+                            <constraint firstItem="UyT-gq-5Wd" firstAttribute="baseline" secondItem="E13-Do-EUo" secondAttribute="firstBaseline" id="8C7-pj-xfb"/>
+                            <constraint firstItem="OHU-2Q-c82" firstAttribute="trailing" secondItem="zGa-ex-Xyw" secondAttribute="trailing" id="912-pT-0Hj"/>
+                            <constraint firstItem="UyT-gq-5Wd" firstAttribute="baseline" secondItem="E13-Do-EUo" secondAttribute="baseline" id="9Ob-18-Rs7"/>
+                            <constraint firstItem="TYn-ZE-akD" firstAttribute="leading" secondItem="HzQ-is-KFA" secondAttribute="trailing" constant="8" id="9h0-uJ-Qmy"/>
+                            <constraint firstItem="fSj-YY-ZjB" firstAttribute="top" secondItem="zGa-ex-Xyw" secondAttribute="top" id="Db1-CJ-6lD"/>
+                            <constraint firstItem="LWN-CP-ggw" firstAttribute="top" secondItem="nVB-HK-SFf" secondAttribute="bottom" constant="6" symbolic="YES" id="H1z-hs-9eA"/>
+                            <constraint firstItem="93R-F1-VJc" firstAttribute="leading" secondItem="z6e-fM-fTb" secondAttribute="leading" constant="36" id="HLu-QV-eUa"/>
+                            <constraint firstItem="hV4-Tz-eDM" firstAttribute="leading" secondItem="J0n-ru-VqN" secondAttribute="trailing" constant="55" id="J8x-eF-rMl"/>
+                            <constraint firstItem="HzQ-is-KFA" firstAttribute="top" secondItem="NbQ-Ll-1t8" secondAttribute="bottom" constant="10" id="L3i-Jf-oKQ"/>
+                            <constraint firstItem="hV4-Tz-eDM" firstAttribute="leading" secondItem="UyT-gq-5Wd" secondAttribute="trailing" constant="8" symbolic="YES" id="M2F-qT-RFD"/>
+                            <constraint firstItem="J0n-ru-VqN" firstAttribute="top" secondItem="LWN-CP-ggw" secondAttribute="bottom" constant="5" id="MwL-jY-i8v"/>
+                            <constraint firstItem="zGa-ex-Xyw" firstAttribute="trailing" secondItem="d0T-XS-FAu" secondAttribute="trailing" id="NPo-FH-ftI"/>
+                            <constraint firstItem="jA5-CO-e2q" firstAttribute="leading" secondItem="o1g-af-Oxe" secondAttribute="leading" id="QRL-Hv-g60"/>
+                            <constraint firstItem="HzQ-is-KFA" firstAttribute="centerY" secondItem="TYn-ZE-akD" secondAttribute="centerY" id="Tgc-fp-W7H"/>
+                            <constraint firstAttribute="bottom" secondItem="fSj-YY-ZjB" secondAttribute="bottom" constant="8" id="V2O-Vr-iFq"/>
+                            <constraint firstItem="E13-Do-EUo" firstAttribute="leading" secondItem="hV4-Tz-eDM" secondAttribute="trailing" constant="40" id="VMK-A6-BMu"/>
+                            <constraint firstItem="93R-F1-VJc" firstAttribute="centerX" secondItem="J0n-ru-VqN" secondAttribute="centerX" constant="-1" id="VTO-5g-6gP"/>
+                            <constraint firstItem="o1g-af-Oxe" firstAttribute="leading" secondItem="nVB-HK-SFf" secondAttribute="leading" id="VpK-Ql-i96"/>
+                            <constraint firstItem="UyT-gq-5Wd" firstAttribute="leading" secondItem="fSj-YY-ZjB" secondAttribute="leading" id="Vpw-MP-Mtl"/>
+                            <constraint firstItem="zGa-ex-Xyw" firstAttribute="leading" secondItem="fSj-YY-ZjB" secondAttribute="trailing" constant="8" symbolic="YES" id="WdF-Xz-9yg"/>
+                            <constraint firstItem="d0T-XS-FAu" firstAttribute="baseline" secondItem="LPa-JS-BZ7" secondAttribute="firstBaseline" id="YfM-dJ-SR4"/>
+                            <constraint firstItem="jA5-CO-e2q" firstAttribute="top" secondItem="HzQ-is-KFA" secondAttribute="top" id="azF-vx-8Cn"/>
+                            <constraint firstItem="NbQ-Ll-1t8" firstAttribute="top" secondItem="E13-Do-EUo" secondAttribute="bottom" constant="17" id="dPH-9d-CZb"/>
+                            <constraint firstItem="NbQ-Ll-1t8" firstAttribute="centerY" secondItem="FAU-6a-AvT" secondAttribute="centerY" id="fgi-xP-0qJ"/>
+                            <constraint firstAttribute="bottom" secondItem="LPa-JS-BZ7" secondAttribute="bottom" constant="14" id="fmp-5c-2Re"/>
+                            <constraint firstItem="hV4-Tz-eDM" firstAttribute="centerY" secondItem="HzQ-is-KFA" secondAttribute="centerY" id="fwJ-Ae-121"/>
+                            <constraint firstItem="X6S-DK-sgR" firstAttribute="leading" secondItem="jA5-CO-e2q" secondAttribute="leading" id="hND-X3-ESq"/>
+                            <constraint firstItem="o1g-af-Oxe" firstAttribute="trailing" secondItem="nVB-HK-SFf" secondAttribute="trailing" id="jao-CK-TJ0"/>
+                            <constraint firstItem="LPa-JS-BZ7" firstAttribute="top" secondItem="zGa-ex-Xyw" secondAttribute="bottom" constant="7" id="jcf-Ba-1sL"/>
+                            <constraint firstItem="NbQ-Ll-1t8" firstAttribute="leading" secondItem="hV4-Tz-eDM" secondAttribute="trailing" constant="13" id="kB6-QH-l3p"/>
+                            <constraint firstItem="HzQ-is-KFA" firstAttribute="leading" secondItem="hV4-Tz-eDM" secondAttribute="trailing" constant="13" id="ktT-yg-QnB"/>
+                            <constraint firstAttribute="trailing" secondItem="OHU-2Q-c82" secondAttribute="trailing" constant="20" symbolic="YES" id="maE-kI-wwJ"/>
+                            <constraint firstItem="FAU-6a-AvT" firstAttribute="leading" secondItem="NbQ-Ll-1t8" secondAttribute="trailing" constant="8" id="nAl-Of-Dk7"/>
+                            <constraint firstItem="jA5-CO-e2q" firstAttribute="top" secondItem="X6S-DK-sgR" secondAttribute="bottom" constant="6" symbolic="YES" id="qbC-iV-mJN"/>
+                            <constraint firstItem="d0T-XS-FAu" firstAttribute="leading" secondItem="LPa-JS-BZ7" secondAttribute="trailing" constant="12" symbolic="YES" id="qki-rs-mN1"/>
+                            <constraint firstItem="o1g-af-Oxe" firstAttribute="top" secondItem="jA5-CO-e2q" secondAttribute="bottom" constant="6" symbolic="YES" id="qxv-LE-c51"/>
+                            <constraint firstItem="FAU-6a-AvT" firstAttribute="leading" secondItem="TYn-ZE-akD" secondAttribute="leading" id="t1d-td-0Rv"/>
+                            <constraint firstItem="hV4-Tz-eDM" firstAttribute="leading" secondItem="o1g-af-Oxe" secondAttribute="trailing" constant="39" id="wcC-GP-pti"/>
+                            <constraint firstItem="X6S-DK-sgR" firstAttribute="top" secondItem="93R-F1-VJc" secondAttribute="bottom" constant="6" symbolic="YES" id="yet-Bd-cQM"/>
+                            <constraint firstItem="E13-Do-EUo" firstAttribute="centerY" secondItem="OHU-2Q-c82" secondAttribute="centerY" id="yvS-Bv-cbd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tButton" destination="NbQ-Ll-1t8" id="aul-IZ-j1G"/>
+                        <outlet property="tLabel" destination="FAU-6a-AvT" id="7XK-cB-gDN"/>
+                        <outlet property="wButton" destination="HzQ-is-KFA" id="fGB-IC-Ili"/>
+                        <outlet property="wLabel" destination="TYn-ZE-akD" id="7tt-XC-7Ce"/>
+                    </connections>
+                </viewController>
+                <customObject id="lHF-Q1-VaL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="499" y="213.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSInfo" width="32" height="32"/>
+    </resources>
+</document>

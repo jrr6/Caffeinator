@@ -1,0 +1,132 @@
+
+/* Class = "NSMenuItem"; title = "Start Caffeinator"; ObjectID = "0l4-DP-stI"; */
+"0l4-DP-stI.title" = "Iniciar Caffeinator";
+
+/* Class = "NSTextFieldCell"; title = "None"; ObjectID = "0pf-NH-GBO"; */
+"0pf-NH-GBO.title" = "No hay valor";
+
+/* Class = "NSTextFieldCell"; title = "Caffeinator"; ObjectID = "2dt-Jw-yWH"; */
+"2dt-Jw-yWH.title" = "Caffeinator";
+
+/* Class = "NSButtonCell"; title = "Add -t value"; ObjectID = "5IJ-dy-M8j"; */
+"5IJ-dy-M8j.title" = "Añadir valor de -t";
+
+/* Class = "NSButtonCell"; title = "-s"; ObjectID = "6zP-sb-I1s"; */
+"6zP-sb-I1s.title" = "-s";
+
+/* Class = "NSMenuItem"; title = "1 hour"; ObjectID = "9H0-gy-gXX"; */
+"9H0-gy-gXX.title" = "1 hora";
+
+/* Class = "NSMenuItem"; title = "Prompt Before Executing"; ObjectID = "B6W-Lh-DkX"; */
+"B6W-Lh-DkX.title" = "Avisar antes de ejectuar";
+
+/* Class = "NSMenuItem"; title = "Caffeinate a Process…"; ObjectID = "CRN-Xb-B2F"; */
+"CRN-Xb-B2F.title" = "Caffeinate un proceso…";
+
+/* Class = "NSButtonCell"; title = "Caffeinate"; ObjectID = "IlU-wl-P0s"; */
+"IlU-wl-P0s.title" = "Caffeinate";
+
+/* Class = "NSButtonCell"; title = "-w"; ObjectID = "JLR-Vk-Ic0"; */
+"JLR-Vk-Ic0.title" = "-w";
+
+/* Class = "NSWindow"; title = "Caffeinator Help"; ObjectID = "JUK-Ll-5I5"; */
+"JUK-Ll-5I5.title" = "Ayuda de Caffeinator";
+
+/* Class = "NSTextFieldCell"; title = "Warning: Ensure that all arguments and values are correct before continuing."; ObjectID = "KOd-zc-upP"; */
+"KOd-zc-upP.title" = "Cuidado: Asegura que todos los argumentos sean correctos antes de continuar.";
+
+/* Class = "NSMenuItem"; title = "Advanced"; ObjectID = "LD6-wX-30k"; */
+"LD6-wX-30k.title" = "Opciones avanzadas";
+
+/* Class = "NSMenuItem"; title = "Run Caffeinate with Args…"; ObjectID = "LIm-6Y-l4b"; */
+"LIm-6Y-l4b.title" = "Ejecutar caffeinate con argumentos…";
+
+/* Class = "NSWindow"; title = "Licenses"; ObjectID = "LlA-Oi-fVZ"; */
+"LlA-Oi-fVZ.title" = "Licencias";
+
+/* Class = "NSMenuItem"; title = "1.5 hours"; ObjectID = "NPm-hT-CSl"; */
+"NPm-hT-CSl.title" = "1.5 horas";
+
+/* Class = "NSButtonCell"; title = "-i"; ObjectID = "NX3-bo-GeD"; */
+"NX3-bo-GeD.title" = "-i";
+
+/* Class = "NSTextFieldCell"; title = "Arguments"; ObjectID = "Nr6-ww-YTG"; */
+"Nr6-ww-YTG.title" = "Argumentos";
+
+/* Class = "NSButtonCell"; title = "-m"; ObjectID = "O5y-km-Pue"; */
+"O5y-km-Pue.title" = "-m";
+
+/* Class = "NSMenuItem"; title = "10 minutes"; ObjectID = "QWz-Tw-OQr"; */
+"QWz-Tw-OQr.title" = "10 minutos";
+
+/* Class = "NSButtonCell"; title = "-d"; ObjectID = "RGq-2a-gwO"; */
+"RGq-2a-gwO.title" = "-d";
+
+/* Class = "NSMenu"; title = "Timed Caffeination"; ObjectID = "RHH-ti-6ad"; */
+"RHH-ti-6ad.title" = "Caffeination temporizada";
+
+/* Class = "NSMenuItem"; title = "30 minutes"; ObjectID = "RYP-jo-65d"; */
+"RYP-jo-65d.title" = "30 minutos";
+
+/* Class = "NSTextFieldCell"; title = "None"; ObjectID = "TAx-l6-z7V"; */
+"TAx-l6-z7V.title" = "No hay valor";
+
+/* Class = "NSMenuItem"; title = "Caffeinate Display"; ObjectID = "U5R-xl-uIM"; */
+"U5R-xl-uIM.title" = "Caffeinate pantalla";
+
+/* Class = "NSMenuItem"; title = "15 minutes"; ObjectID = "VM1-p0-DQg"; */
+"VM1-p0-DQg.title" = "15 minutos";
+
+/* Class = "NSTextFieldCell"; title = "License Information"; ObjectID = "YT5-mV-KAB"; */
+"YT5-mV-KAB.title" = "Información sobre licencias";
+
+/* Class = "NSMenuItem"; title = "View License Information…"; ObjectID = "YoE-Yi-PBR"; */
+"YoE-Yi-PBR.title" = "Ver información sobre licencias…";
+
+/* Class = "NSMenuItem"; title = "5 minutes"; ObjectID = "Yzt-ov-AMt"; */
+"Yzt-ov-AMt.title" = "5 minutos";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "bS7-yO-RTw"; */
+"bS7-yO-RTw.title" = "Cancelar";
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "fCD-Oo-nl6"; */
+"fCD-Oo-nl6.title" = "Salir";
+
+/* Class = "NSButtonCell"; title = "-u"; ObjectID = "fCT-5T-sJu"; */
+"fCT-5T-sJu.title" = "-u";
+
+/* Class = "NSMenu"; title = "Advanced"; ObjectID = "fDx-Jk-qLE"; */
+"fDx-Jk-qLE.title" = "Opciones avanzadas";
+
+/* Class = "NSMenuItem"; title = "Timed Caffeination"; ObjectID = "i8n-eh-9CY"; */
+"i8n-eh-9CY.title" = "Caffeination temporizada";
+
+/* Class = "NSButtonCell"; title = "Add -w value"; ObjectID = "iX9-Dk-j4h"; */
+"iX9-Dk-j4h.title" = "Añadir valor de -w";
+
+/* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "jMA-uw-03P"; */
+"jMA-uw-03P.title" = "Buscar actualizaciones…";
+
+/* Class = "NSTextFieldCell"; title = "Use the check boxes to select the arguments with which you wish to call caffeinate. If you select the \"-t\" or \"-w\" arguments, use the corresponding value entries to specify values for those arguments. View caffeinate's man page for more information."; ObjectID = "jy3-k4-TC3"; */
+"jy3-k4-TC3.title" = "Usa las casillas de verificación para escoger los argumentos con los cuales deseas iniciar caffeinate. Si escoges los argumentos \"-t\" o \"-w\", usa los campos de texto correspondientes para entrar valores para esos argumentos. Consulta el manual de caffeinate para más información.";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "kPa-Jj-YP7"; */
+"kPa-Jj-YP7.title" = "Menú principal";
+
+/* Class = "NSButtonCell"; title = "-t"; ObjectID = "nTh-D9-FeX"; */
+"nTh-D9-FeX.title" = "-t";
+
+/* Class = "NSWindow"; title = "Enter Arguments"; ObjectID = "ob7-XI-Hu1"; */
+"ob7-XI-Hu1.title" = "Introducir argumentos";
+
+/* Class = "NSTextFieldCell"; title = "Values"; ObjectID = "roh-hs-mWV"; */
+"roh-hs-mWV.title" = "Valores";
+
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "tdu-sG-GfI"; */
+"tdu-sG-GfI.title" = "Manual…";
+
+/* Class = "NSMenuItem"; title = "2 hours"; ObjectID = "wEa-BX-Avq"; */
+"wEa-BX-Avq.title" = "2 horas";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "zKw-ep-8T4"; */
+"zKw-ep-8T4.title" = "Ayuda";

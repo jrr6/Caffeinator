@@ -13,19 +13,18 @@ func txt(_ text: String) -> String {
     return NSLocalizedString(text, comment: "")
 }
 
+extension NSStoryboard {
+    func instantiateAndShowWindow(withIDString idString: String) {
+        (self.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: idString)) as? NSWindowController)?.showWindow(self)
+    }
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Outlets
     
     @IBOutlet weak var mainMenu: NSMenu!
-    @IBOutlet weak var argumentPanel: NSPanel!
-    
-    @IBOutlet weak var helpHUD: NSPanel!
-    @IBOutlet weak var helpTitle: NSTextField!
-    
-    @IBOutlet weak var licenseHUD: NSPanel!
-    @IBOutlet weak var licenseField: NSTextView!
     
     @IBOutlet weak var startMenu: NSMenuItem!
     @IBOutlet weak var processMenu: NSMenuItem!
@@ -33,7 +32,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var displayToggle: NSMenuItem!
     @IBOutlet weak var promptToggle: NSMenuItem!
+    @IBOutlet weak var argumentMenu: NSMenuItem!
     
+    var storyboard: NSStoryboard!
     var df: UserDefaults!
     var nc: NotificationCenter!
     var updater: Updater!
@@ -49,15 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem.image = NSImage(named: NSImage.Name(rawValue: "CoffeeCup"))
         statusItem.menu = mainMenu
-        helpTitle.stringValue = "Caffeinator \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
-        if let rtfPath = Bundle.main.url(forResource: "Licenses", withExtension: "rtf") {
-            do {
-                let licenseString = try NSAttributedString(url: rtfPath, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil)
-                licenseField.textStorage?.setAttributedString(licenseString)
-            } catch {
-                licenseField.string = txt("AD.license-error")
-            }
-        }
+        storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
         
         // Configure UserDefaults
         df = UserDefaults.standard
@@ -169,7 +162,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Responds to the "Run with args" item by opening the argument panel
     @IBAction func argumentClicked(_ sender: NSMenuItem) {
-        argumentPanel.makeKeyAndOrderFront(nil)
+        storyboard.instantiateAndShowWindow(withIDString: "argumentPanelController")
     }
     
     /// Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
@@ -235,12 +228,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Responds to the "Help" item by opening the Help window
     @IBAction func helpPressed(_ sender: NSMenuItem) {
-        helpHUD.makeKeyAndOrderFront(nil)
+        storyboard.instantiateAndShowWindow(withIDString: "helpPanelController")
     }
     
     /// Responds to the "View License Information" menu item by opening the License HUD
     @IBAction func licensePressed(_ sender: NSMenuItem) {
-        licenseHUD.makeKeyAndOrderFront(nil)
+        storyboard.instantiateAndShowWindow(withIDString: "licensePanelController")
     }
     
     /// Generates a Process based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
@@ -282,72 +275,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DispatchQueue.main.async {
             self.killMan.runCaffeinateCheck()
         }
-    }
-    
-    // MARK: - Argument Panel
-    
-    @IBOutlet weak var argumentMenu: NSMenuItem!
-    @IBOutlet weak var tButton: NSButton!
-    @IBOutlet weak var tLabel: NSTextField!
-    @IBOutlet weak var wButton: NSButton!
-    @IBOutlet weak var wLabel: NSTextField!
-    
-    var args: [String: String] = [:]
-    
-    /// Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enable/disable the corresponding input button
-    @IBAction func argumentChecked(_ sender: NSButton) {
-        let title = sender.title
-        let state = sender.state == .on
-        if state {
-            args[title] = ""
-        } else {
-            if let loc = args.index(forKey: title) {
-                args.remove(at: loc)
-            }
-            if title == "-t" {
-                tLabel.stringValue = txt("AD.no-argument-label")
-            } else if title == "-w" {
-                wLabel.stringValue = txt("AD.no-argument-label")
-            }
-        }
-        if title == "-t" {
-            tButton.isEnabled = state
-        } else if title == "-w" {
-            wButton.isEnabled = state
-        }
-    }
-    
-    /// Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are then assigned to the corresponding dictionary item
-    @IBAction func addValue(_ sender: NSButton) {
-        let params = sender.tag == 0 ? (flag: "-t", label: tLabel) : (flag: "-w", label: wLabel)
-        if let value = Notifier.showValueDialog(forParam: params.flag) {
-            params.label.stringValue = value
-            args[params.flag] = value
-        }
-    }
-    
-    /// Converts the dictionary of arguments into an array of parameters, then passes that array to generateCaffeine() in dev mode.
-    @IBAction func confirmArguments(_ sender: NSButton) {
-        var params: [String] = []
-        for (name, arg) in args {
-            params.append(name)
-            // This check is not strictly necessary, but makes things cleaner
-            if arg != "" {
-                params.append(arg)
-            }
-        }
-        generateCaffeinate(withArgs: params, isDev: true)
-        argumentPanel.close()
-    }
-    
-    /// Closes the argument panel
-    @IBAction func cancelArguments(_ sender: NSButton) {
-        argumentPanel.close()
-    }
-    
-    /// Responds to the "info" button on the argument input window by opening Apple's caffeinate man page on their online developer library. In future releases, this may be replaced with a native solution.
-    @IBAction func viewManPage(_ sender: NSButton) {
-        NSWorkspace.shared.open(URL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
     }
     
     /// Responds to user request to check for updates by calling checkForUpdate()
