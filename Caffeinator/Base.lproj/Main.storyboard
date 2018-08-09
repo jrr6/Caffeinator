@@ -151,7 +151,7 @@
         <scene sceneID="Tns-eW-ccD">
             <objects>
                 <windowController storyboardIdentifier="argumentPanelController" id="1GM-eh-zfw" sceneMemberID="viewController">
-                    <window key="window" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1" customClass="NSPanel">
+                    <window key="window" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="530" height="285"/>
@@ -172,7 +172,7 @@
         <scene sceneID="YQM-gA-q6G">
             <objects>
                 <windowController storyboardIdentifier="helpPanelController" id="S5z-uI-gF1" sceneMemberID="viewController">
-                    <window key="window" title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="JUK-Ll-5I5" customClass="NSPanel">
+                    <window key="window" title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="JUK-Ll-5I5" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="475"/>
@@ -193,7 +193,7 @@
         <scene sceneID="m15-hW-p2n">
             <objects>
                 <windowController storyboardIdentifier="licensePanelController" id="Zvy-Xp-7jm" sceneMemberID="viewController">
-                    <window key="window" title="Licenses" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="LlA-Oi-fVZ" customClass="NSPanel">
+                    <window key="window" title="Licenses" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="LlA-Oi-fVZ" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="415" height="547"/>
@@ -218,14 +218,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="415" height="547"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-Eo-3xj">
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-Eo-3xj">
                                 <rect key="frame" x="20" y="14" width="375" height="481"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="AeQ-Ne-cTX">
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AeQ-Ne-cTX">
                                     <rect key="frame" x="1" y="1" width="373" height="479"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView ambiguous="YES" editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Go9-ag-UBi">
+                                        <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Go9-ag-UBi">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="479"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -245,9 +244,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfD-ja-xgP">
-                                <rect key="frame" x="18" y="503" width="379" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yfD-ja-xgP">
+                                <rect key="frame" x="18" y="511" width="379" height="24"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="License Information" id="YT5-mV-KAB">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -255,6 +253,15 @@
                                 </textFieldCell>
                             </textField>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yfD-ja-xgP" secondAttribute="trailing" constant="20" symbolic="YES" id="IV4-oI-6dh"/>
+                            <constraint firstItem="yfD-ja-xgP" firstAttribute="top" secondItem="gd8-2M-yWU" secondAttribute="top" constant="12" id="Kvg-B4-dkL"/>
+                            <constraint firstItem="yfD-ja-xgP" firstAttribute="trailing" secondItem="i4Q-Eo-3xj" secondAttribute="trailing" id="P1v-t6-WRS"/>
+                            <constraint firstAttribute="bottom" secondItem="i4Q-Eo-3xj" secondAttribute="bottom" constant="14" id="XE4-Tb-STU"/>
+                            <constraint firstItem="yfD-ja-xgP" firstAttribute="leading" secondItem="gd8-2M-yWU" secondAttribute="leading" constant="20" symbolic="YES" id="YfO-d2-jVA"/>
+                            <constraint firstItem="yfD-ja-xgP" firstAttribute="leading" secondItem="i4Q-Eo-3xj" secondAttribute="leading" id="fu6-L5-6JM"/>
+                            <constraint firstItem="i4Q-Eo-3xj" firstAttribute="top" secondItem="yfD-ja-xgP" secondAttribute="bottom" constant="16" id="pM1-pX-DP1"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="licenseField" destination="Go9-ag-UBi" id="l6R-Rq-JaL"/>
@@ -350,7 +357,7 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6s-FB-n7t">
-                                <rect key="frame" x="180" y="426" width="120" height="29"/>
+                                <rect key="frame" x="180" y="435" width="120" height="29"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Caffeinator" id="2dt-Jw-yWH">
                                     <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
@@ -361,8 +368,8 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="UuY-s2-21e" secondAttribute="bottom" constant="8" id="9ec-c6-shR"/>
                             <constraint firstItem="UuY-s2-21e" firstAttribute="leading" secondItem="aBa-59-KVd" secondAttribute="leading" constant="35" id="DgB-m1-R55"/>
-                            <constraint firstItem="UuY-s2-21e" firstAttribute="top" secondItem="u6s-FB-n7t" secondAttribute="bottom" constant="8" symbolic="YES" id="qhn-eQ-Dzl"/>
-                            <constraint firstItem="u6s-FB-n7t" firstAttribute="top" secondItem="aBa-59-KVd" secondAttribute="top" constant="20" symbolic="YES" id="wGN-5m-rjF"/>
+                            <constraint firstItem="UuY-s2-21e" firstAttribute="top" secondItem="u6s-FB-n7t" secondAttribute="bottom" constant="17" id="qhn-eQ-Dzl"/>
+                            <constraint firstItem="u6s-FB-n7t" firstAttribute="top" secondItem="aBa-59-KVd" secondAttribute="top" constant="11" id="wGN-5m-rjF"/>
                             <constraint firstItem="u6s-FB-n7t" firstAttribute="centerX" secondItem="aBa-59-KVd" secondAttribute="centerX" id="wd9-Xp-68L"/>
                             <constraint firstItem="u6s-FB-n7t" firstAttribute="centerX" secondItem="UuY-s2-21e" secondAttribute="centerX" id="xbV-Nd-eWg"/>
                         </constraints>
