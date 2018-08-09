@@ -49,7 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item and windows, and check for updates
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem.image = NSImage(named: NSImage.Name(rawValue: "CoffeeCup"))
-        statusItem.menu = mainMenu
+        statusItem.button?.action = #selector(handleStatusItemClick(sender:))
+        statusItem.button?.target = self
+        statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
         storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
         
         // Configure UserDefaults
@@ -67,6 +69,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Set up signal trapping
         trapper = SignalTrapper(withHandler: preQuitSafetyCheck)
+    }
+    
+    /// Handles clicks on the NSStatusItem's button—shows the main menu if it's a left-click, or immediately starts Caffeinating if it's a right-click or option-click
+    @objc func handleStatusItemClick(sender: NSStatusBarButton) {
+        let event = NSApp.currentEvent!
+        if event.type == NSEvent.EventType.rightMouseUp || event.modifierFlags.contains(.option) {
+            if active {
+                proc?.terminate()
+            } else {
+                generateCaffeinate(withArgs: [], isDev: false)
+            }
+        } else {
+            statusItem.menu = mainMenu
+            statusItem.popUpMenu(mainMenu)
+            statusItem.menu = nil
+        }
     }
     
     /// Ensures that all UserDefaults values have been initialized and updates each preference's corresponding menu item accordingly
