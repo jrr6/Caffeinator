@@ -25,6 +25,9 @@
                 </customObject>
                 <application id="dDJ-Ji-aDI" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="kPa-Jj-YP7"/>
+                    <connections>
+                        <outlet property="delegate" destination="Y0S-22-67Z" id="fjY-Iw-qDP"/>
+                    </connections>
                 </application>
                 <menu autoenablesItems="NO" id="EuG-Hh-coT">
                     <items>
@@ -276,7 +279,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0HN-rP-C1d">
-                                            <rect key="frame" x="0.0" y="31" width="411" height="410"/>
+                                            <rect key="frame" x="0.0" y="31" width="411" height="441"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -341,7 +344,7 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="yAV-kk-mqX">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="yAV-kk-mqX">
                                     <rect key="frame" x="395" y="0.0" width="16" height="410"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

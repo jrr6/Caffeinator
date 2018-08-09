@@ -44,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Main Menu
     
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    var statusItem: NSStatusItem! = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item and windows, and check for updates
     func applicationDidFinishLaunching(_ aNotification: Notification) {
