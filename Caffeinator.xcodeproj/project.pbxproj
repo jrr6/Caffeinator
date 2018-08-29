@@ -56,8 +56,8 @@
 		E209DF2E1BEFA5A8007708FB /* CaffeinatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaffeinatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinatorUITests.swift; sourceTree = "<group>"; };
 		E209DF341BEFA5A8007708FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E217D8932069447C005FFCF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E252008E213742F30086010F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E26273E0211B3DCE005F9121 /* SignalTrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalTrapper.swift; sourceTree = "<group>"; };
 		E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentPanelViewController.swift; sourceTree = "<group>"; };
 		E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPanelViewController.swift; sourceTree = "<group>"; };
@@ -343,8 +343,8 @@
 		E217D8942069447C005FFCF3 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E217D8932069447C005FFCF3 /* en */,
 				E217D8952069447E005FFCF3 /* es */,
+				E252008E213742F30086010F /* Base */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
