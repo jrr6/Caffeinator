@@ -15,7 +15,7 @@ func txt(_ text: String) -> String {
 
 extension NSStoryboard {
     func instantiateAndShowWindow(withIDString idString: String) {
-        (self.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: idString)) as? NSWindowController)?.showWindow(self)
+        (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
     }
 }
 
@@ -48,11 +48,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item and windows, and check for updates
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem.image = NSImage(named: NSImage.Name(rawValue: "CoffeeCup"))
+        statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.button?.action = #selector(handleStatusItemClick(sender:))
         statusItem.button?.target = self
         statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
-        storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+        storyboard = NSStoryboard(name: "Main", bundle: nil)
         
         // Configure UserDefaults
         df = UserDefaults.standard
@@ -101,7 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Responds to a change to the CaffeinateDisplay default — while this is unnecessary for updates triggered by clicks in the application, menu items do need to be updated if the default is updated from the Terminal or on application launch
     @objc func defaultsDidChange() {
-        RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+        RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
             self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? .on : .off
             self.promptToggle.state = self.df.bool(forKey: "PromptBeforeExecuting") ? .on : .off
         }
@@ -122,7 +122,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Responsible for managing the inactive/active state of the app. If there is an active "Caffeination," disable the appropriate menu items and set the icon green. Otherwise, enable all menu items and set the icon to the template
     var active = false {
         didSet {
-            RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+            RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
                 self.startMenu.title = self.active ? txt("AD.stop-caffeinator") : txt("AD.start-caffeinator")
                 self.processMenu.isEnabled = !self.active
                 if !self.active {
@@ -130,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 self.timedMenu.isEnabled = !self.active
                 self.argumentMenu.isEnabled = !self.active
-                self.statusItem.image = self.active ? NSImage(named: NSImage.Name(rawValue: "CoffeeCupGreen")) : NSImage(named: NSImage.Name(rawValue: "CoffeeCup"))
+                self.statusItem.image = self.active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
             }
         }
     }
@@ -143,7 +143,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             val = true
         }
-        RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+        RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
             sender.state = val ? .on : .off
         }
         let key: String?
@@ -192,7 +192,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     if let appName = NSRunningApplication(processIdentifier: pid_t(text))?.localizedName {
                         labelName = appName
                     }
-                    RunLoop.main.perform(inModes: [.eventTrackingRunLoopMode, .defaultRunLoopMode]) {
+                    RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
                         self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)
                     }
                     self.generateCaffeinate(withArgs: ["-w", String(text)], isDev: false)

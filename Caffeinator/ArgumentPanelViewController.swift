@@ -48,7 +48,7 @@ class ArgumentPanelViewController: NSViewController {
     @IBAction func addValue(_ sender: NSButton) {
         let params = sender.tag == 0 ? (flag: "-t", label: tLabel) : (flag: "-w", label: wLabel)
         if let value = Notifier.showValueDialog(forParam: params.flag) {
-            params.label.stringValue = value
+            params.label?.stringValue = value
             args[params.flag] = value
         }
     }
