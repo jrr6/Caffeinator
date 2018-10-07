@@ -34,7 +34,7 @@
 "AD.execution-prompt-cancel-text" = "Cancelar";
 "AD.caffeinate-missing-dialog-title" = "Caffeinate no se encontró";
 "AD.caffeinate-missing-dialog-msg" = "Parece que caffeinate no está instalado en tu computadora. Asegura que los permisos del disco sean correctos; posiblemente necesites reinstalar macOS.";
-"AD.no-argument-label" = "Ningún valor";
+"AD.no-argument-label" = "No hay valor";
 
 "KM.kill-caffeinate-prompt-title" = "Procesos de caffeinate existentes se encontraron";
 "KM.kill-caffeinate-prompt-msg" = "Uno o más procesos de caffeinate ya están ejecutando en tu ordenador. Esto haya ocurrido porque Caffeinator no fue cerrado correctamente. Caffeinator sólo funciona cuando no hay otros procesos de caffeinate activos. ¿Deseas que Caffeinator termine estos otros procesos de caffeinate?";

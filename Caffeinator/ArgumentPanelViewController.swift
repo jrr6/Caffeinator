@@ -71,10 +71,4 @@ class ArgumentPanelViewController: NSViewController {
     @IBAction func cancelArguments(_ sender: NSButton) {
         self.view.window?.close()
     }
-    
-    /// Responds to the "info" button on the argument input window by opening Apple's caffeinate man page on their online developer library. In future releases, this may be replaced with a native solution.
-    @IBAction func viewManPage(_ sender: NSButton) {
-        NSWorkspace.shared.open(URL(string: "https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html")!)
-    }
-    
 }
