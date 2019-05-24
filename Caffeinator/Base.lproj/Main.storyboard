@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +16,6 @@
                         <outlet property="displayToggle" destination="U5R-xl-uIM" id="dJk-Oc-Yib"/>
                         <outlet property="mainMenu" destination="EuG-Hh-coT" id="5k8-B7-mDR"/>
                         <outlet property="processMenu" destination="CRN-Xb-B2F" id="9qn-GA-0qT"/>
-                        <outlet property="promptToggle" destination="B6W-Lh-DkX" id="tk9-HN-oMJ"/>
                         <outlet property="startMenu" destination="0l4-DP-stI" id="if0-tg-7q8"/>
                         <outlet property="timedMenu" destination="i8n-eh-9CY" id="EIK-AA-ilc"/>
                     </connections>
@@ -102,9 +101,6 @@
                             <menu key="submenu" title="Advanced" autoenablesItems="NO" id="fDx-Jk-qLE">
                                 <items>
                                     <menuItem title="Caffeinate Display" state="on" tag="1" id="U5R-xl-uIM">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="Prompt Before Executing" tag="2" id="B6W-Lh-DkX">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Run Caffeinate with Args…" id="LIm-6Y-l4b">
@@ -285,7 +281,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0HN-rP-C1d">
-                                            <rect key="frame" x="0.0" y="31" width="410" height="454"/>
+                                            <rect key="frame" x="0.0" y="31" width="410" height="441"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -331,7 +327,7 @@ Cg
                                                 <fragment>
                                                     <mutableString key="content">Prompt Before Executing: When this option is enabled, Caffeinator will display a confirmation prompt with the command that will be executed before running caffeinate. 
 
-Run Caffeinate with Arguments: Execute the caffeinate command with the specified arguments. This option allows for the input of arguments not available elsewhere in the Caffeinator app. Make sure you are familiar with the caffeinate command and what each of the arguments does to avoid unintended behavior. If you need help, use the "Info" button to view the caffeinate manpage.
+Run Caffeinate with Arguments: Execute the caffeinate command with the specified arguments. This option allows for the input of arguments not available elsewhere in the Caffeinator app. Make sure you are familiar with the caffeinate command and what each of the arguments does to avoid unintended behavior.
 
 At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinator button.</mutableString>
                                                     <attributes>
@@ -349,7 +345,7 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="yAV-kk-mqX">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.58064516129032262" horizontal="NO" id="yAV-kk-mqX">
                                     <rect key="frame" x="394" y="0.0" width="16" height="410"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -496,6 +492,9 @@ DQ
 </string>
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="confirmArguments:" target="KL5-Sq-fc6" id="atA-Kt-HpA"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-Ll-1t8">
                                 <rect key="frame" x="135" y="308" width="177" height="32"/>

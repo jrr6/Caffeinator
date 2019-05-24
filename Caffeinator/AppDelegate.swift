@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CaffeineKit
 
 /// Convenience method for getting NSLocalizedString values
 func txt(_ text: String) -> String {
@@ -16,6 +17,32 @@ func txt(_ text: String) -> String {
 extension NSStoryboard {
     func instantiateAndShowWindow(withIDString idString: String) {
         (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
+    }
+}
+
+extension Caffeination {
+    func handledStart() {
+        do {
+            try self.start()
+            (NSApplication.shared.delegate as! AppDelegate).updateIconForCafState(active: true)
+        } catch let err {
+            switch err {
+            case let err as CaffeinationError:
+                if err == CaffeinationError.caffeinateNotFound {
+                    Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-missing-dialog-title"), text: txt("AD.caffeinate-missing-dialog-msg"))
+                }
+                // ignore "already active" errors
+            default:
+                // TODO
+                Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-failure-title"), text: String(format: txt("AD.caffeinate-failure-msg"), err.localizedDescription))
+            }
+            self.opts = Caffeination.Opt.defaults
+        }
+    }
+    
+    func handledStart(withOpts opts: [Opt]) {
+        self.opts = opts
+        self.handledStart()
     }
 }
 
@@ -31,7 +58,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var timedMenu: NSMenuItem!
     
     @IBOutlet weak var displayToggle: NSMenuItem!
-    @IBOutlet weak var promptToggle: NSMenuItem!
     @IBOutlet weak var argumentMenu: NSMenuItem!
     
     var storyboard: NSStoryboard!
@@ -39,8 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var nc: NotificationCenter!
     var updater: Updater!
     var killMan: KillallManager!
-    var trapper: SignalTrapper!
-    var proc: Process?
+    var caffeination: Caffeination!
     
     // MARK: - Main Menu
     
@@ -68,17 +93,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         killMan.runCaffeinateCheck()
         
         // Set up signal trapping
-        trapper = SignalTrapper(withHandler: preQuitSafetyCheck)
+        caffeination = Caffeination()
+        caffeination.terminationHandler = caffeinationDidFinish
+    }
+    
+    /// Handles Caffeination termination—initiates status bar update and resets to default opts
+    func caffeinationDidFinish(caf: Caffeination) {
+        self.updateIconForCafState(active: false)
+        DispatchQueue.main.async {
+            self.killMan.runCaffeinateCheck()
+        }
+        caf.opts = Caffeination.Opt.defaults
     }
     
     /// Handles clicks on the NSStatusItem's button—shows the main menu if it's a left-click, or immediately starts Caffeinating if it's a right-click or option-click
     @objc func handleStatusItemClick(sender: NSStatusBarButton) {
         let event = NSApp.currentEvent!
         if event.type == NSEvent.EventType.rightMouseUp || event.modifierFlags.contains(.option) {
-            if active {
-                proc?.terminate()
+            if caffeination.isActive {
+                caffeination.stop()
             } else {
-                generateCaffeinate(withArgs: [], isDev: false)
+                caffeination.handledStart()
             }
         } else {
             statusItem.menu = mainMenu
@@ -93,9 +128,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if df.object(forKey: "CaffeinateDisplay") == nil {
             df.set(true, forKey: "CaffeinateDisplay")
         }
-        if df.object(forKey: "PromptBeforeExecuting") == nil {
-            df.set(false, forKey: "PromptBeforeExecuting")
-        }
         defaultsDidChange()
     }
     
@@ -103,35 +135,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func defaultsDidChange() {
         RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
             self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? .on : .off
-            self.promptToggle.state = self.df.bool(forKey: "PromptBeforeExecuting") ? .on : .off
-        }
-    }
-    
-    /// Ensures that the caffeinate process is quit prior to the application exiting
-    func preQuitSafetyCheck() {
-        if let activeProc = proc {
-            activeProc.terminate()
         }
     }
     
     // Terminate caffeinate upon application termination to prevent "zombie" processes (which should be terminated anyway, but just for safety) (note that this is necessary on top of the signal trapping because "Quit" messages are sent as Apple Events, not OS signals)
     func applicationWillTerminate(_ notification: Notification) {
-        preQuitSafetyCheck()
+        caffeination.stop()
     }
     
-    /// Responsible for managing the inactive/active state of the app. If there is an active "Caffeination," disable the appropriate menu items and set the icon green. Otherwise, enable all menu items and set the icon to the template
-    var active = false {
-        didSet {
-            RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
-                self.startMenu.title = self.active ? txt("AD.stop-caffeinator") : txt("AD.start-caffeinator")
-                self.processMenu.isEnabled = !self.active
-                if !self.active {
-                    self.processMenu.title = txt("AD.process-menu-item")
-                }
-                self.timedMenu.isEnabled = !self.active
-                self.argumentMenu.isEnabled = !self.active
-                self.statusItem.image = self.active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
+    // Updates the menu bar when the Caffeination stops/starts
+    func updateIconForCafState(active: Bool) {
+        RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
+            self.startMenu.title = active ? txt("AD.stop-caffeinator") : txt("AD.start-caffeinator")
+            self.processMenu.isEnabled = !active
+            if !active {
+                self.processMenu.title = txt("AD.process-menu-item")
             }
+            self.timedMenu.isEnabled = !active
+            self.argumentMenu.isEnabled = !active
+            self.statusItem.image = active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
         }
     }
 
@@ -150,8 +172,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         switch sender.tag {
         case 1:
             key = "CaffeinateDisplay"
-        case 2:
-            key = "PromptBeforeExecuting"
         default:
             key = nil
         }
@@ -171,10 +191,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func startClicked(_ sender: NSMenuItem) {
         // FIXME: Title-based comparisons—especially in a localized app—are inadvisable
         if sender.title == txt("AD.start-caffeinator") {
-            generateCaffeinate(withArgs: [], isDev: false)
+            caffeination.handledStart()
         } else {
-            proc?.terminate()
-            active = false
+            caffeination.stop()
         }
     }
     
@@ -183,19 +202,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         storyboard.instantiateAndShowWindow(withIDString: "argumentPanelController")
     }
     
-    /// Responds to the "Caffeinate process" item by prompting entry of a PID, which is passed alongside the corresponding "-w" argument to generateCaffeine()
+    /// Responds to the "Caffeinate process" item by prompting entry of a PID and starting the Caffeination with the `.process` Opt
     @IBAction func processClicked(_ sender: NSMenuItem) {
         DispatchQueue.main.async {
             if let res = Notifier.showInputDialog(withWindowTitle: txt("AD.process-dialog-window-title"), title: txt("AD.process-dialog-title"), text: txt("AD.process-dialog-msg")) {
-                if let text = Int(res) {
+                if let pidInt = Int32(res) {
                     var labelName = "PID \(res)"
-                    if let appName = NSRunningApplication(processIdentifier: pid_t(text))?.localizedName {
+                    if let appName = NSRunningApplication(processIdentifier: pidInt)?.localizedName {
                         labelName = appName
                     }
                     RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
                         self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)
                     }
-                    self.generateCaffeinate(withArgs: ["-w", String(text)], isDev: false)
+                    self.caffeination.opts.append(.process(pidInt))
+                    self.caffeination.handledStart()
                 } else {
                     Notifier.showErrorMessage(withTitle: txt("AD.illegal-process-title"), text: txt("AD.illegal-process-msg"))
                 }
@@ -203,7 +223,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    /// Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is selected, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is passed to generateCaffeine() along with the corresponding "-t" argument
+    /// Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is selected, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is used to start the Cafffeination with the `.timed` Opt
     @IBAction func timedClicked(_ sender: NSMenuItem) {
         DispatchQueue.main.async {
             let title = sender.title
@@ -240,7 +260,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 Notifier.showErrorMessage(withTitle: txt("AD.illegal-time-title"), text: txt("AD.illegal-time-msg"))
                 return
             }
-            self.generateCaffeinate(withArgs: ["-t", String(t)], isDev: false)
+            self.caffeination.opts.append(.timed(t))
+            self.caffeination.handledStart()
         }
     }
     
@@ -252,47 +273,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Responds to the "View License Information" menu item by opening the License HUD
     @IBAction func licensePressed(_ sender: NSMenuItem) {
         storyboard.instantiateAndShowWindow(withIDString: "licensePanelController")
-    }
-    
-    /// Generates a Process based on the arguments it is passed. If "dev" mode is not enabled (i.e., individual arguments have not been specified by the user), it will automatically add "-i" and, if the user has decided to Caffeinate their display, "-d"
-    func generateCaffeinate(withArgs args: [String], isDev: Bool) {
-        DispatchQueue.main.async {
-            self.killMan.runCaffeinateCheck() // Make sure no other caffeinate processes are active
-            var arguments = args
-            if !isDev {
-                arguments.append("-i")
-                if self.df.bool(forKey: "CaffeinateDisplay") {
-                    arguments.append("-d")
-                }
-            }
-            if self.df.bool(forKey: "PromptBeforeExecuting") {
-                let confirmed = Notifier.showConfirmationDialog(withTitle: txt("AD.execution-prompt-title"), text: String(format: txt("AD.execution-prompt-msg"), "caffeinate \(arguments.joined(separator: " "))"))
-                if !confirmed {
-                    // User canceled
-                    self.processMenu.title = txt("AD.process-menu-item") // resets the process menu title, which will have been naïvely changed by processClicked
-                    return
-                }
-            }
-            let caffeinatePath = "/usr/bin/caffeinate"
-            guard FileManager.default.fileExists(atPath: caffeinatePath) else {
-                Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-missing-dialog-title"), text: txt("AD.caffeinate-missing-dialog-msg"))
-                return
-            }
-            DispatchQueue.global(qos: .background).async { // TODO: Do we need [weak self]
-                () -> Void in
-                self.proc = Process(caffeinatePath, withArguments: arguments)
-                self.proc!.run(synchronously: false, terminationHandler: self.processDidTerminate)
-            }
-            self.active = true
-        }
-    }
-    
-    /// Clean-up method that makes sure that the inactive state of the app is restored once caffeinate finishes running
-    func processDidTerminate(_ terminatedProc: Process) {
-        active = false
-        DispatchQueue.main.async {
-            self.killMan.runCaffeinateCheck()
-        }
     }
     
     /// Responds to user request to check for updates by calling checkForUpdate()

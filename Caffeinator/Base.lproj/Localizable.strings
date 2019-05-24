@@ -28,10 +28,6 @@
 "AD.unknown-preset-msg" = "An error occurred when attempting to parse the selected preset. This is unexpected behavior and should be reported.";
 "AD.illegal-time-title" = "Illegal Time Value";
 "AD.illegal-time-msg" = "The time value must be a valid number greater than or equal to 1 second.";
-"AD.execution-prompt-title" = "Confirm Caffeination";
-"AD.execution-prompt-msg" = "The following command will be run:\n%@";
-"AD.execution-prompt-ok-text" = "OK";
-"AD.execution-prompt-cancel-text" = "Cancel";
 "AD.caffeinate-missing-dialog-title" = "Could Not Find Caffeinate";
 "AD.caffeinate-missing-dialog-msg" = "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.";
 "AD.no-argument-label" = "None";

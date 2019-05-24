@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CaffeineKit
 
 class ArgumentPanelViewController: NSViewController {
     @IBOutlet weak var tButton: NSButton!
@@ -55,15 +56,16 @@ class ArgumentPanelViewController: NSViewController {
     
     /// Converts the dictionary of arguments into an array of parameters, then passes that array to generateCaffeine() in dev mode.
     @IBAction func confirmArguments(_ sender: NSButton) {
-        var params: [String] = []
+        var params: [Caffeination.Opt] = []
         for (name, arg) in args {
-            params.append(name)
-            // This check is not strictly necessary, but makes things cleaner
+            // FIXME: While arguments are known to be safe, forced unwraps are still a bad idea
             if arg != "" {
-                params.append(arg)
+                params.append(Caffeination.Opt.from([name, arg])!)
+            } else {
+                params.append(Caffeination.Opt.from(name)!)
             }
         }
-        (NSApplication.shared.delegate as! AppDelegate).generateCaffeinate(withArgs: params, isDev: true)
+        (NSApplication.shared.delegate as! AppDelegate).caffeination.handledStart(withOpts: params)
         self.view.window?.close()
     }
     

@@ -2,7 +2,13 @@
 
 #### Caffeinator is a simple menu-bar app that provides a visual interface for the `caffeinate` command-line tool.
 
-Caffeinator does not use CocoaPods, Carthage, or any other dependency manager, and has no dependencies. View [Releases](https://www.github.com/aaplmath/Caffeinator/releases) to download a build of the latest (semi) stable release, or manually build the application in Xcode.
+## Download
+
+To download a prebuilt version of the latest stable release of Caffeinator, visit [Releases](https://www.github.com/aaplmath/Caffeinator/releases).
+
+## Building
+
+Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/CaffeineKit) framework using the [Carthage](https://github.com/Carthage/Carthage) dependency manager. To build Caffeinator from source, clone this repository and run `carthage bootstrap --platform macOS --cache-builds` in the cloned directory. After doing so, open, build, and run the project in Xcode.
 
 ## FAQ
 
@@ -18,9 +24,9 @@ Caffeinator does not use CocoaPods, Carthage, or any other dependency manager, a
 
   Firstly, there isn't really any practical use for doing this. Secondly, the `caffeinate` utility will not accept time values shorter than one second. (If you specify a time shorter than one second using the argument editor, you'll see that it runs indefinitely.)
 
-* **How do I disable auto-updates?**
+* **How do I disable automatic update checks?**
 
-  Caffeinator is actively developed and new updates that add new features, increase stability, and patch bugs are frequently released. It is, therefore, *not* recommended to disable the auto-update feature. Auto-update checks run silently in the background, and by default, selecting "Not Now" when presented with an update will suspend update prompts for three days. However, if it is absolutely necessary to disable auto-update functionality, this can be achieved by setting the `DisableAutoUpdate` user defaults key to `true`. In Terminal, execute `defaults write com.aaplmath.Caffeinator DisableAutoUpdate -bool YES`, then restart Caffeinator. When auto-updating is disabled, Caffeinator presents a warning indicating that this is the case whenever the app is launched. To re-enable automatic updates, set `DisableAutoUpdate` to `false`: execute `defaults write com.aaplmath.Caffeinator DisableAutoUpdate -bool NO` in Terminal, then restart Caffeinator.
+  Caffeinator is actively developed and new updates that add new features, increase stability, and patch bugs are frequently released. It is, therefore, *not* recommended to disable the automatic update check feature. Auto-update checks run silently in the background, and by default, selecting "Not Now" when presented with an update will suspend update prompts for three days. However, if it is absolutely necessary to disable auto-update functionality, this can be achieved by setting the `DisableAutoUpdate` user defaults key to `true`. In Terminal, execute `defaults write com.aaplmath.Caffeinator DisableAutoUpdate -bool YES`, then restart Caffeinator. When auto-updating is disabled, Caffeinator presents a warning indicating that this is the case whenever the app is launched. To re-enable automatic updates, set `DisableAutoUpdate` to `false`: execute `defaults write com.aaplmath.Caffeinator DisableAutoUpdate -bool NO` in Terminal, then restart Caffeinator.
 
 * **How do I change the frequency of automatic update checks?**
   
