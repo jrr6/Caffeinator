@@ -30,6 +30,8 @@
 "AD.illegal-time-msg" = "The time value must be a valid number greater than or equal to 1 second.";
 "AD.caffeinate-missing-dialog-title" = "Could Not Find Caffeinate";
 "AD.caffeinate-missing-dialog-msg" = "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.";
+"AD.caffeinate-failure-title" = "Caffeination Failed to Start";
+"AD.caffeinate-failure-msg" = "Caffeination failed to start. The following error occurred:\n%@";
 "AD.no-argument-label" = "None";
 
 "KM.kill-caffeinate-prompt-title" = "Existing caffeinate Process Found";

@@ -34,6 +34,8 @@
 "AD.execution-prompt-cancel-text" = "Cancelar";
 "AD.caffeinate-missing-dialog-title" = "Caffeinate no se encontró";
 "AD.caffeinate-missing-dialog-msg" = "Parece que caffeinate no está instalado en tu computadora. Asegura que los permisos del disco sean correctos; posiblemente necesites reinstalar macOS.";
+"AD.caffeinate-failure-title" = "Caffeination no se pudo iniciar";
+"AD.caffeinate-failure-msg" = "No se pudo iniciar la Caffeination. Ocurrió este error:\n%@";
 "AD.no-argument-label" = "No hay valor";
 
 "KM.kill-caffeinate-prompt-title" = "Procesos de caffeinate existentes se encontraron";

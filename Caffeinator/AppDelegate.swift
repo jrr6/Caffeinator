@@ -33,7 +33,6 @@ extension Caffeination {
                 }
                 // ignore "already active" errors
             default:
-                // TODO
                 Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-failure-title"), text: String(format: txt("AD.caffeinate-failure-msg"), err.localizedDescription))
             }
             self.opts = Caffeination.Opt.defaults
