@@ -75,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.button?.action = #selector(handleStatusItemClick(sender:))
         statusItem.button?.target = self
-        statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        statusItem.button?.sendAction(on: [.leftMouseDown, .rightMouseDown])
         storyboard = NSStoryboard(name: "Main", bundle: nil)
         
         // Configure UserDefaults
@@ -108,7 +108,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Handles clicks on the NSStatusItem's button—shows the main menu if it's a left-click, or immediately starts Caffeinating if it's a right-click or option-click
     @objc func handleStatusItemClick(sender: NSStatusBarButton) {
         let event = NSApp.currentEvent!
-        if event.type == NSEvent.EventType.rightMouseUp || event.modifierFlags.contains(.option) {
+        if event.type == NSEvent.EventType.rightMouseDown || event.modifierFlags.contains(.option) {
             if caffeination.isActive {
                 caffeination.stop()
             } else {

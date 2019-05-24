@@ -169,7 +169,7 @@
                     <window key="window" title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="JUK-Ll-5I5" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="475"/>
+                        <rect key="contentRect" x="400" y="170" width="480" height="530"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
                         <connections>
                             <outlet property="delegate" destination="S5z-uI-gF1" id="wWz-6I-TUR"/>
@@ -181,7 +181,7 @@
                 </windowController>
                 <customObject id="1ag-rZ-N9n" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-161" y="694"/>
+            <point key="canvasLocation" x="-248" y="694"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="m15-hW-p2n">
@@ -271,27 +271,27 @@
             <objects>
                 <viewController id="lvb-bE-OuV" customClass="HelpPanelViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="aBa-59-KVd">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="475"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="530"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuY-s2-21e">
-                                <rect key="frame" x="35" y="8" width="410" height="410"/>
+                                <rect key="frame" x="35" y="8" width="410" height="465"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="EsK-l9-o6g">
-                                    <rect key="frame" x="0.0" y="0.0" width="410" height="410"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="410" height="465"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0HN-rP-C1d">
-                                            <rect key="frame" x="0.0" y="31" width="410" height="441"/>
+                                            <rect key="frame" x="0.0" y="31" width="410" height="465"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="410" height="410"/>
+                                            <size key="minSize" width="410" height="465"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
                                                     <mutableString key="content">Caffeinator is the easiest way to prevent your Mac from falling asleep! This is a simple and easy-to-use front-end for the caffeinate command. Here is a breakdown of this application's features:
 
-Start Caffeinator: Prevents sleep until Stop Caffeinator is clicked.
+Start Caffeinator: Prevents sleep until Stop Caffeinator is clicked. To quickly start or stop Caffeinator, right-click or Option-click the menu bar icon.
 
 Caffeinate a Process: This will prevent your computer from going to sleep until a process has completed. For example, if you're waiting for a Unity build to finish, attach to the associated process and your computer will wait for the build to finish before sleeping.
 
@@ -345,13 +345,13 @@ At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinat
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.58064516129032262" horizontal="NO" id="yAV-kk-mqX">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="yAV-kk-mqX">
                                     <rect key="frame" x="394" y="0.0" width="16" height="410"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6s-FB-n7t">
-                                <rect key="frame" x="180" y="435" width="120" height="29"/>
+                                <rect key="frame" x="180" y="490" width="120" height="29"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Caffeinator" id="2dt-Jw-yWH">
                                     <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
