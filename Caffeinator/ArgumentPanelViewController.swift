@@ -24,23 +24,24 @@ class ArgumentPanelViewController: NSViewController {
     
     /// Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enables/disables the corresponding input button
     @IBAction func argumentChecked(_ sender: NSButton) {
-        let title = sender.title
+        let identifier = sender.identifier?.rawValue ?? ""
+        let argumentName = "-\(identifier)"
         let state = sender.state == .on
         if state {
-            args[title] = ""
+            args[argumentName] = ""
         } else {
-            if let loc = args.index(forKey: title) {
+            if let loc = args.index(forKey: argumentName) {
                 args.remove(at: loc)
             }
-            if title == "-t" {
+            if identifier == "t" {
                 tLabel.stringValue = txt("AD.no-argument-label")
-            } else if title == "-w" {
+            } else if identifier == "w" {
                 wLabel.stringValue = txt("AD.no-argument-label")
             }
         }
-        if title == "-t" {
+        if identifier == "t" {
             tButton.isEnabled = state
-        } else if title == "-w" {
+        } else if identifier == "w" {
             wButton.isEnabled = state
         }
     }

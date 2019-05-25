@@ -9,10 +9,10 @@
 "2dt-Jw-yWH.title" = "Caffeinator";
 
 /* Class = "NSButtonCell"; title = "Add -t value"; ObjectID = "5IJ-dy-M8j"; */
-"5IJ-dy-M8j.title" = "Añadir valor de -t";
+"5IJ-dy-M8j.title" = "Añadir duración";
 
-/* Class = "NSButtonCell"; title = "-s"; ObjectID = "6zP-sb-I1s"; */
-"6zP-sb-I1s.title" = "-s";
+/* Class = "NSButtonCell"; title = "System Sleep"; ObjectID = "6zP-sb-I1s"; */
+"6zP-sb-I1s.title" = "Reposo de sistema";
 
 /* Class = "NSMenuItem"; title = "1 hour"; ObjectID = "9H0-gy-gXX"; */
 "9H0-gy-gXX.title" = "1 hora";
@@ -26,8 +26,8 @@
 /* Class = "NSButtonCell"; title = "Caffeinate"; ObjectID = "IlU-wl-P0s"; */
 "IlU-wl-P0s.title" = "Caffeinate";
 
-/* Class = "NSButtonCell"; title = "-w"; ObjectID = "JLR-Vk-Ic0"; */
-"JLR-Vk-Ic0.title" = "-w";
+/* Class = "NSButtonCell"; title = "Process-Based"; ObjectID = "JLR-Vk-Ic0"; */
+"JLR-Vk-Ic0.title" = "Monitorizar un proceso";
 
 /* Class = "NSWindow"; title = "Caffeinator Help"; ObjectID = "JUK-Ll-5I5"; */
 "JUK-Ll-5I5.title" = "Ayuda de Caffeinator";
@@ -47,23 +47,23 @@
 /* Class = "NSMenuItem"; title = "1.5 hours"; ObjectID = "NPm-hT-CSl"; */
 "NPm-hT-CSl.title" = "1.5 horas";
 
-/* Class = "NSButtonCell"; title = "-i"; ObjectID = "NX3-bo-GeD"; */
-"NX3-bo-GeD.title" = "-i";
+/* Class = "NSButtonCell"; title = "Idle Sleep"; ObjectID = "NX3-bo-GeD"; */
+"NX3-bo-GeD.title" = "Reposo inactivo";
 
 /* Class = "NSTextFieldCell"; title = "Arguments"; ObjectID = "Nr6-ww-YTG"; */
 "Nr6-ww-YTG.title" = "Argumentos";
 
-/* Class = "NSButtonCell"; title = "-m"; ObjectID = "O5y-km-Pue"; */
-"O5y-km-Pue.title" = "-m";
+/* Class = "NSButtonCell"; title = "Disk Sleep"; ObjectID = "O5y-km-Pue"; */
+"O5y-km-Pue.title" = "Reposo de disco";
 
 /* Class = "NSMenuItem"; title = "10 minutes"; ObjectID = "QWz-Tw-OQr"; */
 "QWz-Tw-OQr.title" = "10 minutos";
 
-/* Class = "NSButtonCell"; title = "-d"; ObjectID = "RGq-2a-gwO"; */
-"RGq-2a-gwO.title" = "-d";
+/* Class = "NSButtonCell"; title = "Display Sleep"; ObjectID = "RGq-2a-gwO"; */
+"RGq-2a-gwO.title" = "Resposo de monitor";
 
 /* Class = "NSMenu"; title = "Timed Caffeination"; ObjectID = "RHH-ti-6ad"; */
-"RHH-ti-6ad.title" = "Caffeination temporizada";
+"RHH-ti-6ad.title" = "Caffeination cronometrada";
 
 /* Class = "NSMenuItem"; title = "30 minutes"; ObjectID = "RYP-jo-65d"; */
 "RYP-jo-65d.title" = "30 minutos";
@@ -92,17 +92,17 @@
 /* Class = "NSMenuItem"; title = "Quit"; ObjectID = "fCD-Oo-nl6"; */
 "fCD-Oo-nl6.title" = "Salir";
 
-/* Class = "NSButtonCell"; title = "-u"; ObjectID = "fCT-5T-sJu"; */
-"fCT-5T-sJu.title" = "-u";
+/* Class = "NSButtonCell"; title = "Assert User Activity"; ObjectID = "fCT-5T-sJu"; */
+"fCT-5T-sJu.title" = "Simular actividad de usuario";
 
 /* Class = "NSMenu"; title = "Advanced"; ObjectID = "fDx-Jk-qLE"; */
 "fDx-Jk-qLE.title" = "Opciones avanzadas";
 
 /* Class = "NSMenuItem"; title = "Timed Caffeination"; ObjectID = "i8n-eh-9CY"; */
-"i8n-eh-9CY.title" = "Caffeination temporizada";
+"i8n-eh-9CY.title" = "Caffeination cronometrada";
 
 /* Class = "NSButtonCell"; title = "Add -w value"; ObjectID = "iX9-Dk-j4h"; */
-"iX9-Dk-j4h.title" = "Añadir valor de -w";
+"iX9-Dk-j4h.title" = "Añadir PID de proceso…";
 
 /* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "jMA-uw-03P"; */
 "jMA-uw-03P.title" = "Buscar actualizaciones…";
@@ -113,8 +113,8 @@
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "kPa-Jj-YP7"; */
 "kPa-Jj-YP7.title" = "Menú principal";
 
-/* Class = "NSButtonCell"; title = "-t"; ObjectID = "nTh-D9-FeX"; */
-"nTh-D9-FeX.title" = "-t";
+/* Class = "NSButtonCell"; title = "Timed"; ObjectID = "nTh-D9-FeX"; */
+"nTh-D9-FeX.title" = "Cronometrar";
 
 /* Class = "NSWindow"; title = "Enter Arguments"; ObjectID = "ob7-XI-Hu1"; */
 "ob7-XI-Hu1.title" = "Introducir argumentos";
@@ -122,11 +122,14 @@
 /* Class = "NSTextFieldCell"; title = "Values"; ObjectID = "roh-hs-mWV"; */
 "roh-hs-mWV.title" = "Valores";
 
-/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "tdu-sG-GfI"; */
-"tdu-sG-GfI.title" = "Manual…";
+/* Class = "NSMenuItem"; title = "Other…"; ObjectID = "tdu-sG-GfI"; */
+"tdu-sG-GfI.title" = "Otro…";
 
 /* Class = "NSMenuItem"; title = "2 hours"; ObjectID = "wEa-BX-Avq"; */
 "wEa-BX-Avq.title" = "2 horas";
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "zKw-ep-8T4"; */
 "zKw-ep-8T4.title" = "Ayuda";
+
+/* Class = "NSMenuItem"; title = "Custom Caffeination…"; ObjectID = "N0S-aw-ADb"; */
+"N0S-aw-ADb.title" = "Caffeination modificada…";

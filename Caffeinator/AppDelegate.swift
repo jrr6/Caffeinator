@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var timedMenu: NSMenuItem!
     
     @IBOutlet weak var displayToggle: NSMenuItem!
-    @IBOutlet weak var argumentMenu: NSMenuItem!
+    @IBOutlet weak var customMenuItem: NSMenuItem!
     
     var storyboard: NSStoryboard!
     var df: UserDefaults!
@@ -151,7 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.processMenu.title = txt("AD.process-menu-item")
             }
             self.timedMenu.isEnabled = !active
-            self.argumentMenu.isEnabled = !active
+            self.customMenuItem.isEnabled = !active
             self.statusItem.image = active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
         }
     }
@@ -197,28 +197,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Responds to the "Run with args" item by opening the argument panel
-    @IBAction func argumentClicked(_ sender: NSMenuItem) {
+    @IBAction func customClicked(_ sender: NSMenuItem) {
         storyboard.instantiateAndShowWindow(withIDString: "argumentPanelController")
     }
     
     /// Responds to the "Caffeinate process" item by prompting entry of a PID and starting the Caffeination with the `.process` Opt
     @IBAction func processClicked(_ sender: NSMenuItem) {
         DispatchQueue.main.async {
-            if let res = Notifier.showInputDialog(withWindowTitle: txt("AD.process-dialog-window-title"), title: txt("AD.process-dialog-title"), text: txt("AD.process-dialog-msg")) {
-                if let pidInt = Int32(res) {
-                    var labelName = "PID \(res)"
-                    if let appName = NSRunningApplication(processIdentifier: pidInt)?.localizedName {
-                        labelName = appName
-                    }
-                    RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
-                        self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)
-                    }
-                    self.caffeination.opts.append(.process(pidInt))
-                    self.caffeination.handledStart()
-                } else {
-                    Notifier.showErrorMessage(withTitle: txt("AD.illegal-process-title"), text: txt("AD.illegal-process-msg"))
-                }
+            guard let res = Notifier.showInputDialog(withWindowTitle: txt("AD.process-dialog-window-title"), title: txt("AD.process-dialog-title"), text: txt("AD.process-dialog-msg")) else {
+                return
             }
+            guard let pidInt = Int32(res) else {
+                Notifier.showErrorMessage(withTitle: txt("AD.illegal-process-title"), text: txt("AD.illegal-process-msg"))
+                return
+            }
+            var labelName = "PID \(res)"
+            if let appName = NSRunningApplication(processIdentifier: pidInt)?.localizedName {
+                labelName = appName
+            }
+            RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
+                self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)
+            }
+            self.caffeination.opts.append(.process(pidInt))
+            self.caffeination.handledStart()
         }
     }
     
