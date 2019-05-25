@@ -24,8 +24,6 @@
 "AD.timed-dialog-msg" = "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:";
 "AD.non-number-time-title" = "Illegal Input";
 "AD.non-number-time-msg" = "You must enter an integer or decimal number.";
-"AD.unknown-preset-title" = "Unknown Preset Value";
-"AD.unknown-preset-msg" = "An error occurred when attempting to parse the selected preset. This is unexpected behavior and should be reported.";
 "AD.illegal-time-title" = "Illegal Time Value";
 "AD.illegal-time-msg" = "The time value must be a valid number greater than or equal to 1 second.";
 "AD.caffeinate-missing-dialog-title" = "Could Not Find Caffeinate";

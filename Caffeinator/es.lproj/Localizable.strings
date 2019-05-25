@@ -24,8 +24,6 @@
 "AD.timed-dialog-msg" = "Introduce la cantidad de tiempo por la cual deseas que Caffeinator mantenga despierta tu computadora, EN MINUTOS:";
 "AD.non-number-time-title" = "Entrada ilegal";
 "AD.non-number-time-msg" = "Hay que introducir un número entero o decimal.";
-"AD.unknown-preset-title" = "Valor programado desconocido";
-"AD.unknown-preset-msg" = "Un error ocurrió durante el análisis del valor programado. Este funcionamiento no debería ocurrir; por favor presenta un informe sobre este error.";
 "AD.illegal-time-title" = "Entrada ilegal";
 "AD.illegal-time-msg" = "La entrada de tiempo debe ser un número mayor o igual que 1 segundo.";
 "AD.execution-prompt-title" = "Confirmar Caffeination";

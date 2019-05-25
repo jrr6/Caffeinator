@@ -28,7 +28,7 @@
                 </application>
                 <menu autoenablesItems="NO" id="EuG-Hh-coT">
                     <items>
-                        <menuItem title="Start Caffeinator" id="0l4-DP-stI">
+                        <menuItem title="Start Caffeinator" identifier="start" id="0l4-DP-stI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="startClicked:" target="Y0S-22-67Z" id="TPY-SW-5Ww"/>
@@ -44,43 +44,43 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="Timed Caffeination" id="RHH-ti-6ad">
                                 <items>
-                                    <menuItem title="5 minutes" id="Yzt-ov-AMt">
+                                    <menuItem title="5 minutes" identifier="300" id="Yzt-ov-AMt">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="Zxg-uM-TA3"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="10 minutes" id="QWz-Tw-OQr">
+                                    <menuItem title="10 minutes" identifier="600" id="QWz-Tw-OQr">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="lEA-Rv-jjg"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="15 minutes" id="VM1-p0-DQg">
+                                    <menuItem title="15 minutes" identifier="900" id="VM1-p0-DQg">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="R0X-j8-3Sf"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="30 minutes" id="RYP-jo-65d">
+                                    <menuItem title="30 minutes" identifier="1800" id="RYP-jo-65d">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="Hgo-bf-ZsM"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="1 hour" id="9H0-gy-gXX">
+                                    <menuItem title="1 hour" identifier="3600" id="9H0-gy-gXX">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="W7V-Uy-0Cg"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="1.5 hours" id="NPm-hT-CSl">
+                                    <menuItem title="1.5 hours" identifier="5400" id="NPm-hT-CSl">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="rxf-HE-Vdj"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="2 hours" id="wEa-BX-Avq">
+                                    <menuItem title="2 hours" identifier="7200" id="wEa-BX-Avq">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="6Ov-20-nRh"/>

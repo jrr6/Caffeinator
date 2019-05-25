@@ -20,7 +20,6 @@ class Notifier {
     
     /// Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with showValueDialog()
     class func showInputDialog(withWindowTitle windowTitle: String, title: String, text: String) -> String? {
-        // FIXME: Instruments claims this causes a 32-byte (really?) memory leak. I'm not sure I believe it.
         let alert = NSAlert()
         alert.window.title = windowTitle
         alert.messageText = title

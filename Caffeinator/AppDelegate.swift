@@ -146,6 +146,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func updateIconForCafState(active: Bool) {
         RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
             self.startMenu.title = active ? txt("AD.stop-caffeinator") : txt("AD.start-caffeinator")
+            self.startMenu.identifier = NSUserInterfaceItemIdentifier(rawValue: active ?  "stop" : "start")
             self.processMenu.isEnabled = !active
             if !active {
                 self.processMenu.title = txt("AD.process-menu-item")
@@ -188,8 +189,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Start Caffeinate with no args, or stop it if it is active
     @IBAction func startClicked(_ sender: NSMenuItem) {
-        // FIXME: Title-based comparisons—especially in a localized app—are inadvisable
-        if sender.title == txt("AD.start-caffeinator") {
+        if sender.identifier?.rawValue == "start" {
             caffeination.handledStart()
         } else {
             caffeination.stop()
@@ -226,18 +226,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is selected, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is used to start the Cafffeination with the `.timed` Opt
     @IBAction func timedClicked(_ sender: NSMenuItem) {
         DispatchQueue.main.async {
-            let title = sender.title
             var time: Double? = nil
-            var multiplier: Double? = nil
-            var loc: Range<Substring.Index>? = nil
             
-            // FIXME: This already-invadvisable method of checking times becomes even more dangerous with localizations
-            if let range = title.range(of: txt("AD.minutes-with-space")) {
-                multiplier = 60
-                loc = range
-            } else if let range = title.range(of: txt("AD.hours-with-space")) {
-                multiplier = 3600
-                loc = range
+            if let secondsPreset = sender.identifier?.rawValue {
+                time = Double(secondsPreset)
             } else {
                 guard let res = Notifier.showInputDialog(withWindowTitle: txt("AD.timed-dialog-window-title"), title: txt("AD.timed-dialog-title"), text: txt("AD.timed-dialog-msg")) else {
                     // User canceled
@@ -248,13 +240,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     return
                 }
                 time = text * 60
-            }
-            if let multi = multiplier, let range = loc {
-                guard let preset = Double(title[..<range.lowerBound]) else {
-                    Notifier.showErrorMessage(withTitle: txt("AD.unknown-preset-title"), text: txt("AD.unknown-preset-msg"))
-                    return
-                }
-                time = preset * multi
             }
             guard let t = time, t > 1 else {
                 Notifier.showErrorMessage(withTitle: txt("AD.illegal-time-title"), text: txt("AD.illegal-time-msg"))
