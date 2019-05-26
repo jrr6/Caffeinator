@@ -86,7 +86,7 @@
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="6Ov-20-nRh"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Other…" id="tdu-sG-GfI">
+                                    <menuItem title="Other…" identifier="custom" id="tdu-sG-GfI">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="pcc-zu-m8s"/>
@@ -106,8 +106,11 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="Advanced" autoenablesItems="NO" id="fDx-Jk-qLE">
                                 <items>
-                                    <menuItem title="Caffeinate Display" state="on" tag="1" id="U5R-xl-uIM">
+                                    <menuItem title="Caffeinate Display" state="on" identifier="caffeinateDisplay" id="U5R-xl-uIM">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="changeDefault:" target="Y0S-22-67Z" id="cQY-O7-Vjw"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="View License Information…" id="YoE-Yi-PBR">
                                         <modifierMask key="keyEquivalentModifierMask"/>

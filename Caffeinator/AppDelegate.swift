@@ -35,7 +35,7 @@ extension Caffeination {
             default:
                 Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-failure-title"), text: String(format: txt("AD.caffeinate-failure-msg"), err.localizedDescription))
             }
-            self.opts = Caffeination.Opt.defaults
+            self.opts = UserDefaults.standard.bool(forKey: "CaffeinateDisplay") ? Caffeination.Opt.defaults : [Caffeination.Opt.idle]
         }
     }
     
@@ -169,8 +169,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             sender.state = val ? .on : .off
         }
         let key: String?
-        switch sender.tag {
-        case 1:
+        switch sender.identifier?.rawValue {
+        case "caffeinateDisplay":
             key = "CaffeinateDisplay"
         default:
             key = nil
@@ -228,7 +228,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DispatchQueue.main.async {
             var time: Double? = nil
             
-            if let secondsPreset = sender.identifier?.rawValue {
+            if let secondsPreset = sender.identifier?.rawValue, secondsPreset != "custom" {
                 time = Double(secondsPreset)
             } else {
                 guard let res = Notifier.showInputDialog(withWindowTitle: txt("AD.timed-dialog-window-title"), title: txt("AD.timed-dialog-title"), text: txt("AD.timed-dialog-msg")) else {
