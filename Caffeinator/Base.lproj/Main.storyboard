@@ -12,7 +12,7 @@
                 <customObject id="eY5-sp-s5t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="Y0S-22-67Z" customClass="AppDelegate" customModule="Caffeinator" customModuleProvider="target">
                     <connections>
-                        <outlet property="customMenuItem" destination="N0S-aw-ADb" id="kkF-os-uvj"/>
+                        <outlet property="customMenu" destination="N0S-aw-ADb" id="kkF-os-uvj"/>
                         <outlet property="displayToggle" destination="U5R-xl-uIM" id="dJk-Oc-Yib"/>
                         <outlet property="mainMenu" destination="EuG-Hh-coT" id="5k8-B7-mDR"/>
                         <outlet property="processMenu" destination="CRN-Xb-B2F" id="9qn-GA-0qT"/>

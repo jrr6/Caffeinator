@@ -6,8 +6,8 @@
 //  Copyright © 2017 aaplmath. All rights reserved.
 //
 
-import Cocoa
 import CaffeineKit
+import Cocoa
 
 /// Convenience method for getting NSLocalizedString values
 func txt(_ text: String) -> String {
@@ -66,9 +66,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var startMenu: NSMenuItem!
     @IBOutlet weak var processMenu: NSMenuItem!
     @IBOutlet weak var timedMenu: NSMenuItem!
+    @IBOutlet weak var customMenu: NSMenuItem!
     
     @IBOutlet weak var displayToggle: NSMenuItem!
-    @IBOutlet weak var customMenuItem: NSMenuItem!
     
     var storyboard: NSStoryboard!
     var df: UserDefaults!
@@ -163,7 +163,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.processMenu.title = txt("AD.process-menu-item")
             }
             self.timedMenu.isEnabled = !active
-            self.customMenuItem.isEnabled = !active
+            self.customMenu.isEnabled = !active
             self.statusItem.image = active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
         }
     }
