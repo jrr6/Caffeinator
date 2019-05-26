@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Down
 
 /// Responsible for update operations
 class Updater {
@@ -35,12 +36,15 @@ class Updater {
     func checkForUpdate(isUserInitiated: Bool) {
         let url = URL(string: "https://api.github.com/repos/aaplmath/Caffeinator/releases/latest")!
         let query = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
+            // Fetch data
             guard let data = data else {
                 if isUserInitiated {
                     Notifier.showErrorMessage(withTitle: txt("U.no-update-data-title"), text: txt("U.no-update-data-msg"))
                 }
                 return
             }
+            
+            // Parse JSON
             let jsonData: [String: AnyObject]
             do {
                 guard let rawData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
@@ -56,12 +60,16 @@ class Updater {
                 }
                 return
             }
-            guard var serverVersion = jsonData["tag_name"] as? String, let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+            
+            // Grab needed properties from JSON
+            guard var serverVersion = jsonData["tag_name"] as? String, let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let rawReleaseNotes = jsonData["body"] as? String, let releaseNotes = try? Down(markdownString: rawReleaseNotes).toAttributedString() else {
                 if isUserInitiated {
                     Notifier.showErrorMessage(withTitle: txt("U.version-parse-failure-title"), text: txt("U.version-parse-failure-msg"))
                 }
                 return
             }
+            
+            // Check if new version available
             serverVersion.remove(at: serverVersion.startIndex) // Remove the "v" from the tag name
             if bundleVersion.compare(serverVersion, options: .numeric) == .orderedAscending {
                 guard let assets = jsonData["assets"] as? [AnyObject], let downloadURL = assets[0]["browser_download_url"] as? String else {
@@ -70,7 +78,7 @@ class Updater {
                     }
                     return
                 }
-                self.showUpdatePrompt(forVersion: serverVersion, withURLString: downloadURL)
+                self.showUpdatePrompt(fromVersion: bundleVersion, toVersion: serverVersion, withURLString: downloadURL, releaseNotes: releaseNotes)
             } else if isUserInitiated {
                 DispatchQueue.main.async {
                     let alert = NSAlert()
@@ -83,31 +91,33 @@ class Updater {
                 }
             }
         })
+        
         query.resume()
     }
     
     /// Displays a dialog prompting the user to update. If the user decides to update, the default browser is launched to download the DMG and the app is terminated to avoid issues when the user attempts to overwrite it; if the update is declined, swap out the update timer for one with a longer time interval (we don't want to be hounding the user to update if they don't want to right now)
-    func showUpdatePrompt(forVersion version: String, withURLString urlString: String) {
+    func showUpdatePrompt(fromVersion currentVersion: String, toVersion newVersion: String, withURLString urlString: String, releaseNotes: NSAttributedString) {
         DispatchQueue.main.async {
-            let alert = NSAlert()
-            alert.window.title = txt("U.caffeinator-update-title")
-            alert.messageText = txt("U.update-available-title")
-            alert.informativeText = String(format: txt("U.update-available-msg"), version)
-            alert.addButton(withTitle: txt("U.update-available-update-button"))
-            alert.addButton(withTitle: txt("U.update-available-not-now-button"))
-            if alert.runModalInFront() == .alertFirstButtonReturn {
+            let windowCtrl = (NSApplication.shared.delegate as! AppDelegate).storyboard.instantiateController(withIdentifier: "updatePanelController") as? NSWindowController
+            let updateVC = windowCtrl?.contentViewController as! UpdatePanelViewController
+            updateVC.currentVersion = currentVersion
+            updateVC.newVersion = newVersion
+            updateVC.releaseNotes = releaseNotes
+            updateVC.onUpdateConfirmed = {
                 if let url = URL(string: urlString) {
                     NSWorkspace.shared.open(url)
                     NSApplication.shared.terminate(self)
                 } else {
                     Notifier.showErrorMessage(withTitle: txt("U.url-open-failure-title"), text: txt("U.url-open-failure-msg"))
                 }
-            } else {
+            }
+            updateVC.onUpdatePostponed = {
                 self.updateTimer.invalidate()
                 self.updateTimer = Timer.scheduledTimer(withTimeInterval: self.resumptionDelay, repeats: false) { _ in
                     self.checkForUpdate(isUserInitiated: false)
                 }
             }
+            windowCtrl?.showWindow(self)
         }
     }
 }

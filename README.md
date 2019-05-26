@@ -1,6 +1,6 @@
 # Caffeinator
 
-#### Caffeinator is a simple menu-bar app that provides a visual interface for the `caffeinate` command-line tool.
+**Caffeinator is a simple menu-bar app that provides a visual interface for the `caffeinate` command-line tool.**
 
 ## Download
 
@@ -8,7 +8,7 @@ To download a prebuilt version of the latest stable release of Caffeinator, visi
 
 ## Building
 
-Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/CaffeineKit) framework using the [Carthage](https://github.com/Carthage/Carthage) dependency manager. To build Caffeinator from source, clone this repository and run `carthage bootstrap --platform macOS --cache-builds` in the cloned directory. After doing so, open, build, and run the project in Xcode.
+Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/CaffeineKit) framework (which you should definitely check out!). Caffeinator uses [Carthage](https://github.com/Carthage/Carthage) to manage this and other dependencies. To build Caffeinator from source, clone this repository and run `carthage bootstrap --platform macOS --cache-builds` in the cloned directory. After doing so, open, build, and run the project in Xcode.
 
 ## FAQ
 
@@ -31,6 +31,10 @@ Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/Caffeine
 * **How do I change the frequency of automatic update checks?**
   
   This is a feature that might appear in a more fully-baked form in a later release. As it is, the daily update checks are unobtrusive and occur silently in the background. However, if you must change the frequency of update checks, you can do so with the `AutoUpdateInterval` user defaults value. To set a custom update frequency, execute `defaults write com.aaplmath.Caffeinator AutoUpdateInterval [frequency]`, where `[frequency]` is an integer or decimal value representing the desired frequency of update checks, in days (e.g., to set automatic update checks to occur once a week, run `defaults write com.aaplmath.Caffeinator AutoUpdateInterval 7`). To delete a custom value and return to the default daily update checks, execute `defaults delete com.aaplmath.Caffeinator AutoUpdateInterval` in Terminal. After executing either of these commands, you'll need to restart Caffeinator for your changes to take effect. Note that update checks occur only while the app is running and the check interval reinitiates every time the app is launched.
+  
+* **Why did you write your own updater?**
+
+Because Caffeinator isn't code-signed, automatic updates like those performed by most third-party frameworks would create headaches for users who would see errors every time a new version auto-launched. Caffeinator's more involved update process ensures that users authorize Caffeinator updates to run immediately, avoiding this confusion.
 
 * **Why is this README so short?**
 

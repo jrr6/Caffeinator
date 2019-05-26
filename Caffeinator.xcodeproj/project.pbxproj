@@ -13,10 +13,11 @@
 		E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E209DF191BEFA5A8007708FB /* Assets.xcassets */; };
 		E209DF281BEFA5A8007708FB /* CaffeinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF271BEFA5A8007708FB /* CaffeinatorTests.swift */; };
 		E209DF331BEFA5A8007708FB /* CaffeinatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */; };
-		E2145217216ADEF7005756E5 /* CaffeineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2145216216ADEF7005756E5 /* CaffeineKit.framework */; };
-		E2145218216ADEF7005756E5 /* CaffeineKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2145216216ADEF7005756E5 /* CaffeineKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E214521C216ADF2C005756E5 /* CaffeineKit.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E214521B216ADF2C005756E5 /* CaffeineKit.framework.dSYM */; };
 		E217D8922069447C005FFCF3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E217D8942069447C005FFCF3 /* Localizable.strings */; };
+		E23D4A71229B010500F0FBB8 /* UpdatePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */; };
+		E23D4A73229B0A8100F0FBB8 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E23D4A72229B0A8100F0FBB8 /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E23D4A76229B0AEE00F0FBB8 /* CaffeineKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2145216216ADEF7005756E5 /* CaffeineKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */; };
 		E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */; };
 		E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273EA211C8D7B005F9121 /* LicensesViewController.swift */; };
@@ -50,7 +51,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E2145218216ADEF7005756E5 /* CaffeineKit.framework in Embed Frameworks */,
+				E23D4A76229B0AEE00F0FBB8 /* CaffeineKit.framework in Embed Frameworks */,
+				E23D4A73229B0A8100F0FBB8 /* Down.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +88,8 @@
 		E2145216216ADEF7005756E5 /* CaffeineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CaffeineKit.framework; path = Carthage/Build/Mac/CaffeineKit.framework; sourceTree = "<group>"; };
 		E214521B216ADF2C005756E5 /* CaffeineKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CaffeineKit.framework.dSYM; path = Carthage/Build/Mac/CaffeineKit.framework.dSYM; sourceTree = "<group>"; };
 		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePanelViewController.swift; sourceTree = "<group>"; };
+		E23D4A72229B0A8100F0FBB8 /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/Mac/Down.framework; sourceTree = "<group>"; };
 		E252008E213742F30086010F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentPanelViewController.swift; sourceTree = "<group>"; };
 		E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPanelViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2145217216ADEF7005756E5 /* CaffeineKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +129,7 @@
 		E209DF0B1BEFA5A8007708FB = {
 			isa = PBXGroup;
 			children = (
+				E23D4A72229B0A8100F0FBB8 /* Down.framework */,
 				E214521B216ADF2C005756E5 /* CaffeineKit.framework.dSYM */,
 				E2145216216ADEF7005756E5 /* CaffeineKit.framework */,
 				E209DF161BEFA5A8007708FB /* Caffeinator */,
@@ -135,6 +139,7 @@
 				E2145215216ADE03005756E5 /* Cartfile */,
 				E20139BC1F77FDB2008B12E1 /* LICENSE.txt */,
 				E20139BB1F77FDB1008B12E1 /* README.md */,
+				E23D4A74229B0AE100F0FBB8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +158,7 @@
 			children = (
 				E209DF171BEFA5A8007708FB /* AppDelegate.swift */,
 				E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */,
+				E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */,
 				E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */,
 				E26273EA211C8D7B005F9121 /* LicensesViewController.swift */,
 				E26E133F211A4D9100DA4F90 /* KillallManager.swift */,
@@ -184,6 +190,13 @@
 				E209DF341BEFA5A8007708FB /* Info.plist */,
 			);
 			path = CaffeinatorUITests;
+			sourceTree = "<group>";
+		};
+		E23D4A74229B0AE100F0FBB8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +344,7 @@
 			files = (
 				E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */,
 				E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */,
+				E23D4A71229B010500F0FBB8 /* UpdatePanelViewController.swift in Sources */,
 				E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */,
 				E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */,
 				E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */,
