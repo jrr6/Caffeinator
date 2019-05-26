@@ -59,7 +59,7 @@ class ArgumentPanelViewController: NSViewController {
     @IBAction func confirmArguments(_ sender: NSButton) {
         var params: [Caffeination.Opt] = []
         for (name, arg) in args {
-            // FIXME: While arguments are known to be safe, forced unwraps are still a bad idea
+            // TODO: While arguments are known to be safe, forced unwraps are still a bad idea—remove them and be safe
             if arg != "" {
                 params.append(Caffeination.Opt.from([name, arg])!)
             } else {

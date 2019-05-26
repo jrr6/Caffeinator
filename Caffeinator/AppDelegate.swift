@@ -16,7 +16,10 @@ func txt(_ text: String) -> String {
 
 extension NSStoryboard {
     func instantiateAndShowWindow(withIDString idString: String) {
-        (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
+        // TODO: This is hacky and relies on the ID of the window matching the storyboard ID of its view controller. Investigate better ways to go about preventing duplicate windows. (Also, since update windows do their own thing, this doesn't prevent duplicate update windows, although that's less of an issue.)
+        if !NSApplication.shared.windows.contains { $0.identifier?.rawValue == idString } {
+            (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
+        }
     }
 }
 

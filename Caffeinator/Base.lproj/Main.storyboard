@@ -148,7 +148,7 @@
         <scene sceneID="Tns-eW-ccD">
             <objects>
                 <windowController storyboardIdentifier="argumentPanelController" showSeguePresentationStyle="single" id="1GM-eh-zfw" sceneMemberID="viewController">
-                    <window key="window" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1" customClass="NSPanel">
+                    <window key="window" identifier="argumentPanelController" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="440" y="280" width="400" height="400"/>
@@ -169,7 +169,7 @@
         <scene sceneID="YQM-gA-q6G">
             <objects>
                 <windowController storyboardIdentifier="helpPanelController" showSeguePresentationStyle="single" id="S5z-uI-gF1" sceneMemberID="viewController">
-                    <window key="window" title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="JUK-Ll-5I5" customClass="NSPanel">
+                    <window key="window" identifier="helpPanelController" title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="JUK-Ll-5I5" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="400" y="170" width="480" height="530"/>
@@ -190,7 +190,7 @@
         <scene sceneID="m15-hW-p2n">
             <objects>
                 <windowController storyboardIdentifier="licensePanelController" showSeguePresentationStyle="single" id="Zvy-Xp-7jm" sceneMemberID="viewController">
-                    <window key="window" title="Licenses" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="LlA-Oi-fVZ" customClass="NSPanel">
+                    <window key="window" identifier="licensePanelController" title="Licenses" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="LlA-Oi-fVZ" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="415" height="547"/>
@@ -210,8 +210,8 @@
         <!--Window Controller-->
         <scene sceneID="vRd-pf-9H3">
             <objects>
-                <windowController storyboardIdentifier="updatePanelController" id="cjN-uE-gxV" sceneMemberID="viewController">
-                    <window key="window" title="Caffeinator Update" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="52D-mb-C9t" customClass="NSPanel">
+                <windowController storyboardIdentifier="updatePanelController" showSeguePresentationStyle="single" id="cjN-uE-gxV" sceneMemberID="viewController">
+                    <window key="window" identifier="updatePanelController" title="Caffeinator Update" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="52D-mb-C9t" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="162" y="291" width="575" height="420"/>
