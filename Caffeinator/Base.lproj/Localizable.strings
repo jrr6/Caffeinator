@@ -66,9 +66,5 @@
 "U.no-update-title" = "No Updates Available";
 "U.no-update-msg" = "You're running the latest version of Caffeinator.";
 "U.no-update-ok-text" = "OK";
-"U.update-available-title" = "Update Available";
-"U.update-available-msg" = "A new version of Caffeinator (%@) is available. Would you like to download it now?\n\nIf you choose to update, the Caffeinator installer will be downloaded to your Downloads folder. Simply open the installer and drag Caffeinator to your Applications folder, then open your Applications folder, right-click on Caffeinator, and click \"Open.\"";
-"U.update-available-update-button" = "Update";
-"U.update-available-not-now-button" = "Not Now";
 "U.url-open-failure-title" = "Error Opening URL";
 "U.url-open-failure-msg" = "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.";

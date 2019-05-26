@@ -133,3 +133,24 @@
 
 /* Class = "NSMenuItem"; title = "Custom Caffeination…"; ObjectID = "N0S-aw-ADb"; */
 "N0S-aw-ADb.title" = "Caffeination modificada…";
+
+/* Class = "NSTextFieldCell"; title = "A new version of Caffeinator (%@) is available. You currently have version %@. Would you like to download the new update?"; ObjectID = "K7C-bJ-HoX"; */
+"K7C-bJ-HoX.title" = "Una nueva versión (%@) de Caffeinator está disponible. Actualmente tienes la versión %@. ¿Deseas actualizar Caffeinator ahora?\n\n";
+
+/* Class = "NSTextFieldCell"; title = "If you choose to update, the Caffeinator installer will be downloaded to your Downloads folder. Simply open the installer and drag Caffeinator to your Applications folder, then open your Applications folder, right-click on Caffeinator, and click \"Open.\""; ObjectID = "KwY-KW-kLr"; */
+"KwY-KW-kLr.title" = "Si descargas esta actualización, el instalador de Caffeinator se descargará a tu carpeta de descargas. Haz clic en el instalador y arrastra el icono de Caffeinator a la carpeta de aplicaciones, abre la carpeta de aplicaciones, haz clic derecho en Caffeinator y haz clic en \"Abrir\".";
+
+/* Class = "NSButtonCell"; title = "Update"; ObjectID = "mGz-VB-Mcp"; */
+"mGz-VB-Mcp.title" = "Actualizar";
+
+/* Class = "NSTextFieldCell"; title = "Caffeinator Update Available"; ObjectID = "4Kw-uf-6A1"; */
+"4Kw-uf-6A1.title" = "Actualización de Caffeinator disponible";
+
+/* Class = "NSWindow"; title = "Caffeinator Update"; ObjectID = "52D-mb-C9t"; */
+"52D-mb-C9t.title" = "Actualización de Caffeinator";
+
+/* Class = "NSButtonCell"; title = "Not Now"; ObjectID = "ZwY-H8-Ngb"; */
+"ZwY-H8-Ngb.title" = "Posponer";
+
+/* Class = "NSTextFieldCell"; title = "ReleaseNotes"; ObjectID = "3g9-7e-esA"; */
+"3g9-7e-esA.title" = "Notas de esta versión:";
