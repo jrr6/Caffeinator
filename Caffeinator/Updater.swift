@@ -52,7 +52,7 @@ class Updater {
                 jsonData = rawData
             } catch {
                 if isUserInitiated {
-                    Notifier.showErrorMessage(withTitle: txt("U.serializaiton-failure-title"), text: txt("U.serialization-failure-msg"))
+                    Notifier.showErrorMessage(withTitle: txt("U.serialization-failure-title"), text: txt("U.serialization-failure-msg"))
                 }
                 return
             }
