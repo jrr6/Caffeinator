@@ -35,13 +35,21 @@ extension Caffeination {
             default:
                 Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-failure-title"), text: String(format: txt("AD.caffeinate-failure-msg"), err.localizedDescription))
             }
-            self.opts = UserDefaults.standard.bool(forKey: "CaffeinateDisplay") ? Caffeination.Opt.defaults : [Caffeination.Opt.idle]
+            self.opts = Caffeination.Opt.userDefaults
         }
     }
     
     func handledStart(withOpts opts: [Opt]) {
         self.opts = opts
         self.handledStart()
+    }
+}
+
+extension Caffeination.Opt {
+    static var userDefaults: [Caffeination.Opt] {
+        get {
+            return UserDefaults.standard.bool(forKey: "CaffeinateDisplay") ? Caffeination.Opt.defaults : [Caffeination.Opt.idle]
+        }
     }
 }
 
@@ -102,7 +110,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DispatchQueue.main.async {
             self.killMan.runCaffeinateCheck()
         }
-        caf.opts = Caffeination.Opt.defaults
+        caf.opts = Caffeination.Opt.userDefaults
     }
     
     /// Handles clicks on the NSStatusItem's button—shows the main menu if it's a left-click, or immediately starts Caffeinating if it's a right-click or option-click

@@ -55,7 +55,7 @@
 "PA.unknown-process-path" = "desconocido";
 
 "U.auto-update-disabled-title" = "La actualización automática está apagada";
-"U.auto-update-disabled-msg" = "La actualización automática de Caffeinator se ha apagado. Hay que instalar actualizaciones manualmente. Para volver a habilitar las actualizaciones automáticas, copia y pega el siguiente comando en Terminal, pulse Enter y reinicie Caffeinator:\n%@";
+"U.auto-update-disabled-msg" = "La actualización automática de Caffeinator ha sido apagada. Hay que instalar actualizaciones manualmente. Para volver a habilitar las actualizaciones automáticas, copia y pega el siguiente comando en Terminal, pulsa Enter y reinicia Caffeinator:\n%@";
 "U.no-update-data-title" = "Datos de actualización no fueron recibidos";
 "U.no-update-data-msg" = "El API de GitHub no devolvió ningunos datos. Por favor presenta un informe sobre este error.";
 "U.improper-json-title" = "JSON erróneo";
