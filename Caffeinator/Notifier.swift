@@ -10,7 +10,7 @@ import Cocoa
 
 extension NSAlert {
     open func runModalInFront() -> NSApplication.ModalResponse {
-        NSApplication.shared.activate(ignoringOtherApps: true)
+        NSApp.activate(ignoringOtherApps: true)
         return self.runModal()
     }
 }

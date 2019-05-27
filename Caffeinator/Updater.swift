@@ -98,7 +98,7 @@ class Updater {
     /// Displays a dialog prompting the user to update. If the user decides to update, the default browser is launched to download the DMG and the app is terminated to avoid issues when the user attempts to overwrite it; if the update is declined, swap out the update timer for one with a longer time interval (we don't want to be hounding the user to update if they don't want to right now)
     func showUpdatePrompt(fromVersion currentVersion: String, toVersion newVersion: String, withURLString urlString: String, releaseNotes: NSAttributedString) {
         DispatchQueue.main.async {
-            let windowCtrl = (NSApplication.shared.delegate as! AppDelegate).storyboard.instantiateController(withIdentifier: "updatePanelController") as? NSWindowController
+            let windowCtrl = (NSApp.delegate as! AppDelegate).storyboard.instantiateController(withIdentifier: "updatePanelController") as? NSWindowController
             let updateVC = windowCtrl?.contentViewController as! UpdatePanelViewController
             updateVC.currentVersion = currentVersion
             updateVC.newVersion = newVersion
@@ -106,7 +106,7 @@ class Updater {
             updateVC.onUpdateConfirmed = {
                 if let url = URL(string: urlString) {
                     NSWorkspace.shared.open(url)
-                    NSApplication.shared.terminate(self)
+                    NSApp.terminate(self)
                 } else {
                     Notifier.showErrorMessage(withTitle: txt("U.url-open-failure-title"), text: txt("U.url-open-failure-msg"))
                 }
@@ -118,6 +118,7 @@ class Updater {
                 }
             }
             windowCtrl?.showWindow(self)
+            NSApp.activate(ignoringOtherApps: true)
         }
     }
 }

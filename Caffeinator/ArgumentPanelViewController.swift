@@ -66,7 +66,7 @@ class ArgumentPanelViewController: NSViewController {
                 params.append(Caffeination.Opt.from(name)!)
             }
         }
-        (NSApplication.shared.delegate as! AppDelegate).caffeination.handledStart(withOpts: params)
+        (NSApp.delegate as! AppDelegate).caffeination.handledStart(withOpts: params)
         self.view.window?.close()
     }
     

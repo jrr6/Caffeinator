@@ -17,7 +17,7 @@ func txt(_ text: String) -> String {
 extension NSStoryboard {
     func instantiateAndShowWindow(withIDString idString: String) {
         // TODO: This is hacky and relies on the ID of the window matching the storyboard ID of its view controller. Investigate better ways to go about preventing duplicate windows. (Also, since update windows do their own thing, this doesn't prevent duplicate update windows, although that's less of an issue.)
-        if !NSApplication.shared.windows.contains { $0.identifier?.rawValue == idString } {
+        if !NSApp.windows.contains { $0.identifier?.rawValue == idString } {
             (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
         }
     }
@@ -27,7 +27,7 @@ extension Caffeination {
     func handledStart() {
         do {
             try self.start()
-            (NSApplication.shared.delegate as! AppDelegate).updateIconForCafState(active: true)
+            (NSApp.delegate as! AppDelegate).updateIconForCafState(active: true)
         } catch let err {
             switch err {
             case let err as CaffeinationError:
@@ -195,7 +195,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Responds to the Quit menu item
     @IBAction func quitClicked(_ sender: NSMenuItem) {
-        NSApplication.shared.terminate(self)
+        NSApp.terminate(self)
     }
     
     /// Start Caffeinate with no args, or stop it if it is active
