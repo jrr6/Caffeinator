@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -169,7 +170,7 @@
         <scene sceneID="YQM-gA-q6G">
             <objects>
                 <windowController storyboardIdentifier="helpPanelController" showSeguePresentationStyle="single" id="S5z-uI-gF1" sceneMemberID="viewController">
-                    <window key="window" identifier="helpPanelController" title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="JUK-Ll-5I5" customClass="NSPanel">
+                    <window key="window" identifier="helpPanelController" title="Caffeinator Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="JUK-Ll-5I5" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="400" y="170" width="480" height="530"/>
@@ -442,107 +443,23 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="480" height="530"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuY-s2-21e">
-                                <rect key="frame" x="35" y="8" width="410" height="465"/>
-                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="EsK-l9-o6g">
-                                    <rect key="frame" x="0.0" y="0.0" width="410" height="465"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0HN-rP-C1d">
-                                            <rect key="frame" x="0.0" y="31" width="410" height="465"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="410" height="465"/>
-                                            <size key="maxSize" width="463" height="10000000"/>
-                                            <attributedString key="textStorage">
-                                                <fragment>
-                                                    <mutableString key="content">Caffeinator is the easiest way to prevent your Mac from falling asleep! This is a simple and easy-to-use front-end for the caffeinate command. Here is a breakdown of this application's features:
-
-Start Caffeinator: Prevents sleep until Stop Caffeinator is clicked. To quickly start or stop Caffeinator, right-click or Option-click the menu bar icon.
-
-Caffeinate a Process: This will prevent your computer from going to sleep until a process has completed. For example, if you're waiting for a Unity build to finish, attach to the associated process and your computer will wait for the build to finish before sleeping.
-
-Timed Caffeination: Keeps your computer from sleeping for a defined amount of time greater than one second.
-
-Caffeinate Display: Enable if you want Caffeinator to prevent display sleep as well as computer sleep. If you do not enable this feature, your computer's screen will go to sleep after the interval specified in the System Preferences Energy Saver settings, but background processes will still continue to run. Note that if this preference is modified during an active Caffeination, you will need to start a new Caffeination for changes to take effect.</mutableString>
-                                                    <attributes>
-                                                        <color key="NSColor" white="1" alpha="1" colorSpace="deviceWhite"/>
-                                                        <font key="NSFont" metaFont="smallSystem"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment>
-                                                    <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                                    <attributes>
-                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment>
-                                                    <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                                    <attributes>
-                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment>
-                                                    <mutableString key="content">Prompt Before Executing: When this option is enabled, Caffeinator will display a confirmation prompt with the command that will be executed before running caffeinate. 
-
-Run Caffeinate with Arguments: Execute the caffeinate command with the specified arguments. This option allows for the input of arguments not available elsewhere in the Caffeinator app. Make sure you are familiar with the caffeinate command and what each of the arguments does to avoid unintended behavior.
-
-At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinator button.</mutableString>
-                                                    <attributes>
-                                                        <color key="NSColor" white="1" alpha="1" colorSpace="deviceWhite"/>
-                                                        <font key="NSFont" metaFont="smallSystem"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        </textView>
-                                    </subviews>
-                                </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="tLu-4d-tIC">
-                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="yAV-kk-mqX">
-                                    <rect key="frame" x="394" y="0.0" width="16" height="410"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6s-FB-n7t">
-                                <rect key="frame" x="180" y="490" width="120" height="29"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Caffeinator" id="2dt-Jw-yWH">
-                                    <font key="font" metaFont="system" size="24"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="deviceWhite"/>
-                                    <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <wkWebView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GwT-em-TEt">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="530"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="UuY-s2-21e" secondAttribute="bottom" constant="8" id="9ec-c6-shR"/>
-                            <constraint firstItem="UuY-s2-21e" firstAttribute="leading" secondItem="aBa-59-KVd" secondAttribute="leading" constant="35" id="DgB-m1-R55"/>
-                            <constraint firstItem="UuY-s2-21e" firstAttribute="top" secondItem="u6s-FB-n7t" secondAttribute="bottom" constant="17" id="qhn-eQ-Dzl"/>
-                            <constraint firstItem="u6s-FB-n7t" firstAttribute="top" secondItem="aBa-59-KVd" secondAttribute="top" constant="11" id="wGN-5m-rjF"/>
-                            <constraint firstItem="u6s-FB-n7t" firstAttribute="centerX" secondItem="aBa-59-KVd" secondAttribute="centerX" id="wd9-Xp-68L"/>
-                            <constraint firstItem="u6s-FB-n7t" firstAttribute="centerX" secondItem="UuY-s2-21e" secondAttribute="centerX" id="xbV-Nd-eWg"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="helpTitle" destination="u6s-FB-n7t" id="lZJ-9C-TsF"/>
+                        <outlet property="webView" destination="GwT-em-TEt" id="G8O-EH-mRZ"/>
                     </connections>
                 </viewController>
                 <customObject id="Hfl-SO-9VL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="506" y="686.5"/>
+            <point key="canvasLocation" x="506" y="686"/>
         </scene>
         <!--Argument Panel View Controller-->
         <scene sceneID="UEd-1O-Dg1">

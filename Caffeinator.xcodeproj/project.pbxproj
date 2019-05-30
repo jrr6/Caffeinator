@@ -13,7 +13,6 @@
 		E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E209DF191BEFA5A8007708FB /* Assets.xcassets */; };
 		E209DF281BEFA5A8007708FB /* CaffeinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF271BEFA5A8007708FB /* CaffeinatorTests.swift */; };
 		E209DF331BEFA5A8007708FB /* CaffeinatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */; };
-		E214521C216ADF2C005756E5 /* CaffeineKit.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E214521B216ADF2C005756E5 /* CaffeineKit.framework.dSYM */; };
 		E217D8922069447C005FFCF3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E217D8942069447C005FFCF3 /* Localizable.strings */; };
 		E23D4A71229B010500F0FBB8 /* UpdatePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */; };
 		E23D4A73229B0A8100F0FBB8 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E23D4A72229B0A8100F0FBB8 /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -23,6 +22,8 @@
 		E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273EA211C8D7B005F9121 /* LicensesViewController.swift */; };
 		E26273EC211C8DFD005F9121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26273EE211C8DFD005F9121 /* Main.storyboard */; };
 		E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26E133F211A4D9100DA4F90 /* KillallManager.swift */; };
+		E278A2F622A06B1A00EEFFCB /* help_dark.html in Resources */ = {isa = PBXBuildFile; fileRef = E278A2F422A06B1700EEFFCB /* help_dark.html */; };
+		E278A2F722A06B1C00EEFFCB /* help_light.html in Resources */ = {isa = PBXBuildFile; fileRef = E278A2F322A06B1700EEFFCB /* help_light.html */; };
 		E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
 /* End PBXBuildFile section */
@@ -63,7 +64,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				E214521C216ADF2C005756E5 /* CaffeineKit.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,6 @@
 		E209DF341BEFA5A8007708FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2145215216ADE03005756E5 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		E2145216216ADEF7005756E5 /* CaffeineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CaffeineKit.framework; path = Carthage/Build/Mac/CaffeineKit.framework; sourceTree = "<group>"; };
-		E214521B216ADF2C005756E5 /* CaffeineKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CaffeineKit.framework.dSYM; path = Carthage/Build/Mac/CaffeineKit.framework.dSYM; sourceTree = "<group>"; };
 		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePanelViewController.swift; sourceTree = "<group>"; };
 		E23D4A72229B0A8100F0FBB8 /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/Mac/Down.framework; sourceTree = "<group>"; };
@@ -97,6 +96,9 @@
 		E26273ED211C8DFD005F9121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E26273F0211C8E02005F9121 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		E26E133F211A4D9100DA4F90 /* KillallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillallManager.swift; sourceTree = "<group>"; };
+		E278A2F322A06B1700EEFFCB /* help_light.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help_light.html; sourceTree = "<group>"; };
+		E278A2F422A06B1700EEFFCB /* help_dark.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help_dark.html; sourceTree = "<group>"; };
+		E278A2F522A06B1700EEFFCB /* Caffeinator Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Caffeinator Help.md"; sourceTree = "<group>"; };
 		E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessAdditions.swift; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,12 +132,14 @@
 			isa = PBXGroup;
 			children = (
 				E23D4A72229B0A8100F0FBB8 /* Down.framework */,
-				E214521B216ADF2C005756E5 /* CaffeineKit.framework.dSYM */,
 				E2145216216ADEF7005756E5 /* CaffeineKit.framework */,
 				E209DF161BEFA5A8007708FB /* Caffeinator */,
 				E209DF261BEFA5A8007708FB /* CaffeinatorTests */,
 				E209DF311BEFA5A8007708FB /* CaffeinatorUITests */,
 				E209DF151BEFA5A8007708FB /* Products */,
+				E278A2F522A06B1700EEFFCB /* Caffeinator Help.md */,
+				E278A2F422A06B1700EEFFCB /* help_dark.html */,
+				E278A2F322A06B1700EEFFCB /* help_light.html */,
 				E2145215216ADE03005756E5 /* Cartfile */,
 				E20139BC1F77FDB2008B12E1 /* LICENSE.txt */,
 				E20139BB1F77FDB1008B12E1 /* README.md */,
@@ -314,7 +318,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E278A2F622A06B1A00EEFFCB /* help_dark.html in Resources */,
 				E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */,
+				E278A2F722A06B1C00EEFFCB /* help_light.html in Resources */,
 				E26273EC211C8DFD005F9121 /* Main.storyboard in Resources */,
 				E217D8922069447C005FFCF3 /* Localizable.strings in Resources */,
 				E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */,

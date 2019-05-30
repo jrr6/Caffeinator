@@ -7,14 +7,39 @@
 //
 
 import Cocoa
+import WebKit
 
 class HelpPanelViewController: NSViewController {
 
-    @IBOutlet weak var helpTitle: NSTextField!
+    @IBOutlet var webView: WKWebView!
+    
+    var isDarkMode: Bool {
+        get {
+            if #available(OSX 10.14, *) {
+                return view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+            }
+            return false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        helpTitle.stringValue = "Caffeinator \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
+        
+        let helpFile: String
+        if isDarkMode {
+            helpFile = "help_dark"
+        } else {
+            helpFile = "help_light"
+        }
+        if let resource = Bundle.main.url(forResource: helpFile, withExtension: "html") {
+            webView.load(URLRequest(url: resource))
+        } else {
+            webView.loadHTMLString("<p>Could not find help file.</p>", baseURL: URL(string: "data://"))
+        }
     }
     
+    override func viewWillAppear() {
+        let versionStr = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        view.window?.title = "Caffeinator \(versionStr) Help"
+    }
 }

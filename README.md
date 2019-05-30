@@ -6,7 +6,7 @@
 
 To download a prebuilt version of the latest stable release of Caffeinator, visit [Releases](https://www.github.com/aaplmath/Caffeinator/releases).
 
-## Building
+## Build
 
 Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/CaffeineKit) framework (which you should definitely check out!). Caffeinator uses [Carthage](https://github.com/Carthage/Carthage) to manage this and other dependencies. To build Caffeinator from source, clone this repository and run `carthage bootstrap --platform macOS --cache-builds` in the cloned directory. After doing so, open, build, and run the project in Xcode.
 
@@ -34,7 +34,7 @@ Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/Caffeine
   
 * **Why did you write your own updater?**
 
-Because Caffeinator isn't code-signed, automatic updates like those performed by most third-party frameworks would create headaches for users who would see errors every time a new version auto-launched. Caffeinator's more involved update process ensures that users authorize Caffeinator updates to run immediately, avoiding this confusion.
+    Because Caffeinator isn't code-signed, automatic updates like those performed by most third-party frameworks would create headaches for users who would see errors every time a new version auto-launched. Caffeinator's more involved update process ensures that users authorize Caffeinator updates to run immediately, avoiding this confusion.
 
 * **Why is this README so short?**
 
