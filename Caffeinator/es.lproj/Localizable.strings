@@ -35,6 +35,8 @@
 "AD.caffeinate-failure-title" = "Caffeination no se pudo iniciar";
 "AD.caffeinate-failure-msg" = "No se pudo iniciar la Caffeination. Ocurrió este error:\n%@";
 "AD.no-argument-label" = "No hay valor";
+"AD.bad-opt-config-title" = "Configuración de opciones ilegal";
+"AD.bad-opt-config-msg" = "Una Caffeination con las opciones especificadas no se pudo iniciar. Asegúrate de introducir un valor para cada opción escogida que lo requiere.";
 
 "KM.kill-caffeinate-prompt-title" = "Procesos de caffeinate existentes se encontraron";
 "KM.kill-caffeinate-prompt-msg" = "Uno o más procesos de caffeinate ya están ejecutando en tu ordenador. Esto haya ocurrido porque Caffeinator no fue cerrado correctamente. Caffeinator sólo funciona cuando no hay otros procesos de caffeinate activos. ¿Deseas que Caffeinator termine estos otros procesos de caffeinate?";
@@ -47,7 +49,7 @@
 "N.cancel-text" = "Cancelar";
 "N.value-dialog-window-title" = "Entrada de valor";
 "N.value-dialog-title" = "Introduce un valor";
-"N.value-dialog-msg" = "Introduce un valor para la opción %@ abajo:";
+"N.value-dialog-msg" = "Introduce un valor para la opción \"%@\" abajo:";
 "N.error-message-title" = "Error";
 
 "PA.execution-error-title" = "Error durante ejecución de proceso";

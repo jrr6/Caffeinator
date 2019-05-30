@@ -715,8 +715,10 @@ Gw
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="processCheckbox" destination="J0n-ru-VqN" id="2qv-Pz-H9X"/>
                         <outlet property="tButton" destination="NbQ-Ll-1t8" id="aul-IZ-j1G"/>
                         <outlet property="tLabel" destination="FAU-6a-AvT" id="7XK-cB-gDN"/>
+                        <outlet property="timedCheckbox" destination="LWN-CP-ggw" id="eQ2-K8-IF2"/>
                         <outlet property="wButton" destination="HzQ-is-KFA" id="fGB-IC-Ili"/>
                         <outlet property="wLabel" destination="TYn-ZE-akD" id="7tt-XC-7Ce"/>
                     </connections>

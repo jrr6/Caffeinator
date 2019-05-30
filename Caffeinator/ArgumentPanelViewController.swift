@@ -14,6 +14,8 @@ class ArgumentPanelViewController: NSViewController {
     @IBOutlet weak var tLabel: NSTextField!
     @IBOutlet weak var wButton: NSButton!
     @IBOutlet weak var wLabel: NSTextField!
+    @IBOutlet weak var timedCheckbox: NSButton!
+    @IBOutlet weak var processCheckbox: NSButton!
     
     var args: [String: String] = [:]
     
@@ -48,8 +50,8 @@ class ArgumentPanelViewController: NSViewController {
     
     /// Shows the value input dialog and uses its return value for the corresponding argument, as determined by the sender's tag. These values are then assigned to the corresponding dictionary item
     @IBAction func addValue(_ sender: NSButton) {
-        let params = sender.tag == 0 ? (flag: "-t", label: tLabel) : (flag: "-w", label: wLabel)
-        if let value = Notifier.showValueDialog(forParam: params.flag) {
+        let params = sender.tag == 0 ? (flag: "-t", label: tLabel, name: timedCheckbox.title) : (flag: "-w", label: wLabel, name: processCheckbox.title)
+        if let value = Notifier.showValueDialog(forParam: params.name) {
             params.label?.stringValue = value
             args[params.flag] = value
         }
@@ -59,12 +61,18 @@ class ArgumentPanelViewController: NSViewController {
     @IBAction func confirmArguments(_ sender: NSButton) {
         var params: [Caffeination.Opt] = []
         for (name, arg) in args {
-            // TODO: While arguments are known to be safe, forced unwraps are still a bad idea—remove them and be safe
+            let opt: Caffeination.Opt?
             if arg != "" {
-                params.append(Caffeination.Opt.from([name, arg])!)
+                opt = Caffeination.Opt.from([name, arg])
             } else {
-                params.append(Caffeination.Opt.from(name)!)
+                opt = Caffeination.Opt.from(name)
             }
+            guard let optUnwrapped = opt else {
+                Notifier.showErrorMessage(withTitle: txt("AD.bad-opt-config-title"), text: txt("AD.bad-opt-config-msg"))
+                self.view.window?.close()
+                return
+            }
+            params.append(optUnwrapped)
         }
         (NSApp.delegate as! AppDelegate).caffeination.handledStart(withOpts: params)
         self.view.window?.close()

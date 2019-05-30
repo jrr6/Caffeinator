@@ -31,6 +31,8 @@
 "AD.caffeinate-failure-title" = "Caffeination Failed to Start";
 "AD.caffeinate-failure-msg" = "Caffeination failed to start. The following error occurred:\n%@";
 "AD.no-argument-label" = "None";
+"AD.bad-opt-config-title" = "Illegal Option Configuration";
+"AD.bad-opt-config-msg" = "A Caffeination with the specified options could not be started. Ensure that a value has been provided for each selected option that requires one.";
 
 "KM.kill-caffeinate-prompt-title" = "Existing caffeinate Process Found";
 "KM.kill-caffeinate-prompt-msg" = "One or more caffeinate processes are already running on your computer. This may be because Caffeinator did not quit correctly the last time it was opened. Caffeinator only works when no other caffeinate processes are active. Would you like Caffeinator to end these caffeinate processes for you?";
@@ -43,7 +45,7 @@
 "N.cancel-text" = "Cancel";
 "N.value-dialog-window-title" = "Value Input";
 "N.value-dialog-title" = "Please Enter a Value";
-"N.value-dialog-msg" = "Please enter the value for the %@ parameter below:";
+"N.value-dialog-msg" = "Please enter the value for the \"%@\" option below:";
 "N.error-message-title" = "Error";
 
 "PA.execution-error-title" = "Error During Process Execution";

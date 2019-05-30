@@ -33,13 +33,10 @@
 "JUK-Ll-5I5.title" = "Ayuda de Caffeinator";
 
 /* Class = "NSTextFieldCell"; title = "Warning: Ensure that all arguments and values are correct before continuing."; ObjectID = "KOd-zc-upP"; */
-"KOd-zc-upP.title" = "Cuidado: Asegúrate de que todos los argumentos sean correctos antes de continuar.";
+"KOd-zc-upP.title" = "Cuidado: Asegúrate de que todas las opciones sean correctos antes de continuar.";
 
 /* Class = "NSMenuItem"; title = "Advanced"; ObjectID = "LD6-wX-30k"; */
 "LD6-wX-30k.title" = "Opciones avanzadas";
-
-/* Class = "NSMenuItem"; title = "Run Caffeinate with Args…"; ObjectID = "LIm-6Y-l4b"; */
-"LIm-6Y-l4b.title" = "Ejecutar caffeinate con argumentos…";
 
 /* Class = "NSWindow"; title = "Licenses"; ObjectID = "LlA-Oi-fVZ"; */
 "LlA-Oi-fVZ.title" = "Licencias";
@@ -49,9 +46,6 @@
 
 /* Class = "NSButtonCell"; title = "Idle Sleep"; ObjectID = "NX3-bo-GeD"; */
 "NX3-bo-GeD.title" = "Reposo inactivo";
-
-/* Class = "NSTextFieldCell"; title = "Arguments"; ObjectID = "Nr6-ww-YTG"; */
-"Nr6-ww-YTG.title" = "Argumentos";
 
 /* Class = "NSButtonCell"; title = "Disk Sleep"; ObjectID = "O5y-km-Pue"; */
 "O5y-km-Pue.title" = "Reposo de disco";
@@ -102,22 +96,19 @@
 "i8n-eh-9CY.title" = "Caffeination cronometrada";
 
 /* Class = "NSButtonCell"; title = "Add -w value"; ObjectID = "iX9-Dk-j4h"; */
-"iX9-Dk-j4h.title" = "Añadir PID de proceso…";
+"iX9-Dk-j4h.title" = "Añadir PID de proceso";
 
 /* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "jMA-uw-03P"; */
 "jMA-uw-03P.title" = "Buscar actualizaciones…";
 
 /* Class = "NSTextFieldCell"; title = "Use the check boxes to select the arguments with which you wish to call caffeinate. If you select the \"-t\" or \"-w\" arguments, use the corresponding value entries to specify values for those arguments. View caffeinate's man page for more information."; ObjectID = "jy3-k4-TC3"; */
-"jy3-k4-TC3.title" = "Usa las casillas de verificación para escoger los argumentos con los cuales deseas iniciar caffeinate. Si escoges los argumentos \"-t\" o \"-w\", usa los campos de texto correspondientes para entrar valores para esos argumentos. Consulta el manual de caffeinate para más información.";
+"jy3-k4-TC3.title" = "Usa las casillas de verificación para escoger las opciones con los cuales deseas iniciar caffeinate. Si escoges las opciones \"Cronometrar\" o \"Monitorizar un proceso\", usa los campos de texto correspondientes para entrar valores para esas opciones.";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "kPa-Jj-YP7"; */
 "kPa-Jj-YP7.title" = "Menú principal";
 
 /* Class = "NSButtonCell"; title = "Timed"; ObjectID = "nTh-D9-FeX"; */
 "nTh-D9-FeX.title" = "Cronometrar";
-
-/* Class = "NSWindow"; title = "Enter Arguments"; ObjectID = "ob7-XI-Hu1"; */
-"ob7-XI-Hu1.title" = "Introducir argumentos";
 
 /* Class = "NSTextFieldCell"; title = "Values"; ObjectID = "roh-hs-mWV"; */
 "roh-hs-mWV.title" = "Valores";
