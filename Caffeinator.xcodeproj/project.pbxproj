@@ -140,6 +140,7 @@
 				E209DF151BEFA5A8007708FB /* Products */,
 				E278A2F522A06B1700EEFFCB /* Caffeinator Help.md */,
 				E2145215216ADE03005756E5 /* Cartfile */,
+				E20139BC1F77FDB2008B12E1 /* LICENSE.txt */,
 				E20139BB1F77FDB1008B12E1 /* README.md */,
 				E23D4A74229B0AE100F0FBB8 /* Frameworks */,
 			);
@@ -170,7 +171,6 @@
 				E209DF191BEFA5A8007708FB /* Assets.xcassets */,
 				E26273EE211C8DFD005F9121 /* Main.storyboard */,
 				E209DF1E1BEFA5A8007708FB /* Info.plist */,
-				E2EAD9F71F5E117A00E60133 /* Licenses.rtf */,
 				E217D8942069447C005FFCF3 /* Localizable.strings */,
 			);
 			path = Caffeinator;
@@ -206,7 +206,7 @@
 			children = (
 				E278A2F422A06B1700EEFFCB /* help_dark.html */,
 				E278A2F322A06B1700EEFFCB /* help_light.html */,
-				E20139BC1F77FDB2008B12E1 /* LICENSE.txt */,
+				E2EAD9F71F5E117A00E60133 /* Licenses.rtf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
