@@ -134,14 +134,12 @@
 				E23D4A72229B0A8100F0FBB8 /* Down.framework */,
 				E2145216216ADEF7005756E5 /* CaffeineKit.framework */,
 				E209DF161BEFA5A8007708FB /* Caffeinator */,
+				E278A2F822A08E8300EEFFCB /* Resources */,
 				E209DF261BEFA5A8007708FB /* CaffeinatorTests */,
 				E209DF311BEFA5A8007708FB /* CaffeinatorUITests */,
 				E209DF151BEFA5A8007708FB /* Products */,
 				E278A2F522A06B1700EEFFCB /* Caffeinator Help.md */,
-				E278A2F422A06B1700EEFFCB /* help_dark.html */,
-				E278A2F322A06B1700EEFFCB /* help_light.html */,
 				E2145215216ADE03005756E5 /* Cartfile */,
-				E20139BC1F77FDB2008B12E1 /* LICENSE.txt */,
 				E20139BB1F77FDB1008B12E1 /* README.md */,
 				E23D4A74229B0AE100F0FBB8 /* Frameworks */,
 			);
@@ -201,6 +199,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E278A2F822A08E8300EEFFCB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E278A2F422A06B1700EEFFCB /* help_dark.html */,
+				E278A2F322A06B1700EEFFCB /* help_light.html */,
+				E20139BC1F77FDB2008B12E1 /* LICENSE.txt */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
