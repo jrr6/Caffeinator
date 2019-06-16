@@ -49,7 +49,7 @@ Caffeinator provides a number of different options to prevent computer sleep. Th
   | Display Sleep        | Prevents the display from sleeping                           |
   | Idle Sleep           | Prevents the system (but not the display) from idle sleeping |
   | Disk Sleep           | Prevents the disk from idle sleeping                         |
-  | System Sleep         | Prevents system sleep (on MacBooks, will only work when connected to A/C power) |
+  | System Sleep         | Prevents system sleep (on MacBooks, will only work when connected to AC power) |
   | Assert User Activity | Asserts that the user is active                              |
   | Timed                | Prevents sleep as per the options above for a specified period of time |
   | Process-Based        | Prevents sleep as per the options above as long as a specified process is active |
