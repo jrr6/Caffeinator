@@ -51,6 +51,8 @@
 "PA.execution-error-msg" = "Un error ocurrió cuando ejecutó %@:\n%@";
 "PA.unknown-process-path" = "desconocido";
 
+"PPVC.other" = "Otro…";
+
 "U.auto-update-disabled-title" = "La actualización automática está apagada";
 "U.auto-update-disabled-msg" = "La actualización automática de Caffeinator ha sido apagada. Hay que instalar actualizaciones manualmente. Para volver a habilitar las actualizaciones automáticas, copia y pega el siguiente comando en Terminal, pulsa Enter y reinicia Caffeinator:\n%@";
 "U.no-update-data-title" = "Datos de actualización no fueron recibidos";
