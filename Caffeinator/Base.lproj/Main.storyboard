@@ -149,7 +149,7 @@
         <scene sceneID="3Oh-BP-0h6">
             <objects>
                 <windowController storyboardIdentifier="processPanelController" id="mvg-bO-Rcs" sceneMemberID="viewController">
-                    <window key="window" identifier="processPanelController" title="Select Process" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="Yrl-X5-l5V">
+                    <window key="window" identifier="processPanelController" title="Select Process" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="Yrl-X5-l5V">
                         <windowStyleMask key="styleMask" titled="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="270"/>
@@ -171,11 +171,11 @@
             <objects>
                 <viewController id="Agc-yR-2fu" customClass="ProcessPanelViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yJx-PF-iNB">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="249"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dh7-Q8-oCj">
-                                <rect key="frame" x="114" y="106" width="252" height="24"/>
+                                <rect key="frame" x="114" y="205" width="252" height="24"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Process-Based Caffeination" id="3m4-2M-si6">
                                     <font key="font" metaFont="system" size="20"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -183,7 +183,7 @@
                                 </textFieldCell>
                             </textField>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="50" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Jt-Xx-ayX">
-                                <rect key="frame" x="20" y="98" width="440" height="0.0"/>
+                                <rect key="frame" x="20" y="197" width="440" height="0.0"/>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uy3-bF-eN5">
                                 <rect key="frame" x="241" y="13" width="103" height="32"/>
@@ -202,7 +202,7 @@ DQ
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aZA-Lj-TJf">
                                 <rect key="frame" x="136" y="13" width="106" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="qXA-PV-baw"/>
+                                    <constraint firstAttribute="width" constant="94" id="H4T-HA-ceJ"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NWc-gB-nO6">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -215,39 +215,119 @@ Gw
                                     <action selector="cancelClicked:" target="Agc-yR-2fu" id="Wka-r1-ep2"/>
                                 </connections>
                             </button>
-                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UvW-00-3lG">
-                                <rect key="frame" x="20" y="74" width="443" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="440" id="RAc-Uc-6go"/>
-                                </constraints>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesDataSource="YES" numberOfVisibleItems="5" id="9Tg-OC-fV1">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </comboBoxCell>
-                            </comboBox>
+                            <tabView translatesAutoresizingMaskIntoConstraints="NO" id="Op5-RX-a0f">
+                                <rect key="frame" x="9" y="51" width="462" height="152"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="Select Process" identifier="select" id="eZh-hp-OlL">
+                                        <view key="view" misplaced="YES" id="MGK-ti-QxQ">
+                                            <rect key="frame" x="10" y="33" width="442" height="106"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tCB-EN-Gdy">
+                                                    <rect key="frame" x="15" y="45" width="412" height="17"/>
+                                                    <textFieldCell key="cell" selectable="YES" alignment="center" title="Select the process you would like to Caffeinate from the list below." id="Bvt-o6-9lc">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UvW-00-3lG">
+                                                    <rect key="frame" x="17" y="13" width="411" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="bHs-xa-YRM"/>
+                                                    </constraints>
+                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesDataSource="YES" numberOfVisibleItems="5" id="9Tg-OC-fV1">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </comboBoxCell>
+                                                </comboBox>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="tCB-EN-Gdy" secondAttribute="trailing" constant="17" id="HSt-bX-32E"/>
+                                                <constraint firstAttribute="bottom" secondItem="UvW-00-3lG" secondAttribute="bottom" constant="17" id="eYg-Hc-ruU"/>
+                                                <constraint firstItem="UvW-00-3lG" firstAttribute="top" secondItem="tCB-EN-Gdy" secondAttribute="bottom" constant="8" symbolic="YES" id="ec5-lM-ene"/>
+                                                <constraint firstItem="tCB-EN-Gdy" firstAttribute="leading" secondItem="MGK-ti-QxQ" secondAttribute="leading" constant="17" id="iE6-Nx-k9S"/>
+                                                <constraint firstAttribute="trailing" secondItem="UvW-00-3lG" secondAttribute="trailing" constant="17" id="oFM-ix-xQN"/>
+                                                <constraint firstItem="tCB-EN-Gdy" firstAttribute="top" secondItem="MGK-ti-QxQ" secondAttribute="top" constant="3" id="wHg-dz-hgn"/>
+                                                <constraint firstItem="tCB-EN-Gdy" firstAttribute="leading" secondItem="UvW-00-3lG" secondAttribute="leading" id="yNV-4g-8Hs"/>
+                                            </constraints>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="Enter PID" identifier="pid" id="EVO-tX-GYb">
+                                        <view key="view" id="74s-mw-Qt2">
+                                            <rect key="frame" x="10" y="33" width="442" height="106"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SI7-Oo-BT8">
+                                                    <rect key="frame" x="15" y="47" width="412" height="56"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="56" id="N2L-Jr-Va8"/>
+                                                    </constraints>
+                                                    <textFieldCell key="cell" selectable="YES" alignment="center" title="Enter the process ID (PID) of the process you would like to Caffeinate below. Process IDs can be found in Activity Monitor." id="7dZ-a8-f8y">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rLG-8A-DHQ">
+                                                    <rect key="frame" x="172" y="17" width="98" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="98" id="pV5-aT-cdx"/>
+                                                    </constraints>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="PID" drawsBackground="YES" id="yrE-hV-PLl">
+                                                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="jTg-5q-JDm">
+                                                            <real key="minimum" value="0.0"/>
+                                                            <real key="maximum" value="99999"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="groupingSeparator" value="&quot;&quot;"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </numberFormatter>
+                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rLG-8A-DHQ" firstAttribute="top" secondItem="SI7-Oo-BT8" secondAttribute="bottom" constant="8" symbolic="YES" id="3pF-h8-uPu"/>
+                                                <constraint firstItem="SI7-Oo-BT8" firstAttribute="centerX" secondItem="rLG-8A-DHQ" secondAttribute="centerX" id="5Wl-XL-zjr"/>
+                                                <constraint firstItem="SI7-Oo-BT8" firstAttribute="leading" secondItem="74s-mw-Qt2" secondAttribute="leading" constant="17" id="6Uo-0r-p21"/>
+                                                <constraint firstAttribute="trailing" secondItem="SI7-Oo-BT8" secondAttribute="trailing" constant="17" id="Y97-wh-cwW"/>
+                                                <constraint firstItem="SI7-Oo-BT8" firstAttribute="top" secondItem="74s-mw-Qt2" secondAttribute="top" constant="3" id="hz6-9P-CDc"/>
+                                            </constraints>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                            </tabView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5Jt-Xx-ayX" secondAttribute="trailing" constant="20" symbolic="YES" id="03W-gQ-Swu"/>
-                            <constraint firstItem="5Jt-Xx-ayX" firstAttribute="centerX" secondItem="UvW-00-3lG" secondAttribute="centerX" id="BsK-Ge-ekJ"/>
-                            <constraint firstItem="5Jt-Xx-ayX" firstAttribute="top" secondItem="UvW-00-3lG" secondAttribute="top" id="D46-ee-dsy"/>
-                            <constraint firstItem="aZA-Lj-TJf" firstAttribute="baseline" secondItem="uy3-bF-eN5" secondAttribute="baseline" id="EA6-UL-SHC"/>
-                            <constraint firstItem="5Jt-Xx-ayX" firstAttribute="leading" secondItem="yJx-PF-iNB" secondAttribute="leading" constant="20" symbolic="YES" id="WQ1-j0-6q1"/>
-                            <constraint firstItem="5Jt-Xx-ayX" firstAttribute="top" secondItem="dh7-Q8-oCj" secondAttribute="bottom" constant="8" symbolic="YES" id="f4Y-9s-qB4"/>
-                            <constraint firstAttribute="bottom" secondItem="aZA-Lj-TJf" secondAttribute="bottom" constant="20" symbolic="YES" id="odx-0H-gat"/>
-                            <constraint firstItem="dh7-Q8-oCj" firstAttribute="top" secondItem="yJx-PF-iNB" secondAttribute="top" constant="20" symbolic="YES" id="pIZ-aL-oPb"/>
-                            <constraint firstItem="dh7-Q8-oCj" firstAttribute="centerX" secondItem="5Jt-Xx-ayX" secondAttribute="centerX" id="rhp-Kb-WIj"/>
-                            <constraint firstItem="aZA-Lj-TJf" firstAttribute="leading" secondItem="yJx-PF-iNB" secondAttribute="leading" constant="142" id="uMM-Yf-RjE"/>
-                            <constraint firstItem="uy3-bF-eN5" firstAttribute="leading" secondItem="aZA-Lj-TJf" secondAttribute="trailing" constant="11" id="wUD-nn-FLi"/>
+                            <constraint firstItem="aZA-Lj-TJf" firstAttribute="leading" secondItem="yJx-PF-iNB" secondAttribute="leading" constant="142" id="4PS-D2-tX7"/>
+                            <constraint firstItem="Op5-RX-a0f" firstAttribute="leading" secondItem="yJx-PF-iNB" secondAttribute="leading" constant="16" id="5yL-1B-MsZ"/>
+                            <constraint firstItem="dh7-Q8-oCj" firstAttribute="centerX" secondItem="5Jt-Xx-ayX" secondAttribute="centerX" id="SPn-Yl-t2j"/>
+                            <constraint firstItem="uy3-bF-eN5" firstAttribute="baseline" secondItem="aZA-Lj-TJf" secondAttribute="firstBaseline" id="Uiq-XJ-RKg"/>
+                            <constraint firstItem="5Jt-Xx-ayX" firstAttribute="centerX" secondItem="Op5-RX-a0f" secondAttribute="centerX" id="WVC-e7-WGc"/>
+                            <constraint firstItem="Op5-RX-a0f" firstAttribute="top" secondItem="5Jt-Xx-ayX" secondAttribute="top" id="ZEt-Zg-S7N"/>
+                            <constraint firstAttribute="bottom" secondItem="5Jt-Xx-ayX" secondAttribute="bottom" constant="197" id="b1x-Q7-LMt"/>
+                            <constraint firstAttribute="bottom" secondItem="aZA-Lj-TJf" secondAttribute="bottom" constant="20" symbolic="YES" id="beC-zc-qdp"/>
+                            <constraint firstItem="aZA-Lj-TJf" firstAttribute="top" secondItem="Op5-RX-a0f" secondAttribute="bottom" constant="20" id="ezH-3B-P3l"/>
+                            <constraint firstItem="aZA-Lj-TJf" firstAttribute="baseline" secondItem="uy3-bF-eN5" secondAttribute="baseline" id="gLZ-hs-NM7"/>
+                            <constraint firstItem="5Jt-Xx-ayX" firstAttribute="leading" secondItem="yJx-PF-iNB" secondAttribute="leading" constant="20" symbolic="YES" id="nUI-dE-cT5"/>
+                            <constraint firstAttribute="trailing" secondItem="5Jt-Xx-ayX" secondAttribute="trailing" constant="20" symbolic="YES" id="t7w-xv-uje"/>
+                            <constraint firstItem="Op5-RX-a0f" firstAttribute="top" secondItem="dh7-Q8-oCj" secondAttribute="bottom" constant="8" symbolic="YES" id="xbK-pw-fG5"/>
+                            <constraint firstItem="uy3-bF-eN5" firstAttribute="leading" secondItem="aZA-Lj-TJf" secondAttribute="trailing" constant="11" id="xix-cE-E6W"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="pidInput" destination="rLG-8A-DHQ" id="I16-gA-J0U"/>
                         <outlet property="selectorBox" destination="UvW-00-3lG" id="4i5-bG-USg"/>
+                        <outlet property="tabView" destination="Op5-RX-a0f" id="6WN-Vh-IPe"/>
                     </connections>
                 </viewController>
                 <customObject id="Vhk-57-yGO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="-905"/>
+            <point key="canvasLocation" x="763" y="-855.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="P2t-BJ-Qh4">

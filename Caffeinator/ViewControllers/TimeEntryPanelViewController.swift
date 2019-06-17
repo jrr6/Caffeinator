@@ -8,41 +8,6 @@
 
 import Cocoa
 
-/// A number formatter for time component entries
-class TimeValueFormatter: NumberFormatter {
-    let comp: Component?
-    enum Component {
-        case hour, minute, second
-    }
-    
-    init(for comp: Component) {
-        self.comp = comp
-        super.init()
-    }
-    required init?(coder aDecoder: NSCoder) {
-        self.comp = nil
-        super.init(coder: aDecoder)
-    }
-    
-    override func isPartialStringValid(_ partialString: String, newEditingString newString: AutoreleasingUnsafeMutablePointer<NSString?>?, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
-        if partialString.isEmpty {
-            return true
-        }
-        guard let intVal = Int(partialString) else {
-            return false
-        }
-        if intVal < 0 {
-            return false
-        }
-        if self.comp == .hour {
-            // caffeinate takes the time value (seconds), multiplies it by NSEC_PER_SEC, and stores in an Int64; thus, maximum allowable second value is 9223372036, so maximum hours (given that minutes and seconds could each be 60) is floor((9223372036 - 60*60 - 60) / 60 / 60) = 2562046
-            return intVal <= 2562046
-        } else {
-            return intVal < 60
-        }
-    }
-}
-
 /// Time entry modal-like window
 class TimeEntryPanelViewController: NSViewController, PseudoModal {
 
@@ -117,6 +82,42 @@ class TimeEntryPanelViewController: NSViewController, PseudoModal {
         self.view.window?.close()
     }
 }
+
+/// A number formatter for time component entries
+class TimeValueFormatter: NumberFormatter {
+    let comp: Component?
+    enum Component {
+        case hour, minute, second
+    }
+    
+    init(for comp: Component) {
+        self.comp = comp
+        super.init()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        self.comp = nil
+        super.init(coder: aDecoder)
+    }
+    
+    override func isPartialStringValid(_ partialString: String, newEditingString newString: AutoreleasingUnsafeMutablePointer<NSString?>?, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
+        if partialString.isEmpty {
+            return true
+        }
+        guard let intVal = Int(partialString) else {
+            return false
+        }
+        if intVal < 0 {
+            return false
+        }
+        if self.comp == .hour {
+            // caffeinate takes the time value (seconds), multiplies it by NSEC_PER_SEC, and stores in an Int64; thus, maximum allowable second value is 9223372036, so maximum hours (given that minutes and seconds could each be 60) is floor((9223372036 - 60*60 - 60) / 60 / 60) = 2562046
+            return intVal <= 2562046
+        } else {
+            return intVal < 60
+        }
+    }
+}
+
 
 // Writes text field values to controller variables
 extension TimeEntryPanelViewController: NSTextFieldDelegate {

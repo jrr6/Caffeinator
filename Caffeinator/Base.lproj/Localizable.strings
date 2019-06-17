@@ -47,7 +47,8 @@
 "PA.execution-error-msg" = "An error occurred when executing %@:\n%@";
 "PA.unknown-process-path" = "unknown";
 
-"PPVC.other" = "Other…";
+"PPVC.process-failure-title" = "Failed to Caffeinate Process";
+"PPVC.process-failure-msg" = "The specified process could not be Caffeinated. Ensure that you have selected a valid process from the list or entered an integer PID.";
 
 "U.auto-update-disabled-title" = "Auto-Update Disabled";
 "U.auto-update-disabled-msg" = "The Caffeinator auto-updater has been disabled. Any updates to the application must be applied manually. To re-enable automatic updates, please copy and paste the following command into Terminal, press Enter, and restart Caffeinator:\n%@";

@@ -228,24 +228,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Responds to the "Caffeinate process" item by prompting entry of a PID and starting the Caffeination with the `.process` Opt
     @IBAction func processClicked(_ sender: NSMenuItem) {
-        DispatchQueue.main.async {
-            guard let res = Notifier.showInputDialog(withWindowTitle: txt("AD.process-dialog-window-title"), title: txt("AD.process-dialog-title"), text: txt("AD.process-dialog-msg")) else {
+        let confirmationHandler = { (pid: Any?) in
+            guard let pid = pid as? pid_t else {
+                Notifier.showErrorMessage(withTitle: txt("PPVC.process-failure-title"), text: txt("PPVC.process-failure-msg"))
                 return
             }
-            guard let pidInt = Int32(res) else {
-                Notifier.showErrorMessage(withTitle: txt("AD.illegal-process-title"), text: txt("AD.illegal-process-msg"))
-                return
-            }
-            var labelName = "PID \(res)"
-            if let appName = NSRunningApplication(processIdentifier: pidInt)?.localizedName {
-                labelName = appName
+            var labelName = "PID \(pid)"
+            if let appName = NSRunningApplication(processIdentifier: pid)?.localizedName {
+                labelName = "\(appName) (\(pid))"
             }
             RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
                 self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)
             }
-            self.caffeination.opts.append(.process(pidInt))
+            self.caffeination.opts.append(.process(pid))
             self.caffeination.handledStart()
         }
+        storyboard.instantiateAndShowPseudoModal(withIDString: "processPanelController", properties: [:], onConfirm: confirmationHandler, onCancel: nil)
     }
     
     /// Responds to the "Timed Caffeination" item. If a preset is selected, the number is parsed out of the string and multiplied as necessary. If custom entry is selected, a time entry prompt is shows, followed by a confirmation of the user input's validity (generating errors as necessary). The generated time (in seconds) is used to start the Cafffeination with the `.timed` Opt

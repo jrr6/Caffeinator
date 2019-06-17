@@ -11,11 +11,14 @@ import Cocoa
 class ProcessPanelViewController: NSViewController, PseudoModal {
     
     @IBOutlet weak var selectorBox: NSComboBox!
+    @IBOutlet weak var tabView: NSTabView!
+    @IBOutlet weak var pidInput: NSTextField!
     
     var properties: [String : Any] = [:]
     var onConfirm: (Any?) -> Void = {_ in }
     var onCancel: () -> Void = {}
     
+    // TODO: Update this periodically
     private var processes: [NSRunningApplication] = []
     
     override func viewDidLoad() {
@@ -27,11 +30,23 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
             return a1 < b1
         }
         selectorBox.dataSource = self
-        // Do view setup here.
     }
     
     @IBAction func confirmClicked(_ sender: NSButton) {
-//        onConfirm(pid)
+        let tabID = tabView.selectedTabViewItem?.identifier as? String
+        let pidOpt: pid_t?
+        if tabID == "select" {
+            pidOpt = processes[selectorBox.indexOfSelectedItem].processIdentifier
+        } else if tabID == "pid" {
+            pidOpt = pid_t(pidInput.stringValue)
+        } else {
+            pidOpt = nil
+        }
+        guard let pid = pidOpt else {
+            Notifier.showErrorMessage(withTitle: txt("PPVC.process-failure-title"), text: txt("PPVC.process-failure-msg"))
+            return
+        }
+        onConfirm(pid)
         self.view.window?.close()
     }
     
@@ -41,29 +56,34 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
     
 }
 
-extension ProcessPanelViewController: NSComboBoxDataSource {
+/// Represents an app in the combo box data source
+struct MiniApp: CustomStringConvertible {
+    var name: String?
+    var pid: pid_t
     
-    private func entryString(for app: NSRunningApplication) -> String {
-        let procName = app.localizedName
-        let procID = app.processIdentifier
-        if let procName = procName {
-            return "\(procName) (\(procID))"
-        } else {
-            return "PID \(procID)"
+    public var description: String {
+        get {
+            if let name = name {
+                return "\(name) (\(pid))"
+            } else {
+                return "PID \(pid)"
+            }
         }
     }
     
+    init(from app: NSRunningApplication) {
+        self.name = app.localizedName
+        self.pid = app.processIdentifier
+    }
+}
+
+extension ProcessPanelViewController: NSComboBoxDataSource {
     func numberOfItems(in comboBox: NSComboBox) -> Int {
-        return processes.count + 1
+        return processes.count
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        if index < processes.count {
-            let app = processes[index]
-            return entryString(for: app)
-        } else {
-            return txt("PPVC.other")
-        }
+        return MiniApp(from: processes[index])
     }
     
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
