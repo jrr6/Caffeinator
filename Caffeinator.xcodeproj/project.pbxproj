@@ -26,6 +26,8 @@
 		E278A2F722A06B1C00EEFFCB /* help_light.html in Resources */ = {isa = PBXBuildFile; fileRef = E278A2F322A06B1700EEFFCB /* help_light.html */; };
 		E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
+		E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */; };
+		E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		E278A2F522A06B1700EEFFCB /* Caffeinator Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Caffeinator Help.md"; sourceTree = "<group>"; };
 		E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessAdditions.swift; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
+		E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryPanelViewController.swift; sourceTree = "<group>"; };
+		E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PseudoModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +167,9 @@
 				E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */,
 				E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */,
 				E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */,
+				E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */,
 				E26273EA211C8D7B005F9121 /* LicensesViewController.swift */,
+				E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */,
 				E26E133F211A4D9100DA4F90 /* KillallManager.swift */,
 				E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */,
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
@@ -365,6 +371,8 @@
 				E20139C21F78024B008B12E1 /* Notifier.swift in Sources */,
 				E20139BE1F77FE2C008B12E1 /* Updater.swift in Sources */,
 				E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */,
+				E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */,
+				E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -145,3 +145,24 @@
 
 /* Class = "NSTextFieldCell"; title = "ReleaseNotes"; ObjectID = "3g9-7e-esA"; */
 "3g9-7e-esA.title" = "Notas de esta versión:";
+
+/* Class = "NSTextFieldCell"; title = "Timed Caffeination"; ObjectID = "EwB-vr-EzV"; */
+"EwB-vr-EzV.title" = "Caffeination cronometrada";
+
+/* Class = "NSTextFieldCell"; title = "Use the picker below to enter the amount of time for which you want Caffeinator to keep your computer awake in hours, minutes, and seconds."; ObjectID = "M0B-Cd-06u"; */
+"M0B-Cd-06u.title" = "Usa el selector a continuación para introducir la duración por la cual deseas que Caffeinator mantenga despierto tu ordenador en horas, minutos y segundos.";
+
+/* Class = "NSTextFieldCell"; title = "H"; ObjectID = "ABV-3z-yMm"; */
+"ABV-3z-yMm.placeholder" = "H";
+
+/* Class = "NSTextFieldCell"; title = "M"; ObjectID = "eWS-jR-MOG"; */
+"eWS-jR-MOG.placeholder" = "M";
+
+/* Class = "NSTextFieldCell"; title = "S"; ObjectID = "opy-lY-ymp"; */
+"opy-lY-ymp.placeholder" = "S";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GNj-cR-Mqx"; */
+"GNj-cR-Mqx.title" = "Cancelar";
+
+/* Class = "NSButtonCell"; title = "Caffeinate"; ObjectID = "qXO-VY-gAV"; */
+"qXO-VY-gAV.title" = "Caffeinate";

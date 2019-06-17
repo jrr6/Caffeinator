@@ -11,6 +11,12 @@
         <scene sceneID="4OI-5e-HoJ">
             <objects>
                 <customObject id="eY5-sp-s5t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <application id="dDJ-Ji-aDI" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="kPa-Jj-YP7"/>
+                    <connections>
+                        <outlet property="delegate" destination="Y0S-22-67Z" id="fjY-Iw-qDP"/>
+                    </connections>
+                </application>
                 <customObject id="Y0S-22-67Z" customClass="AppDelegate" customModule="Caffeinator" customModuleProvider="target">
                     <connections>
                         <outlet property="customMenu" destination="N0S-aw-ADb" id="kkF-os-uvj"/>
@@ -21,12 +27,6 @@
                         <outlet property="timedMenu" destination="i8n-eh-9CY" id="EIK-AA-ilc"/>
                     </connections>
                 </customObject>
-                <application id="dDJ-Ji-aDI" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="kPa-Jj-YP7"/>
-                    <connections>
-                        <outlet property="delegate" destination="Y0S-22-67Z" id="fjY-Iw-qDP"/>
-                    </connections>
-                </application>
                 <menu autoenablesItems="NO" id="EuG-Hh-coT">
                     <items>
                         <menuItem title="Start Caffeinator" identifier="start" id="0l4-DP-stI">
@@ -143,14 +143,250 @@
                     </items>
                 </menu>
             </objects>
-            <point key="canvasLocation" x="-190" y="-122"/>
+            <point key="canvasLocation" x="-211" y="-507"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="P2t-BJ-Qh4">
+            <objects>
+                <windowController storyboardIdentifier="timeEntryPanelController" id="PG5-jb-qH4" sceneMemberID="viewController">
+                    <window key="window" identifier="timeEntryPanelController" title="Enter Time" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="AAq-FZ-JTi">
+                        <windowStyleMask key="styleMask" titled="YES"/>
+                        <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="413" y="456" width="480" height="195"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="PG5-jb-qH4" id="7uK-M0-D3S"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="l0y-Hu-NSg" kind="relationship" relationship="window.shadowedContentViewController" id="Xka-tg-iwb"/>
+                    </connections>
+                </windowController>
+                <customObject id="6fI-12-z9b" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-190" y="-271"/>
+        </scene>
+        <!--Time Entry Panel View Controller-->
+        <scene sceneID="5Rn-au-fUd">
+            <objects>
+                <viewController id="l0y-Hu-NSg" customClass="TimeEntryPanelViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="4lY-xT-k6o">
+                        <rect key="frame" x="0.0" y="0.0" width="507" height="195"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pl7-1h-JVQ">
+                                <rect key="frame" x="167" y="151" width="173" height="24"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Timed Caffeination" id="EwB-vr-EzV">
+                                    <font key="font" metaFont="system" size="20"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HeT-kx-kT5">
+                                <rect key="frame" x="18" y="92" width="471" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="4sQ-jz-eTo"/>
+                                </constraints>
+                                <textFieldCell key="cell" selectable="YES" alignment="center" id="M0B-Cd-06u">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Use the picker below to enter the amount of time for which you want Caffeinator to keep your computer awake in hours, minutes, and seconds.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BAu-k4-fQw">
+                                <rect key="frame" x="102" y="61" width="303" height="23"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xKZ-SB-MlY">
+                                        <rect key="frame" x="0.0" y="0.0" width="93" height="23"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4tr-z4-l3C">
+                                                <rect key="frame" x="0.0" y="0.0" width="76" height="23"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="H" drawsBackground="YES" id="ABV-3z-yMm">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <connections>
+                                                    <outlet property="delegate" destination="l0y-Hu-NSg" id="oA6-b7-nEs"/>
+                                                </connections>
+                                            </textField>
+                                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XLd-Aw-eFf">
+                                                <rect key="frame" x="77" y="-2" width="19" height="27"/>
+                                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="2562047" id="2VJ-x2-iJp"/>
+                                                <connections>
+                                                    <binding destination="l0y-Hu-NSg" name="value" keyPath="self.hours" id="Nvj-d2-eU9"/>
+                                                </connections>
+                                            </stepper>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="4tr-z4-l3C" firstAttribute="top" secondItem="XLd-Aw-eFf" secondAttribute="top" id="VZu-66-1Yw"/>
+                                            <constraint firstItem="4tr-z4-l3C" firstAttribute="centerY" secondItem="XLd-Aw-eFf" secondAttribute="centerY" id="loE-a8-cXh"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <real value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5p-lg-vGL">
+                                        <rect key="frame" x="103" y="0.0" width="97" height="23"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="AAz-j7-QcL">
+                                                <rect key="frame" x="0.0" y="0.0" width="76" height="23"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="M" drawsBackground="YES" id="eWS-jR-MOG">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <connections>
+                                                    <outlet property="delegate" destination="l0y-Hu-NSg" id="szs-1U-xYb"/>
+                                                </connections>
+                                            </textField>
+                                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="OK4-j2-1Vt">
+                                                <rect key="frame" x="81" y="-2" width="19" height="27"/>
+                                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="59" id="0Fp-k7-I4M"/>
+                                                <connections>
+                                                    <binding destination="l0y-Hu-NSg" name="value" keyPath="self.minutes" id="wZE-Jg-SJ1"/>
+                                                </connections>
+                                            </stepper>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="AAz-j7-QcL" firstAttribute="centerY" secondItem="OK4-j2-1Vt" secondAttribute="centerY" id="BoF-aW-LtX"/>
+                                            <constraint firstItem="AAz-j7-QcL" firstAttribute="top" secondItem="OK4-j2-1Vt" secondAttribute="top" id="C9b-bB-tMo"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHn-Sy-cNv">
+                                        <rect key="frame" x="210" y="0.0" width="93" height="23"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="njV-Rc-cdm">
+                                                <rect key="frame" x="0.0" y="0.0" width="76" height="23"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="S" drawsBackground="YES" id="opy-lY-ymp">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <connections>
+                                                    <outlet property="delegate" destination="l0y-Hu-NSg" id="wHx-d6-ElD"/>
+                                                </connections>
+                                            </textField>
+                                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="CPH-LK-VcV">
+                                                <rect key="frame" x="81" y="-2" width="15" height="27"/>
+                                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="59" id="4pQ-zb-s9i"/>
+                                                <connections>
+                                                    <binding destination="l0y-Hu-NSg" name="value" keyPath="self.seconds" id="dI4-rv-C2s"/>
+                                                </connections>
+                                            </stepper>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="njV-Rc-cdm" firstAttribute="top" secondItem="CPH-LK-VcV" secondAttribute="top" id="coQ-6H-vBW"/>
+                                            <constraint firstItem="njV-Rc-cdm" firstAttribute="centerY" secondItem="CPH-LK-VcV" secondAttribute="centerY" id="qKu-wc-TZr"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="AAz-j7-QcL" firstAttribute="width" secondItem="njV-Rc-cdm" secondAttribute="width" id="SUY-iY-2dN"/>
+                                    <constraint firstItem="P5p-lg-vGL" firstAttribute="leading" secondItem="BAu-k4-fQw" secondAttribute="leading" constant="103" id="bRK-5X-9zl"/>
+                                    <constraint firstItem="4tr-z4-l3C" firstAttribute="width" secondItem="AAz-j7-QcL" secondAttribute="width" id="cSW-GM-lSO"/>
+                                    <constraint firstItem="P5p-lg-vGL" firstAttribute="centerX" secondItem="BAu-k4-fQw" secondAttribute="centerX" id="gQ2-aW-BOq"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LWn-TA-RCE">
+                                <rect key="frame" x="254" y="13" width="103" height="32"/>
+                                <buttonCell key="cell" type="push" title="Caffeinate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qXO-VY-gAV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="confirmClicked:" target="l0y-Hu-NSg" id="lAA-wV-TXp"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u1x-XP-kzn">
+                                <rect key="frame" x="149" y="13" width="106" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="bMh-WW-FAg"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GNj-cR-Mqx">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelClicked:" target="l0y-Hu-NSg" id="kjZ-6N-c3F"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="u1x-XP-kzn" firstAttribute="top" secondItem="BAu-k4-fQw" secondAttribute="bottom" constant="20" symbolic="YES" id="0eZ-1w-W4U"/>
+                            <constraint firstItem="u1x-XP-kzn" firstAttribute="baseline" secondItem="LWn-TA-RCE" secondAttribute="baseline" id="36u-Jm-3nr"/>
+                            <constraint firstItem="u1x-XP-kzn" firstAttribute="leading" secondItem="4lY-xT-k6o" secondAttribute="leading" constant="155" id="AOQ-lw-UJm"/>
+                            <constraint firstAttribute="bottom" secondItem="u1x-XP-kzn" secondAttribute="bottom" constant="20" symbolic="YES" id="KLE-on-x4R"/>
+                            <constraint firstItem="HeT-kx-kT5" firstAttribute="centerX" secondItem="BAu-k4-fQw" secondAttribute="centerX" id="MP6-6H-EAe"/>
+                            <constraint firstItem="pl7-1h-JVQ" firstAttribute="top" secondItem="4lY-xT-k6o" secondAttribute="top" constant="20" symbolic="YES" id="aGl-r9-uny"/>
+                            <constraint firstItem="BAu-k4-fQw" firstAttribute="top" secondItem="HeT-kx-kT5" secondAttribute="bottom" constant="8" symbolic="YES" id="ai8-u4-6QY"/>
+                            <constraint firstAttribute="trailing" secondItem="HeT-kx-kT5" secondAttribute="trailing" constant="20" symbolic="YES" id="bS2-Oy-Zso"/>
+                            <constraint firstItem="BAu-k4-fQw" firstAttribute="leading" secondItem="4lY-xT-k6o" secondAttribute="leading" constant="102" id="csE-N4-Ifu"/>
+                            <constraint firstItem="HeT-kx-kT5" firstAttribute="leading" secondItem="4lY-xT-k6o" secondAttribute="leading" constant="20" symbolic="YES" id="egV-dL-3PF"/>
+                            <constraint firstItem="LWn-TA-RCE" firstAttribute="leading" secondItem="u1x-XP-kzn" secondAttribute="trailing" constant="11" id="kpe-ca-by3"/>
+                            <constraint firstItem="pl7-1h-JVQ" firstAttribute="centerX" secondItem="HeT-kx-kT5" secondAttribute="centerX" id="m1a-T0-Z67"/>
+                            <constraint firstItem="HeT-kx-kT5" firstAttribute="top" secondItem="pl7-1h-JVQ" secondAttribute="bottom" constant="8" symbolic="YES" id="rLx-aW-mYT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="hourInput" destination="4tr-z4-l3C" id="nP3-OD-qzg"/>
+                        <outlet property="hourStepper" destination="XLd-Aw-eFf" id="gyO-JC-jah"/>
+                        <outlet property="minuteInput" destination="AAz-j7-QcL" id="m8C-xq-uQZ"/>
+                        <outlet property="minuteStepper" destination="OK4-j2-1Vt" id="Ceg-9j-9US"/>
+                        <outlet property="secondInput" destination="njV-Rc-cdm" id="2sy-Ea-mba"/>
+                        <outlet property="secondStepper" destination="CPH-LK-VcV" id="CW0-Nk-Pj2"/>
+                    </connections>
+                </viewController>
+                <customObject id="8Mq-Dr-fjU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="gtj-cw-AOr"/>
+            </objects>
+            <point key="canvasLocation" x="763.5" y="-517.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="Tns-eW-ccD">
             <objects>
                 <windowController storyboardIdentifier="argumentPanelController" showSeguePresentationStyle="single" id="1GM-eh-zfw" sceneMemberID="viewController">
                     <window key="window" identifier="argumentPanelController" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="440" y="280" width="400" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>

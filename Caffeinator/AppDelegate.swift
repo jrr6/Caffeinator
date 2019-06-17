@@ -21,6 +21,18 @@ extension NSStoryboard {
             (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
         }
     }
+    func instantiateAndShowPseudoModal(withIDString idString: String, properties: [String: Any], onConfirm: ((Any) -> Void)?, onCancel: (() -> Void)?) {
+        guard (!NSApp.windows.contains { $0.identifier?.rawValue == idString }) else {
+            return
+        }
+        let windowCtrl = self.instantiateController(withIdentifier: idString) as? NSWindowController
+        var vc = windowCtrl?.contentViewController as? PseudoModal
+        vc?.onConfirm = onConfirm ?? {_ in }
+        vc?.onCancel = onCancel ?? {}
+        vc?.properties = properties
+        windowCtrl?.showWindow(self)
+        NSApp.activate(ignoringOtherApps: true)
+    }
 }
 
 extension Caffeination {
@@ -209,7 +221,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Responds to the "Run with args" item by opening the argument panel
     @IBAction func customClicked(_ sender: NSMenuItem) {
-        storyboard.instantiateAndShowWindow(withIDString: "argumentPanelController")
+        DispatchQueue.main.async {
+            self.storyboard.instantiateAndShowWindow(withIDString: "argumentPanelController")
+        }
     }
     
     /// Responds to the "Caffeinate process" item by prompting entry of a PID and starting the Caffeination with the `.process` Opt
@@ -241,24 +255,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             if let secondsPreset = sender.identifier?.rawValue, secondsPreset != "custom" {
                 time = Double(secondsPreset)
+                self.initiateTimed(duration: time)
             } else {
-                guard let res = Notifier.showInputDialog(withWindowTitle: txt("AD.timed-dialog-window-title"), title: txt("AD.timed-dialog-title"), text: txt("AD.timed-dialog-msg")) else {
-                    // User canceled
-                    return
+                let confirmHandler = { (interval: Any) in
+                    // main queue in case a dialog needs to run
+                    DispatchQueue.main.async {
+                        self.initiateTimed(duration: interval as? TimeInterval)
+                    }
                 }
-                guard let text = Double(res) else {
-                    Notifier.showErrorMessage(withTitle: txt("AD.non-number-time-title"), text: txt("AD.non-number-time-msg"))
-                    return
-                }
-                time = text * 60
+                self.storyboard.instantiateAndShowPseudoModal(withIDString: "timeEntryPanelController", properties: [:], onConfirm: confirmHandler, onCancel: nil)
             }
-            guard let t = time, t > 1 else {
-                Notifier.showErrorMessage(withTitle: txt("AD.illegal-time-title"), text: txt("AD.illegal-time-msg"))
-                return
-            }
-            self.caffeination.opts.append(.timed(t))
-            self.caffeination.handledStart()
         }
+    }
+    
+    /// Initiates a timed caffeination of the given duration in seconds
+    private func initiateTimed(duration: Double?) {
+        guard let duration = duration, duration >= 1 else {
+            Notifier.showErrorMessage(withTitle: txt("AD.illegal-time-title"), text: txt("AD.illegal-time-msg"))
+            return
+        }
+        self.caffeination.opts.append(.timed(duration))
+        self.caffeination.handledStart()
     }
     
     /// Responds to the "Help" item by opening the Help window

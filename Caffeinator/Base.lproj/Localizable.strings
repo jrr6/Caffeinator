@@ -19,11 +19,6 @@
 "AD.illegal-process-msg" = "You must enter the PID of the process you wish to Caffeinate.";
 "AD.minutes-with-space" = " minutes";
 "AD.hours-with-space" = " hours";
-"AD.timed-dialog-window-title" = "Timed Caffeination";
-"AD.timed-dialog-title" = "Custom Time Entry";
-"AD.timed-dialog-msg" = "Enter the amount of time for which you would like Caffeinator to keep your computer awake, IN MINUTES:";
-"AD.non-number-time-title" = "Illegal Input";
-"AD.non-number-time-msg" = "You must enter an integer or decimal number.";
 "AD.illegal-time-title" = "Illegal Time Value";
 "AD.illegal-time-msg" = "The time value must be a valid number greater than or equal to 1 second.";
 "AD.caffeinate-missing-dialog-title" = "Could Not Find Caffeinate";
