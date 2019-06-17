@@ -19,11 +19,6 @@ class ArgumentPanelViewController: NSViewController {
     
     var args: [String: String] = [:]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
-    }
-    
     /// Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enables/disables the corresponding input button
     @IBAction func argumentChecked(_ sender: NSButton) {
         let identifier = sender.identifier?.rawValue ?? ""
