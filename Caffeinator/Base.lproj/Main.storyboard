@@ -220,12 +220,12 @@ Gw
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Select Process" identifier="select" id="eZh-hp-OlL">
-                                        <view key="view" misplaced="YES" id="MGK-ti-QxQ">
+                                        <view key="view" id="MGK-ti-QxQ">
                                             <rect key="frame" x="10" y="33" width="442" height="106"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tCB-EN-Gdy">
-                                                    <rect key="frame" x="15" y="45" width="412" height="17"/>
+                                                    <rect key="frame" x="15" y="45" width="412" height="58"/>
                                                     <textFieldCell key="cell" selectable="YES" alignment="center" title="Select the process you would like to Caffeinate from the list below." id="Bvt-o6-9lc">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

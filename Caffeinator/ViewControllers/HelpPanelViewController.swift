@@ -13,6 +13,7 @@ class HelpPanelViewController: NSViewController {
 
     @IBOutlet var webView: WKWebView!
     
+    /// Determines whether Dark Mode is enabled on macOS Mojave; if the OS is outdated, it defaults to light
     var isDarkMode: Bool {
         get {
             if #available(OSX 10.14, *) {
