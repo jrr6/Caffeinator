@@ -30,7 +30,6 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
         selectorBox.dataSource = self
         
         refreshTimer = Timer.scheduledTimer(withTimeInterval: ProcessPanelViewController.refreshFrequency, repeats: true) { timer in
-            print("call \(Date().description)")
             self.reloadProcesses()
             self.selectorBox.reloadData()
         }
