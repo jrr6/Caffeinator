@@ -81,39 +81,4 @@ extension ProcessPanelViewController: NSComboBoxDataSource {
         let index = processes.firstIndex(where: { $0.processIdentifier == pidStr })
         return index ?? NSNotFound
     }
-    
-    func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {
-        let nameMatchProc = processes.first(where: { app in
-            guard let name = app.localizedName else {
-                return false
-            }
-            guard let sliceEnd = name.index(name.startIndex, offsetBy: string.count, limitedBy: name.endIndex) else {
-                return false
-            }
-            let slice = name[name.startIndex..<sliceEnd]
-            return slice.lowercased() == string.lowercased()
-        })
-        if let app = nameMatchProc {
-            return entryString(for: app)
-        }
-        
-        guard let entryPID = Double(string) else {
-            return nil
-        }
-        let pidMatchProc = processes.first(where: { app in
-            let appPID = Double(app.processIdentifier)
-            let entryMag = log10(entryPID)
-            let pidMag = log10(appPID)
-            if entryMag > pidMag {
-                return false
-            }
-            let abbreviatedPID = floor(appPID / pow(10, floor(entryMag)))
-            return entryPID == abbreviatedPID
-        })
-        if let app = pidMatchProc {
-            return entryString(for: app)
-        }
-        return nil
-    }
-    
 }
