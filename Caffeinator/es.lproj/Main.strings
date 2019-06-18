@@ -68,6 +68,9 @@
 /* Class = "NSMenuItem"; title = "Caffeinate Display"; ObjectID = "U5R-xl-uIM"; */
 "U5R-xl-uIM.title" = "Caffeinate pantalla";
 
+/* Class = "NSMenuItem"; title = "Use Advanced Process Selector"; ObjectID = "o7f-w2-ATY"; */
+"o7f-w2-ATY.title" = "Usa selector de proceso avanzado";
+
 /* Class = "NSMenuItem"; title = "15 minutes"; ObjectID = "VM1-p0-DQg"; */
 "VM1-p0-DQg.title" = "15 minutos";
 

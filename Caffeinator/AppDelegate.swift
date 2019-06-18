@@ -81,6 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var customMenu: NSMenuItem!
     
     @IBOutlet weak var displayToggle: NSMenuItem!
+    @IBOutlet weak var advancedProcToggle: NSMenuItem!
     
     var storyboard: NSStoryboard!
     var df: UserDefaults!
@@ -157,6 +158,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func defaultsDidChange() {
         RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
             self.displayToggle.state = self.df.bool(forKey: "CaffeinateDisplay") ? .on : .off
+            self.advancedProcToggle.state = self.df.bool(forKey: "AdvancedProcessSelector") ? .on : .off
         }
     }
     
@@ -195,6 +197,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         switch sender.identifier?.rawValue {
         case "caffeinateDisplay":
             key = "CaffeinateDisplay"
+        case "advancedProcessSelector":
+            key = "AdvancedProcessSelector"
         default:
             key = nil
         }
@@ -236,16 +240,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             var labelName = "PID \(pid)"
             if let appName = NSRunningApplication(processIdentifier: pid)?.localizedName {
                 labelName = "\(appName) (\(pid))"
-            } else {
-                let nameBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(MAXPATHLEN))
-                defer {
-                    nameBuffer.deallocate()
-                }
-                let nameLength = proc_name(pid, nameBuffer, UInt32(MAXPATHLEN))
-                if nameLength > 0 {
-                    let procName = String(cString: nameBuffer)
-                    labelName = "\(procName) (\(pid))"
-                }
+            } else if let procName = getLibProcName(for: pid) {
+                labelName = "\(procName) (\(pid))"
+            } else if let procPathComp = getLibProcPathEnd(for: pid) {
+                labelName = "\(procPathComp) (\(pid))"
             }
             RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
                 self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)

@@ -19,6 +19,7 @@
                 </application>
                 <customObject id="Y0S-22-67Z" customClass="AppDelegate" customModule="Caffeinator" customModuleProvider="target">
                     <connections>
+                        <outlet property="advancedProcToggle" destination="o7f-w2-ATY" id="lbP-yA-Eo7"/>
                         <outlet property="customMenu" destination="N0S-aw-ADb" id="kkF-os-uvj"/>
                         <outlet property="displayToggle" destination="U5R-xl-uIM" id="dJk-Oc-Yib"/>
                         <outlet property="mainMenu" destination="EuG-Hh-coT" id="5k8-B7-mDR"/>
@@ -113,6 +114,12 @@
                                             <action selector="changeDefault:" target="Y0S-22-67Z" id="cQY-O7-Vjw"/>
                                         </connections>
                                     </menuItem>
+                                    <menuItem title="Use Advanced Process Selector" identifier="advancedProcessSelector" id="o7f-w2-ATY">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="changeDefault:" target="Y0S-22-67Z" id="ALb-lU-5Aq"/>
+                                        </connections>
+                                    </menuItem>
                                     <menuItem title="View License Information…" id="YoE-Yi-PBR">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
@@ -151,8 +158,8 @@
                 <windowController storyboardIdentifier="processPanelController" id="mvg-bO-Rcs" sceneMemberID="viewController">
                     <window key="window" identifier="processPanelController" title="Select Process" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="Yrl-X5-l5V">
                         <windowStyleMask key="styleMask" titled="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="460" y="367" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
                         <connections>
                             <outlet property="delegate" destination="mvg-bO-Rcs" id="DaX-t7-2wQ"/>

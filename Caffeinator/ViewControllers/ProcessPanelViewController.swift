@@ -22,10 +22,12 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
     var onConfirm: (Any?) -> Void = {_ in }
     var onCancel: () -> Void = {}
     
-    private var processes: [NSRunningApplication] = []
+    private var processes: [Proc] = []
+    var advanced = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        advanced = UserDefaults.standard.bool(forKey: "AdvancedProcessSelector")
         reloadProcesses()
         selectorBox.dataSource = self
         
@@ -41,11 +43,24 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
     
     /// Refreshes the array of processes; `reloadData()` should be called on the combo box following this refresh
     private func reloadProcesses() {
-        processes = NSWorkspace.shared.runningApplications
-        processes.sort { (a: NSRunningApplication, b: NSRunningApplication) -> Bool in
-            let a1 = a.localizedName?.first ?? Character("")
-            let b1 = b.localizedName?.first ?? Character("")
-            return a1 < b1
+        if advanced {
+            let pidCount = proc_listallpids(nil, 0)
+            let pidListBuffer = UnsafeMutablePointer<pid_t>.allocate(capacity: Int(pidCount))
+            defer {
+                pidListBuffer.deallocate()
+            }
+            let bufferSize = pidCount * Int32(MemoryLayout<pid_t>.size)
+            let pidCount2 = proc_listallpids(pidListBuffer, bufferSize)
+            for i in 0..<pidCount2 {
+                let pid = pidListBuffer[Int(i)]
+                let name = getLibProcName(for: pid) ?? getLibProcPathEnd(for: pid) ?? nil
+                processes.append(Proc(pid, name))
+            }
+            processes.sort { $0.name ?? "" < $1.name ?? "" }
+        } else {
+            let runningApps = NSWorkspace.shared.runningApplications
+            processes = runningApps.map { Proc($0.processIdentifier, $0.localizedName) }
+            processes.sort { $0.name ?? "" < $1.name ?? "" }
         }
     }
     
@@ -53,7 +68,7 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
         let tabID = tabView.selectedTabViewItem?.identifier as? String
         let pidOpt: pid_t?
         if tabID == "select" {
-            pidOpt = processes[selectorBox.indexOfSelectedItem].processIdentifier
+            pidOpt = processes[selectorBox.indexOfSelectedItem].pid
         } else if tabID == "pid" {
             pidOpt = pid_t(pidInput.stringValue)
         } else {
@@ -78,6 +93,23 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
     
 }
 
+/// Represents any process with a PID and optional name. Serves as a universal type for representing processes retrieved from NSWorkspace or libproc.
+struct Proc: CustomStringConvertible {
+    let pid: pid_t
+    let name: String?
+    
+    public var description: String {
+        get {
+            return "\(name ?? "unknown") (\(pid))"
+        }
+    }
+    
+    init(_ pid: pid_t, _ name: String?) {
+        self.pid = pid
+        self.name = name
+    }
+}
+
 // Delegate for tab view so we can remember selected process input mode
 extension ProcessPanelViewController: NSTabViewDelegate {
     func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
@@ -91,22 +123,12 @@ extension ProcessPanelViewController: NSTabViewDelegate {
 
 // Data source for combo box
 extension ProcessPanelViewController: NSComboBoxDataSource {
-    private func entryString(for app: NSRunningApplication) -> String {
-        let procName = app.localizedName
-        let procID = app.processIdentifier
-        if let procName = procName {
-            return "\(procName) (\(procID))"
-        } else {
-            return "PID \(procID)"
-        }
-    }
-    
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         return processes.count
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        return entryString(for: processes[index])
+        return processes[index]
     }
     
     /// Tries to find an item matching the entered string based on the PID in parentheses. Note that, because this matches the final component of the string, it will likely only match auto-completed entries (auto-completion occurs by default anyway)
@@ -119,10 +141,10 @@ extension ProcessPanelViewController: NSComboBoxDataSource {
             return NSNotFound
         }
         let start = string.index(after: preStart)
-        guard start < end, let pidStr = Int(string[start..<end]) else {
+        guard start < end, let inputPID = Int(string[start..<end]) else {
             return NSNotFound
         }
-        let index = processes.firstIndex(where: { $0.processIdentifier == pidStr })
+        let index = processes.firstIndex(where: { $0.pid == inputPID })
         return index ?? NSNotFound
     }
 }
