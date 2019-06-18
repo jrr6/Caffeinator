@@ -236,6 +236,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             var labelName = "PID \(pid)"
             if let appName = NSRunningApplication(processIdentifier: pid)?.localizedName {
                 labelName = "\(appName) (\(pid))"
+            } else {
+                let nameBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(MAXPATHLEN))
+                defer {
+                    nameBuffer.deallocate()
+                }
+                let nameLength = proc_name(pid, nameBuffer, UInt32(MAXPATHLEN))
+                if nameLength > 0 {
+                    let procName = String(cString: nameBuffer)
+                    labelName = "\(procName) (\(pid))"
+                }
             }
             RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
                 self.processMenu.title = String(format: txt("AD.caffeinating-app-label"), labelName)
