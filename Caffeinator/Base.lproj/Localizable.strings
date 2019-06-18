@@ -29,6 +29,8 @@
 "AD.bad-opt-config-title" = "Illegal Option Configuration";
 "AD.bad-opt-config-msg" = "A Caffeination with the specified options could not be started. Ensure that a value has been provided for each selected option that requires one.";
 
+"HPVC.could-not-find-help" = "Could not find help file.";
+
 "KM.kill-caffeinate-prompt-title" = "Existing caffeinate Process Found";
 "KM.kill-caffeinate-prompt-msg" = "One or more caffeinate processes are already running on your computer. This may be because Caffeinator did not quit correctly the last time it was opened. Caffeinator only works when no other caffeinate processes are active. Would you like Caffeinator to end these caffeinate processes for you?";
 "KM.no-caffeinate-process-title" = "No caffeinate Process Found";

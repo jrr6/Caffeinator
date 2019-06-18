@@ -35,7 +35,7 @@ class HelpPanelViewController: NSViewController {
         if let resource = Bundle.main.url(forResource: helpFile, withExtension: "html") {
             webView.load(URLRequest(url: resource))
         } else {
-            webView.loadHTMLString("<p>Could not find help file.</p>", baseURL: URL(string: "data://"))
+            webView.loadHTMLString("<p style=\"font-family:-apple-system\">\(txt("HPVC.could-not-find-help"))</p>", baseURL: URL(string: "data://"))
         }
     }
     
