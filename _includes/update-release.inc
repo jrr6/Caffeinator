@@ -13,7 +13,9 @@
                     {% for asset in release.assets limit:1 %}
                         <enclosure
                         url="{{ asset.browser_download_url }}"
-                        sparkle:version="{{ release.tag_name | remove_first:'v' }}"
+                        {% assign version = release.tag_name | remove_first:'v' %}
+                        sparkle:version="{{ version }}"
+                        sparkle:edSignature="{{ site.data.signatures[version] }}"
                         length="{{ asset.size }}"
                         type="application/octet-stream" />
                     {% endfor %}
