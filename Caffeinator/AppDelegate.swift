@@ -32,7 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var storyboard: NSStoryboard!
     var df: UserDefaults!
     var nc: NotificationCenter!
-    var updater: Updater!
     var killMan: KillallManager!
     var caffeination: Caffeination!
     
@@ -40,7 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusItem: NSStatusItem! = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
-    // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), set up the menu item and windows, and check for updates
+    // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), and set up the menu item and windows
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem.image = NSImage(named: "CoffeeCup")
         statusItem.button?.action = #selector(handleStatusItemClick(sender:))
@@ -53,9 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(AppDelegate.defaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         initDefaults()
-        
-        // Set up updating
-        updater = Updater()
         
         // Ensure no background caffeinate processes are running
         killMan = KillallManager()
@@ -238,11 +234,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Responds to the "View License Information" menu item by opening the License HUD
     @IBAction func licensePressed(_ sender: NSMenuItem) {
         storyboard.instantiateAndShowWindow(withIDString: "licensePanelController")
-    }
-    
-    /// Responds to user request to check for updates by calling checkForUpdate()
-    @IBAction func checkForUpdatesClicked(_ sender: NSMenuItem) {
-        updater.checkForUpdate(isUserInitiated: true)
     }
     
     /// Remove Notification Center observer on deinit

@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E20139BE1F77FE2C008B12E1 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20139BD1F77FE2C008B12E1 /* Updater.swift */; };
 		E20139C21F78024B008B12E1 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20139C11F78024B008B12E1 /* Notifier.swift */; };
 		E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF171BEFA5A8007708FB /* AppDelegate.swift */; };
 		E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E209DF191BEFA5A8007708FB /* Assets.xcassets */; };
 		E209DF281BEFA5A8007708FB /* CaffeinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF271BEFA5A8007708FB /* CaffeinatorTests.swift */; };
 		E209DF331BEFA5A8007708FB /* CaffeinatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */; };
 		E217D8922069447C005FFCF3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E217D8942069447C005FFCF3 /* Localizable.strings */; };
-		E23D4A71229B010500F0FBB8 /* UpdatePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */; };
-		E23D4A73229B0A8100F0FBB8 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E23D4A72229B0A8100F0FBB8 /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E23D4A76229B0AEE00F0FBB8 /* CaffeineKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2145216216ADEF7005756E5 /* CaffeineKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */; };
 		E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */; };
@@ -27,6 +24,11 @@
 		E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */; };
 		E287977322B82C55004355B1 /* ProcessPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287977222B82C55004355B1 /* ProcessPanelViewController.swift */; };
 		E287977922B93BC1004355B1 /* CaffeinationAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287977822B93BC1004355B1 /* CaffeinationAdditions.swift */; };
+		E287977C22B95A4B004355B1 /* CaffeineKit.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E287977A22B95A4B004355B1 /* CaffeineKit.framework.dSYM */; };
+		E287978022B96455004355B1 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E287977F22B96455004355B1 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E287978222B96470004355B1 /* Sparkle.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E287978122B96470004355B1 /* Sparkle.framework.dSYM */; };
+		E287978622B97A1D004355B1 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E287977F22B96455004355B1 /* Sparkle.framework */; };
+		E287978822B982A8004355B1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E287978722B982A8004355B1 /* .gitignore */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
 		E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */; };
 		E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */; };
@@ -56,8 +58,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E287978022B96455004355B1 /* Sparkle.framework in Embed Frameworks */,
 				E23D4A76229B0AEE00F0FBB8 /* CaffeineKit.framework in Embed Frameworks */,
-				E23D4A73229B0A8100F0FBB8 /* Down.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,6 +70,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				E287978222B96470004355B1 /* Sparkle.framework.dSYM in CopyFiles */,
+				E287977C22B95A4B004355B1 /* CaffeineKit.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +80,6 @@
 /* Begin PBXFileReference section */
 		E20139BB1F77FDB1008B12E1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E20139BC1F77FDB2008B12E1 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		E20139BD1F77FE2C008B12E1 /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		E20139C11F78024B008B12E1 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		E209DF141BEFA5A8007708FB /* Caffeinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caffeinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E209DF171BEFA5A8007708FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,10 +92,8 @@
 		E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinatorUITests.swift; sourceTree = "<group>"; };
 		E209DF341BEFA5A8007708FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2145215216ADE03005756E5 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		E2145216216ADEF7005756E5 /* CaffeineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CaffeineKit.framework; path = Carthage/Build/Mac/CaffeineKit.framework; sourceTree = "<group>"; };
+		E2145216216ADEF7005756E5 /* CaffeineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CaffeineKit.framework; sourceTree = "<group>"; };
 		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePanelViewController.swift; sourceTree = "<group>"; };
-		E23D4A72229B0A8100F0FBB8 /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/Mac/Down.framework; sourceTree = "<group>"; };
 		E252008E213742F30086010F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentPanelViewController.swift; sourceTree = "<group>"; };
 		E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPanelViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +108,10 @@
 		E287977222B82C55004355B1 /* ProcessPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessPanelViewController.swift; sourceTree = "<group>"; };
 		E287977722B92B11004355B1 /* Caffeinator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caffeinator-Bridging-Header.h"; sourceTree = "<group>"; };
 		E287977822B93BC1004355B1 /* CaffeinationAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinationAdditions.swift; sourceTree = "<group>"; };
+		E287977A22B95A4B004355B1 /* CaffeineKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = CaffeineKit.framework.dSYM; sourceTree = "<group>"; };
+		E287977F22B96455004355B1 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		E287978122B96470004355B1 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Sparkle.framework.dSYM; sourceTree = "<group>"; };
+		E287978722B982A8004355B1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 		E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryPanelViewController.swift; sourceTree = "<group>"; };
 		E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PseudoModal.swift; sourceTree = "<group>"; };
@@ -117,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E287978622B97A1D004355B1 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,8 +146,7 @@
 		E209DF0B1BEFA5A8007708FB = {
 			isa = PBXGroup;
 			children = (
-				E23D4A72229B0A8100F0FBB8 /* Down.framework */,
-				E2145216216ADEF7005756E5 /* CaffeineKit.framework */,
+				E287977E22B95AD9004355B1 /* lib */,
 				E209DF161BEFA5A8007708FB /* Caffeinator */,
 				E278A2F822A08E8300EEFFCB /* Resources */,
 				E209DF261BEFA5A8007708FB /* CaffeinatorTests */,
@@ -151,6 +156,7 @@
 				E2145215216ADE03005756E5 /* Cartfile */,
 				E20139BC1F77FDB2008B12E1 /* LICENSE.txt */,
 				E20139BB1F77FDB1008B12E1 /* README.md */,
+				E287978722B982A8004355B1 /* .gitignore */,
 				E23D4A74229B0AE100F0FBB8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -223,7 +229,6 @@
 				E26273EA211C8D7B005F9121 /* LicensesViewController.swift */,
 				E287977222B82C55004355B1 /* ProcessPanelViewController.swift */,
 				E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */,
-				E23D4A70229B010500F0FBB8 /* UpdatePanelViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -236,9 +241,19 @@
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
 				E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */,
 				E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */,
-				E20139BD1F77FE2C008B12E1 /* Updater.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E287977E22B95AD9004355B1 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				E287977A22B95A4B004355B1 /* CaffeineKit.framework.dSYM */,
+				E287978122B96470004355B1 /* Sparkle.framework.dSYM */,
+				E2145216216ADEF7005756E5 /* CaffeineKit.framework */,
+				E287977F22B96455004355B1 /* Sparkle.framework */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E278A2F622A06B1A00EEFFCB /* help_dark.html in Resources */,
+				E287978822B982A8004355B1 /* .gitignore in Resources */,
 				E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */,
 				E278A2F722A06B1C00EEFFCB /* help_light.html in Resources */,
 				E26273EC211C8DFD005F9121 /* Main.storyboard in Resources */,
@@ -388,13 +404,11 @@
 			files = (
 				E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */,
 				E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */,
-				E23D4A71229B010500F0FBB8 /* UpdatePanelViewController.swift in Sources */,
 				E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */,
 				E287977922B93BC1004355B1 /* CaffeinationAdditions.swift in Sources */,
 				E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */,
 				E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */,
 				E20139C21F78024B008B12E1 /* Notifier.swift in Sources */,
-				E20139BE1F77FE2C008B12E1 /* Updater.swift in Sources */,
 				E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */,
 				E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */,
 				E287977322B82C55004355B1 /* ProcessPanelViewController.swift in Sources */,
@@ -566,6 +580,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = Caffeinator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -585,6 +600,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = Caffeinator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
