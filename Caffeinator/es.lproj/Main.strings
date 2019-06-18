@@ -152,13 +152,13 @@
 /* Class = "NSTextFieldCell"; title = "Use the picker below to enter the amount of time for which you want Caffeinator to keep your computer awake in hours, minutes, and seconds."; ObjectID = "M0B-Cd-06u"; */
 "M0B-Cd-06u.title" = "Usa el selector a continuación para introducir la duración por la cual deseas que Caffeinator mantenga despierto tu ordenador en horas, minutos y segundos.";
 
-/* Class = "NSTextFieldCell"; title = "H"; ObjectID = "ABV-3z-yMm"; */
+/* Class = "NSTextFieldCell"; placeholder = "H"; ObjectID = "ABV-3z-yMm"; */
 "ABV-3z-yMm.placeholder" = "H";
 
-/* Class = "NSTextFieldCell"; title = "M"; ObjectID = "eWS-jR-MOG"; */
+/* Class = "NSTextFieldCell"; placeholder = "M"; ObjectID = "eWS-jR-MOG"; */
 "eWS-jR-MOG.placeholder" = "M";
 
-/* Class = "NSTextFieldCell"; title = "S"; ObjectID = "opy-lY-ymp"; */
+/* Class = "NSTextFieldCell"; placeholder = "S"; ObjectID = "opy-lY-ymp"; */
 "opy-lY-ymp.placeholder" = "S";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GNj-cR-Mqx"; */
@@ -166,3 +166,24 @@
 
 /* Class = "NSButtonCell"; title = "Caffeinate"; ObjectID = "qXO-VY-gAV"; */
 "qXO-VY-gAV.title" = "Caffeinate";
+
+/* Class = "NSTextFieldCell"; title = "Process-Based Caffeination"; ObjectID = "3m4-2M-si6"; */
+"3m4-2M-si6.title" = "Caffeinate un proceso";
+
+/* Class = "NSTabViewItem"; label = "Select Process"; ObjectID = "eZh-hp-OlL"; */
+"eZh-hp-OlL.label" = "Escoger proceso";
+
+/* Class = "NSTextFieldCell"; title = "Select the process you would like to Caffeinate from the list below."; ObjectID = "Bvt-o6-9lc"; */
+"Bvt-o6-9lc.title" = "Escoge el proceso con el que deseas iniciar Caffeinate de la lista a continuación.";
+
+/* Class = "NSTabViewItem"; label = "Enter PID"; ObjectID = "EVO-tX-GYb"; */
+"EVO-tX-GYb.label" = "Introducir PID";
+
+/* Class = "NSTextFieldCell"; title = "Enter the process ID (PID) of the process you would like to Caffeinate below. Process IDs can be found in Activity Monitor."; ObjectID = "7dZ-a8-f8y"; */
+"7dZ-a8-f8y.title" = "Introduce a continuación el identificador (PID) del proceso con el que deseas iniciar Caffeinator. El PID se puede encontrar en Monitor de Actividad.";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "NWc-gB-nO6"; */
+"NWc-gB-nO6.title" = "Cancelar";
+
+/* Class = "NSButtonCell"; title = "Caffeinate"; ObjectID = "NWc-gB-nO6"; */
+"sw5-dI-Zs2.title" = "Caffeinate";

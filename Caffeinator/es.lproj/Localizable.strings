@@ -51,7 +51,7 @@
 "PA.execution-error-msg" = "Un error ocurrió cuando ejecutó %@:\n%@";
 "PA.unknown-process-path" = "desconocido";
 
-"PPVC.process-failure-title" = "No se pudo comenzar Caffeination de proceso";
+"PPVC.process-failure-title" = "No se pudo iniciar Caffeination de proceso";
 "PPVC.process-failure-msg" = "No se puedo empezar una Caffeination del proceso especificado. Asegúrate de que hayas escogido un proceso válido de la lista o que hayas introducido un PID de número entero.";
 
 "U.auto-update-disabled-title" = "La actualización automática está apagada";
