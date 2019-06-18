@@ -131,6 +131,24 @@ extension ProcessPanelViewController: NSComboBoxDataSource {
         return processes[index]
     }
     
+    func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {
+        let nameMatchProc = processes.first(where: { app in
+            guard let name = app.name else {
+                return false
+            }
+            guard let sliceEnd = name.index(name.startIndex, offsetBy: string.count, limitedBy: name.endIndex) else {
+                return false
+            }
+            let slice = name[name.startIndex..<sliceEnd]
+            return slice.lowercased() == string.lowercased()
+        })
+        if let app = nameMatchProc {
+            return app.description
+        } else {
+            return nil
+        }
+    }
+    
     /// Tries to find an item matching the entered string based on the PID in parentheses. Note that, because this matches the final component of the string, it will likely only match auto-completed entries (auto-completion occurs by default anyway)
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
         guard string.count > 0 else {

@@ -7,6 +7,7 @@
 //
 
 import CaffeineKit
+import Cocoa
 
 extension Caffeination {
     func handledStart() {
