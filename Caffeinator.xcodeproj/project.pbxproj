@@ -26,6 +26,7 @@
 		E278A2F722A06B1C00EEFFCB /* help_light.html in Resources */ = {isa = PBXBuildFile; fileRef = E278A2F322A06B1700EEFFCB /* help_light.html */; };
 		E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */; };
 		E287977322B82C55004355B1 /* ProcessPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287977222B82C55004355B1 /* ProcessPanelViewController.swift */; };
+		E287977922B93BC1004355B1 /* CaffeinationAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287977822B93BC1004355B1 /* CaffeinationAdditions.swift */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
 		E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */; };
 		E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */; };
@@ -105,6 +106,7 @@
 		E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessAdditions.swift; sourceTree = "<group>"; };
 		E287977222B82C55004355B1 /* ProcessPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessPanelViewController.swift; sourceTree = "<group>"; };
 		E287977722B92B11004355B1 /* Caffeinator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caffeinator-Bridging-Header.h"; sourceTree = "<group>"; };
+		E287977822B93BC1004355B1 /* CaffeinationAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinationAdditions.swift; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 		E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryPanelViewController.swift; sourceTree = "<group>"; };
 		E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PseudoModal.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		E287977122B825F5004355B1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E287977822B93BC1004355B1 /* CaffeinationAdditions.swift */,
 				E26E133F211A4D9100DA4F90 /* KillallManager.swift */,
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
 				E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */,
@@ -387,6 +390,7 @@
 				E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */,
 				E23D4A71229B010500F0FBB8 /* UpdatePanelViewController.swift in Sources */,
 				E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */,
+				E287977922B93BC1004355B1 /* CaffeinationAdditions.swift in Sources */,
 				E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */,
 				E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */,
 				E20139C21F78024B008B12E1 /* Notifier.swift in Sources */,

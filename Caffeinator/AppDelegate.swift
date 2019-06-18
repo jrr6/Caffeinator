@@ -14,60 +14,6 @@ func txt(_ text: String) -> String {
     return NSLocalizedString(text, comment: "")
 }
 
-extension NSStoryboard {
-    func instantiateAndShowWindow(withIDString idString: String) {
-        // TODO: This is hacky and relies on the ID of the window matching the storyboard ID of its view controller. Investigate better ways to go about preventing duplicate windows. (Also, since update windows do their own thing, this doesn't prevent duplicate update windows, although that's less of an issue.)
-        if !NSApp.windows.contains { $0.identifier?.rawValue == idString } {
-            (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
-        }
-    }
-    func instantiateAndShowPseudoModal(withIDString idString: String, properties: [String: Any], onConfirm: ((Any) -> Void)?, onCancel: (() -> Void)?) {
-        guard (!NSApp.windows.contains { $0.identifier?.rawValue == idString }) else {
-            return
-        }
-        let windowCtrl = self.instantiateController(withIdentifier: idString) as? NSWindowController
-        var vc = windowCtrl?.contentViewController as? PseudoModal
-        vc?.onConfirm = onConfirm ?? {_ in }
-        vc?.onCancel = onCancel ?? {}
-        vc?.properties = properties
-        windowCtrl?.showWindow(self)
-        NSApp.activate(ignoringOtherApps: true)
-    }
-}
-
-extension Caffeination {
-    func handledStart() {
-        do {
-            try self.start()
-            (NSApp.delegate as! AppDelegate).updateIconForCafState(active: true)
-        } catch let err {
-            switch err {
-            case let err as CaffeinationError:
-                if err == CaffeinationError.caffeinateNotFound {
-                    Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-missing-dialog-title"), text: txt("AD.caffeinate-missing-dialog-msg"))
-                }
-                // ignore "already active" errors
-            default:
-                Notifier.showErrorMessage(withTitle: txt("AD.caffeinate-failure-title"), text: String(format: txt("AD.caffeinate-failure-msg"), err.localizedDescription))
-            }
-            self.opts = Caffeination.Opt.userDefaults
-        }
-    }
-    
-    func handledStart(withOpts opts: [Opt]) {
-        self.opts = opts
-        self.handledStart()
-    }
-}
-
-extension Caffeination.Opt {
-    static var userDefaults: [Caffeination.Opt] {
-        get {
-            return UserDefaults.standard.bool(forKey: "CaffeinateDisplay") ? Caffeination.Opt.defaults : [Caffeination.Opt.idle]
-        }
-    }
-}
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
