@@ -33,6 +33,10 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
             self.reloadProcesses()
             self.selectorBox.reloadData()
         }
+        
+        if UserDefaults.standard.bool(forKey: "ProcPanelPIDFocused") {
+            tabView.selectTabViewItem(tabView.tabViewItems.last)
+        }
     }
     
     /// Refreshes the array of processes; `reloadData()` should be called on the combo box following this refresh
@@ -72,6 +76,17 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
         refreshTimer?.invalidate()
     }
     
+}
+
+// Delegate for tab view so we can remember selected process input mode
+extension ProcessPanelViewController: NSTabViewDelegate {
+    func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        if tabViewItem?.identifier as? String == "pid" {
+            UserDefaults.standard.set(true, forKey: "ProcPanelPIDFocused")
+        } else {
+            UserDefaults.standard.set(false, forKey: "ProcPanelPIDFocused")
+        }
+    }
 }
 
 // Data source for combo box

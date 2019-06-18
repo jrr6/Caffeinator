@@ -300,6 +300,9 @@ Gw
                                         </view>
                                     </tabViewItem>
                                 </tabViewItems>
+                                <connections>
+                                    <outlet property="delegate" destination="Agc-yR-2fu" id="2m3-ze-kV1"/>
+                                </connections>
                             </tabView>
                         </subviews>
                         <constraints>
