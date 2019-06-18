@@ -1,4 +1,3 @@
-<!-- Based on code from https://gist.github.com/huangyq23/668e6d6fcccf714e802a -->
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>

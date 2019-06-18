@@ -1,0 +1,3 @@
+source: ./xml
+include: [./xml/update-release.xml]
+destination: ./update
