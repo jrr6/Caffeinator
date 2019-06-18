@@ -5,19 +5,21 @@
         <description>Feed of production updates to Caffeinator.</description>
         <language>en</language>
         {% for release in site.github.releases %}
-            {% unless release.draft or release.prerelease %}
+            {% unless release.draft or release.prerelease or (release.assets | size) < 2 %}
                 <item>
                     <title>{{ release.name }}</title>
                     <description><![CDATA[{{ release.body | markdownify }}]]></description>
                     <pubDate>{{ release.published_at | date_to_rfc822 }}</pubDate>
-                    {% for asset in release.assets limit:1 %}
-                        <enclosure
-                        url="{{ asset.browser_download_url }}"
-                        {% assign version = release.tag_name | remove_first:'v' %}
-                        sparkle:version="{{ version }}"
-                        sparkle:edSignature="{{ site.data.signatures[version] }}"
-                        length="{{ asset.size }}"
-                        type="application/octet-stream" />
+                    {% for asset in release.assets %}
+                        {% if asset.content_type == 'application/zip' %}
+                            <enclosure
+                            url="{{ asset.browser_download_url }}"
+                            {% assign version = release.tag_name | remove_first:'v' %}
+                            sparkle:version="{{ version }}"
+                            sparkle:edSignature="{{ site.data.signatures[version] }}"
+                            length="{{ asset.size }}"
+                            type="application/octet-stream" />
+                        {% endif %}
                     {% endfor %}
                 </item>
             {% endunless %}
