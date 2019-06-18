@@ -55,7 +55,7 @@
     <script>
       $(document).ready(function() {
         $.getJSON("https://api.github.com/repos/aaplmath/Caffeinator/releases/latest").done(function(release) {
-          $('#download-button').attr('href', release.assets[0].browser_download_url);
+          $('#download-button').attr('href', release.assets.filter(e => e.content_type == 'application/octet-stream')[0].browser_download_url);
         });
         // checkSpanish();
       });
