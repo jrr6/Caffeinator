@@ -44,6 +44,7 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
     /// Refreshes the array of processes; `reloadData()` should be called on the combo box following this refresh
     private func reloadProcesses() {
         if advanced {
+            processes.removeAll()
             let pidCount = proc_listallpids(nil, 0)
             let pidListBuffer = UnsafeMutablePointer<pid_t>.allocate(capacity: Int(pidCount))
             defer {
@@ -53,7 +54,7 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
             let pidCount2 = proc_listallpids(pidListBuffer, bufferSize)
             for i in 0..<pidCount2 {
                 let pid = pidListBuffer[Int(i)]
-                let name = getLibProcName(for: pid) ?? getLibProcPathEnd(for: pid) ?? nil
+                let name = getNameByPID(pid)
                 processes.append(Proc(pid, name))
             }
             processes.sort { $0.name ?? "" < $1.name ?? "" }
@@ -68,7 +69,12 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
         let tabID = tabView.selectedTabViewItem?.identifier as? String
         let pidOpt: pid_t?
         if tabID == "select" {
-            pidOpt = processes[selectorBox.indexOfSelectedItem].pid
+            let selected = selectorBox.indexOfSelectedItem
+            if selected < 0 {
+                pidOpt = nil
+            } else {
+                pidOpt = processes[selectorBox.indexOfSelectedItem].pid
+            }
         } else if tabID == "pid" {
             pidOpt = pid_t(pidInput.stringValue)
         } else {

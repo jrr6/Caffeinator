@@ -6,7 +6,17 @@
 //  Copyright © 2018 aaplmath. All rights reserved.
 //
 
-import Foundation
+import Cocoa
+
+/// Attempts to get the name of a process using NSWorkspace and libproc
+func getNameByPID(_ pid: pid_t) -> String? {
+    return getRunningAppName(for: pid) ?? getLibProcName(for: pid) ?? getLibProcPathEnd(for: pid)
+}
+
+/// Gets the name of a process by its PID using NSRunningApplication
+func getRunningAppName(for pid: pid_t) -> String? {
+    return NSRunningApplication(processIdentifier: pid)?.localizedName
+}
 
 /// Gets the name of a process by its PID using libproc
 func getLibProcName(for pid: pid_t) -> String? {
