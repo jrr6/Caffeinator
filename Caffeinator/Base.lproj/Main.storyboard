@@ -108,13 +108,13 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="Advanced" autoenablesItems="NO" id="fDx-Jk-qLE">
                                 <items>
-                                    <menuItem title="Caffeinate Display" state="on" identifier="caffeinateDisplay" id="U5R-xl-uIM">
+                                    <menuItem title="Caffeinate Display" state="on" identifier="CaffeinateDisplay" id="U5R-xl-uIM">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="changeDefault:" target="Y0S-22-67Z" id="cQY-O7-Vjw"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Use Advanced Process Selector" identifier="advancedProcessSelector" id="o7f-w2-ATY">
+                                    <menuItem title="Use Advanced Process Selector" identifier="AdvancedProcessSelector" id="o7f-w2-ATY">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="changeDefault:" target="Y0S-22-67Z" id="ALb-lU-5Aq"/>

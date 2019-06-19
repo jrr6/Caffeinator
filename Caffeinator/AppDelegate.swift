@@ -135,15 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         RunLoop.main.perform(inModes: [RunLoop.Mode.eventTracking, RunLoop.Mode.default]) {
             sender.state = val ? .on : .off
         }
-        let key: String?
-        switch sender.identifier?.rawValue {
-        case "caffeinateDisplay":
-            key = "CaffeinateDisplay"
-        case "advancedProcessSelector":
-            key = "AdvancedProcessSelector"
-        default:
-            key = nil
-        }
+        let key = sender.identifier?.rawValue
         if let key = key {
             df.set(val, forKey: key)
         } else {

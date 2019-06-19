@@ -113,6 +113,9 @@
 /* Class = "NSButtonCell"; title = "Timed"; ObjectID = "nTh-D9-FeX"; */
 "nTh-D9-FeX.title" = "Cronometrar";
 
+/* Class = "NSTextFieldCell"; title = "Options"; ObjectID = "Nr6-ww-YTG"; */
+"Nr6-ww-YTG.title" = "Opciones";
+
 /* Class = "NSTextFieldCell"; title = "Values"; ObjectID = "roh-hs-mWV"; */
 "roh-hs-mWV.title" = "Valores";
 
