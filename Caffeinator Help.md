@@ -16,7 +16,7 @@ To install Caffeinator:
 
 ## Opening the App
 
-The very first time you try to launch Caffeinator (or a new version of the app), you'll get an error saying that the app is from an "untrusted developer." This is because Caffeinator is not signed with a developer certificate, which costs $99 (money that an open-source project like this doesn't have) to obtain from Apple. Therefore, you'll need to do the following the first time you open any new version of Caffeinator:
+The very first time you try to launch Caffeinator, you'll get an error saying that the app is from an "untrusted developer." This is because Caffeinator is not signed with a developer certificate, which costs $99 (money that an open-source project like this doesn't have) to obtain from Apple. Therefore, you'll need to do the following the first time you open Caffeinator:
 
 * Navigate to your `Applications` folder in Finder.
 * Right-click (on a MacBook, click with two fingers) on the Caffeinator icon in Finder.
@@ -37,11 +37,14 @@ If you use Caffeinator frequently, consider having it open automatically when yo
 
 ## Caffeination Options
 
-Caffeinator provides a number of different options to prevent computer sleep. These can be accessed from the main Caffeinator menu:
+Caffeinator provides a number of different options to prevent computer sleep. These are listed below and can be accessed from the main Caffeinator menu. At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinator button or by right-clicking or <kbd>option</kbd>-clicking the menu bar icon.
 
 * Start Caffeinator: Prevents sleep until `Stop Caffeinator` is clicked. To quickly start a Caffeination, you can also right-click or <kbd>option</kbd>-click the menu bar icon.
-* Caffeinate a Process: This will prevent your computer from going to sleep until a process has completed. For example, if you're presenting a PDF using a projector, enter the PID of the PDF app and your computer will wait to sleep until you quit that application. To find an application's PID, use Activity Monitor (located at `/Applications/Activity Monitor`).
-* Timed Caffeination: Keeps your computer from sleeping for a defined amount of time greater than one second. Select one of the presets from the list or enter a custom time interval in seconds using the `Other...` option (note that custom time intervals must be written only as seconds, not as hours or minutes—`5400` is a valid interval, but `1:30:00` is not).
+
+* Caffeinate a Process: This will prevent your computer from going to sleep until a process has completed. For example, if you're presenting a PDF using a projector, select the app you're using to display the PDF and your computer will wait to sleep until you quit that application. To select an app, use the dropdown selector under "Select Process" or choose "Enter PID" to manually enter the identifier of a running process. To find an application's PID, use Activity Monitor (located at `/Applications/Activity Monitor`). If you need to Caffeinate a system daemon or other background process that doesn't appear in the standard dropdown, consider enabling `Use Advanced Process Selector`.
+
+* Timed Caffeination: Keeps your computer from sleeping for a defined amount of time greater than one second. Select one of the presets from the list or enter a custom time interval in hours, minutes, and seconds using the `Other…` option.
+
 * Custom Caffeination: This allows you to create a Caffeination that stops certain types of sleep or emulates certain user processes to prevent sleep. Use the checkboxes on the left-hand side of the Custom Caffeination window to select which features you want to enable for the Caffeination; on the right-hand side, fill in the amount of time for which you want Caffeinator to prevent sleep or the PID of the process during whose lifespan you want to prevent sleep if you have selected either of the applicable options on the left side. Each of the Custom Caffeination options is described below:
 
   | Option               | Function                                                     |
@@ -56,4 +59,4 @@ Caffeinator provides a number of different options to prevent computer sleep. Th
 
 * Caffeinate Display: Enable if you want Caffeinator to prevent display sleep as well as computer sleep. If you do not enable this feature, your computer's screen will go to sleep after the interval specified in the System Preferences Energy Saver settings, but background processes will still continue to run. Note that if this preference is modified during an active Caffeination, you will need to start a new Caffeination for changes to take effect.
 
-At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinator button or by right-clicking or <kbd>option</kbd>-clicking the menu bar icon.
+* Use Advanced Process Selector: This option shows all running processes (rather than just apps and helpers) in the `Caffeinate a Process` selector. Select this option if you need to Caffeinate command-line tools, system daemons, or other non-app-bundle processes.

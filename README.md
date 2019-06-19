@@ -14,7 +14,7 @@ Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/Caffeine
 
 * **Why can't I open Caffeinator?**
 
-  Probably because Caffeinator is not signed with a Developer Certificate. To open Caffeinator the first time after installing or updating it, right-click on the app icon and click "Open," then confirm that you trust the app.
+  Probably because Caffeinator is not signed with a Developer Certificate. To open Caffeinator for the first time after installation, right-click on the app icon and click "Open," then confirm that you trust the app.
 
 * **Why isn't there an option to specify a utility as an argument to `caffeinate` (as is shown in the man page)?**
 
@@ -26,4 +26,4 @@ Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/Caffeine
 
 * **Why is this README so short?**
 
-  Because Caffeinator has a website, which you can visit [here](https://aaplmath.github.io/Caffeinator).
+  Because Caffeinator has a website, which you can visit [here](https://aaplmath.github.io/Caffeinator) and which also contains a [help guide](https://aaplmath.github.io/Caffeinator/help.html).
