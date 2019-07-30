@@ -580,7 +580,7 @@ Gw
         <scene sceneID="Tns-eW-ccD">
             <objects>
                 <windowController storyboardIdentifier="argumentPanelController" showSeguePresentationStyle="single" id="1GM-eh-zfw" sceneMemberID="viewController">
-                    <window key="window" identifier="argumentPanelController" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1" customClass="NSPanel">
+                    <window key="window" identifier="argumentPanelController" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1">
                         <windowStyleMask key="styleMask" titled="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="440" y="280" width="400" height="400"/>
