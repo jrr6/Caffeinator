@@ -22,14 +22,16 @@ extension NSStoryboard {
         if !NSApp.windows.contains { $0.identifier?.rawValue == idString } {
             (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
         }
+        NSApp.activate(ignoringOtherApps: true)
     }
+    
     func instantiateAndShowPseudoModal(withIDString idString: String, properties: [String: Any], onConfirm: ((Any) -> Void)?, onCancel: (() -> Void)?) {
         guard (!NSApp.windows.contains { $0.identifier?.rawValue == idString }) else {
             return
         }
         let windowCtrl = self.instantiateController(withIdentifier: idString) as? NSWindowController
         var vc = windowCtrl?.contentViewController as? PseudoModal
-        vc?.onConfirm = onConfirm ?? {_ in }
+        vc?.onConfirm = onConfirm ?? { _ in }
         vc?.onCancel = onCancel ?? {}
         vc?.properties = properties
         windowCtrl?.showWindow(self)
