@@ -157,18 +157,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    /// Responds to the "Run with args" item by opening the argument panel
+    /// Responds to the "Run with args" item by opening the Custom Caffeination panel
     @IBAction func customClicked(_ sender: NSMenuItem) {
-        DispatchQueue.main.async {
-            self.storyboard.instantiateAndShowWindow(withIDString: "argumentPanelController")
+        let customHandler = { (args: Any?) in
+            guard let args = args as? [String: String] else {
+                Notifier.showErrorMessage(withTitle: txt("AD.custom-callback-failure-title"), text: txt("AD.custom-callback-failure-msg"))
+                return
+            }
+            var params: [Caffeination.Opt] = []
+            for (name, arg) in args {
+                let opt: Caffeination.Opt?
+                if arg != "" {
+                    opt = Caffeination.Opt.from([name, arg])
+                } else {
+                    opt = Caffeination.Opt.from(name)
+                }
+                guard let optUnwrapped = opt else {
+                    Notifier.showErrorMessage(withTitle: txt("AD.bad-opt-config-title"), text: txt("AD.bad-opt-config-msg"))
+                    return
+                }
+                params.append(optUnwrapped)
+            }
+            self.caffeination.handledStart(withOpts: params)
         }
+        self.storyboard.instantiateAndShowPseudoModal(withIDString: "customPanelController", properties: [:], onConfirm: customHandler, onCancel: nil)
     }
     
     /// Responds to the "Caffeinate process" item by prompting entry of a PID and starting the Caffeination with the `.process` Opt
     @IBAction func processClicked(_ sender: NSMenuItem) {
         let confirmationHandler = { (pid: Any?) in
             guard let pid = pid as? pid_t else {
-                Notifier.showErrorMessage(withTitle: txt("PPVC.process-failure-title"), text: txt("PPVC.process-failure-msg"))
+                Notifier.showErrorMessage(withTitle: txt("AD.process-failure-title"), text: txt("AD.process-failure-msg"))
                 return
             }
             var labelName = "PID \(pid)"

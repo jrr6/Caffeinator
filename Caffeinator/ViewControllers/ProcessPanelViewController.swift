@@ -19,7 +19,7 @@ class ProcessPanelViewController: NSViewController, PseudoModal {
     weak var refreshTimer: Timer?
     
     var properties: [String : Any] = [:]
-    var onConfirm: (Any?) -> Void = {_ in }
+    var onConfirm: (Any?) -> Void = { _ in }
     var onCancel: () -> Void = {}
     
     private var processes: [Proc] = []

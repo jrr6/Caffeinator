@@ -14,7 +14,7 @@
 		E209DF331BEFA5A8007708FB /* CaffeinatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209DF321BEFA5A8007708FB /* CaffeinatorUITests.swift */; };
 		E217D8922069447C005FFCF3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E217D8942069447C005FFCF3 /* Localizable.strings */; };
 		E23D4A76229B0AEE00F0FBB8 /* CaffeineKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2145216216ADEF7005756E5 /* CaffeineKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */; };
+		E26273E5211C8AB2005F9121 /* CustomPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E4211C8AB2005F9121 /* CustomPanelViewController.swift */; };
 		E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */; };
 		E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273EA211C8D7B005F9121 /* LicensesViewController.swift */; };
 		E26273EC211C8DFD005F9121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26273EE211C8DFD005F9121 /* Main.storyboard */; };
@@ -95,7 +95,7 @@
 		E2145216216ADEF7005756E5 /* CaffeineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CaffeineKit.framework; sourceTree = "<group>"; };
 		E217D8952069447E005FFCF3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E252008E213742F30086010F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentPanelViewController.swift; sourceTree = "<group>"; };
+		E26273E4211C8AB2005F9121 /* CustomPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPanelViewController.swift; sourceTree = "<group>"; };
 		E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPanelViewController.swift; sourceTree = "<group>"; };
 		E26273EA211C8D7B005F9121 /* LicensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
 		E26273ED211C8DFD005F9121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		E287977022B825DA004355B1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E26273E4211C8AB2005F9121 /* ArgumentPanelViewController.swift */,
+				E26273E4211C8AB2005F9121 /* CustomPanelViewController.swift */,
 				E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */,
 				E26273EA211C8D7B005F9121 /* LicensesViewController.swift */,
 				E287977222B82C55004355B1 /* ProcessPanelViewController.swift */,
@@ -404,7 +404,7 @@
 			files = (
 				E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */,
 				E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */,
-				E26273E5211C8AB2005F9121 /* ArgumentPanelViewController.swift in Sources */,
+				E26273E5211C8AB2005F9121 /* CustomPanelViewController.swift in Sources */,
 				E287977922B93BC1004355B1 /* CaffeinationAdditions.swift in Sources */,
 				E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */,
 				E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */,

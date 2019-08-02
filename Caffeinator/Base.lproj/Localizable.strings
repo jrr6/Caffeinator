@@ -14,6 +14,8 @@
 "AD.process-dialog-window-title" = "Caffeinate a Process";
 "AD.process-dialog-title" = "Select a Process";
 "AD.process-dialog-msg" = "Enter the PID of the process you would like to Caffeinate. This PID can be found in Activity Monitor:";
+"AD.process-failure-title" = "Failed to Caffeinate Process";
+"AD.process-failure-msg" = "The specified process could not be Caffeinated. Ensure that you have selected a valid process from the list or entered an integer PID.";
 "AD.caffeinating-app-label" = "Caffeinating %@";
 "AD.illegal-process-title" = "Illegal Input";
 "AD.illegal-process-msg" = "You must enter the PID of the process you wish to Caffeinate.";
@@ -25,9 +27,12 @@
 "AD.caffeinate-missing-dialog-msg" = "Your system does not appear to have caffeinate installed. Ensure that your disk permissions are properly set; you may also need to re-install macOS.";
 "AD.caffeinate-failure-title" = "Caffeination Failed to Start";
 "AD.caffeinate-failure-msg" = "Caffeination failed to start. The following error occurred:\n%@";
-"AD.no-argument-label" = "None";
+"AD.custom-callback-failure-title" = "Could Not Start Custom Caffeination";
+"AD.custom-callback-failure-msg" = "An unknown data type was found when attempting to start a custom Caffeination. Please report this error.";
 "AD.bad-opt-config-title" = "Illegal Option Configuration";
 "AD.bad-opt-config-msg" = "A Caffeination with the specified options could not be started. Ensure that a value has been provided for each selected option that requires one.";
+
+"CPVC.no-argument-label" = "None";
 
 "HPVC.could-not-find-help" = "Could not find help file.";
 
@@ -48,9 +53,6 @@
 "PA.execution-error-title" = "Error During Process Execution";
 "PA.execution-error-msg" = "An error occurred when executing %@:\n%@";
 "PA.unknown-process-path" = "unknown";
-
-"PPVC.process-failure-title" = "Failed to Caffeinate Process";
-"PPVC.process-failure-msg" = "The specified process could not be Caffeinated. Ensure that you have selected a valid process from the list or entered an integer PID.";
 
 "U.auto-update-disabled-title" = "Auto-Update Disabled";
 "U.auto-update-disabled-msg" = "The Caffeinator auto-updater has been disabled. Any updates to the application must be applied manually. To re-enable automatic updates, please copy and paste the following command into Terminal, press Enter, and restart Caffeinator:\n%@";

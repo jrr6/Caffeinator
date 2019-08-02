@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -579,8 +578,8 @@ Gw
         <!--Window Controller-->
         <scene sceneID="Tns-eW-ccD">
             <objects>
-                <windowController storyboardIdentifier="argumentPanelController" showSeguePresentationStyle="single" id="1GM-eh-zfw" sceneMemberID="viewController">
-                    <window key="window" identifier="argumentPanelController" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1">
+                <windowController storyboardIdentifier="customPanelController" showSeguePresentationStyle="single" id="1GM-eh-zfw" sceneMemberID="viewController">
+                    <window key="window" identifier="customPanelController" title="Enter Arguments" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="ob7-XI-Hu1">
                         <windowStyleMask key="styleMask" titled="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="440" y="280" width="400" height="400"/>
@@ -651,7 +650,7 @@ Gw
                                 <rect key="frame" x="20" y="14" width="375" height="481"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AeQ-Ne-cTX">
                                     <rect key="frame" x="1" y="1" width="373" height="479"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Go9-ag-UBi">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="479"/>
@@ -727,10 +726,10 @@ Gw
             </objects>
             <point key="canvasLocation" x="506" y="686"/>
         </scene>
-        <!--Argument Panel View Controller-->
+        <!--Custom Panel View Controller-->
         <scene sceneID="UEd-1O-Dg1">
             <objects>
-                <viewController id="KL5-Sq-fc6" customClass="ArgumentPanelViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KL5-Sq-fc6" customClass="CustomPanelViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="z6e-fM-fTb">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="375"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -742,7 +741,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="66F-mI-Q2J"/>
+                                    <action selector="optionChecked:" target="KL5-Sq-fc6" id="66F-mI-Q2J"/>
                                 </connections>
                             </button>
                             <button identifier="u" translatesAutoresizingMaskIntoConstraints="NO" id="nVB-HK-SFf">
@@ -752,7 +751,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="963-Fg-BFb"/>
+                                    <action selector="optionChecked:" target="KL5-Sq-fc6" id="963-Fg-BFb"/>
                                 </connections>
                             </button>
                             <button identifier="m" translatesAutoresizingMaskIntoConstraints="NO" id="jA5-CO-e2q">
@@ -762,7 +761,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="Xem-oQ-Iad"/>
+                                    <action selector="optionChecked:" target="KL5-Sq-fc6" id="Xem-oQ-Iad"/>
                                 </connections>
                             </button>
                             <button identifier="w" translatesAutoresizingMaskIntoConstraints="NO" id="J0n-ru-VqN">
@@ -772,7 +771,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="KJx-u5-RjP"/>
+                                    <action selector="optionChecked:" target="KL5-Sq-fc6" id="KJx-u5-RjP"/>
                                 </connections>
                             </button>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="hV4-Tz-eDM">
@@ -802,7 +801,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="zIV-6V-POv"/>
+                                    <action selector="optionChecked:" target="KL5-Sq-fc6" id="zIV-6V-POv"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FAU-6a-AvT">
@@ -820,7 +819,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="wgD-zA-CRc"/>
+                                    <action selector="optionChecked:" target="KL5-Sq-fc6" id="wgD-zA-CRc"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d0T-XS-FAu">
@@ -834,7 +833,7 @@ DQ
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="confirmArguments:" target="KL5-Sq-fc6" id="atA-Kt-HpA"/>
+                                    <action selector="confirmOptions:" target="KL5-Sq-fc6" id="atA-Kt-HpA"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-Ll-1t8">
@@ -864,7 +863,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="argumentChecked:" target="KL5-Sq-fc6" id="3NE-GK-HVJ"/>
+                                    <action selector="optionChecked:" target="KL5-Sq-fc6" id="3NE-GK-HVJ"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LPa-JS-BZ7">
@@ -880,7 +879,7 @@ Gw
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="cancelArguments:" target="KL5-Sq-fc6" id="Aw4-Vz-oXb"/>
+                                    <action selector="cancelClicked:" target="KL5-Sq-fc6" id="Aw4-Vz-oXb"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TYn-ZE-akD">

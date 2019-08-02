@@ -14,6 +14,8 @@
 "AD.process-dialog-window-title" = "Caffeinate un proceso";
 "AD.process-dialog-title" = "Escoge un proceso";
 "AD.process-dialog-msg" = "Introduce el PID del proceso con que deseas usar Caffeinate. Este PID se puede encontrar en Activity Monitor:";
+"AD.process-failure-title" = "No se pudo iniciar Caffeination de proceso";
+"AD.process-failure-msg" = "No se puedo empezar una Caffeination del proceso especificado. Asegúrate de que hayas escogido un proceso válido de la lista o que hayas introducido un PID de número entero.";
 "AD.caffeinating-app-label" = "Caffeinate está activo en %@";
 "AD.illegal-process-title" = "Entrada ilegal";
 "AD.illegal-process-msg" = "Hay que introducir el PID del proceso con que deseas usar Caffeinate.";
@@ -29,9 +31,12 @@
 "AD.caffeinate-missing-dialog-msg" = "Parece que caffeinate no está instalado en tu ordenador. Asegúrate de que los permisos del disco sean correctos; posiblemente necesites reinstalar macOS.";
 "AD.caffeinate-failure-title" = "Caffeination no se pudo iniciar";
 "AD.caffeinate-failure-msg" = "No se pudo iniciar la Caffeination. Ocurrió este error:\n%@";
-"AD.no-argument-label" = "No hay valor";
+"AD.custom-callback-failure-title" = "No pudo iniciar Caffeination modificada";
+"AD.custom-callback-failure-msg" = "Unos datos ilegales se encontraron al empezar la Caffeination modificada. Por favor presenta un informe sobre este error.";
 "AD.bad-opt-config-title" = "Configuración de opciones ilegal";
 "AD.bad-opt-config-msg" = "Una Caffeination con las opciones especificadas no se pudo iniciar. Asegúrate de introducir un valor para cada opción escogida que lo requiere.";
+
+"CPVC.no-argument-label" = "No hay valor";
 
 "HPVC.could-not-find-help" = "No se encontró el archivo de ayuda.";
 
@@ -52,9 +57,6 @@
 "PA.execution-error-title" = "Error durante ejecución de proceso";
 "PA.execution-error-msg" = "Un error ocurrió cuando ejecutó %@:\n%@";
 "PA.unknown-process-path" = "desconocido";
-
-"PPVC.process-failure-title" = "No se pudo iniciar Caffeination de proceso";
-"PPVC.process-failure-msg" = "No se puedo empezar una Caffeination del proceso especificado. Asegúrate de que hayas escogido un proceso válido de la lista o que hayas introducido un PID de número entero.";
 
 "U.auto-update-disabled-title" = "La actualización automática está apagada";
 "U.auto-update-disabled-msg" = "La actualización automática de Caffeinator ha sido apagada. Hay que instalar actualizaciones manualmente. Para volver a habilitar las actualizaciones automáticas, copia y pega el siguiente comando en Terminal, pulsa Enter y reinicia Caffeinator:\n%@";

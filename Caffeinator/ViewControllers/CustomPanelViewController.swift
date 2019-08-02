@@ -9,7 +9,7 @@
 import Cocoa
 import CaffeineKit
 
-class ArgumentPanelViewController: NSViewController {
+class CustomPanelViewController: NSViewController, PseudoModal {
     @IBOutlet weak var tButton: NSButton!
     @IBOutlet weak var tLabel: NSTextField!
     @IBOutlet weak var wButton: NSButton!
@@ -17,10 +17,15 @@ class ArgumentPanelViewController: NSViewController {
     @IBOutlet weak var timedCheckbox: NSButton!
     @IBOutlet weak var processCheckbox: NSButton!
     
+    // PseudoModal fields
+    var properties: [String : Any] = [:]
+    var onConfirm: (Any?) -> Void = { _ in }
+    var onCancel: () -> Void = {}
+    
     var args: [String: String] = [:]
     
     /// Responds to an argument being (un)checked by adding it to/removing it from the args array, and if it allows a manually-input value, enables/disables the corresponding input button
-    @IBAction func argumentChecked(_ sender: NSButton) {
+    @IBAction func optionChecked(_ sender: NSButton) {
         let identifier = sender.identifier?.rawValue ?? ""
         let argumentName = "-\(identifier)"
         let state = sender.state == .on
@@ -31,9 +36,9 @@ class ArgumentPanelViewController: NSViewController {
                 args.remove(at: loc)
             }
             if identifier == "t" {
-                tLabel.stringValue = txt("AD.no-argument-label")
+                tLabel.stringValue = txt("CPVC.no-argument-label")
             } else if identifier == "w" {
-                wLabel.stringValue = txt("AD.no-argument-label")
+                wLabel.stringValue = txt("CPVC.no-argument-label")
             }
         }
         if identifier == "t" {
@@ -53,28 +58,14 @@ class ArgumentPanelViewController: NSViewController {
     }
     
     /// Converts the dictionary of arguments into an array of parameters, then passes that array to generateCaffeine() in dev mode.
-    @IBAction func confirmArguments(_ sender: NSButton) {
-        var params: [Caffeination.Opt] = []
-        for (name, arg) in args {
-            let opt: Caffeination.Opt?
-            if arg != "" {
-                opt = Caffeination.Opt.from([name, arg])
-            } else {
-                opt = Caffeination.Opt.from(name)
-            }
-            guard let optUnwrapped = opt else {
-                Notifier.showErrorMessage(withTitle: txt("AD.bad-opt-config-title"), text: txt("AD.bad-opt-config-msg"))
-                self.view.window?.close()
-                return
-            }
-            params.append(optUnwrapped)
-        }
-        (NSApp.delegate as! AppDelegate).caffeination.handledStart(withOpts: params)
+    @IBAction func confirmOptions(_ sender: NSButton) {
+        onConfirm(args)
         self.view.window?.close()
     }
     
     /// Closes the argument panel
-    @IBAction func cancelArguments(_ sender: NSButton) {
+    @IBAction func cancelClicked(_ sender: NSButton) {
+        onCancel()
         self.view.window?.close()
     }
 }
