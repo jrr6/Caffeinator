@@ -29,6 +29,10 @@
 		E287978222B96470004355B1 /* Sparkle.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E287978122B96470004355B1 /* Sparkle.framework.dSYM */; };
 		E287978622B97A1D004355B1 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E287977F22B96455004355B1 /* Sparkle.framework */; };
 		E287978822B982A8004355B1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E287978722B982A8004355B1 /* .gitignore */; };
+		E2AD896523BAA0BE0057E431 /* HotKey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2AD896023BAA00C0057E431 /* HotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E2AD896623BAA0C30057E431 /* HotKey.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2AD896223BAA0270057E431 /* HotKey.framework.dSYM */; };
+		E2AD896823BAA66A0057E431 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD896723BAA66A0057E431 /* HotKeyManager.swift */; };
+		E2AD896A23BAAE3F0057E431 /* ShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD896923BAAE3F0057E431 /* ShortcutsViewController.swift */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
 		E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */; };
 		E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */; };
@@ -60,6 +64,7 @@
 			files = (
 				E287978022B96455004355B1 /* Sparkle.framework in Embed Frameworks */,
 				E23D4A76229B0AEE00F0FBB8 /* CaffeineKit.framework in Embed Frameworks */,
+				E2AD896523BAA0BE0057E431 /* HotKey.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +77,7 @@
 			files = (
 				E287978222B96470004355B1 /* Sparkle.framework.dSYM in CopyFiles */,
 				E287977C22B95A4B004355B1 /* CaffeineKit.framework.dSYM in CopyFiles */,
+				E2AD896623BAA0C30057E431 /* HotKey.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +118,10 @@
 		E287977F22B96455004355B1 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		E287978122B96470004355B1 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Sparkle.framework.dSYM; sourceTree = "<group>"; };
 		E287978722B982A8004355B1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E2AD896023BAA00C0057E431 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HotKey.framework; sourceTree = "<group>"; };
+		E2AD896223BAA0270057E431 /* HotKey.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = HotKey.framework.dSYM; sourceTree = "<group>"; };
+		E2AD896723BAA66A0057E431 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
+		E2AD896923BAAE3F0057E431 /* ShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsViewController.swift; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 		E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryPanelViewController.swift; sourceTree = "<group>"; };
 		E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PseudoModal.swift; sourceTree = "<group>"; };
@@ -228,6 +238,7 @@
 				E26273E6211C8C5D005F9121 /* HelpPanelViewController.swift */,
 				E26273EA211C8D7B005F9121 /* LicensesViewController.swift */,
 				E287977222B82C55004355B1 /* ProcessPanelViewController.swift */,
+				E2AD896923BAAE3F0057E431 /* ShortcutsViewController.swift */,
 				E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */,
 			);
 			path = ViewControllers;
@@ -237,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				E287977822B93BC1004355B1 /* CaffeinationAdditions.swift */,
+				E2AD896723BAA66A0057E431 /* HotKeyManager.swift */,
 				E26E133F211A4D9100DA4F90 /* KillallManager.swift */,
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
 				E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */,
@@ -248,6 +260,8 @@
 		E287977E22B95AD9004355B1 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E2AD896223BAA0270057E431 /* HotKey.framework.dSYM */,
+				E2AD896023BAA00C0057E431 /* HotKey.framework */,
 				E287977A22B95A4B004355B1 /* CaffeineKit.framework.dSYM */,
 				E287978122B96470004355B1 /* Sparkle.framework.dSYM */,
 				E2145216216ADEF7005756E5 /* CaffeineKit.framework */,
@@ -407,9 +421,11 @@
 				E26273E5211C8AB2005F9121 /* CustomPanelViewController.swift in Sources */,
 				E287977922B93BC1004355B1 /* CaffeinationAdditions.swift in Sources */,
 				E209DF181BEFA5A8007708FB /* AppDelegate.swift in Sources */,
+				E2AD896823BAA66A0057E431 /* HotKeyManager.swift in Sources */,
 				E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */,
 				E20139C21F78024B008B12E1 /* Notifier.swift in Sources */,
 				E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */,
+				E2AD896A23BAAE3F0057E431 /* ShortcutsViewController.swift in Sources */,
 				E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */,
 				E287977322B82C55004355B1 /* ProcessPanelViewController.swift in Sources */,
 				E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */,

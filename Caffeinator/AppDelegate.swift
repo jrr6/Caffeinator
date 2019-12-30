@@ -8,6 +8,7 @@
 
 import CaffeineKit
 import Cocoa
+import HotKey
 
 /// Convenience method for getting NSLocalizedString values
 func txt(_ text: String) -> String {
@@ -32,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var storyboard: NSStoryboard!
     var df: UserDefaults!
     var nc: NotificationCenter!
+    var keyMan: HotKeyManager!
     var killMan: KillallManager!
     var caffeination: Caffeination!
     
@@ -60,6 +62,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Set up signal trapping
         caffeination = Caffeination()
         caffeination.terminationHandler = caffeinationDidFinish
+        
+        // Set up hot key management
+        keyMan = HotKeyManager(caffeination: caffeination)
+        mainMenu.delegate = keyMan
     }
     
     /// Handles Caffeination termination—initiates status bar update and resets to default opts
@@ -75,11 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func handleStatusItemClick(sender: NSStatusBarButton) {
         let event = NSApp.currentEvent!
         if event.type == NSEvent.EventType.rightMouseDown || event.modifierFlags.contains(.option) {
-            if caffeination.isActive {
-                caffeination.stop()
-            } else {
-                caffeination.handledStart()
-            }
+            caffeination.quickToggle()
         } else {
             statusItem.menu = mainMenu
             statusItem.popUpMenu(mainMenu)
@@ -248,4 +250,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         nc.removeObserver(self)
     }
 }
-

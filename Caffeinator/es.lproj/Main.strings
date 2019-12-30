@@ -193,3 +193,6 @@
 
 /* Class = "NSButtonCell"; title = "Caffeinate"; ObjectID = "NWc-gB-nO6"; */
 "sw5-dI-Zs2.title" = "Caffeinate";
+
+/* Class = "NSMenuItem"; title = "Configure Keyboard Shortcuts…"; ObjectID = "RH2-du-iiN"; */
+"RH2-du-iiN.title" = "Configurar atajos de teclado…";

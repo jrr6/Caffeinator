@@ -32,6 +32,14 @@ extension Caffeination {
         self.opts = opts
         self.handledStart()
     }
+    
+    func quickToggle() {
+        if self.isActive {
+            self.stop()
+        } else {
+            self.handledStart()
+        }
+    }
 }
 
 extension Caffeination.Opt {
