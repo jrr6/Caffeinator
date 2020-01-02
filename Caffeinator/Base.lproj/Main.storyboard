@@ -21,6 +21,7 @@
                     <connections>
                         <outlet property="advancedProcToggle" destination="o7f-w2-ATY" id="lbP-yA-Eo7"/>
                         <outlet property="customMenu" destination="N0S-aw-ADb" id="kkF-os-uvj"/>
+                        <outlet property="customTimedItem" destination="tdu-sG-GfI" id="Ue5-SR-vs6"/>
                         <outlet property="displayToggle" destination="U5R-xl-uIM" id="dJk-Oc-Yib"/>
                         <outlet property="mainMenu" destination="EuG-Hh-coT" id="5k8-B7-mDR"/>
                         <outlet property="processMenu" destination="CRN-Xb-B2F" id="9qn-GA-0qT"/>

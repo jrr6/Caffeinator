@@ -27,14 +27,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var timedMenu: NSMenuItem!
     @IBOutlet weak var customMenu: NSMenuItem!
     
+    @IBOutlet weak var customTimedItem: NSMenuItem!
+    
     @IBOutlet weak var displayToggle: NSMenuItem!
     @IBOutlet weak var advancedProcToggle: NSMenuItem!
     
     var storyboard: NSStoryboard!
     var df: UserDefaults!
     var nc: NotificationCenter!
-    var keyMan: HotKeyManager!
-    var killMan: KillallManager!
     var caffeination: Caffeination!
     
     // MARK: - Main Menu
@@ -56,23 +56,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         initDefaults()
         
         // Ensure no background caffeinate processes are running
-        killMan = KillallManager()
-        killMan.runCaffeinateCheck()
+        KillallManager.shared.runCaffeinateCheck()
         
         // Set up signal trapping
         caffeination = Caffeination()
         caffeination.terminationHandler = caffeinationDidFinish
         
         // Set up hot key management
-        keyMan = HotKeyManager(caffeination: caffeination)
-        mainMenu.delegate = keyMan
+        mainMenu.delegate = HotKeyManager.shared
+        HotKeyManager.shared.registerMenuItem(startMenu, withEquivalentAction: {
+            self.caffeination.quickToggle()
+        })
+        HotKeyManager.shared.registerMenuItem(processMenu, withEquivalentAction: {
+            self.processClicked(self.processMenu)
+        })
+        HotKeyManager.shared.registerMenuItem(customTimedItem, withEquivalentAction: {
+            self.timedClicked(self.customTimedItem)
+        })
+        HotKeyManager.shared.registerMenuItem(customMenu, withEquivalentAction: {
+            self.customClicked(self.customMenu)
+        })
     }
     
     /// Handles Caffeination termination—initiates status bar update and resets to default opts
     func caffeinationDidFinish(caf: Caffeination) {
         self.updateIconForCafState(active: false)
         DispatchQueue.main.async {
-            self.killMan.runCaffeinateCheck()
+            KillallManager.shared.runCaffeinateCheck()
         }
         caf.opts = Caffeination.Opt.userDefaults
     }

@@ -19,6 +19,10 @@ class KillallManager {
         case UnknownExecutionError, NoProcessFoundError
     }
     
+    static let shared = KillallManager()
+    
+    private init() {}
+    
     /// Runs a check on background caffeinate processes and deals with user interaction
     func runCaffeinateCheck() {
         do {
