@@ -22,13 +22,13 @@ class HotKeyManager: NSObject {
         
         init(item: NSMenuItem, action: @escaping () -> Void) {
             self.item = item
-            if let id = item.identifier?.rawValue {
-                self.id = id
-            } else {
+            self.action = action
+            guard let id = item.identifier?.rawValue else {
                 // TODO: handle error (which should never happen)
                 self.id = "ERROR"
+                return
             }
-            self.action = action
+            self.id = id
             
             self.hotKey = nil
             self.key = nil
@@ -50,13 +50,13 @@ class HotKeyManager: NSObject {
     }
     
     func setKeyEquivForMenu(withID id: String, key: Key, modifiers: NSEvent.ModifierFlags) {
-        if let idx = actions.firstIndex(where: { $0.id == id }) {
-            actions[idx].key = key
-            actions[idx].modifiers = modifiers
-            reassignHotKey(at: idx)
-        } else {
+        guard let idx = actions.firstIndex(where: { $0.id == id }) else {
             // TODO: report error—illegal ID (show a popup)
+            return
         }
+        actions[idx].key = key
+        actions[idx].modifiers = modifiers
+        reassignHotKey(at: idx)
     }
 
     private func unassignHotKeys() {
@@ -66,15 +66,16 @@ class HotKeyManager: NSObject {
     }
     
     private func reassignHotKey(at index: Array<MenuAction>.Index) {
-        if let key = actions[index].key, let modifiers = actions[index].modifiers {
-            // Global hotkey
-            actions[index].hotKey = HotKey(key: key, modifiers: modifiers)
-            actions[index].hotKey!.keyDownHandler = actions[index].action
-            
-            // In-menu hotkey
-            actions[index].item.keyEquivalent = key.description.lowercased()
-            actions[index].item.keyEquivalentModifierMask = modifiers
+        guard let key = actions[index].key, let modifiers = actions[index].modifiers else {
+            return
         }
+        // Global hotkey
+        actions[index].hotKey = HotKey(key: key, modifiers: modifiers)
+        actions[index].hotKey!.keyDownHandler = actions[index].action
+        
+        // In-menu hotkey
+        actions[index].item.keyEquivalent = key.description.lowercased()
+        actions[index].item.keyEquivalentModifierMask = modifiers
     }
     
     private func reassignHotKeys() {

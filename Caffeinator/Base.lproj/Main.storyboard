@@ -586,7 +586,7 @@ Gw
         <!--Window Controller-->
         <scene sceneID="zp9-XA-E8L">
             <objects>
-                <windowController storyboardIdentifier="shortcutsPanelController" showSeguePresentationStyle="single" id="TeA-Rr-gbt" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="shortcutsPanelController" showSeguePresentationStyle="single" id="TeA-Rr-gbt" customClass="ShortcutsWindowController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="shortcutsPanelController" title="Keyboard Shortcuts" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="DSa-md-0o7" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
@@ -634,16 +634,19 @@ Gw
                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqc-dz-HfS">
                                 <rect key="frame" x="254" y="197" width="119" height="21"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TVQ-Eh-vai">
+                                    <button identifier="shortcutStart" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TVQ-Eh-vai">
                                         <rect key="frame" x="-6" y="-7" width="61" height="32"/>
                                         <buttonCell key="cell" type="push" title="Set" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g5a-w0-miX">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="setShortcutWithSender:" target="JOb-qP-tk6" id="STy-Pj-WqO"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-x1-5ko">
                                         <rect key="frame" x="53" y="-7" width="72" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DCp-FN-Eks">
+                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DCp-FN-Eks">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -669,16 +672,19 @@ Gw
                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmT-B7-Xkc">
                                 <rect key="frame" x="254" y="168" width="119" height="21"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Eq-Z9-NwZ">
+                                    <button identifier="shortcutProc" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Eq-Z9-NwZ">
                                         <rect key="frame" x="-6" y="-7" width="61" height="32"/>
                                         <buttonCell key="cell" type="push" title="Set" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SBM-yI-24V">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="setShortcutWithSender:" target="JOb-qP-tk6" id="F0k-jK-GNF"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CKk-c3-hIS">
                                         <rect key="frame" x="53" y="-7" width="72" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ePC-Ua-C8o">
+                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ePC-Ua-C8o">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -700,16 +706,19 @@ Gw
                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vMo-qz-7x9">
                                 <rect key="frame" x="254" y="139" width="119" height="21"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="llN-RX-1tV">
+                                    <button identifier="shortcutManual" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="llN-RX-1tV">
                                         <rect key="frame" x="-6" y="-7" width="61" height="32"/>
                                         <buttonCell key="cell" type="push" title="Set" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rok-mu-E04">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="setShortcutWithSender:" target="JOb-qP-tk6" id="Agw-8D-X8f"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1L-l6-VB2">
                                         <rect key="frame" x="53" y="-7" width="72" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M4o-W4-8nW">
+                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M4o-W4-8nW">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -756,6 +765,11 @@ Gw
                             <constraint firstItem="crc-TK-ruP" firstAttribute="centerY" secondItem="zmT-B7-Xkc" secondAttribute="centerY" id="xe9-Jb-bZ2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="manualButton" destination="llN-RX-1tV" id="Vhx-4L-UTw"/>
+                        <outlet property="procButton" destination="3Eq-Z9-NwZ" id="LaJ-r1-apI"/>
+                        <outlet property="startButton" destination="TVQ-Eh-vai" id="Yuy-eB-4YE"/>
+                    </connections>
                 </viewController>
                 <customObject id="lzq-84-xc9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
