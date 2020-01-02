@@ -14,13 +14,29 @@ class ShortcutsViewController: NSViewController {
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var procButton: NSButton!
     @IBOutlet weak var manualButton: NSButton!
-        
+    
+    override var acceptsFirstResponder: Bool { return true }
+    override func becomeFirstResponder() -> Bool { return true }
+    override func resignFirstResponder() -> Bool { return true }
+    
     var active: String? = nil // which button is the active listener
     var listening = false // are we listening for a keyboard shortcut input?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (aEvent) -> NSEvent? in
+            let handled = self.onKeyDown(with: aEvent)
+            return handled ? nil : aEvent
+        }
+    }
+    
+    /// Handles keydown events. Returns `true` if event was handled and `false` if it should be propagated.
+    func onKeyDown(with event: NSEvent) -> Bool {
+        if listening {
+            updateHotkeyFor(event: event)
+            return true
+        }
+        return false
     }
     
     /// Handles the pressing of a shortcut set button. Will disable any other shortcut buttons if they are currently active and sets up listening variables for when the keypress occurs.
@@ -80,6 +96,8 @@ class ShortcutsViewController: NSViewController {
             // TODO: handle error
             return
         }
+        
+        // FIXME: if the shortcut is a function key, the label doesn't update properly
         HotKeyManager.shared.setKeyEquivForMenu(withID: active, key: character, modifiers: hotkeyModifiers)
     }
     

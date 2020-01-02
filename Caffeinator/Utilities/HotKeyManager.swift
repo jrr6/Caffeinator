@@ -74,6 +74,7 @@ class HotKeyManager: NSObject {
         actions[index].hotKey!.keyDownHandler = actions[index].action
         
         // In-menu hotkey
+        // FIXME: the description string trick doesn't work for function keys
         actions[index].item.keyEquivalent = key.description.lowercased()
         actions[index].item.keyEquivalentModifierMask = modifiers
     }

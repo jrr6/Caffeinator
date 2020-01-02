@@ -124,7 +124,7 @@
                                     <menuItem title="Configure Keyboard Shortcuts…" id="RH2-du-iiN">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <segue destination="TeA-Rr-gbt" kind="show" id="xFw-Ty-ChL"/>
+                                            <action selector="shortcutsPressed:" target="Y0S-22-67Z" id="wWp-4C-5c0"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="View License Information…" id="YoE-Yi-PBR">
@@ -586,7 +586,7 @@ Gw
         <!--Window Controller-->
         <scene sceneID="zp9-XA-E8L">
             <objects>
-                <windowController storyboardIdentifier="shortcutsPanelController" showSeguePresentationStyle="single" id="TeA-Rr-gbt" customClass="ShortcutsWindowController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="shortcutsPanelController" showSeguePresentationStyle="single" id="TeA-Rr-gbt" sceneMemberID="viewController">
                     <window key="window" identifier="shortcutsPanelController" title="Keyboard Shortcuts" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="DSa-md-0o7" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>

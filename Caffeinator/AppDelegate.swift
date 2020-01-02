@@ -247,6 +247,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.caffeination.handledStart()
     }
     
+    /// Responds to the "Configure Keyboard Shortcuts" menu item by opening the Shortcuts window
+    @IBAction func shortcutsPressed(_ sender: NSMenuItem) {
+        storyboard.instantiateAndShowWindow(withIDString: "shortcutsPanelController")
+    }
+    
     /// Responds to the "Help" item by opening the Help window
     @IBAction func helpPressed(_ sender: NSMenuItem) {
         storyboard.instantiateAndShowWindow(withIDString: "helpPanelController")
@@ -257,7 +262,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         storyboard.instantiateAndShowWindow(withIDString: "licensePanelController")
     }
     
-    /// Remove Notification Center observer on deinit
+    // Remove Notification Center observer on deinit
     deinit {
         nc.removeObserver(self)
     }
