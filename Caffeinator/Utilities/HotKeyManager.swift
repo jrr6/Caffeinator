@@ -10,6 +10,7 @@ import CaffeineKit
 import Cocoa
 import HotKey
 
+/// Manages all hotkeys (global and in-menu) as well as the persistence and retrieval of stored hotkey configurations.
 class HotKeyManager: NSObject {
     
     struct MenuAction {
@@ -38,7 +39,9 @@ class HotKeyManager: NSObject {
     
     static let shared = HotKeyManager()
     
-    private override init() {}
+    private override init() {
+        super.init()
+    }
     
     var toggleHotKey: HotKey?
     
@@ -47,9 +50,22 @@ class HotKeyManager: NSObject {
     func registerMenuItem(_ item: NSMenuItem, withEquivalentAction action: @escaping () -> Void) {
         let action = MenuAction(item: item, action: action)
         actions.append(action)
+        if let dict = UserDefaults.standard.dictionary(forKey: "hotkeys") as? [String: [UInt32]],
+            let entry = dict[action.id],
+            let key = Key(carbonKeyCode: entry[0]) {
+            let modifiers = NSEvent.ModifierFlags(carbonFlags: entry[1])
+            setKeyEquivForMenu(withID: action.id, key: key, modifiers: modifiers, save: false)
+        }
     }
     
-    func setKeyEquivForMenu(withID id: String, key: Key, modifiers: NSEvent.ModifierFlags) {
+    /**
+     Sets a new key equivalent for a given menu item.
+     - Parameter id: the ID of the menu item whose key equivalent to set.
+     - Parameter key: the primary key in the key command.
+     - Parameter modifiers: any modifiers associated with the key command.
+     - Parameter save: whether to save the new key equivalent. Should only be set to false when doing initial load from storage on first registration.
+     */
+    func setKeyEquivForMenu(withID id: String, key: Key, modifiers: NSEvent.ModifierFlags, save: Bool = true) {
         guard let idx = actions.firstIndex(where: { $0.id == id }) else {
             // TODO: report error—illegal ID (show a popup)
             return
@@ -57,6 +73,12 @@ class HotKeyManager: NSObject {
         actions[idx].key = key
         actions[idx].modifiers = modifiers
         reassignHotKey(at: idx)
+        
+        if save {
+            var dict: [String: [UInt32]] = UserDefaults.standard.dictionary(forKey: "hotkeys") as? [String: [UInt32]] ?? [:]
+            dict[actions[idx].id] = [key.carbonKeyCode, modifiers.carbonFlags]
+            UserDefaults.standard.set(dict, forKey: "hotkeys")
+        }
     }
 
     private func unassignHotKeys() {

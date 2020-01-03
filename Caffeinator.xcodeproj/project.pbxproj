@@ -250,12 +250,12 @@
 			isa = PBXGroup;
 			children = (
 				E287977822B93BC1004355B1 /* CaffeinationAdditions.swift */,
+				E2AD897223BEC83F0057E431 /* FunctionMap.swift */,
 				E2AD896723BAA66A0057E431 /* HotKeyManager.swift */,
 				E26E133F211A4D9100DA4F90 /* KillallManager.swift */,
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
 				E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */,
 				E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */,
-				E2AD897223BEC83F0057E431 /* FunctionMap.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
