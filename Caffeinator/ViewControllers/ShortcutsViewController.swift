@@ -157,7 +157,7 @@ class ShortcutsViewController: NSViewController {
     }
     
     private func resetTitle(forButtonID id: String) {
-        button(for: id)?.title = "Set" // TODO: Localize
+        button(for: id)?.title = txt("SVC.set-button")
     }
     
     private func updateTitle(forButtonID id: String, withKey key: Key, modifiers: NSEvent.ModifierFlags?) {

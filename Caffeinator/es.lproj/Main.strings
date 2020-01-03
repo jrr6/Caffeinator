@@ -196,3 +196,48 @@
 
 /* Class = "NSMenuItem"; title = "Configure Keyboard Shortcuts…"; ObjectID = "RH2-du-iiN"; */
 "RH2-du-iiN.title" = "Configurar atajos de teclado…";
+
+/* Class = "NSTextFieldCell"; title = "Keyboard Shortcuts"; ObjectID = "C83-He-wqS"; */
+"C83-He-wqS.title" = "Atajos de teclado";
+
+/* Class = "NSTextFieldCell"; title = "Start/Stop Caffeinator"; ObjectID = "uVz-8X-NGh"; */
+"uVz-8X-NGh.title" = "Iniciar/terminar Caffeinator";
+
+/* Class = "NSTextFieldCell"; title = "Process Caffeination"; ObjectID = "lUb-hs-G90"; */
+"lUb-hs-G90.title" = "Caffeination de proceso";
+
+/* Class = "NSTextFieldCell"; title = "Custom Caffeination"; ObjectID = "ecb-cA-vE0"; */
+"ecb-cA-vE0.title" = "Caffeination modificada";
+
+/* Class = "NSButtonCell"; title = "Set"; ObjectID = "g5a-w0-miX"; */
+"g5a-w0-miX.title" = "Asignar";
+
+/* Class = "NSButtonCell"; title = "Set"; ObjectID = "SBM-yI-24V"; */
+"SBM-yI-24V.title" = "Asignar";
+
+/* Class = "NSButtonCell"; title = "Set"; ObjectID = "rok-mu-E04"; */
+"rok-mu-E04.title" = "Asignar";
+
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "DCp-FN-Eks"; */
+"DCp-FN-Eks.title" = "Borrar";
+
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "ePC-Ua-C8o"; */
+"ePC-Ua-C8o.title" = "Borrar";
+
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "M4o-W4-8nW"; */
+"M4o-W4-8nW.title" = "Borrar";
+
+/* Class = "NSPanel"; title = "Choose Process"; ObjectID = "Yrl-X5-l5V"; */
+"Yrl-X5-l5V.title" = "Escoger proceso";
+
+/* Class = "NSPanel"; title = "Enter Time"; ObjectID = "AAq-FZ-JTi"; */
+"AAq-FZ-JTi.title" = "Introducir tiempo";
+
+/* Class = "NSPanel"; title = "Custom Caffeination"; ObjectID = "ob7-XI-Hu1"; */
+"ob7-XI-Hu1.title" = "Caffeination modificada";
+
+/* Class = "NSPanel"; title = "Licenses"; ObjectID = "LlA-Oi-fVZ"; */
+"LlA-Oi-fVZ.title" = "Licensias";
+
+/* Class = "NSPanel"; title = "Keyboard Shortcuts"; ObjectID = "DSa-md-0o7"; */
+"DSa-md-0o7.title" = "Atajos de teclado";

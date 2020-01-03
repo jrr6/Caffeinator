@@ -54,6 +54,8 @@
 "PA.execution-error-msg" = "An error occurred when executing %@:\n%@";
 "PA.unknown-process-path" = "unknown";
 
+"SVC.set-button" = "Set";
+
 "U.auto-update-disabled-title" = "Auto-Update Disabled";
 "U.auto-update-disabled-msg" = "The Caffeinator auto-updater has been disabled. Any updates to the application must be applied manually. To re-enable automatic updates, please copy and paste the following command into Terminal, press Enter, and restart Caffeinator:\n%@";
 "U.no-update-data-title" = "No Update Data Received";
