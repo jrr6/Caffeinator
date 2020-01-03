@@ -18,7 +18,7 @@ extension NSAlert {
 /// Convenience class for grouping together various functions that trigger `NSAlert`s
 class Notifier {
     
-    /// Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with showValueDialog()
+    /// Show a two-button text input dialog to the user and returns the String result if the user presses OK. Not to be confused with `showValueDialog()`
     class func showInputDialog(withWindowTitle windowTitle: String, title: String, text: String) -> String? {
         let alert = NSAlert()
         alert.window.title = windowTitle
@@ -35,7 +35,7 @@ class Notifier {
         return nil
     }
     
-    /// Displays a value input dialog for use in addValue(). Not to be confused with showInputDialog()
+    /// Displays a value input dialog for use in `CustomPanelViewController.addValue()`. Not to be confused with `showInputDialog()`
     class func showValueDialog(forParam param: String) -> String? {
         return Notifier.showInputDialog(withWindowTitle: txt("N.value-dialog-window-title"), title: txt("N.value-dialog-title"), text: String(format: txt("N.value-dialog-msg"), param))
     }

@@ -15,6 +15,11 @@ class ShortcutsViewController: NSViewController {
     @IBOutlet weak var procButton: NSButton!
     @IBOutlet weak var manualButton: NSButton!
     
+    @IBOutlet weak var startClearButton: NSButton!
+    @IBOutlet weak var procClearButton: NSButton!
+    @IBOutlet weak var manualClearButton: NSButton!
+    
+    
     override var acceptsFirstResponder: Bool { return true }
     override func becomeFirstResponder() -> Bool { return true }
     override func resignFirstResponder() -> Bool { return true }
@@ -26,13 +31,12 @@ class ShortcutsViewController: NSViewController {
         super.viewDidLoad()
         
         HotKeyManager.shared.actions.forEach { action in
-            let str: String
             if let key = action.key {
-                str = stringForCombo(key: key, modifiers: action.modifiers ?? [])
+                updateTitle(forButtonID: action.id, withKey: key, modifiers: action.modifiers)
+                setClearButton(for: action.id, enabled: true)
             } else {
-                str = "Set" // TODO: Localize
+                resetTitle(forButtonID: action.id)
             }
-            button(for: action.id)?.title = str
         }
         
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (aEvent) -> NSEvent? in
@@ -44,7 +48,7 @@ class ShortcutsViewController: NSViewController {
     /// Handles keydown events. Returns `true` if event was handled and `false` if it should be propagated.
     func onKeyDown(with event: NSEvent) -> Bool {
         if listening {
-            updateHotkeyFor(event: event)
+            updateHotkey(with: event)
             return true
         }
         return false
@@ -57,12 +61,13 @@ class ShortcutsViewController: NSViewController {
             // TODO: handle error (which should not occur)
             return
         }
-        let menuID = String(rawID[rawID.index(rawID.startIndex, offsetBy: 8)...])
+        let menuID = String(rawID[rawID.index(rawID.startIndex, offsetBy: 8)...]).lowercased()
         
         if let curActive = active, curActive == menuID {
             // We're in the middle of this button's own session—stop it
             active = nil
             listening = false
+            setClearButton(for: curActive, enabled: false)
             return
         }
         
@@ -71,19 +76,35 @@ class ShortcutsViewController: NSViewController {
             deselectButtonForActiveID()
         }
         
-        active = menuID.lowercased()
+        active = menuID
         listening = true
     }
     
-    func updateHotkeyFor(event: NSEvent) {
+    @IBAction func clearShortcut(sender: NSButton) {
+        // The sender's ID should be of the form `shortcutClearMENUID`, where MENUID is the ID of the menu item to which the shortcut corresponds
+        guard let rawID = sender.identifier?.rawValue else {
+                   // TODO: handle error (which should not occur)
+                   return
+               }
+        let menuID = String(rawID[rawID.index(rawID.startIndex, offsetBy: 13)...]).lowercased()
+        HotKeyManager.shared.clearKeyEquivForMenu(withID: menuID)
+        resetTitle(forButtonID: menuID)
+        sender.isEnabled = false
+    }
+    
+    /**
+     Updates the active hotkey based on input from a provided event.
+     - Parameter event: an event containing a keypress that will become the new hotkey.
+     */
+    func updateHotkey(with event: NSEvent) {
         listening = false
 
-        guard let active = active else {
+        guard let curActive = active else {
             // TODO: handle error
             return
         }
         deselectButtonForActiveID()
-        self.active = nil
+        active = nil
         
         let relevantModifiers: [NSEvent.ModifierFlags] = [.shift, .control, .option, .command]
         
@@ -108,16 +129,20 @@ class ShortcutsViewController: NSViewController {
             return
         }
         
-        HotKeyManager.shared.setKeyEquivForMenu(withID: active, key: character, modifiers: hotkeyModifiers)
-        button(for: active)?.title = stringForCombo(key: character, modifiers: hotkeyModifiers)
+        HotKeyManager.shared.setKeyEquivForMenu(withID: curActive, key: character, modifiers: hotkeyModifiers)
+        updateTitle(forButtonID: curActive, withKey: character, modifiers: hotkeyModifiers)
+        setClearButton(for: curActive, enabled: true)
     }
     
+    /// Deselects the button that produced the current `active` ID. Used when the user switches buttons without unclicking the first one.
     private func deselectButtonForActiveID() {
         if let curActive = active {
             button(for: curActive)?.state = .off
+            setClearButton(for: curActive, enabled: false)
         }
     }
     
+    /// Gets the button corresponding to the given menu ID.
     private func button(for id: String) -> NSButton? {
         switch id {
         case "start":
@@ -128,6 +153,27 @@ class ShortcutsViewController: NSViewController {
             return manualButton
         default:
             return nil
+        }
+    }
+    
+    private func resetTitle(forButtonID id: String) {
+        button(for: id)?.title = "Set" // TODO: Localize
+    }
+    
+    private func updateTitle(forButtonID id: String, withKey key: Key, modifiers: NSEvent.ModifierFlags?) {
+        button(for: id)?.title = stringForCombo(key: key, modifiers: modifiers ?? [])
+    }
+    
+    private func setClearButton(for id: String, enabled: Bool) {
+        switch id {
+        case "start":
+            startClearButton.isEnabled = enabled
+        case "proc":
+            procClearButton.isEnabled = enabled
+        case "manual":
+            manualClearButton.isEnabled = enabled
+        default:
+            break
         }
     }
     

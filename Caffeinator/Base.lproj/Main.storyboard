@@ -644,12 +644,15 @@ Gw
                                             <action selector="setShortcutWithSender:" target="JOb-qP-tk6" id="STy-Pj-WqO"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-x1-5ko">
+                                    <button identifier="shortcutClearStart" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-x1-5ko">
                                         <rect key="frame" x="53" y="-7" width="72" height="32"/>
                                         <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DCp-FN-Eks">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="clearShortcutWithSender:" target="JOb-qP-tk6" id="0lL-Mm-0Ei"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <visibilityPriorities>
@@ -682,12 +685,15 @@ Gw
                                             <action selector="setShortcutWithSender:" target="JOb-qP-tk6" id="F0k-jK-GNF"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CKk-c3-hIS">
+                                    <button identifier="shortcutClearProc" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CKk-c3-hIS">
                                         <rect key="frame" x="53" y="-7" width="72" height="32"/>
                                         <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ePC-Ua-C8o">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="clearShortcutWithSender:" target="JOb-qP-tk6" id="VL2-UT-YhH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -716,12 +722,15 @@ Gw
                                             <action selector="setShortcutWithSender:" target="JOb-qP-tk6" id="Agw-8D-X8f"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1L-l6-VB2">
+                                    <button identifier="shortcutClearCustom" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F1L-l6-VB2">
                                         <rect key="frame" x="53" y="-7" width="72" height="32"/>
                                         <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M4o-W4-8nW">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="clearShortcutWithSender:" target="JOb-qP-tk6" id="Ed2-tf-boi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <visibilityPriorities>
@@ -767,8 +776,11 @@ Gw
                     </view>
                     <connections>
                         <outlet property="manualButton" destination="llN-RX-1tV" id="Vhx-4L-UTw"/>
+                        <outlet property="manualClearButton" destination="F1L-l6-VB2" id="pHb-5a-HiT"/>
                         <outlet property="procButton" destination="3Eq-Z9-NwZ" id="LaJ-r1-apI"/>
+                        <outlet property="procClearButton" destination="CKk-c3-hIS" id="Ikk-bk-bMO"/>
                         <outlet property="startButton" destination="TVQ-Eh-vai" id="Yuy-eB-4YE"/>
+                        <outlet property="startClearButton" destination="Uqc-x1-5ko" id="6r3-iP-jqp"/>
                     </connections>
                 </viewController>
                 <customObject id="lzq-84-xc9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

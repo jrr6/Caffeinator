@@ -57,7 +57,7 @@ class CustomPanelViewController: NSViewController, PseudoModal {
         }
     }
     
-    /// Converts the dictionary of arguments into an array of parameters, then passes that array to generateCaffeine() in dev mode.
+    /// Converts the dictionary of arguments into an array of parameters, then passes that array to `generateCaffeine()` in dev mode.
     @IBAction func confirmOptions(_ sender: NSButton) {
         onConfirm(args)
         self.view.window?.close()

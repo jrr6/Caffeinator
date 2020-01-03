@@ -66,7 +66,7 @@ class HotKeyManager: NSObject {
      - Parameter save: whether to save the new key equivalent. Should only be set to false when doing initial load from storage on first registration.
      */
     func setKeyEquivForMenu(withID id: String, key: Key, modifiers: NSEvent.ModifierFlags, save: Bool = true) {
-        guard let idx = actions.firstIndex(where: { $0.id == id }) else {
+        guard let idx = findIndexOf(actionID: id) else {
             // TODO: report error—illegal ID (show a popup)
             return
         }
@@ -80,6 +80,20 @@ class HotKeyManager: NSObject {
             UserDefaults.standard.set(dict, forKey: "hotkeys")
         }
     }
+    
+    /**
+     Removes the specified shortcut from
+     */
+    func clearKeyEquivForMenu(withID id: String) {
+        var dict: [String: [UInt32]] = UserDefaults.standard.dictionary(forKey: "hotkeys") as? [String: [UInt32]] ?? [:]
+        dict.removeValue(forKey: id)
+        UserDefaults.standard.set(dict, forKey: "hotkeys")
+        
+        guard let idx = findIndexOf(actionID: id) else { return }
+        actions[idx].key = nil
+        actions[idx].modifiers = nil
+        reassignHotKey(at: idx)
+    }
 
     private func unassignHotKeys() {
         for (idx, _) in actions.enumerated() {
@@ -89,6 +103,9 @@ class HotKeyManager: NSObject {
     
     private func reassignHotKey(at index: Array<MenuAction>.Index) {
         guard let key = actions[index].key, var modifiers = actions[index].modifiers else {
+            actions[index].hotKey = nil
+            actions[index].item.keyEquivalent = ""
+            actions[index].item.keyEquivalentModifierMask = []
             return
         }
         // Global hotkey
@@ -110,6 +127,10 @@ class HotKeyManager: NSObject {
         for (idx, _) in actions.enumerated() {
             reassignHotKey(at: idx)
         }
+    }
+    
+    private func findIndexOf(actionID id: String) -> Array<MenuAction>.Index? {
+        return actions.firstIndex(where: { $0.id == id })
     }
 }
 
