@@ -72,22 +72,3 @@
 "SVC.illegal-key-code-title" = "Código de tecla ilegal";
 "SVC.illegal-key-code-body" = "Has entrado un atajo de teclado que contiene un código de tecla inválido. Por favor intenta entrarlo otra vez, o usa un atajo de teclado diferente si persiste el problema.";
 "SVC.set-button" = "Asignar";
-
-"U.auto-update-disabled-title" = "La actualización automática está apagada";
-"U.auto-update-disabled-msg" = "La actualización automática de Caffeinator ha sido apagada. Hay que instalar actualizaciones manualmente. Para volver a habilitar las actualizaciones automáticas, copia y pega el siguiente comando en Terminal, pulsa Enter y reinicia Caffeinator:\n%@";
-"U.no-update-data-title" = "Datos de actualización no fueron recibidos";
-"U.no-update-data-msg" = "El API de GitHub no devolvió ningunos datos. Por favor presenta un informe sobre este error.";
-"U.improper-json-title" = "JSON erróneo";
-"U.improper-json-msg" = "Los datos de JSON devolvidos por el servidor de actualización no fue del formato correcto. Por favor presenta un informe sobre este error.";
-"U.serialization-failure-title" = "Datos de actualización no fueron serializados";
-"U.serialization-failure-msg" = "Los datos de JSON devolvidos por el API de GitHub no fueron de formato correcto, o JSONSerialization falló internalmente. Por favor presenta un informe sobre este error.";
-"U.version-parse-failure-title" = "Analisis de actualización falló";
-"U.version-parse-failure-msg" = "Los datos necesarios para buscar actualizaciones de Caffeinator no se encontraron. Por favor presenta un informe sobre este error.";
-"U.download-parse-failure-title" = "Descarga de datos de actualización falló";
-"U.download-parse-failure-msg" = "Los datos de la versión de actualización fueron analizados, pero el analisis de los datos sobre recursos de actualización no podía ser analizado. Por favor presenta un informe sobre este error.";
-"U.caffeinator-update-title" = "Actualización de Caffeinator";
-"U.no-update-title" = "No hay actualizaciones disponibles";
-"U.no-update-msg" = "Ya tienes la última versión de Caffeinator.";
-"U.no-update-ok-text" = "OK";
-"U.url-open-failure-title" = "El URL no abrió";
-"U.url-open-failure-msg" = "El URL para la descarga de actualización no abrió. Puedes descargar la actualización manualmente en https://aaplmath.github.io/Caffeinator por hacer clic en el botón \"Descargar Caffeinator\". Por favor presenta un informe sobre este error.";

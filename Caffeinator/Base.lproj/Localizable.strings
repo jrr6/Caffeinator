@@ -68,22 +68,3 @@
 "SVC.illegal-key-code-title" = "Illegal Key Code";
 "SVC.illegal-key-code-body" = "The keyboard shortcut you entered contains an invalid key code. Please try again, or use a different shortcut if the issue persists.";
 "SVC.set-button" = "Set";
-
-"U.auto-update-disabled-title" = "Auto-Update Disabled";
-"U.auto-update-disabled-msg" = "The Caffeinator auto-updater has been disabled. Any updates to the application must be applied manually. To re-enable automatic updates, please copy and paste the following command into Terminal, press Enter, and restart Caffeinator:\n%@";
-"U.no-update-data-title" = "No Update Data Received";
-"U.no-update-data-msg" = "The GitHub API returned no data. This error should be reported.";
-"U.improper-json-title" = "Improperly Formatted JSON";
-"U.improper-json-msg" = "The JSON data returned by the update server was not in the correct format. This error should be reported.";
-"U.serialization-failure-title" = "Could Not Serialize Update Data";
-"U.serialization-failure-msg" = "The data returned by the GitHub API was not in a valid JSON format, or JSONSerialization failed internally. This error should be reported.";
-"U.version-parse-failure-title" = "Failed to Parse Update Information";
-"U.version-parse-failure-msg" = "The data necessary for checking the latest version of Caffeinator could not be found. This error should be reported.";
-"U.download-parse-failure-title" = "Failed to Parse Download Information";
-"U.download-parse-failure-msg" = "While update version data was able to be parsed, download asset data could not. This error should be reported.";
-"U.caffeinator-update-title" = "Caffeinator Update";
-"U.no-update-title" = "No Updates Available";
-"U.no-update-msg" = "You're running the latest version of Caffeinator.";
-"U.no-update-ok-text" = "OK";
-"U.url-open-failure-title" = "Error Opening URL";
-"U.url-open-failure-msg" = "Could not open the URL for the update download. You can manually download the update by going to https://aaplmath.github.io/Caffeinator and clicking the Download button. This error should be reported.";
