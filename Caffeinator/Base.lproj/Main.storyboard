@@ -89,7 +89,7 @@
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="6Ov-20-nRh"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Other…" identifier="timedCustom" id="tdu-sG-GfI">
+                                    <menuItem title="Other…" identifier="timedcustom" id="tdu-sG-GfI">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="timedClicked:" target="Y0S-22-67Z" id="pcc-zu-m8s"/>
@@ -609,11 +609,11 @@ Gw
             <objects>
                 <viewController id="JOb-qP-tk6" customClass="ShortcutsViewController" customModule="Caffeinator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hXi-VC-seg">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="151"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="185"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Wh-vf-iAe">
-                                <rect key="frame" x="18" y="107" width="444" height="24"/>
+                                <rect key="frame" x="18" y="141" width="444" height="24"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Keyboard Shortcuts" id="C83-He-wqS">
                                     <font key="font" size="20" name="HelveticaNeue-Bold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -621,7 +621,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnR-xU-wFh">
-                                <rect key="frame" x="30" y="80" width="218" height="17"/>
+                                <rect key="frame" x="30" y="114" width="218" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="214" id="jhk-lA-jDl"/>
                                 </constraints>
@@ -632,7 +632,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqc-dz-HfS">
-                                <rect key="frame" x="254" y="78" width="119" height="21"/>
+                                <rect key="frame" x="254" y="112" width="119" height="21"/>
                                 <subviews>
                                     <button identifier="shortcutStart" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TVQ-Eh-vai">
                                         <rect key="frame" x="-6" y="-7" width="61" height="32"/>
@@ -665,7 +665,7 @@ Gw
                                 </customSpacing>
                             </stackView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="crc-TK-ruP">
-                                <rect key="frame" x="30" y="52" width="218" height="15"/>
+                                <rect key="frame" x="30" y="86" width="218" height="15"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Process Caffeination:" id="lUb-hs-G90">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -673,7 +673,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmT-B7-Xkc">
-                                <rect key="frame" x="254" y="49" width="119" height="21"/>
+                                <rect key="frame" x="254" y="83" width="119" height="21"/>
                                 <subviews>
                                     <button identifier="shortcutProc" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Eq-Z9-NwZ">
                                         <rect key="frame" x="-6" y="-7" width="61" height="32"/>
@@ -710,7 +710,7 @@ Gw
                                 </customSpacing>
                             </stackView>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vMo-qz-7x9">
-                                <rect key="frame" x="254" y="20" width="119" height="21"/>
+                                <rect key="frame" x="254" y="25" width="119" height="21"/>
                                 <subviews>
                                     <button identifier="shortcutManual" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="llN-RX-1tV">
                                         <rect key="frame" x="-6" y="-7" width="61" height="32"/>
@@ -742,9 +742,54 @@ Gw
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ma6-mU-w3Z">
+                                <rect key="frame" x="254" y="54" width="119" height="21"/>
+                                <subviews>
+                                    <button identifier="shortcutTimedcustom" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eY3-Zf-tYl">
+                                        <rect key="frame" x="-6" y="-7" width="61" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Set" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7FL-yl-J3O">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="setShortcutWithSender:" target="JOb-qP-tk6" id="HKl-GX-dZe"/>
+                                        </connections>
+                                    </button>
+                                    <button identifier="shortcutClearTimedcustom" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XED-vt-7hU">
+                                        <rect key="frame" x="53" y="-7" width="72" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UDg-HR-bW2">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="clearShortcutWithSender:" target="JOb-qP-tk6" id="3cl-yL-6Ng"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="eY3-Zf-tYl" firstAttribute="top" secondItem="ma6-mU-w3Z" secondAttribute="top" id="FvE-TU-UCc"/>
+                                    <constraint firstAttribute="bottom" secondItem="eY3-Zf-tYl" secondAttribute="bottom" id="KBt-H8-6Ga"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xKR-Zh-C9Z">
-                                <rect key="frame" x="30" y="22" width="218" height="17"/>
+                                <rect key="frame" x="30" y="28" width="218" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Custom Caffeination:" id="ecb-cA-vE0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JS8-nt-3uW">
+                                <rect key="frame" x="30" y="56" width="218" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Timed Caffeination:" id="p9h-AC-4jt">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -753,23 +798,29 @@ Gw
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3Wh-vf-iAe" secondAttribute="trailing" constant="20" symbolic="YES" id="1Wd-j5-Ttg"/>
+                            <constraint firstItem="ma6-mU-w3Z" firstAttribute="top" secondItem="zmT-B7-Xkc" secondAttribute="bottom" constant="8" symbolic="YES" id="7GE-LO-HlX"/>
                             <constraint firstItem="cnR-xU-wFh" firstAttribute="centerY" secondItem="kqc-dz-HfS" secondAttribute="centerY" id="9ea-bE-TRT"/>
-                            <constraint firstItem="xKR-Zh-C9Z" firstAttribute="centerY" secondItem="vMo-qz-7x9" secondAttribute="centerY" id="9vn-gG-hhI"/>
+                            <constraint firstItem="xKR-Zh-C9Z" firstAttribute="centerY" secondItem="vMo-qz-7x9" secondAttribute="centerY" constant="-1" id="9vn-gG-hhI"/>
                             <constraint firstItem="zmT-B7-Xkc" firstAttribute="leading" secondItem="crc-TK-ruP" secondAttribute="trailing" constant="8" symbolic="YES" id="9wZ-HQ-COh"/>
                             <constraint firstItem="vMo-qz-7x9" firstAttribute="leading" secondItem="xKR-Zh-C9Z" secondAttribute="trailing" constant="8" symbolic="YES" id="9wg-z9-oA7"/>
                             <constraint firstItem="zmT-B7-Xkc" firstAttribute="leading" secondItem="vMo-qz-7x9" secondAttribute="leading" id="CpI-x8-MQD"/>
                             <constraint firstItem="kqc-dz-HfS" firstAttribute="top" secondItem="3Wh-vf-iAe" secondAttribute="bottom" constant="8" symbolic="YES" id="D7B-c6-gaf"/>
                             <constraint firstItem="zmT-B7-Xkc" firstAttribute="top" secondItem="kqc-dz-HfS" secondAttribute="bottom" constant="8" symbolic="YES" id="DMN-Aq-Lw6"/>
                             <constraint firstItem="cnR-xU-wFh" firstAttribute="top" secondItem="3Wh-vf-iAe" secondAttribute="bottom" constant="10" id="E3M-bc-Vud"/>
-                            <constraint firstItem="vMo-qz-7x9" firstAttribute="top" secondItem="zmT-B7-Xkc" secondAttribute="bottom" constant="8" symbolic="YES" id="OoI-F4-dsS"/>
+                            <constraint firstItem="vMo-qz-7x9" firstAttribute="top" secondItem="zmT-B7-Xkc" secondAttribute="bottom" constant="37" id="OoI-F4-dsS"/>
                             <constraint firstItem="crc-TK-ruP" firstAttribute="top" secondItem="cnR-xU-wFh" secondAttribute="bottom" constant="13" id="Rk2-7O-ldT"/>
-                            <constraint firstItem="xKR-Zh-C9Z" firstAttribute="top" secondItem="crc-TK-ruP" secondAttribute="bottom" constant="13" id="ckF-Bb-3S7"/>
+                            <constraint firstItem="xKR-Zh-C9Z" firstAttribute="top" secondItem="JS8-nt-3uW" secondAttribute="bottom" constant="11" id="c6N-fU-YPC"/>
+                            <constraint firstItem="xKR-Zh-C9Z" firstAttribute="top" secondItem="crc-TK-ruP" secondAttribute="bottom" constant="41" id="ckF-Bb-3S7"/>
                             <constraint firstItem="3Wh-vf-iAe" firstAttribute="leading" secondItem="hXi-VC-seg" secondAttribute="leading" constant="20" symbolic="YES" id="drn-Ba-W7O"/>
                             <constraint firstItem="kqc-dz-HfS" firstAttribute="leading" secondItem="zmT-B7-Xkc" secondAttribute="leading" id="fjA-kd-U5M"/>
                             <constraint firstItem="crc-TK-ruP" firstAttribute="leading" secondItem="xKR-Zh-C9Z" secondAttribute="leading" id="gkw-eI-Q56"/>
+                            <constraint firstItem="ma6-mU-w3Z" firstAttribute="leading" secondItem="zmT-B7-Xkc" secondAttribute="leading" id="j3q-fY-BMA"/>
+                            <constraint firstItem="ma6-mU-w3Z" firstAttribute="leading" secondItem="JS8-nt-3uW" secondAttribute="trailing" constant="8" symbolic="YES" id="lXA-tS-EYO"/>
                             <constraint firstItem="kqc-dz-HfS" firstAttribute="leading" secondItem="cnR-xU-wFh" secondAttribute="trailing" constant="8" symbolic="YES" id="mrh-4T-RnQ"/>
                             <constraint firstItem="cnR-xU-wFh" firstAttribute="leading" secondItem="crc-TK-ruP" secondAttribute="leading" id="oHU-0R-i5r"/>
+                            <constraint firstItem="JS8-nt-3uW" firstAttribute="leading" secondItem="crc-TK-ruP" secondAttribute="leading" id="tdQ-oz-d7g"/>
                             <constraint firstItem="cnR-xU-wFh" firstAttribute="leading" secondItem="hXi-VC-seg" secondAttribute="leading" constant="32" id="v4Y-Qf-Spw"/>
+                            <constraint firstItem="JS8-nt-3uW" firstAttribute="centerY" secondItem="ma6-mU-w3Z" secondAttribute="centerY" id="wdo-Rg-TAT"/>
                             <constraint firstItem="3Wh-vf-iAe" firstAttribute="top" secondItem="hXi-VC-seg" secondAttribute="top" constant="20" symbolic="YES" id="wms-2a-lG7"/>
                             <constraint firstItem="crc-TK-ruP" firstAttribute="centerY" secondItem="zmT-B7-Xkc" secondAttribute="centerY" id="xe9-Jb-bZ2"/>
                         </constraints>
@@ -781,11 +832,13 @@ Gw
                         <outlet property="procClearButton" destination="CKk-c3-hIS" id="Ikk-bk-bMO"/>
                         <outlet property="startButton" destination="TVQ-Eh-vai" id="Yuy-eB-4YE"/>
                         <outlet property="startClearButton" destination="Uqc-x1-5ko" id="6r3-iP-jqp"/>
+                        <outlet property="timedcustomButton" destination="eY3-Zf-tYl" id="1gS-U6-CR9"/>
+                        <outlet property="timedcustomClearButton" destination="XED-vt-7hU" id="9ga-pN-86w"/>
                     </connections>
                 </viewController>
                 <customObject id="lzq-84-xc9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528" y="1746.5"/>
+            <point key="canvasLocation" x="528" y="1763.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="Tns-eW-ccD">

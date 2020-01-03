@@ -13,10 +13,12 @@ class ShortcutsViewController: NSViewController {
     
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var procButton: NSButton!
+    @IBOutlet weak var timedcustomButton: NSButton!
     @IBOutlet weak var manualButton: NSButton!
     
     @IBOutlet weak var startClearButton: NSButton!
     @IBOutlet weak var procClearButton: NSButton!
+    @IBOutlet weak var timedcustomClearButton: NSButton!
     @IBOutlet weak var manualClearButton: NSButton!
     
     
@@ -149,6 +151,8 @@ class ShortcutsViewController: NSViewController {
             return startButton
         case "proc":
             return procButton
+        case "timedcustom":
+            return timedcustomButton
         case "manual":
             return manualButton
         default:
@@ -170,6 +174,8 @@ class ShortcutsViewController: NSViewController {
             startClearButton.isEnabled = enabled
         case "proc":
             procClearButton.isEnabled = enabled
+        case "timedcustom":
+            timedcustomClearButton.isEnabled = enabled
         case "manual":
             manualClearButton.isEnabled = enabled
         default:

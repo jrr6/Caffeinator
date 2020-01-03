@@ -220,7 +220,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DispatchQueue.main.async {
             var time: Double? = nil
             
-            if let secondsPreset = sender.identifier?.rawValue, secondsPreset != "timedCustom" {
+            if let secondsPreset = sender.identifier?.rawValue, secondsPreset != "timedcustom" {
                 // extract the portion of the preset ID after "timed" (containing the number of seconds it corresponds to)
                 let secondsPresetTime = secondsPreset[secondsPreset.index(secondsPreset.startIndex, offsetBy: 5)...]
                 time = Double(secondsPresetTime)

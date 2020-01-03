@@ -206,6 +206,9 @@
 /* Class = "NSTextFieldCell"; title = "Process Caffeination"; ObjectID = "lUb-hs-G90"; */
 "lUb-hs-G90.title" = "Caffeination de proceso";
 
+/* Class = "NSTextFieldCell"; title = "Timed Caffeination"; ObjectID = "p9h-AC-4jt"; */
+"p9h-AC-4jt.title" = "Caffeination cronometrada";
+
 /* Class = "NSTextFieldCell"; title = "Custom Caffeination"; ObjectID = "ecb-cA-vE0"; */
 "ecb-cA-vE0.title" = "Caffeination modificada";
 
@@ -215,6 +218,9 @@
 /* Class = "NSButtonCell"; title = "Set"; ObjectID = "SBM-yI-24V"; */
 "SBM-yI-24V.title" = "Asignar";
 
+/* Class = "NSButtonCell"; title = "Set"; ObjectID = "7FL-yl-J3O"; */
+"7FL-yl-J3O.title" = "Asignar";
+
 /* Class = "NSButtonCell"; title = "Set"; ObjectID = "rok-mu-E04"; */
 "rok-mu-E04.title" = "Asignar";
 
@@ -223,6 +229,9 @@
 
 /* Class = "NSButtonCell"; title = "Clear"; ObjectID = "ePC-Ua-C8o"; */
 "ePC-Ua-C8o.title" = "Borrar";
+
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "UDg-HR-bW2"; */
+"UDg-HR-bW2.title" = "Borrar";
 
 /* Class = "NSButtonCell"; title = "Clear"; ObjectID = "M4o-W4-8nW"; */
 "M4o-W4-8nW.title" = "Borrar";
