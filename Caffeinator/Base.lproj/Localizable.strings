@@ -34,6 +34,11 @@
 
 "CPVC.no-argument-label" = "None";
 
+"HKM.no-menu-id-title" = "Menu Registered Without ID";
+"HKM.no-menu-id-body" = "An attempt was made to register a menu for keyboard shortcut mapping without a menu identifier. This may cause unexpected behavior and should not have occurred. Please report this error.";
+"HKM.illegal-menu-id-title" = "Illegal Menu ID";
+"HKM.illegal-menu-id-body" = "An attempt was made to set a keyboard shortcut for a non-existent menu item. This error should not have occurred and should be reported.";
+
 "HPVC.could-not-find-help" = "Could not find help file.";
 
 "KM.kill-caffeinate-prompt-title" = "Existing caffeinate Process Found";
@@ -54,6 +59,14 @@
 "PA.execution-error-msg" = "An error occurred when executing %@:\n%@";
 "PA.unknown-process-path" = "unknown";
 
+"SVC.no-sender-id-title" = "No Sender ID";
+"SVC.no-sender-id-body" = "A button attempted to initiate a shortcut modification without a valid sender ID. This error should not have occured; please report it.";
+"SVC.no-active-title" = "No Active Item for Shortcut";
+"SVC.no-active-body" = "An attempt was made to register a keyboard shortcut without an item selected. This should not have occurred; please report this error.";
+"SVC.invalid-shortcut-title" = "Invalid Shortcut";
+"SVC.invalid-shortcut-body" = "Please enter a valid shortcut using Control, Option, Command, and/or the function keys.";
+"SVC.illegal-key-code-title" = "Illegal Key Code";
+"SVC.illegal-key-code-body" = "The keyboard shortcut you entered contains an invalid key code. Please try again, or use a different shortcut if the issue persists.";
 "SVC.set-button" = "Set";
 
 "U.auto-update-disabled-title" = "Auto-Update Disabled";

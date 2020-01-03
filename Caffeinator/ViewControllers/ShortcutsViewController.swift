@@ -58,7 +58,7 @@ class ShortcutsViewController: NSViewController {
     @IBAction func setShortcut(sender: NSButton) {
         // The sender's ID should be of the form `shortcutMENUID`, where MENUID is the ID of the menu item to which the shortcut corresponds
         guard let rawID = sender.identifier?.rawValue else {
-            // TODO: handle error (which should not occur)
+            Notifier.showErrorMessage(withTitle: txt("SVC.no-sender-id-title"), text: txt("SVC.no-sender-id-body"))
             return
         }
         let menuID = String(rawID[rawID.index(rawID.startIndex, offsetBy: 8)...]).lowercased()
@@ -83,9 +83,9 @@ class ShortcutsViewController: NSViewController {
     @IBAction func clearShortcut(sender: NSButton) {
         // The sender's ID should be of the form `shortcutClearMENUID`, where MENUID is the ID of the menu item to which the shortcut corresponds
         guard let rawID = sender.identifier?.rawValue else {
-                   // TODO: handle error (which should not occur)
-                   return
-               }
+            Notifier.showErrorMessage(withTitle: txt("SVC.no-sender-id-title"), text: txt("SVC.no-sender-id-body"))
+            return
+        }
         let menuID = String(rawID[rawID.index(rawID.startIndex, offsetBy: 13)...]).lowercased()
         HotKeyManager.shared.clearKeyEquivForMenu(withID: menuID)
         resetTitle(forButtonID: menuID)
@@ -100,7 +100,7 @@ class ShortcutsViewController: NSViewController {
         listening = false
 
         guard let curActive = active else {
-            // TODO: handle error
+            Notifier.showErrorMessage(withTitle: txt("SVC.no-active-title"), text: txt("SVC.no-active-body"))
             return
         }
         deselectButtonForActiveID()
@@ -117,7 +117,7 @@ class ShortcutsViewController: NSViewController {
         }
         
         guard let character = Key(carbonKeyCode: UInt32(event.keyCode)) else {
-            // TODO: handle error
+            Notifier.showErrorMessage(withTitle: txt("SVC.illegal-key-code-title"), text: txt("SVC.illegal-key-code-body"))
             return
         }
         
@@ -125,8 +125,8 @@ class ShortcutsViewController: NSViewController {
             || hotkeyModifiers.contains(.control)
             || hotkeyModifiers.contains(.option)
             || hotkeyModifiers.contains(.command) else {
-            // TODO: alert that the entered combination is invalid
-            return
+                Notifier.showErrorMessage(withTitle: txt("SVC.invalid-shortcut-title"), text: txt("SVC.invalid-shortcut-body"))
+                return
         }
         
         HotKeyManager.shared.setKeyEquivForMenu(withID: curActive, key: character, modifiers: hotkeyModifiers)

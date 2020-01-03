@@ -38,6 +38,11 @@
 
 "CPVC.no-argument-label" = "No hay valor";
 
+"HKM.no-menu-id-title" = "Menú registrado sin ID";
+"HKM.no-menu-id-body" = "Se intentó registrar un menú para atajos de teclado sin un identificador de menú. Esto puede causar funcionamiento inesperado y no debería haber ocurrido. Por favor presenta un informe sobre este error.";
+"HKM.illegal-menu-id-title" = "ID de menú ilegal";
+"HKM.illegal-menu-id-body" = "Se intentó asignar un atajo de teclado para un menú no existente. Este error no debería haber ocurrido; por favor presenta un informe sobre este error.";
+
 "HPVC.could-not-find-help" = "No se encontró el archivo de ayuda.";
 
 "KM.kill-caffeinate-prompt-title" = "Procesos de caffeinate existentes se encontraron";
@@ -58,6 +63,14 @@
 "PA.execution-error-msg" = "Un error ocurrió cuando ejecutó %@:\n%@";
 "PA.unknown-process-path" = "desconocido";
 
+"SVC.no-sender-id-title" = "ID de remitente no encontrada";
+"SVC.no-sender-id-body" = "Un botón intentó iniciar una modificación de atajo de teclado sin una ID de remitente válida. Este error no debería haber ocurrido; por favor presenta un informe sobre ello.";
+"SVC.no-active-title" = "No elemento activo para atajo";
+"SVC.no-active-body" = "Se intentó registrar un atajo de teclado sin escoger un elemento. Esto no debería haber ocurrido; por favor presenta un informe sobre este error.";
+"SVC.invalid-shortcut-title" = "Atajo ilegal";
+"SVC.invalid-shortcut-body" = "Entre un atajo válido, constando de Control, Option, Commando, y/o las teclas de función.";
+"SVC.illegal-key-code-title" = "Código de tecla ilegal";
+"SVC.illegal-key-code-body" = "Has entrado un atajo de teclado que contiene un código de tecla inválido. Por favor intenta entrarlo otra vez, o usa un atajo de teclado diferente si persiste el problema.";
 "SVC.set-button" = "Asignar";
 
 "U.auto-update-disabled-title" = "La actualización automática está apagada";

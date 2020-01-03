@@ -25,7 +25,7 @@ class HotKeyManager: NSObject {
             self.item = item
             self.action = action
             guard let id = item.identifier?.rawValue else {
-                // TODO: handle error (which should never happen)
+                Notifier.showErrorMessage(withTitle: txt("HKM.no-menu-id-title"), text: txt("HKM.no-menu-id-body"))
                 self.id = "ERROR"
                 return
             }
@@ -67,7 +67,7 @@ class HotKeyManager: NSObject {
      */
     func setKeyEquivForMenu(withID id: String, key: Key, modifiers: NSEvent.ModifierFlags, save: Bool = true) {
         guard let idx = findIndexOf(actionID: id) else {
-            // TODO: report error—illegal ID (show a popup)
+            Notifier.showErrorMessage(withTitle: txt("HKM.illegal-menu-id-title"), text: txt("HKM.illegal-menu-id-body"))
             return
         }
         actions[idx].key = key
