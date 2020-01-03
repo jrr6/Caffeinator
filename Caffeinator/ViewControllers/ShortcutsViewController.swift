@@ -24,6 +24,17 @@ class ShortcutsViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        HotKeyManager.shared.actions.forEach { action in
+            let str: String
+            if let key = action.key {
+                str = stringForCombo(key: key, modifiers: action.modifiers ?? [])
+            } else {
+                str = "Set" // TODO: Localize
+            }
+            button(for: action.id)?.title = str
+        }
+        
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (aEvent) -> NSEvent? in
             let handled = self.onKeyDown(with: aEvent)
             return handled ? nil : aEvent
@@ -98,20 +109,43 @@ class ShortcutsViewController: NSViewController {
         }
         
         HotKeyManager.shared.setKeyEquivForMenu(withID: active, key: character, modifiers: hotkeyModifiers)
+        button(for: active)?.title = stringForCombo(key: character, modifiers: hotkeyModifiers)
     }
     
     private func deselectButtonForActiveID() {
         if let curActive = active {
-            switch curActive {
-            case "start":
-                startButton.state = .off
-            case "proc":
-                procButton.state = .off
-            case "manual":
-                manualButton.state = .off
-            default:
-                break
-            }
+            button(for: curActive)?.state = .off
         }
+    }
+    
+    private func button(for id: String) -> NSButton? {
+        switch id {
+        case "start":
+            return startButton
+        case "proc":
+            return procButton
+        case "manual":
+            return manualButton
+        default:
+            return nil
+        }
+    }
+    
+    private func stringForCombo(key: Key, modifiers: NSEvent.ModifierFlags) -> String {
+        var str = ""
+        if modifiers.contains(.control) {
+            str += "⌃"
+        }
+        if modifiers.contains(.option) {
+            str += "⌥"
+        }
+        if modifiers.contains(.shift) {
+            str += "⇧"
+        }
+        if modifiers.contains(.command) {
+            str += "⌘"
+        }
+        str += key.description.uppercased()
+        return str
     }
 }
