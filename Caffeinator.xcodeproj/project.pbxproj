@@ -33,6 +33,7 @@
 		E2AD896623BAA0C30057E431 /* HotKey.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2AD896223BAA0270057E431 /* HotKey.framework.dSYM */; };
 		E2AD896823BAA66A0057E431 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD896723BAA66A0057E431 /* HotKeyManager.swift */; };
 		E2AD896A23BAAE3F0057E431 /* ShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD896923BAAE3F0057E431 /* ShortcutsViewController.swift */; };
+		E2AD897323BEC83F0057E431 /* FunctionMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD897223BEC83F0057E431 /* FunctionMap.swift */; };
 		E2EAD9F81F5E117A00E60133 /* Licenses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2EAD9F71F5E117A00E60133 /* Licenses.rtf */; };
 		E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */; };
 		E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */; };
@@ -122,6 +123,7 @@
 		E2AD896223BAA0270057E431 /* HotKey.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = HotKey.framework.dSYM; sourceTree = "<group>"; };
 		E2AD896723BAA66A0057E431 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
 		E2AD896923BAAE3F0057E431 /* ShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsViewController.swift; sourceTree = "<group>"; };
+		E2AD897223BEC83F0057E431 /* FunctionMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMap.swift; sourceTree = "<group>"; };
 		E2EAD9F71F5E117A00E60133 /* Licenses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Licenses.rtf; sourceTree = "<group>"; };
 		E2EF735B22B7D94500DC3296 /* TimeEntryPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryPanelViewController.swift; sourceTree = "<group>"; };
 		E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PseudoModal.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				E20139C11F78024B008B12E1 /* Notifier.swift */,
 				E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */,
 				E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */,
+				E2AD897223BEC83F0057E431 /* FunctionMap.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2AD897323BEC83F0057E431 /* FunctionMap.swift in Sources */,
 				E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */,
 				E26273E8211C8C5D005F9121 /* HelpPanelViewController.swift in Sources */,
 				E26273E5211C8AB2005F9121 /* CustomPanelViewController.swift in Sources */,

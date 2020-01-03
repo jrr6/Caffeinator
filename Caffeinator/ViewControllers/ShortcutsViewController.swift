@@ -74,7 +74,7 @@ class ShortcutsViewController: NSViewController {
         deselectButtonForActiveID()
         self.active = nil
         
-        let relevantModifiers: [NSEvent.ModifierFlags] = [.function, .shift, .control, .option, .command]
+        let relevantModifiers: [NSEvent.ModifierFlags] = [.shift, .control, .option, .command]
         
         var hotkeyModifiers: NSEvent.ModifierFlags = []
         
@@ -84,7 +84,12 @@ class ShortcutsViewController: NSViewController {
             }
         }
         
-        guard hotkeyModifiers.contains(.function)
+        guard let character = Key(carbonKeyCode: UInt32(event.keyCode)) else {
+            // TODO: handle error
+            return
+        }
+        
+        guard FunctionMap.map[character] != nil
             || hotkeyModifiers.contains(.control)
             || hotkeyModifiers.contains(.option)
             || hotkeyModifiers.contains(.command) else {
@@ -92,12 +97,6 @@ class ShortcutsViewController: NSViewController {
             return
         }
         
-        guard let character = Key(carbonKeyCode: UInt32(event.keyCode)) else {
-            // TODO: handle error
-            return
-        }
-        
-        // FIXME: if the shortcut is a function key, the label doesn't update properly
         HotKeyManager.shared.setKeyEquivForMenu(withID: active, key: character, modifiers: hotkeyModifiers)
     }
     

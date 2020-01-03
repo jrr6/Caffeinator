@@ -66,7 +66,7 @@ class HotKeyManager: NSObject {
     }
     
     private func reassignHotKey(at index: Array<MenuAction>.Index) {
-        guard let key = actions[index].key, let modifiers = actions[index].modifiers else {
+        guard let key = actions[index].key, var modifiers = actions[index].modifiers else {
             return
         }
         // Global hotkey
@@ -74,8 +74,13 @@ class HotKeyManager: NSObject {
         actions[index].hotKey!.keyDownHandler = actions[index].action
         
         // In-menu hotkey
-        // FIXME: the description string trick doesn't work for function keys
-        actions[index].item.keyEquivalent = key.description.lowercased()
+        if let alt = FunctionMap.map[key] {
+            // Even though using the description method for function keys works, it doesn't produce the right shortcut in the menu, so use this workaround instead
+            actions[index].item.keyEquivalent = String(Character(UnicodeScalar(alt)!))
+            modifiers.remove(.function)
+        } else {
+            actions[index].item.keyEquivalent = key.description.lowercased()
+        }
         actions[index].item.keyEquivalentModifierMask = modifiers
     }
     
