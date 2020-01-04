@@ -60,3 +60,19 @@ Caffeinator provides a number of different options to prevent computer sleep. Th
 * Caffeinate Display: Enable if you want Caffeinator to prevent display sleep as well as computer sleep. If you do not enable this feature, your computer's screen will go to sleep after the interval specified in the System Preferences Energy Saver settings, but background processes will still continue to run. Note that if this preference is modified during an active Caffeination, you will need to start a new Caffeination for changes to take effect.
 
 * Use Advanced Process Selector: This option shows all running processes (rather than just apps and helpers) in the `Caffeinate a Process` selector. Select this option if you need to Caffeinate command-line tools, system daemons, or other non-app-bundle processes.
+
+## Assigning Keyboard Shortcuts
+
+Caffeinator allows you to map global keyboard shortcuts to commonly used Caffeinations (regular, process-based, time-based, and custom). Shortcuts allow you to quickly start a Caffeination simply by pressing a key combination on your keyboard.
+
+By default, no keyboard shortcuts are configured. To view the keyboard shortcut configuration window, select `Advanced`>`Configure Keyboard Shortcuts…` in the Caffeinator menu. The window will display any existing shortcuts and allows you to change or remove them or configure new ones.
+
+To define a new shortcut:
+
+* Click the `Set` button next to the Caffeination type whose shortcut you'd like to configure. The `Set` button will turn blue, indicating that Caffeinator is "listening" for a shortcut entry. 
+* On your keyboard, press the shortcut you'd like to assign. To minimize conflicts with everyday tasks, Caffeinator requires that this shortcut contain at least one of <kbd>control</kbd>, <kbd>option</kbd>, <kbd>command</kbd>, or the function keys. If you enter an invalid shortcut, an alert will appear telling you to choose a new one.
+
+To update an existing shortcut, follow the steps above, but note that the `Set` button will display the existing shortcut rather than the word "Set."
+
+To clear an existing shortcut, click `Clear` next to the shortcut you'd like to remove.
+
