@@ -8,6 +8,7 @@
 
 import Cocoa
 
+/// A ScriptCommand class that handles the "start caffeination" command.
 class ScriptingStartCaffeination: NSScriptCommand {
     override func performDefaultImplementation() -> Any? {
         let caf = (NSApplication.shared.delegate as! AppDelegate).caffeination
@@ -23,6 +24,7 @@ class ScriptingStartCaffeination: NSScriptCommand {
         }
         
         if let opts = args["Options"] as? [String] {
+            // If the user has supplied custom options, disregard all defaults
             caffeination.opts = []
             for opt in opts {
                 switch opt {

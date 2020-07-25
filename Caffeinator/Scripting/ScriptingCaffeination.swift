@@ -8,6 +8,7 @@
 
 import Cocoa
 
+/// A class that exposes a subset of `Caffeination` to OSA. Importantly, this class is compatible with Objective-C and plays well with the archaic technologies involved in scripting. For convenience, all field names match the property names in the sdef file to which they correspond.
 @objcMembers class ScriptingCaffeination: NSObject {
     static let shared = ScriptingCaffeination()
     

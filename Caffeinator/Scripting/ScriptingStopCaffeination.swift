@@ -8,6 +8,7 @@
 
 import Cocoa
 
+/// A ScriptCommand class that handles the "stop caffeination" command.
 class ScriptingStopCaffeination: NSScriptCommand {
     override func performDefaultImplementation() -> Any? {
         let caf = (NSApplication.shared.delegate as! AppDelegate).caffeination
