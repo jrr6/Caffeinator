@@ -19,6 +19,9 @@
 		E26273EB211C8D7B005F9121 /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26273EA211C8D7B005F9121 /* LicensesViewController.swift */; };
 		E26273EC211C8DFD005F9121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26273EE211C8DFD005F9121 /* Main.storyboard */; };
 		E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26E133F211A4D9100DA4F90 /* KillallManager.swift */; };
+		E2723EE624CBB38E00DDF479 /* Caffeinator.sdef in Resources */ = {isa = PBXBuildFile; fileRef = E2723EE524CBB38E00DDF479 /* Caffeinator.sdef */; };
+		E2723EE924CBC74A00DDF479 /* ScriptingStartCaffeination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2723EE824CBC74A00DDF479 /* ScriptingStartCaffeination.swift */; };
+		E2723EEB24CBC75C00DDF479 /* ScriptingStopCaffeination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2723EEA24CBC75C00DDF479 /* ScriptingStopCaffeination.swift */; };
 		E278A2F622A06B1A00EEFFCB /* help_dark.html in Resources */ = {isa = PBXBuildFile; fileRef = E278A2F422A06B1700EEFFCB /* help_dark.html */; };
 		E278A2F722A06B1C00EEFFCB /* help_light.html in Resources */ = {isa = PBXBuildFile; fileRef = E278A2F322A06B1700EEFFCB /* help_light.html */; };
 		E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */; };
@@ -108,6 +111,9 @@
 		E26273ED211C8DFD005F9121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E26273F0211C8E02005F9121 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		E26E133F211A4D9100DA4F90 /* KillallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillallManager.swift; sourceTree = "<group>"; };
+		E2723EE524CBB38E00DDF479 /* Caffeinator.sdef */ = {isa = PBXFileReference; lastKnownFileType = text; path = Caffeinator.sdef; sourceTree = "<group>"; };
+		E2723EE824CBC74A00DDF479 /* ScriptingStartCaffeination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptingStartCaffeination.swift; sourceTree = "<group>"; };
+		E2723EEA24CBC75C00DDF479 /* ScriptingStopCaffeination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptingStopCaffeination.swift; sourceTree = "<group>"; };
 		E278A2F322A06B1700EEFFCB /* help_light.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help_light.html; sourceTree = "<group>"; };
 		E278A2F422A06B1700EEFFCB /* help_dark.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help_dark.html; sourceTree = "<group>"; };
 		E278A2F522A06B1700EEFFCB /* Caffeinator Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Caffeinator Help.md"; sourceTree = "<group>"; };
@@ -187,10 +193,12 @@
 			isa = PBXGroup;
 			children = (
 				E209DF171BEFA5A8007708FB /* AppDelegate.swift */,
+				E2723EE524CBB38E00DDF479 /* Caffeinator.sdef */,
 				E26273EE211C8DFD005F9121 /* Main.storyboard */,
 				E217D8942069447C005FFCF3 /* Localizable.strings */,
 				E287977022B825DA004355B1 /* ViewControllers */,
 				E287977122B825F5004355B1 /* Utilities */,
+				E2723EE724CBC6ED00DDF479 /* Scripting */,
 				E209DF1E1BEFA5A8007708FB /* Info.plist */,
 				E209DF191BEFA5A8007708FB /* Assets.xcassets */,
 				E287977722B92B11004355B1 /* Caffeinator-Bridging-Header.h */,
@@ -221,6 +229,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2723EE724CBC6ED00DDF479 /* Scripting */ = {
+			isa = PBXGroup;
+			children = (
+				E2723EE824CBC74A00DDF479 /* ScriptingStartCaffeination.swift */,
+				E2723EEA24CBC75C00DDF479 /* ScriptingStopCaffeination.swift */,
+			);
+			path = Scripting;
 			sourceTree = "<group>";
 		};
 		E278A2F822A08E8300EEFFCB /* Resources */ = {
@@ -390,6 +407,7 @@
 			files = (
 				E278A2F622A06B1A00EEFFCB /* help_dark.html in Resources */,
 				E287978822B982A8004355B1 /* .gitignore in Resources */,
+				E2723EE624CBB38E00DDF479 /* Caffeinator.sdef in Resources */,
 				E209DF1A1BEFA5A8007708FB /* Assets.xcassets in Resources */,
 				E278A2F722A06B1C00EEFFCB /* help_light.html in Resources */,
 				E26273EC211C8DFD005F9121 /* Main.storyboard in Resources */,
@@ -429,7 +447,9 @@
 				E26E1340211A4D9100DA4F90 /* KillallManager.swift in Sources */,
 				E20139C21F78024B008B12E1 /* Notifier.swift in Sources */,
 				E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */,
+				E2723EEB24CBC75C00DDF479 /* ScriptingStopCaffeination.swift in Sources */,
 				E2AD896A23BAAE3F0057E431 /* ShortcutsViewController.swift in Sources */,
+				E2723EE924CBC74A00DDF479 /* ScriptingStartCaffeination.swift in Sources */,
 				E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */,
 				E287977322B82C55004355B1 /* ProcessPanelViewController.swift in Sources */,
 				E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */,

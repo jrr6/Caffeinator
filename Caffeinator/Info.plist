@@ -42,5 +42,9 @@
 	<string>https://aaplmath.github.io/Caffeinator/update-release.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>6dDmC8Q/u9W6dXLqph/8qA1SJyCX027jAC0cd9D9dZE=</string>
+	<key>OSAScriptingDefinition</key>
+	<string>Caffeinator.sdef</string>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
 </dict>
 </plist>

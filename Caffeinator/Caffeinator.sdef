@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<dictionary title="Caffeinator">
+    <suite name="Caffeinator Suite" code="Caff" description="Suite for scripting the Caffeinator application">
+        <command name="stop caffeinating" code="Caffstop" description="Stop an ongoing Caffeination.">
+            <cocoa class="Caffeinator.ScriptingStopCaffeination" />
+            <result type="boolean" description="True if the Caffeination was stopped; false otherwise." />
+        </command>
+        
+        <command name="start caffeinating" code="Cafstart" description="Start a new Caffeination.">
+            <cocoa class="Caffeinator.ScriptingStartCaffeination" />
+            <parameter name="with duration" code="WDur" type="integer" optional="yes" description="The duration of the Caffeination.">
+                <cocoa key="Duration" />
+            </parameter>
+            <parameter name="process" code="ProC" type="integer" optional="yes" description="The PID of the process to caffeinate.">
+                <cocoa key="PID" />
+            </parameter>
+            <parameter name="with options" code="COpt" optional="yes" description="Manual configuration options (display, idle, disk, system, user) for the Caffeination, passed as strings in a list. If any options are passed, the default display preference set within the app will be ignored.">
+                <cocoa key="Options" />
+                <type type="text" list="yes" />
+            </parameter>
+            <result type="boolean" description="True if the Caffeination successfully starts; false otherwise (including if a Caffeination is already active)." />
+        </command>
+    </suite>
+</dictionary>
