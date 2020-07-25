@@ -32,6 +32,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var displayToggle: NSMenuItem!
     @IBOutlet weak var advancedProcToggle: NSMenuItem!
     
+    @objc let scriptingCaffeination = ScriptingCaffeination.shared
+    
     var storyboard: NSStoryboard!
     var df: UserDefaults!
     var nc: NotificationCenter!
@@ -76,6 +78,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         HotKeyManager.shared.registerMenuItem(customMenu, withEquivalentAction: {
             self.customClicked(self.customMenu)
         })
+    }
+    
+    // Announce that we can handle the scriptingCaffeination property (failing to implement this generates KVC errors)
+    func application(_ sender: NSApplication, delegateHandlesKey key: String) -> Bool {
+        return key == "scriptingCaffeination"
     }
     
     /// Handles Caffeination termination—initiates status bar update and resets to default opts

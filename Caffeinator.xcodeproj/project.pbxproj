@@ -22,6 +22,7 @@
 		E2723EE624CBB38E00DDF479 /* Caffeinator.sdef in Resources */ = {isa = PBXBuildFile; fileRef = E2723EE524CBB38E00DDF479 /* Caffeinator.sdef */; };
 		E2723EE924CBC74A00DDF479 /* ScriptingStartCaffeination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2723EE824CBC74A00DDF479 /* ScriptingStartCaffeination.swift */; };
 		E2723EEB24CBC75C00DDF479 /* ScriptingStopCaffeination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2723EEA24CBC75C00DDF479 /* ScriptingStopCaffeination.swift */; };
+		E2723EED24CC8D8A00DDF479 /* ScriptingCaffeination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2723EEC24CC8D8A00DDF479 /* ScriptingCaffeination.swift */; };
 		E278A2F622A06B1A00EEFFCB /* help_dark.html in Resources */ = {isa = PBXBuildFile; fileRef = E278A2F422A06B1700EEFFCB /* help_dark.html */; };
 		E278A2F722A06B1C00EEFFCB /* help_light.html in Resources */ = {isa = PBXBuildFile; fileRef = E278A2F322A06B1700EEFFCB /* help_light.html */; };
 		E27F9A622294DE6200CD60B0 /* ProcessAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F9A612294DE6200CD60B0 /* ProcessAdditions.swift */; };
@@ -114,6 +115,7 @@
 		E2723EE524CBB38E00DDF479 /* Caffeinator.sdef */ = {isa = PBXFileReference; lastKnownFileType = text; path = Caffeinator.sdef; sourceTree = "<group>"; };
 		E2723EE824CBC74A00DDF479 /* ScriptingStartCaffeination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptingStartCaffeination.swift; sourceTree = "<group>"; };
 		E2723EEA24CBC75C00DDF479 /* ScriptingStopCaffeination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptingStopCaffeination.swift; sourceTree = "<group>"; };
+		E2723EEC24CC8D8A00DDF479 /* ScriptingCaffeination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptingCaffeination.swift; sourceTree = "<group>"; };
 		E278A2F322A06B1700EEFFCB /* help_light.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help_light.html; sourceTree = "<group>"; };
 		E278A2F422A06B1700EEFFCB /* help_dark.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help_dark.html; sourceTree = "<group>"; };
 		E278A2F522A06B1700EEFFCB /* Caffeinator Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Caffeinator Help.md"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				E2723EE824CBC74A00DDF479 /* ScriptingStartCaffeination.swift */,
 				E2723EEA24CBC75C00DDF479 /* ScriptingStopCaffeination.swift */,
+				E2723EEC24CC8D8A00DDF479 /* ScriptingCaffeination.swift */,
 			);
 			path = Scripting;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				E2AD896A23BAAE3F0057E431 /* ShortcutsViewController.swift in Sources */,
 				E2723EE924CBC74A00DDF479 /* ScriptingStartCaffeination.swift in Sources */,
 				E2EF735E22B7FF8400DC3296 /* PseudoModal.swift in Sources */,
+				E2723EED24CC8D8A00DDF479 /* ScriptingCaffeination.swift in Sources */,
 				E287977322B82C55004355B1 /* ProcessPanelViewController.swift in Sources */,
 				E2EF735C22B7D94500DC3296 /* TimeEntryPanelViewController.swift in Sources */,
 			);
