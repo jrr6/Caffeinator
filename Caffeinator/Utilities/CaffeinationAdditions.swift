@@ -10,6 +10,7 @@ import CaffeineKit
 import Cocoa
 
 extension Caffeination {
+    /// Starts the Caffeination, catches and handles (with an alert dialog) any errors that occur, and—if the Caffeination starts successfully—sets the menu bar icon to its active state
     func handledStart() {
         do {
             try self.start()
@@ -28,16 +29,33 @@ extension Caffeination {
         }
     }
     
+    /// Starts the Caffeination with the provided options, catches and handles (with an alert dialog) any errors that occur, and—if the Caffeination starts successfully—sets the menu bar icon to its active state
     func handledStart(withOpts opts: [Opt]) {
         self.opts = opts
         self.handledStart()
     }
     
+    /// Starts the Caffeination if it is not active or stops it if its, catching and handling (with an alert dialog) any errors that occur and appropriately updating the menu bar icon upon start (use `terminationHandler` to deal with the stop update)
     func quickToggle() {
         if self.isActive {
             self.stop()
         } else {
             self.handledStart()
+        }
+    }
+    
+    /**
+     Starts the Caffeination for use in automation (e.g., scripting)—specifically, catches errors and converts success/fail to a boolean return state instead.
+     
+     - Returns: `true` if successful, `false` if not.
+     */
+    func handledStartForAutomation() -> Bool {
+        do {
+            try self.start()
+            (NSApp.delegate as! AppDelegate).updateIconForCafState(active: true)
+            return true
+        } catch {
+            return false
         }
     }
 }

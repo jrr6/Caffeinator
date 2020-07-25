@@ -50,12 +50,6 @@ class ScriptingStartCaffeination: NSScriptCommand {
             caffeination.opts.append(.process(pid))
         }
         
-        do {
-            try caffeination.start()
-            (NSApp.delegate as! AppDelegate).updateIconForCafState(active: true)
-            return true
-        } catch {
-            return false
-        }
+        return caffeination.handledStartForAutomation()
     }
 }
