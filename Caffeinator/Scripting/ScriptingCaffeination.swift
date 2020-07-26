@@ -22,12 +22,6 @@ import Cocoa
         return specifier
     }
     
-    var lifetimeLimited: Bool {
-        get {
-            return (NSApplication.shared.delegate as! AppDelegate).caffeination.limitLifetime
-        }
-    }
-    
     var active: Bool {
         get {
             return (NSApplication.shared.delegate as! AppDelegate).caffeination.isActive

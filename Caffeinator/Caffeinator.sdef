@@ -78,7 +78,6 @@
             <cocoa class="Caffeinator.ScriptingCaffeination" />
             <property name="active" code="CAct" type="boolean" access="r"
                 description="Whether the Caffeination is active." />
-            <property name="lifetime limited" code="CLiL" type="boolean" access="r" description="Whether the lifetime of the Caffeination is safely restricted to that of the Caffeinator app." />
             <property name="options" code="COpt" access="r" description="The options associated with the current Caffeination.">
                 <type type="text" list="yes" />
             </property>
