@@ -1,6 +1,6 @@
 # Caffeinator Help
 
-Caffeinator is a simple menu-bar app that allows you to prevent your computer from falling asleep. 
+Caffeinator is a simple menu-bar app that helps you prevent your computer from falling asleep. 
 
 [TOC]
 
@@ -9,7 +9,7 @@ Caffeinator is a simple menu-bar app that allows you to prevent your computer fr
 To install Caffeinator:
 
 * Download the latest version from the [Caffeinator website](https://aaplmath.github.io/Caffeinator). 
-* Open the disk image file that is downloaded.
+* Open the downloaded disk image file.
 * Drag the Caffeinator icon to the `Applications` folder.
 * Once the app finishes copying, eject the disk image by dragging the Caffeinator icon on your Desktop (*not* the one you dragged to Applications) to the Trash.
 * Follow the steps below to open Caffeinator for the first time.
@@ -23,9 +23,11 @@ The very first time you try to launch Caffeinator, you'll get an error saying th
 * Select `Open`.
 * Confirm that you want to open the app.
 
-Once you've opened a new version for the first time, you'll be able to open it regularly (as you would any other app on your computer) from then on. Whenever Caffeinator is open, you'll see a coffee cup icon in your menu bar.
+Once you've opened a new version for the first time, you'll be able to open it regularly (as you would any other app on your computer) from then on. Whenever Caffeinator is open, you'll see a coffee cup icon in your menu bar. When the coffee cup is green, Caffeinator is keeping your computer awake.
 
-## Opening Caffeinator on Login
+For convenience, you can also have Caffeinator unobtrusively and automatically appear in your menu bar whenever you log in by following the steps below.
+
+## Opening Automatically at Login
 
 If you use Caffeinator frequently, consider having it open automatically when you log in. To do so, add Caffeinator to your Login Items:
 
@@ -33,7 +35,7 @@ If you use Caffeinator frequently, consider having it open automatically when yo
 * Select `Users & Groups`.
 * Select your user account in the left-hand sidebar, then select the `Login Items` tab on the right.
 * Click the plus icon below the list of applications (not the one on the far left).
-* Select Caffeinator from the list that appears and click `Add`.
+* Select Caffeinator from the list that appears, and click `Add`.
 
 ## Caffeination Options
 
@@ -65,14 +67,17 @@ Caffeinator provides a number of different options to prevent computer sleep. Th
 
 Caffeinator allows you to map global keyboard shortcuts to commonly used Caffeinations (regular, process-based, time-based, and custom). Shortcuts allow you to quickly start a Caffeination simply by pressing a key combination on your keyboard.
 
-By default, no keyboard shortcuts are configured. To view the keyboard shortcut configuration window, select `Advanced`>`Configure Keyboard Shortcuts…` in the Caffeinator menu. The window will display any existing shortcuts and allows you to change or remove them or configure new ones.
+By default, no keyboard shortcuts are configured. To view the keyboard shortcut configuration window, select `Advanced` > `Configure Keyboard Shortcuts…` in the Caffeinator menu. The window displays any existing shortcuts and allows you to change or remove them or configure new ones.
 
 To define a new shortcut:
 
 * Click the `Set` button next to the Caffeination type whose shortcut you'd like to configure. The `Set` button will turn blue, indicating that Caffeinator is "listening" for a shortcut entry. 
-* On your keyboard, press the shortcut you'd like to assign. To minimize conflicts with everyday tasks, Caffeinator requires that this shortcut contain at least one of <kbd>control</kbd>, <kbd>option</kbd>, <kbd>command</kbd>, or the function keys. If you enter an invalid shortcut, an alert will appear telling you to choose a new one.
+* On your keyboard, press the shortcut you'd like to assign. To minimize conflicts with everyday tasks, Caffeinator requires that this shortcut contain at least one of <kbd>control</kbd>, <kbd>option</kbd>, <kbd>command</kbd>, or the function keys.
 
 To update an existing shortcut, follow the steps above, but note that the `Set` button will display the existing shortcut rather than the word "Set."
 
 To clear an existing shortcut, click `Clear` next to the shortcut you'd like to remove.
 
+## Automation and Scripting
+
+Caffeinator supports automation via AppleScript and JavaScript for Automation. Using these technologies, you can start or stop a Caffeination, or observe the status and configuration of an ongoing one, from within your own custom automation scripts. For more information about Caffeinator's scripting support, review the documentation in Caffeinator's scripting dictionary (accessible in Script Editor under `File` > `Open Dictionary…` > `Caffeinator`).

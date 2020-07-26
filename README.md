@@ -1,6 +1,8 @@
+<img src="https://github.com/aaplmath/Caffeinator/raw/master/Caffeinator/Assets.xcassets/AppIcon.appiconset/icon_512x512%402x.png" height="150" align="left">
+
 # Caffeinator
 
-**Caffeinator is a simple menu-bar app that provides a visual interface for the `caffeinate` command-line tool.**
+**Caffeinator is a menu-bar app that helps you prevent your Mac from falling asleep. It's a simple but robust visual interface for the `caffeinate` command-line tool.**
 
 ## Download
 
@@ -8,7 +10,7 @@ To download a prebuilt version of the latest stable release of Caffeinator, visi
 
 ## Build
 
-Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/CaffeineKit) framework (which you should definitely check out!). Caffeinator uses [Carthage](https://github.com/Carthage/Carthage) to manage this and other dependencies. To build Caffeinator from source, clone this repository and run `carthage bootstrap --platform macOS --cache-builds` in the cloned directory. After doing so, open, build, and run the project in Xcode.
+Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/CaffeineKit) framework, which provides elegant Swift abstractions for interacting with `caffeinate`. Caffeinator uses [Carthage](https://github.com/Carthage/Carthage) to manage this and other dependencies. To build Caffeinator from source, clone this repository and run `carthage bootstrap --platform macOS --cache-builds` in the cloned directory. After doing so, open, build, and run the project in Xcode.
 
 ## FAQ
 

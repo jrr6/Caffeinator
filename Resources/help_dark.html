@@ -24,14 +24,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
 button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -43,11 +43,11 @@ h6 { font-size: 1rem; }
 .hidden { display: none; }
 .md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
 a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px !important; }
+figure > table { margin: 0px; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
@@ -82,22 +82,24 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
 @media print { 
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid-page; break-before: avoid-page; }
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
   html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid-page; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
   .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
 pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
 .md-math-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
 .md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
@@ -141,7 +143,7 @@ a.md-print-anchor { white-space: pre !important; border: none !important; displa
 .MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
 table tr th { border-bottom-width: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
@@ -153,10 +155,10 @@ mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); background-posit
 mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 
 
-;
+
 /*!
 Misty Dark
-Brought to you with ❤️ by E-Tiger Studio, 2017-2019
+Brought to you with ❤️ by E-Tiger Studio, 2017-2020
 https://github.com/etigerstudio/typora-misty-theme
  */
 .cm-s-inner .cm-operator,
@@ -252,7 +254,25 @@ https://github.com/etigerstudio/typora-misty-theme
   --heading-char-color: #4D6580;
   --text-color: #8B97A3;
   --active-toggle-btn-color: #53575C;
-  --rawblock-edit-panel-bd: #3A3C3D
+  --rawblock-edit-panel-bd: #3A3C3D;
+  --select-text-bg-color: hsl(220, 15%, 30%)
+}
+.form-control {
+  background-color: var(--bg-color);
+  border-color: #53575c
+}
+.modal-header {
+  border-bottom-color: #53575c
+}
+.modal-footer {
+  border-top-color: #53575c
+}
+.btn-default {
+  border-color: #53575c
+}
+.btn-primary {
+  background-color: #203a60;
+  border-color: #2f568e
 }
 html {
   font-size: 16px;
@@ -260,7 +280,7 @@ html {
   background-color: #2b2b2b
 }
 body {
-  font-family: "SF UI Text","PingFang SC",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei","微软雅黑",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   color: #a9b7c6;
   line-height: 1.5;
   font-weight: 300
@@ -490,7 +510,7 @@ code,
 tt {
   font-size: 90%;
   border-radius: 3px;
-  font-family: "SF Mono",Consolas,"Liberation Mono",Menlo,Courier,monospace,"PingFang SC","Microsoft YaHei","微软雅黑"
+  font-family: "SF Mono",Consolas,"Liberation Mono",Menlo,Courier,monospace
 }
 code,
 tt {
@@ -507,19 +527,6 @@ tt {
 .md-task-list-item > input {
   margin-left: -1.45em;
   margin-top: calc(.9em - 10px)
-}
-@media print {
-  body {
-    font-size: 11px;
-    font-weight: 400
-  }
-  pre,
-  table {
-    page-break-inside: avoid
-  }
-  pre {
-    word-wrap: break-word
-  }
 }
 #write pre.md-meta-block {
   padding: 1rem;
@@ -547,7 +554,7 @@ tt {
 .md-image > .md-meta {
   border: 1px solid #ddd;
   border-radius: 3px;
-  font-family: "SF Mono",Consolas,"PingFang SC","Liberation Mono",Courier,monospace,"Microsoft YaHei","微软雅黑";
+  font-family: "SF Mono",Consolas,"Liberation Mono",Courier,monospace;
   padding: 2px 4px 0;
   font-size: .9em;
   color: inherit
@@ -588,7 +595,7 @@ tt {
 .megamenu-content,
 footer,
 header {
-  font-family: "SF UI Text","PingFang SC",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei","微软雅黑",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
 }
 .file-node-content:hover .file-node-icon,
 .file-node-content:hover .file-node-open-state {
@@ -615,7 +622,7 @@ strong {
 }
 .file-list-item-summary {
   color: #77818c;
-  font-family: "SF UI Text","PingFang SC",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei","微软雅黑",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
 }
 .active > .file-list-item-summary {
   color: #b8c8d9
@@ -673,11 +680,27 @@ footer.stopselect {
   background-color: #3a3c3d;
   color: #b8c8d9
 }
+@media print {
+  body {
+    font-weight: 400
+  }
+  b,
+  strong {
+    font-weight: 600
+  }
+  pre,
+  table {
+    page-break-inside: avoid
+  }
+  pre {
+    word-wrap: break-word
+  }
+}
 
  .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
 </style>
 </head>
 <body class='typora-export' >
-<div  id='write'  class = 'is-mac'><h1><a name="caffeinator-help" class="md-header-anchor"></a><span>Caffeinator Help</span></h1><p><span>Caffeinator is a simple menu-bar app that allows you to prevent your computer from falling asleep. </span></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n210"><a class="md-toc-inner" style="cursor: pointer;" href="#caffeinator-help">Caffeinator Help</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n214"><a class="md-toc-inner" style="cursor: pointer;" href="#installation">Installation</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n227"><a class="md-toc-inner" style="cursor: pointer;" href="#opening-the-app">Opening the App</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n239"><a class="md-toc-inner" style="cursor: pointer;" href="#opening-caffeinator-on-login">Opening Caffeinator on Login</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n252"><a class="md-toc-inner" style="cursor: pointer;" href="#caffeination-options">Caffeination Options</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n292"><a class="md-toc-inner" style="cursor: pointer;" href="#assigning-keyboard-shortcuts">Assigning Keyboard Shortcuts</a></span></p></div><h2><a name="installation" class="md-header-anchor"></a><span>Installation</span></h2><p><span>To install Caffeinator:</span></p><ul><li><span>Download the latest version from the </span><a href='https://aaplmath.github.io/Caffeinator'><span>Caffeinator website</span></a><span>. </span></li><li><span>Open the disk image file that is downloaded.</span></li><li><span>Drag the Caffeinator icon to the </span><code>Applications</code><span> folder.</span></li><li><span>Once the app finishes copying, eject the disk image by dragging the Caffeinator icon on your Desktop (</span><em><span>not</span></em><span> the one you dragged to Applications) to the Trash.</span></li><li><span>Follow the steps below to open Caffeinator for the first time.</span></li></ul><h2><a name="opening-the-app" class="md-header-anchor"></a><span>Opening the App</span></h2><p><span>The very first time you try to launch Caffeinator, you&#39;ll get an error saying that the app is from an &quot;untrusted developer.&quot; This is because Caffeinator is not signed with a developer certificate, which costs $99 (money that an open-source project like this doesn&#39;t have) to obtain from Apple. Therefore, you&#39;ll need to do the following the first time you open Caffeinator:</span></p><ul><li><span>Navigate to your </span><code>Applications</code><span> folder in Finder.</span></li><li><span>Right-click (on a MacBook, click with two fingers) on the Caffeinator icon in Finder.</span></li><li><span>Select </span><code>Open</code><span>.</span></li><li><span>Confirm that you want to open the app.</span></li></ul><p><span>Once you&#39;ve opened a new version for the first time, you&#39;ll be able to open it regularly (as you would any other app on your computer) from then on. Whenever Caffeinator is open, you&#39;ll see a coffee cup icon in your menu bar.</span></p><h2><a name="opening-caffeinator-on-login" class="md-header-anchor"></a><span>Opening Caffeinator on Login</span></h2><p><span>If you use Caffeinator frequently, consider having it open automatically when you log in. To do so, add Caffeinator to your Login Items:</span></p><ul><li><span>Open System Preferences.</span></li><li><span>Select </span><code>Users &amp; Groups</code><span>.</span></li><li><span>Select your user account in the left-hand sidebar, then select the </span><code>Login Items</code><span> tab on the right.</span></li><li><span>Click the plus icon below the list of applications (not the one on the far left).</span></li><li><span>Select Caffeinator from the list that appears and click </span><code>Add</code><span>.</span></li></ul><h2><a name="caffeination-options" class="md-header-anchor"></a><span>Caffeination Options</span></h2><p><span>Caffeinator provides a number of different options to prevent computer sleep. These are listed below and can be accessed from the main Caffeinator menu. At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinator button or by right-clicking or </span><kbd><span>option</span></kbd><span>-clicking the menu bar icon.</span></p><ul><li><p><span>Start Caffeinator: Prevents sleep until </span><code>Stop Caffeinator</code><span> is clicked. To quickly start a Caffeination, you can also right-click or </span><kbd><span>option</span></kbd><span>-click the menu bar icon.</span></p></li><li><p><span>Caffeinate a Process: This will prevent your computer from going to sleep until a process has completed. For example, if you&#39;re presenting a PDF using a projector, select the app you&#39;re using to display the PDF and your computer will wait to sleep until you quit that application. To select an app, use the dropdown selector under &quot;Select Process&quot; or choose &quot;Enter PID&quot; to manually enter the identifier of a running process. To find an application&#39;s PID, use Activity Monitor (located at </span><code>/Applications/Activity Monitor</code><span>). If you need to Caffeinate a system daemon or other background process that doesn&#39;t appear in the standard dropdown, consider enabling </span><code>Use Advanced Process Selector</code><span>.</span></p></li><li><p><span>Timed Caffeination: Keeps your computer from sleeping for a defined amount of time greater than one second. Select one of the presets from the list or enter a custom time interval in hours, minutes, and seconds using the </span><code>Other…</code><span> option.</span></p></li><li><p><span>Custom Caffeination: This allows you to create a Caffeination that stops certain types of sleep or emulates certain user processes to prevent sleep. Use the checkboxes on the left-hand side of the Custom Caffeination window to select which features you want to enable for the Caffeination; on the right-hand side, fill in the amount of time for which you want Caffeinator to prevent sleep or the PID of the process during whose lifespan you want to prevent sleep if you have selected either of the applicable options on the left side. Each of the Custom Caffeination options is described below:</span></p><figure><table><thead><tr><th><span>Option</span></th><th><span>Function</span></th></tr></thead><tbody><tr><td><span>Display Sleep</span></td><td><span>Prevents the display from sleeping</span></td></tr><tr><td><span>Idle Sleep</span></td><td><span>Prevents the system (but not the display) from idle sleeping</span></td></tr><tr><td><span>Disk Sleep</span></td><td><span>Prevents the disk from idle sleeping</span></td></tr><tr><td><span>System Sleep</span></td><td><span>Prevents system sleep (on MacBooks, will only work when connected to AC power)</span></td></tr><tr><td><span>Assert User Activity</span></td><td><span>Asserts that the user is active</span></td></tr><tr><td><span>Timed</span></td><td><span>Prevents sleep as per the options above for a specified period of time</span></td></tr><tr><td><span>Process-Based</span></td><td><span>Prevents sleep as per the options above as long as a specified process is active</span></td></tr></tbody></table></figure></li><li><p><span>Caffeinate Display: Enable if you want Caffeinator to prevent display sleep as well as computer sleep. If you do not enable this feature, your computer&#39;s screen will go to sleep after the interval specified in the System Preferences Energy Saver settings, but background processes will still continue to run. Note that if this preference is modified during an active Caffeination, you will need to start a new Caffeination for changes to take effect.</span></p></li><li><p><span>Use Advanced Process Selector: This option shows all running processes (rather than just apps and helpers) in the </span><code>Caffeinate a Process</code><span> selector. Select this option if you need to Caffeinate command-line tools, system daemons, or other non-app-bundle processes.</span></p></li></ul><h2><a name="assigning-keyboard-shortcuts" class="md-header-anchor"></a><span>Assigning Keyboard Shortcuts</span></h2><p><span>Caffeinator allows you to map global keyboard shortcuts to commonly used Caffeinations (regular, process-based, time-based, and custom). Shortcuts allow you to quickly start a Caffeination simply by pressing a key combination on your keyboard.</span></p><p><span>By default, no keyboard shortcuts are configured. To view the keyboard shortcut configuration window, select </span><code>Advanced</code><span>&gt;</span><code>Configure Keyboard Shortcuts…</code><span> in the Caffeinator menu. The window will display any existing shortcuts and allows you to change or remove them or configure new ones.</span></p><p><span>To define a new shortcut:</span></p><ul><li><span>Click the </span><code>Set</code><span> button next to the Caffeination type whose shortcut you&#39;d like to configure. The </span><code>Set</code><span> button will turn blue, indicating that Caffeinator is &quot;listening&quot; for a shortcut entry. </span></li><li><span>On your keyboard, press the shortcut you&#39;d like to assign. To minimize conflicts with everyday tasks, Caffeinator requires that this shortcut contain at least one of </span><kbd><span>control</span></kbd><span>, </span><kbd><span>option</span></kbd><span>, </span><kbd><span>command</span></kbd><span>, or the function keys. If you enter an invalid shortcut, an alert will appear telling you to choose a new one.</span></li></ul><p><span>To update an existing shortcut, follow the steps above, but note that the </span><code>Set</code><span> button will display the existing shortcut rather than the word &quot;Set.&quot;</span></p><p><span>To clear an existing shortcut, click </span><code>Clear</code><span> next to the shortcut you&#39;d like to remove.</span></p><p>&nbsp;</p></div>
+<div  id='write'  class = ''><h1><a name="caffeinator-help" class="md-header-anchor"></a><span>Caffeinator Help</span></h1><p><span>Caffeinator is a simple menu-bar app that helps you prevent your computer from falling asleep. </span></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" style="cursor: pointer;" href="#caffeinator-help">Caffeinator Help</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4"><a class="md-toc-inner" style="cursor: pointer;" href="#installation">Installation</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n17"><a class="md-toc-inner" style="cursor: pointer;" href="#opening-the-app">Opening the App</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n29"><a class="md-toc-inner" style="cursor: pointer;" href="#opening-automatically-at-login">Opening Automatically at Login</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n42"><a class="md-toc-inner" style="cursor: pointer;" href="#caffeination-options">Caffeination Options</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n82"><a class="md-toc-inner" style="cursor: pointer;" href="#assigning-keyboard-shortcuts">Assigning Keyboard Shortcuts</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n93"><a class="md-toc-inner" style="cursor: pointer;" href="#automation-and-scripting">Automation and Scripting</a></span></p></div><h2><a name="installation" class="md-header-anchor"></a><span>Installation</span></h2><p><span>To install Caffeinator:</span></p><ul><li><span>Download the latest version from the </span><a href='https://aaplmath.github.io/Caffeinator'><span>Caffeinator website</span></a><span>. </span></li><li><span>Open the downloaded disk image file.</span></li><li><span>Drag the Caffeinator icon to the </span><code>Applications</code><span> folder.</span></li><li><span>Once the app finishes copying, eject the disk image by dragging the Caffeinator icon on your Desktop (</span><em><span>not</span></em><span> the one you dragged to Applications) to the Trash.</span></li><li><span>Follow the steps below to open Caffeinator for the first time.</span></li></ul><h2><a name="opening-the-app" class="md-header-anchor"></a><span>Opening the App</span></h2><p><span>The very first time you try to launch Caffeinator, you&#39;ll get an error saying that the app is from an &quot;untrusted developer.&quot; This is because Caffeinator is not signed with a developer certificate, which costs $99 (money that an open-source project like this doesn&#39;t have) to obtain from Apple. Therefore, you&#39;ll need to do the following the first time you open Caffeinator:</span></p><ul><li><span>Navigate to your </span><code>Applications</code><span> folder in Finder.</span></li><li><span>Right-click (on a MacBook, click with two fingers) on the Caffeinator icon in Finder.</span></li><li><span>Select </span><code>Open</code><span>.</span></li><li><span>Confirm that you want to open the app.</span></li></ul><p><span>Once you&#39;ve opened a new version for the first time, you&#39;ll be able to open it regularly (as you would any other app on your computer) from then on. Whenever Caffeinator is open, you&#39;ll see a coffee cup icon in your menu bar. When the coffee cup is green, Caffeinator is keeping your computer awake.</span></p><p><span>For convenience, you can also have Caffeinator unobtrusively and automatically appear in your menu bar whenever you log in by following the steps below.</span></p><h2><a name="opening-automatically-at-login" class="md-header-anchor"></a><span>Opening Automatically at Login</span></h2><p><span>If you use Caffeinator frequently, consider having it open automatically when you log in. To do so, add Caffeinator to your Login Items:</span></p><ul><li><span>Open System Preferences.</span></li><li><span>Select </span><code>Users &amp; Groups</code><span>.</span></li><li><span>Select your user account in the left-hand sidebar, then select the </span><code>Login Items</code><span> tab on the right.</span></li><li><span>Click the plus icon below the list of applications (not the one on the far left).</span></li><li><span>Select Caffeinator from the list that appears, and click </span><code>Add</code><span>.</span></li></ul><h2><a name="caffeination-options" class="md-header-anchor"></a><span>Caffeination Options</span></h2><p><span>Caffeinator provides a number of different options to prevent computer sleep. These are listed below and can be accessed from the main Caffeinator menu. At any time, you may stop an ongoing Caffeination by pressing the Stop Caffeinator button or by right-clicking or </span><kbd><span>option</span></kbd><span>-clicking the menu bar icon.</span></p><ul><li><p><span>Start Caffeinator: Prevents sleep until </span><code>Stop Caffeinator</code><span> is clicked. To quickly start a Caffeination, you can also right-click or </span><kbd><span>option</span></kbd><span>-click the menu bar icon.</span></p></li><li><p><span>Caffeinate a Process: This will prevent your computer from going to sleep until a process has completed. For example, if you&#39;re presenting a PDF using a projector, select the app you&#39;re using to display the PDF and your computer will wait to sleep until you quit that application. To select an app, use the dropdown selector under &quot;Select Process&quot; or choose &quot;Enter PID&quot; to manually enter the identifier of a running process. To find an application&#39;s PID, use Activity Monitor (located at </span><code>/Applications/Activity Monitor</code><span>). If you need to Caffeinate a system daemon or other background process that doesn&#39;t appear in the standard dropdown, consider enabling </span><code>Use Advanced Process Selector</code><span>.</span></p></li><li><p><span>Timed Caffeination: Keeps your computer from sleeping for a defined amount of time greater than one second. Select one of the presets from the list or enter a custom time interval in hours, minutes, and seconds using the </span><code>Other…</code><span> option.</span></p></li><li><p><span>Custom Caffeination: This allows you to create a Caffeination that stops certain types of sleep or emulates certain user processes to prevent sleep. Use the checkboxes on the left-hand side of the Custom Caffeination window to select which features you want to enable for the Caffeination; on the right-hand side, fill in the amount of time for which you want Caffeinator to prevent sleep or the PID of the process during whose lifespan you want to prevent sleep if you have selected either of the applicable options on the left side. Each of the Custom Caffeination options is described below:</span></p><figure><table><thead><tr><th><span>Option</span></th><th><span>Function</span></th></tr></thead><tbody><tr><td><span>Display Sleep</span></td><td><span>Prevents the display from sleeping</span></td></tr><tr><td><span>Idle Sleep</span></td><td><span>Prevents the system (but not the display) from idle sleeping</span></td></tr><tr><td><span>Disk Sleep</span></td><td><span>Prevents the disk from idle sleeping</span></td></tr><tr><td><span>System Sleep</span></td><td><span>Prevents system sleep (on MacBooks, will only work when connected to AC power)</span></td></tr><tr><td><span>Assert User Activity</span></td><td><span>Asserts that the user is active</span></td></tr><tr><td><span>Timed</span></td><td><span>Prevents sleep as per the options above for a specified period of time</span></td></tr><tr><td><span>Process-Based</span></td><td><span>Prevents sleep as per the options above as long as a specified process is active</span></td></tr></tbody></table></figure></li><li><p><span>Caffeinate Display: Enable if you want Caffeinator to prevent display sleep as well as computer sleep. If you do not enable this feature, your computer&#39;s screen will go to sleep after the interval specified in the System Preferences Energy Saver settings, but background processes will still continue to run. Note that if this preference is modified during an active Caffeination, you will need to start a new Caffeination for changes to take effect.</span></p></li><li><p><span>Use Advanced Process Selector: This option shows all running processes (rather than just apps and helpers) in the </span><code>Caffeinate a Process</code><span> selector. Select this option if you need to Caffeinate command-line tools, system daemons, or other non-app-bundle processes.</span></p></li></ul><h2><a name="assigning-keyboard-shortcuts" class="md-header-anchor"></a><span>Assigning Keyboard Shortcuts</span></h2><p><span>Caffeinator allows you to map global keyboard shortcuts to commonly used Caffeinations (regular, process-based, time-based, and custom). Shortcuts allow you to quickly start a Caffeination simply by pressing a key combination on your keyboard.</span></p><p><span>By default, no keyboard shortcuts are configured. To view the keyboard shortcut configuration window, select </span><code>Advanced</code><span> &gt; </span><code>Configure Keyboard Shortcuts…</code><span> in the Caffeinator menu. The window displays any existing shortcuts and allows you to change or remove them or configure new ones.</span></p><p><span>To define a new shortcut:</span></p><ul><li><span>Click the </span><code>Set</code><span> button next to the Caffeination type whose shortcut you&#39;d like to configure. The </span><code>Set</code><span> button will turn blue, indicating that Caffeinator is &quot;listening&quot; for a shortcut entry. </span></li><li><span>On your keyboard, press the shortcut you&#39;d like to assign. To minimize conflicts with everyday tasks, Caffeinator requires that this shortcut contain at least one of </span><kbd><span>control</span></kbd><span>, </span><kbd><span>option</span></kbd><span>, </span><kbd><span>command</span></kbd><span>, or the function keys.</span></li></ul><p><span>To update an existing shortcut, follow the steps above, but note that the </span><code>Set</code><span> button will display the existing shortcut rather than the word &quot;Set.&quot;</span></p><p><span>To clear an existing shortcut, click </span><code>Clear</code><span> next to the shortcut you&#39;d like to remove.</span></p><h2><a name="automation-and-scripting" class="md-header-anchor"></a><span>Automation and Scripting</span></h2><p><span>Caffeinator supports automation via AppleScript and JavaScript for Automation. Using these technologies, you can start or stop a Caffeination, or observe the status and configuration of an ongoing one, from within your own custom automation scripts. For more information about Caffeinator&#39;s scripting support, review the documentation in Caffeinator&#39;s scripting dictionary (accessible in Script Editor under </span><code>File</code><span> &gt; </span><code>Open Dictionary…</code><span> &gt; </span><code>Caffeinator</code><span>).</span></p></div>
 </body>
 </html>
