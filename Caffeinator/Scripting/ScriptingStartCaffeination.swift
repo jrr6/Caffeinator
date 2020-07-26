@@ -6,6 +6,7 @@
 //  Copyright © 2020 aaplmath. All rights reserved.
 //
 
+import CaffeineKit
 import Cocoa
 
 /// A ScriptCommand class that handles the "start caffeination" command.
@@ -23,30 +24,37 @@ class ScriptingStartCaffeination: NSScriptCommand {
             return false
         }
         
+        // Collect opts in a temporary opt array so that if we fail as we're parsing, we don't ruin the default opts of the Caffeination instance
+        var tempOpts: [Caffeination.Opt]! = nil
         if let opts = args["Options"] as? [String] {
+            tempOpts = []
             // If the user has supplied custom options, disregard all defaults
-            caffeination.opts = []
             for opt in opts {
                 switch opt {
                 case "display":
-                    caffeination.opts.append(.display)
+                    tempOpts.append(.display)
                 case "idle":
-                    caffeination.opts.append(.idle)
+                    tempOpts.append(.idle)
                 case "disk":
-                    caffeination.opts.append(.disk)
+                    tempOpts.append(.disk)
                 case "system":
-                    caffeination.opts.append(.system)
+                    tempOpts.append(.system)
                 case "user":
-                    caffeination.opts.append(.user)
+                    tempOpts.append(.user)
                 default:
-                    break
+                    // Illegal option—fail
+                    return false
                 }
             }
         }
+        if let customOpts = tempOpts {
+            caffeination.opts = customOpts
+        }
+        
         if let duration = args["Duration"] as? Double {
             caffeination.opts.append(.timed(duration))
         }
-        if let pidStr = args["PID"] as? String, let pid = Int32(pidStr) {
+        if let pid = args["PID"] as? Int32 {
             caffeination.opts.append(.process(pid))
         }
         
