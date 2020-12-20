@@ -33,7 +33,7 @@
 "JUK-Ll-5I5.title" = "Ayuda de Caffeinator";
 
 /* Class = "NSTextFieldCell"; title = "Warning: Ensure that all arguments and values are correct before continuing."; ObjectID = "KOd-zc-upP"; */
-"KOd-zc-upP.title" = "Cuidado: Asegúrate de que todas las opciones sean correctos antes de continuar.";
+"KOd-zc-upP.title" = "Cuidado: Asegúrate de que todas las opciones sean correctas antes de continuar.";
 
 /* Class = "NSMenuItem"; title = "Advanced"; ObjectID = "LD6-wX-30k"; */
 "LD6-wX-30k.title" = "Opciones avanzadas";
@@ -105,7 +105,7 @@
 "jMA-uw-03P.title" = "Buscar actualizaciones…";
 
 /* Class = "NSTextFieldCell"; title = "Use the check boxes to select the arguments with which you wish to call caffeinate. If you select the \"-t\" or \"-w\" arguments, use the corresponding value entries to specify values for those arguments. View caffeinate's man page for more information."; ObjectID = "jy3-k4-TC3"; */
-"jy3-k4-TC3.title" = "Usa las casillas de verificación para escoger las opciones con los cuales deseas iniciar caffeinate. Si escoges las opciones \"Cronometrar\" o \"Monitorizar un proceso\", usa los campos de texto correspondientes para entrar valores para esas opciones.";
+"jy3-k4-TC3.title" = "Usa las casillas de verificación para escoger las opciones con las cuales deseas iniciar caffeinate. Si escoges las opciones \"Cronometrar\" o \"Monitorizar un proceso\", usa los campos de texto correspondientes para entrar valores para esas opciones.";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "kPa-Jj-YP7"; */
 "kPa-Jj-YP7.title" = "Menú principal";
