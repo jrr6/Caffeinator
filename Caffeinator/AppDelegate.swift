@@ -34,6 +34,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc let scriptingCaffeination = ScriptingCaffeination.shared
     
+    var disabledImage: NSImage! = nil
+    var enabledImage: NSImage! = nil
+    
     var storyboard: NSStoryboard!
     var df: UserDefaults!
     var nc: NotificationCenter!
@@ -45,17 +48,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Add Notification Center observer to detect changes to the "display" preference, load the existing preference (or set one, true by default, if none exists), and set up the menu item and windows
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem.image = NSImage(named: "CoffeeCup")
-        statusItem.button?.action = #selector(handleStatusItemClick(sender:))
-        statusItem.button?.target = self
-        statusItem.button?.sendAction(on: [.leftMouseDown, .rightMouseDown])
-        storyboard = NSStoryboard(name: "Main", bundle: nil)
-        
         // Configure UserDefaults
         df = UserDefaults.standard
         nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(AppDelegate.defaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         initDefaults()
+        
+        // Set up status item and images
+        if df.bool(forKey: "UseGreenWhiteColorScheme") {
+            disabledImage = NSImage(named: "CoffeeCup")
+            enabledImage = NSImage(named: "CoffeeCupGreen")
+        } else {
+            enabledImage = NSImage(named: "CoffeeCup")
+            disabledImage = (NSImage(named: "CoffeeCup")!.copy() as! NSImage)
+            // It would be nice if Apple provided an API to do this automatically (this is a trial-and-error emulation of how Do Not Disturb behaves)
+            disabledImage!.lockFocus()
+            let isDark = statusItem.button?.effectiveAppearance.name.rawValue.lowercased().contains("dark") ?? false
+            if isDark {
+                #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.33).set()
+            } else {
+                #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.33).set()
+            }
+            let rect = NSRect(origin: NSZeroPoint, size: disabledImage.size)
+            rect.fill(using: .sourceIn)
+            disabledImage.unlockFocus()
+            disabledImage.isTemplate = false
+        }
+        statusItem.image = disabledImage
+        
+        statusItem.button?.action = #selector(handleStatusItemClick(sender:))
+        statusItem.button?.target = self
+        statusItem.button?.sendAction(on: [.leftMouseDown, .rightMouseDown])
+        storyboard = NSStoryboard(name: "Main", bundle: nil)
         
         // Ensure no background caffeinate processes are running
         KillallManager.shared.runCaffeinateCheck()
@@ -139,7 +163,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             self.timedMenu.isEnabled = !active
             self.customMenu.isEnabled = !active
-            self.statusItem.image = active ? NSImage(named: "CoffeeCupGreen") : NSImage(named: "CoffeeCup")
+            self.statusItem.image = active ? self.enabledImage : self.disabledImage
         }
     }
 

@@ -18,8 +18,8 @@ protocol PseudoModal {
 // Adds shorthand ways of instantiating windows and pseudo-modals
 extension NSStoryboard {
     func instantiateAndShowWindow(withIDString idString: String) {
-        // TODO: This is hacky and relies on the ID of the window matching the storyboard ID of its view controller. Investigate better ways to go about preventing duplicate windows. (Also, since update windows do their own thing, this doesn't prevent duplicate update windows, although that's less of an issue.)
-        if !NSApp.windows.contains { $0.identifier?.rawValue == idString } {
+        // TODO: This is hacky and relies on the ID of the window matching the storyboard ID of its view controller. Investigate better ways to go about preventing duplicate windows.
+        if !NSApp.windows.contains(where: { $0.identifier?.rawValue == idString }) {
             (self.instantiateController(withIdentifier: idString) as? NSWindowController)?.showWindow(self)
         }
         NSApp.activate(ignoringOtherApps: true)

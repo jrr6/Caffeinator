@@ -151,7 +151,6 @@
 		E209DF0B1BEFA5A8007708FB = {
 			isa = PBXGroup;
 			children = (
-				E287977E22B95AD9004355B1 /* lib */,
 				E209DF161BEFA5A8007708FB /* Caffeinator */,
 				E278A2F822A08E8300EEFFCB /* Resources */,
 				E209DF261BEFA5A8007708FB /* CaffeinatorTests */,
@@ -262,13 +261,6 @@
 				E2EF735D22B7FF8400DC3296 /* PseudoModal.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		E287977E22B95AD9004355B1 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
