@@ -34,7 +34,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc let scriptingCaffeination = ScriptingCaffeination.shared
     
-    var menuBarObservation: NSKeyValueObservation! = nil
     var disabledImage: NSImage! = nil
     var enabledImage: NSImage! = nil
     
@@ -63,9 +62,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         caffeination.terminationHandler = caffeinationDidFinish
         
         // Set up status item and images
-        setIconColors()
-        menuBarObservation = statusItem.button?.observe(\.effectiveAppearance) { _, _ in
-            self.setIconColors()
+        if df.bool(forKey: "UseGreenColorScheme") {
+            disabledImage = NSImage(named: "CoffeeCup")
+            enabledImage = NSImage(named: "CoffeeCupGreen")
+        } else {
+            disabledImage = NSImage(named: "CoffeeCupDisabled")
+            enabledImage = NSImage(named: "CoffeeCup")
         }
         statusItem.image = disabledImage
         
@@ -88,30 +90,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         HotKeyManager.shared.registerMenuItem(customMenu, withEquivalentAction: {
             self.customClicked(self.customMenu)
         })
-    }
-    
-    // Sets the enabled/disabled colors of the Caffeinator menu bar icon based on the current menu bar appearance
-    func setIconColors() {
-        if df.bool(forKey: "UseGreenColorScheme") {
-            disabledImage = NSImage(named: "CoffeeCup")
-            enabledImage = NSImage(named: "CoffeeCupGreen")
-        } else {
-            enabledImage = NSImage(named: "CoffeeCup")
-            disabledImage = (NSImage(named: "CoffeeCup")!.copy() as! NSImage)
-            // It would be nice if Apple provided an API to do this automatically (this is a trial-and-error emulation of how Do Not Disturb behaves)
-            disabledImage!.lockFocus()
-            let isDark = statusItem.button?.effectiveAppearance.name.rawValue.lowercased().contains("dark") ?? false
-            if isDark {
-                #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2).set()
-            } else {
-                #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2).set()
-            }
-            let rect = NSRect(origin: NSZeroPoint, size: disabledImage.size)
-            rect.fill(using: .sourceIn)
-            disabledImage.unlockFocus()
-            disabledImage.isTemplate = false
-        }
-        self.updateIconForCafState(active: self.caffeination.isActive)
     }
     
     // Announce that we can handle the scriptingCaffeination property (failing to implement this generates KVC errors)
