@@ -55,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         initDefaults()
         
         // Set up status item and images
-        if df.bool(forKey: "UseGreenWhiteColorScheme") {
+        if df.bool(forKey: "UseGreenColorScheme") {
             disabledImage = NSImage(named: "CoffeeCup")
             enabledImage = NSImage(named: "CoffeeCupGreen")
         } else {

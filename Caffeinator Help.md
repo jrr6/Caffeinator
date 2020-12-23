@@ -23,7 +23,7 @@ The very first time you try to launch Caffeinator, you'll get an error saying th
 * Select `Open`.
 * Confirm that you want to open the app.
 
-Once you've opened a new version for the first time, you'll be able to open it regularly (as you would any other app on your computer) from then on. Whenever Caffeinator is open, you'll see a coffee cup icon in your menu bar. When the coffee cup is green, Caffeinator is keeping your computer awake.
+Once you've opened a new version for the first time, you'll be able to open it regularly (as you would any other app on your computer) from then on. Whenever Caffeinator is open, you'll see a coffee cup icon in your menu bar. When the coffee cup is highlighted, Caffeinator is keeping your computer awake.
 
 For convenience, you can also have Caffeinator unobtrusively and automatically appear in your menu bar whenever you log in by following the steps below.
 
