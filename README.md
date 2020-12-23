@@ -1,4 +1,4 @@
-<img src="https://github.com/aaplmath/Caffeinator/raw/master/Caffeinator/Assets.xcassets/AppIcon.appiconset/icon_512x512%402x.png" height="150" align="left">
+<img src="https://github.com/aaplmath/Caffeinator/raw/master/Caffeinator/Assets.xcassets/AppIcon.appiconset/icon_512%402x.png" height="150" align="left">
 
 # Caffeinator
 
