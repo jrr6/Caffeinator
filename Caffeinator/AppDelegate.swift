@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc let scriptingCaffeination = ScriptingCaffeination.shared
     
+    var menuBarObservation: NSKeyValueObservation! = nil
     var disabledImage: NSImage! = nil
     var enabledImage: NSImage! = nil
     
@@ -54,25 +55,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         nc.addObserver(self, selector: #selector(AppDelegate.defaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         initDefaults()
         
+        // Ensure no background caffeinate processes are running
+        KillallManager.shared.runCaffeinateCheck()
+        
+        // Set up signal trapping
+        caffeination = Caffeination()
+        caffeination.terminationHandler = caffeinationDidFinish
+        
         // Set up status item and images
-        if df.bool(forKey: "UseGreenColorScheme") {
-            disabledImage = NSImage(named: "CoffeeCup")
-            enabledImage = NSImage(named: "CoffeeCupGreen")
-        } else {
-            enabledImage = NSImage(named: "CoffeeCup")
-            disabledImage = (NSImage(named: "CoffeeCup")!.copy() as! NSImage)
-            // It would be nice if Apple provided an API to do this automatically (this is a trial-and-error emulation of how Do Not Disturb behaves)
-            disabledImage!.lockFocus()
-            let isDark = statusItem.button?.effectiveAppearance.name.rawValue.lowercased().contains("dark") ?? false
-            if isDark {
-                #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.33).set()
-            } else {
-                #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.33).set()
-            }
-            let rect = NSRect(origin: NSZeroPoint, size: disabledImage.size)
-            rect.fill(using: .sourceIn)
-            disabledImage.unlockFocus()
-            disabledImage.isTemplate = false
+        setIconColors()
+        menuBarObservation = statusItem.button?.observe(\.effectiveAppearance) { _, _ in
+            self.setIconColors()
         }
         statusItem.image = disabledImage
         
@@ -80,13 +73,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.target = self
         statusItem.button?.sendAction(on: [.leftMouseDown, .rightMouseDown])
         storyboard = NSStoryboard(name: "Main", bundle: nil)
-        
-        // Ensure no background caffeinate processes are running
-        KillallManager.shared.runCaffeinateCheck()
-        
-        // Set up signal trapping
-        caffeination = Caffeination()
-        caffeination.terminationHandler = caffeinationDidFinish
         
         // Set up hot key management
         mainMenu.delegate = HotKeyManager.shared
@@ -102,6 +88,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         HotKeyManager.shared.registerMenuItem(customMenu, withEquivalentAction: {
             self.customClicked(self.customMenu)
         })
+    }
+    
+    // Sets the enabled/disabled colors of the Caffeinator menu bar icon based on the current menu bar appearance
+    func setIconColors() {
+        if df.bool(forKey: "UseGreenColorScheme") {
+            disabledImage = NSImage(named: "CoffeeCup")
+            enabledImage = NSImage(named: "CoffeeCupGreen")
+        } else {
+            enabledImage = NSImage(named: "CoffeeCup")
+            disabledImage = (NSImage(named: "CoffeeCup")!.copy() as! NSImage)
+            // It would be nice if Apple provided an API to do this automatically (this is a trial-and-error emulation of how Do Not Disturb behaves)
+            disabledImage!.lockFocus()
+            let isDark = statusItem.button?.effectiveAppearance.name.rawValue.lowercased().contains("dark") ?? false
+            if isDark {
+                #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2).set()
+            } else {
+                #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2).set()
+            }
+            let rect = NSRect(origin: NSZeroPoint, size: disabledImage.size)
+            rect.fill(using: .sourceIn)
+            disabledImage.unlockFocus()
+            disabledImage.isTemplate = false
+        }
+        self.updateIconForCafState(active: self.caffeination.isActive)
     }
     
     // Announce that we can handle the scriptingCaffeination property (failing to implement this generates KVC errors)
