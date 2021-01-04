@@ -774,7 +774,7 @@
 			repositoryURL = "https://github.com/aaplmath/CaffeineKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.2;
+				minimumVersion = 0.3.3;
 			};
 		};
 		E257CFFC259006C700CBC983 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
