@@ -29,7 +29,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>© Copyright 2020 aaplmath. All rights reserved.</string>
+	<string>© Copyright 2021 jrr6. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
@@ -39,7 +39,7 @@
 	<key>SUEnableSystemProfiling</key>
 	<false/>
 	<key>SUFeedURL</key>
-	<string>https://aaplmath.github.io/Caffeinator/update-release.xml</string>
+	<string>https://jrr6.github.io/Caffeinator/update-release.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>6dDmC8Q/u9W6dXLqph/8qA1SJyCX027jAC0cd9D9dZE=</string>
 	<key>OSAScriptingDefinition</key>

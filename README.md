@@ -1,4 +1,4 @@
-<img src="https://github.com/aaplmath/Caffeinator/raw/master/Caffeinator/Assets.xcassets/AppIcon.appiconset/icon_512%402x.png" height="150" align="left">
+<img src="https://github.com/jrr6/Caffeinator/raw/master/Caffeinator/Assets.xcassets/AppIcon.appiconset/icon_512%402x.png" height="150" align="left">
 
 # Caffeinator
 
@@ -6,11 +6,11 @@
 
 ## Download
 
-To download a prebuilt version of the latest stable release of Caffeinator, visit [Releases](https://www.github.com/aaplmath/Caffeinator/releases).
+To download a prebuilt version of the latest stable release of Caffeinator, visit [Releases](https://www.github.com/jrr6/Caffeinator/releases).
 
 ## Build
 
-Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/CaffeineKit) framework, which provides elegant Swift abstractions for interacting with `caffeinate`. Caffeinator uses [Carthage](https://github.com/Carthage/Carthage) to manage this and other dependencies. To build Caffeinator from source, clone this repository and run `carthage bootstrap --platform macOS --cache-builds` in the cloned directory. After doing so, open, build, and run the project in Xcode.
+Caffeinator is built upon the [CaffeineKit](https://github.com/jrr6/CaffeineKit) framework, which provides elegant Swift abstractions for interacting with `caffeinate`. Caffeinator uses [Carthage](https://github.com/Carthage/Carthage) to manage this and other dependencies. To build Caffeinator from source, clone this repository and run `carthage bootstrap --platform macOS --cache-builds` in the cloned directory. After doing so, open, build, and run the project in Xcode.
 
 ## FAQ
 
@@ -28,4 +28,4 @@ Caffeinator is built upon the [CaffeineKit](https://github.com/aaplmath/Caffeine
 
 * **Why is this README so short?**
 
-  Because Caffeinator has a website, which you can visit [here](https://aaplmath.github.io/Caffeinator) and which also contains a [help guide](https://aaplmath.github.io/Caffeinator/help.html).
+  Because Caffeinator has a website, which you can visit [here](https://jrr6.github.io/Caffeinator) and which also contains a [help guide](https://jrr6.github.io/Caffeinator/help.html).

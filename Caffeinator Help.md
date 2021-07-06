@@ -8,7 +8,7 @@ Caffeinator is a simple menu-bar app that helps you prevent your computer from f
 
 To install Caffeinator:
 
-* Download the latest version from the [Caffeinator website](https://aaplmath.github.io/Caffeinator). 
+* Download the latest version from the [Caffeinator website](https://jrr6.github.io/Caffeinator). 
 * Open the downloaded disk image file.
 * Drag the Caffeinator icon to the `Applications` folder.
 * Once the app finishes copying, eject the disk image by dragging the Caffeinator icon on your Desktop (*not* the one you dragged to Applications) to the Trash.
