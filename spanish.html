@@ -37,14 +37,14 @@
 
 <h3>Ayuda</h3>
 <p>Consulta la <a href="help.html">guía de ayuda</a> (inglés) para información sobre la instalación y el uso de Caffeinator.</p>
-<p>Si tienes otros problemas, ve si <a href="https://github.com/aaplmath/Caffeinator/issues">la página de "Issues"</a> ya tenga una solución. Si no puedes encontrar un "Issue" para tu problema, abre un nuevo "Issue" que describa tu problema, cómo reproducirlo y otra información pertinente.</p>
+<p>Si tienes otros problemas, ve si <a href="https://github.com/jrr6/Caffeinator/issues">la página de "Issues"</a> ya tenga una solución. Si no puedes encontrar un "Issue" para tu problema, abre un nuevo "Issue" que describa tu problema, cómo reproducirlo y otra información pertinente.</p>
 
 <h3>Capturas de pantalla</h3>
 <img src="img/menu-light-es.png">
 <img src="img/menu-dark-es.png">
 <img src="img/args-editor-es.png">
     <footer class="site-footer">
-      <span class="site-footer-owner"><a href="https://github.com/aaplmath/Caffeinator">Caffeinator</a> es un proyecto de código abierto mantenido por <a href="https://github.com/aaplmath">aaplmath</a>.</span>
+      <span class="site-footer-owner"><a href="https://github.com/jrr6/Caffeinator">Caffeinator</a> es un proyecto de código abierto mantenido por <a href="https://github.com/jrr6">jrr6</a>.</span>
       <a href="#" id="switch-language"><p>Click here to view this site in English.</p></a>
     </footer>
 
@@ -61,7 +61,7 @@
     }
     function translate() {
         if (localStorage.spanish !== undefined) localStorage.removeItem('spanish');
-        window.location = "https://aaplmath.github.io/Caffeinator";
+        window.location = "https://jrr6.github.io/Caffeinator";
     }
     function toggleSpanish() {
         try {
@@ -72,7 +72,7 @@
         translate();
     }
     $(document).ready(function() {
-        $.getJSON("https://api.github.com/repos/aaplmath/Caffeinator/releases/latest").done(function(release) {
+        $.getJSON("https://api.github.com/repos/jrr6/Caffeinator/releases/latest").done(function(release) {
             $('#download-button').attr('href', release.assets[0].browser_download_url);
         });
         checkSpanish();
